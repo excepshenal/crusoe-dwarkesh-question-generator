@@ -1,0 +1,4 @@
+# Matches versions already used by applications/engine. Scraping shells out to
+# `curl` (Cloudflare blocks Python's TLS fingerprint), so no HTTP client is needed.
+openai>=1.0
+pydantic>=2.12.5

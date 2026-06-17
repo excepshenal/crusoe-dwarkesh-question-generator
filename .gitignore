@@ -1,0 +1,9 @@
+# Raw API dumps are reproducible bulk — don't commit. (Parsed transcripts ARE
+# committed, via git-LFS; see .gitattributes — they freeze the eval corpus.)
+data/raw/
+data/scrape.log
+# Generated outputs / eval runs.
+runs/
+*.pyc
+__pycache__/
+.env
