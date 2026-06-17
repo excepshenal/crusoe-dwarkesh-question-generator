@@ -1,0 +1,1034 @@
+[
+  {
+    "slug": "ada-palmer-2",
+    "title": "Ada Palmer \u2013 Machiavelli is the most misunderstood thinker of all time",
+    "post_date": "2026-06-16T17:27:51.984Z",
+    "audience": "everyone",
+    "wordcount": 22171,
+    "podcast_duration": 7700.454
+  },
+  {
+    "slug": "alex-imas-phil-trammell",
+    "title": "Alex Imas and Phil Trammell \u2013 What remains scarce after AGI?",
+    "post_date": "2026-06-04T16:14:49.690Z",
+    "audience": "everyone",
+    "wordcount": 12216,
+    "podcast_duration": 4568.4507
+  },
+  {
+    "slug": "reiner-pope-2",
+    "title": "Reiner Pope \u2013 Chip design from the bottom up",
+    "post_date": "2026-05-22T15:38:34.974Z",
+    "audience": "everyone",
+    "wordcount": 10933,
+    "podcast_duration": 4830.067
+  },
+  {
+    "slug": "eric-jang",
+    "title": "Eric Jang \u2013 Building AlphaGo from scratch",
+    "post_date": "2026-05-15T16:04:58.987Z",
+    "audience": "everyone",
+    "wordcount": 23696,
+    "podcast_duration": 9449.482
+  },
+  {
+    "slug": "david-reich-2",
+    "title": "David Reich \u2013 Why the Bronze Age was an inflection point in human evolution",
+    "post_date": "2026-05-08T16:38:22.262Z",
+    "audience": "everyone",
+    "wordcount": 21163,
+    "podcast_duration": 7999.504
+  },
+  {
+    "slug": "reiner-pope",
+    "title": "Reiner Pope \u2013 The math behind how LLMs are trained and served",
+    "post_date": "2026-04-29T17:07:03.273Z",
+    "audience": "everyone",
+    "wordcount": 19153,
+    "podcast_duration": 8029.989
+  },
+  {
+    "slug": "jensen-huang",
+    "title": "Jensen Huang \u2013 TPU competition, why we should sell chips to China, & Nvidia\u2019s supply chain moat",
+    "post_date": "2026-04-15T15:45:23.854Z",
+    "audience": "everyone",
+    "wordcount": 15851,
+    "podcast_duration": 6192.405
+  },
+  {
+    "slug": "michael-nielsen",
+    "title": "Michael Nielsen \u2013 How science actually progresses",
+    "post_date": "2026-04-07T15:49:28.486Z",
+    "audience": "everyone",
+    "wordcount": 18426,
+    "podcast_duration": 7383.066
+  },
+  {
+    "slug": "terence-tao",
+    "title": "Terence Tao \u2013 Kepler, Newton, and the true nature of mathematical discovery",
+    "post_date": "2026-03-20T16:00:55.195Z",
+    "audience": "everyone",
+    "wordcount": 12629,
+    "podcast_duration": 5024.026
+  },
+  {
+    "slug": "dylan-patel",
+    "title": "Dylan Patel \u2014 Deep dive on the 3 big bottlenecks to scaling AI compute",
+    "post_date": "2026-03-13T16:00:42.819Z",
+    "audience": "everyone",
+    "wordcount": 25389,
+    "podcast_duration": 9044.401
+  },
+  {
+    "slug": "dow-anthropic",
+    "title": "The most important question nobody's asking about AI",
+    "post_date": "2026-03-11T18:55:20.774Z",
+    "audience": "everyone",
+    "wordcount": 4418,
+    "podcast_duration": 1478.2172
+  },
+  {
+    "slug": "ada-palmer",
+    "title": "Why Leonardo was a saboteur, Gutenberg went broke, and Florence was weird \u2013 Ada Palmer",
+    "post_date": "2026-03-06T17:14:20.417Z",
+    "audience": "everyone",
+    "wordcount": 21508,
+    "podcast_duration": 7339.389
+  },
+  {
+    "slug": "dario-amodei-2",
+    "title": "Dario Amodei \u2014 \"We are near the end of the exponential\"",
+    "post_date": "2026-02-13T16:46:36.668Z",
+    "audience": "everyone",
+    "wordcount": 22052,
+    "podcast_duration": 8539.873
+  },
+  {
+    "slug": "elon-musk",
+    "title": "Elon Musk \u2014 \"In 36 months, the cheapest place to put AI will be space\u201d",
+    "post_date": "2026-02-05T16:45:08.018Z",
+    "audience": "everyone",
+    "wordcount": 23760,
+    "podcast_duration": 10185.195
+  },
+  {
+    "slug": "adam-marblestone",
+    "title": "Adam Marblestone \u2014 AI is missing something fundamental about the brain",
+    "post_date": "2025-12-30T17:07:17.441Z",
+    "audience": "everyone",
+    "wordcount": 18577,
+    "podcast_duration": 6593.4106
+  },
+  {
+    "slug": "thoughts-on-ai-progress-dec-2025-video",
+    "title": "Thoughts on AI progress (Dec 2025)",
+    "post_date": "2025-12-23T20:24:48.467Z",
+    "audience": "everyone",
+    "wordcount": 2118,
+    "podcast_duration": 747.8596
+  },
+  {
+    "slug": "sarah-paine-cold-war",
+    "title": "Sarah Paine \u2014 Why Russia Lost the Cold War",
+    "post_date": "2025-12-19T17:41:19.853Z",
+    "audience": "everyone",
+    "wordcount": 17908,
+    "podcast_duration": 6894.916
+  },
+  {
+    "slug": "ilya-sutskever-2",
+    "title": "Ilya Sutskever \u2014 We're moving from the age of scaling to the age of research",
+    "post_date": "2025-11-25T17:04:02.767Z",
+    "audience": "everyone",
+    "wordcount": 13777,
+    "podcast_duration": 5763.0825
+  },
+  {
+    "slug": "satya-nadella-2",
+    "title": "Satya Nadella \u2014 How Microsoft is preparing for AGI",
+    "post_date": "2025-11-12T17:03:08.609Z",
+    "audience": "everyone",
+    "wordcount": 14801,
+    "podcast_duration": 5267.226
+  },
+  {
+    "slug": "sarah-paine-russo-chinese",
+    "title": "Sarah Paine \u2014 How Russia sabotaged China's rise",
+    "post_date": "2025-10-31T15:01:37.160Z",
+    "audience": "everyone",
+    "wordcount": 13899,
+    "podcast_duration": 5436.134
+  },
+  {
+    "slug": "andrej-karpathy",
+    "title": "Andrej Karpathy \u2014 AGI is still a decade away",
+    "post_date": "2025-10-17T16:54:33.052Z",
+    "audience": "everyone",
+    "wordcount": 26939,
+    "podcast_duration": 8719.281
+  },
+  {
+    "slug": "nick-lane",
+    "title": "Nick Lane \u2013 Life as we know it is chemically inevitable",
+    "post_date": "2025-10-10T15:29:40.052Z",
+    "audience": "everyone",
+    "wordcount": 13916,
+    "podcast_duration": 4808.4375
+  },
+  {
+    "slug": "thoughts-on-sutton",
+    "title": "Some thoughts on the Sutton interview",
+    "post_date": "2025-10-04T17:45:00.586Z",
+    "audience": "everyone",
+    "wordcount": 1694,
+    "podcast_duration": 699.40247
+  },
+  {
+    "slug": "richard-sutton",
+    "title": "Richard Sutton \u2013 Father of RL thinks LLMs are a dead end",
+    "post_date": "2025-09-26T14:48:59.697Z",
+    "audience": "everyone",
+    "wordcount": 10130,
+    "podcast_duration": 3981.5315
+  },
+  {
+    "slug": "sergey-levine",
+    "title": "Fully autonomous robots are much closer than you think \u2013 Sergey Levine",
+    "post_date": "2025-09-12T15:03:02.106Z",
+    "audience": "everyone",
+    "wordcount": 15321,
+    "podcast_duration": 5308.2124
+  },
+  {
+    "slug": "sarah-paine-ww2",
+    "title": "How Hitler almost starved Britain \u2013 Sarah Paine",
+    "post_date": "2025-09-05T15:05:14.631Z",
+    "audience": "everyone",
+    "wordcount": 15150,
+    "podcast_duration": 5717.1333
+  },
+  {
+    "slug": "jacob-kimmel",
+    "title": "Evolution designed us to die fast; we can change that \u2014 Jacob Kimmel",
+    "post_date": "2025-08-21T16:29:18.613Z",
+    "audience": "everyone",
+    "wordcount": 21476,
+    "podcast_duration": 6279.654
+  },
+  {
+    "slug": "casey-handmer",
+    "title": "China is killing the US on energy. Does that mean they\u2019ll win AGI? \u2014 Casey Handmer",
+    "post_date": "2025-08-15T14:54:54.243Z",
+    "audience": "everyone",
+    "wordcount": 13737,
+    "podcast_duration": 4101.5117
+  },
+  {
+    "slug": "lewis-bollard",
+    "title": "Artificial meat is harder than artificial intelligence \u2014 Lewis Bollard",
+    "post_date": "2025-08-07T15:58:01.494Z",
+    "audience": "everyone",
+    "wordcount": 13233,
+    "podcast_duration": 4084.9763
+  },
+  {
+    "slug": "sarah-paine-east-asia",
+    "title": "Sarah Paine \u2014 How Imperial Japan defeated Tsarist Russia & Qing China",
+    "post_date": "2025-07-25T17:06:52.083Z",
+    "audience": "everyone",
+    "wordcount": 18761,
+    "podcast_duration": 6936.999
+  },
+  {
+    "slug": "stephen-kotkin",
+    "title": "Stephen Kotkin \u2014 How Stalin became the most powerful dictator in history",
+    "post_date": "2025-07-10T16:11:28.668Z",
+    "audience": "everyone",
+    "wordcount": 19702,
+    "podcast_duration": 7960.6333
+  },
+  {
+    "slug": "why-i-dont-think-agi-is-right-around",
+    "title": "Why I don\u2019t think AGI is right around the corner",
+    "post_date": "2025-07-03T21:19:05.279Z",
+    "audience": "everyone",
+    "wordcount": 54,
+    "podcast_duration": 840.54205
+  },
+  {
+    "slug": "george-church",
+    "title": "A billion years of evolution in a single afternoon \u2014 George Church",
+    "post_date": "2025-06-26T15:55:45.250Z",
+    "audience": "everyone",
+    "wordcount": 13020,
+    "podcast_duration": 5624.79
+  },
+  {
+    "slug": "arthur-kroeber",
+    "title": "Why China's manufacturing economy is dominating \u2014 Arthur Kroeber",
+    "post_date": "2025-06-19T16:03:16.788Z",
+    "audience": "everyone",
+    "wordcount": 22195,
+    "podcast_duration": 8803.135
+  },
+  {
+    "slug": "ken-rogoff",
+    "title": "\"China is digging out of a crisis. And America\u2019s luck is wearing thin.\" \u2014 Ken Rogoff",
+    "post_date": "2025-06-12T16:32:58.429Z",
+    "audience": "everyone",
+    "wordcount": 14941,
+    "podcast_duration": 5764.467
+  },
+  {
+    "slug": "victor-shih",
+    "title": "Xi Jinping\u2019s paranoid approach to AGI, debt crisis, & Politburo politics \u2014 Victor Shih",
+    "post_date": "2025-05-29T15:47:29.140Z",
+    "audience": "everyone",
+    "wordcount": 13587,
+    "podcast_duration": 5348.859
+  },
+  {
+    "slug": "sholto-trenton-2",
+    "title": "Is RL + LLMs enough for AGI? \u2014 Sholto Douglas & Trenton Bricken",
+    "post_date": "2025-05-22T20:53:36.250Z",
+    "audience": "everyone",
+    "wordcount": 25224,
+    "podcast_duration": 8641.149
+  },
+  {
+    "slug": "ai-firms-narration",
+    "title": "What will automated firms look like?",
+    "post_date": "2025-05-01T23:00:27.192Z",
+    "audience": "everyone",
+    "wordcount": 94,
+    "podcast_duration": 617.53467
+  },
+  {
+    "slug": "mark-zuckerberg-2",
+    "title": "Mark Zuckerberg \u2014 AI will write most Meta code in 18 months",
+    "post_date": "2025-04-29T15:46:54.640Z",
+    "audience": "everyone",
+    "wordcount": 11468,
+    "podcast_duration": 4502.8833
+  },
+  {
+    "slug": "kyle-harper",
+    "title": "Why Rome actually fell: plagues, slavery, & ice age \u2014 Kyle Harper",
+    "post_date": "2025-04-24T15:53:57.036Z",
+    "audience": "everyone",
+    "wordcount": 12008,
+    "podcast_duration": 5007.621
+  },
+  {
+    "slug": "ege-tamay",
+    "title": "AGI is still 30 years away \u2014 Ege Erdil & Tamay Besiroglu",
+    "post_date": "2025-04-17T16:06:32.421Z",
+    "audience": "everyone",
+    "wordcount": 33339,
+    "podcast_duration": 11308.304
+  },
+  {
+    "slug": "scott-daniel",
+    "title": "AI 2027: month-by-month model of intelligence explosion \u2014 Scott Alexander & Daniel Kokotajlo",
+    "post_date": "2025-04-03T15:05:11.346Z",
+    "audience": "everyone",
+    "wordcount": 33838,
+    "podcast_duration": 11066.331
+  },
+  {
+    "slug": "scaling-ama",
+    "title": "AMA: career advice given AGI, how I research ft. Sholto & Trenton",
+    "post_date": "2025-03-25T15:25:59.724Z",
+    "audience": "everyone",
+    "wordcount": 9408,
+    "podcast_duration": 2973.3354
+  },
+  {
+    "slug": "joseph-henrich",
+    "title": "Joseph Henrich \u2014 Humans defeated smarter species with cultural evolution",
+    "post_date": "2025-03-12T16:40:31.244Z",
+    "audience": "everyone",
+    "wordcount": 21078,
+    "podcast_duration": 6779.4023
+  },
+  {
+    "slug": "notes-on-china-narration",
+    "title": "Notes on China",
+    "post_date": "2025-03-05T18:12:42.522Z",
+    "audience": "everyone",
+    "wordcount": 54,
+    "podcast_duration": 1171.2783
+  },
+  {
+    "slug": "satya-nadella",
+    "title": "Satya Nadella \u2014 Microsoft\u2019s AGI plan & quantum breakthrough",
+    "post_date": "2025-02-19T15:51:23.737Z",
+    "audience": "everyone",
+    "wordcount": 12010,
+    "podcast_duration": 4569.8613
+  },
+  {
+    "slug": "jeff-dean-and-noam-shazeer",
+    "title": "Jeff Dean & Noam Shazeer \u2014 25 years at Google: from PageRank to AGI",
+    "post_date": "2025-02-12T19:56:43.642Z",
+    "audience": "everyone",
+    "wordcount": 21926,
+    "podcast_duration": 8083.174
+  },
+  {
+    "slug": "sarah-paine-china",
+    "title": "Sarah Paine \u2014 How Mao conquered China (lecture & interview)",
+    "post_date": "2025-01-30T14:45:25.913Z",
+    "audience": "everyone",
+    "wordcount": 18167,
+    "podcast_duration": 6493.7534
+  },
+  {
+    "slug": "sarah-paine-japan",
+    "title": "Sarah Paine \u2014 Why Japan lost WWII (lecture & interview)",
+    "post_date": "2025-01-23T16:43:16.833Z",
+    "audience": "everyone",
+    "wordcount": 21510,
+    "podcast_duration": 7692.7476
+  },
+  {
+    "slug": "sarah-paine-india",
+    "title": "Sarah Paine \u2014 The war for India (lecture & interview)",
+    "post_date": "2025-01-16T20:12:01.901Z",
+    "audience": "everyone",
+    "wordcount": 23529,
+    "podcast_duration": 7978.3184
+  },
+  {
+    "slug": "tyler-cowen-4",
+    "title": "Tyler Cowen \u2014 The #1 bottleneck to AI progress is humans",
+    "post_date": "2025-01-09T16:25:21.690Z",
+    "audience": "everyone",
+    "wordcount": 11727,
+    "podcast_duration": 3584.627
+  },
+  {
+    "slug": "adam-brown",
+    "title": "Adam Brown \u2014 Bubble universes, space elevators, & AdS/CFT",
+    "post_date": "2024-12-26T16:29:59.621Z",
+    "audience": "everyone",
+    "wordcount": 28223,
+    "podcast_duration": 9817.234
+  },
+  {
+    "slug": "gwern-branwen",
+    "title": "Gwern \u2014 Anonymous writer who predicted AI trajectory on $12K/year salary",
+    "post_date": "2024-11-13T18:42:28.773Z",
+    "audience": "everyone",
+    "wordcount": 16208,
+    "podcast_duration": 5803.4937
+  },
+  {
+    "slug": "dylan-jon",
+    "title": "@Asianometry & Dylan Patel \u2014 How the semiconductor industry actually works",
+    "post_date": "2024-10-02T14:19:08.659Z",
+    "audience": "everyone",
+    "wordcount": 22339,
+    "podcast_duration": 7797.4204
+  },
+  {
+    "slug": "daniel-yergin",
+    "title": "Daniel Yergin \u2014 Oil destroyed Hitler, fracking destroyed Putin",
+    "post_date": "2024-09-18T14:02:31.288Z",
+    "audience": "everyone",
+    "wordcount": 13307,
+    "podcast_duration": 5257.012
+  },
+  {
+    "slug": "david-reich",
+    "title": "David Reich \u2014 How one small tribe conquered the world 70,000 years ago",
+    "post_date": "2024-08-29T15:38:44.749Z",
+    "audience": "everyone",
+    "wordcount": 19058,
+    "podcast_duration": 6965.995
+  },
+  {
+    "slug": "joe-carlsmith",
+    "title": "Joe Carlsmith \u2014 Preventing an AI takeover",
+    "post_date": "2024-08-22T15:09:45.382Z",
+    "audience": "everyone",
+    "wordcount": 21618,
+    "podcast_duration": 9035.363
+  },
+  {
+    "slug": "patrick-mckenzie",
+    "title": "Patrick McKenzie \u2014 Money laundering, big tech censorship, SBF & Japan",
+    "post_date": "2024-07-24T13:57:59.911Z",
+    "audience": "everyone",
+    "wordcount": 20042,
+    "podcast_duration": 7293.571
+  },
+  {
+    "slug": "tony-blair",
+    "title": "Tony Blair \u2014 Why political leaders keep failing at major change",
+    "post_date": "2024-06-26T13:41:20.097Z",
+    "audience": "everyone",
+    "wordcount": 8135,
+    "podcast_duration": 3171.7095
+  },
+  {
+    "slug": "francois-chollet",
+    "title": "Francois Chollet \u2014 Why the biggest AI models can't solve simple puzzles",
+    "post_date": "2024-06-11T17:03:59.712Z",
+    "audience": "everyone",
+    "wordcount": 15889,
+    "podcast_duration": 5632.5483
+  },
+  {
+    "slug": "leopold-aschenbrenner",
+    "title": "Leopold Aschenbrenner \u2014 2027 AGI, China/US super-intelligence race, & the return of history",
+    "post_date": "2024-06-04T15:39:37.715Z",
+    "audience": "everyone",
+    "wordcount": 43346,
+    "podcast_duration": 16277.604
+  },
+  {
+    "slug": "john-schulman",
+    "title": "John Schulman (OpenAI Cofounder) \u2014 Reasoning, RLHF, & plan for 2027 AGI",
+    "post_date": "2024-05-15T13:57:36.097Z",
+    "audience": "everyone",
+    "wordcount": 12326,
+    "podcast_duration": 5725.8057
+  },
+  {
+    "slug": "mark-zuckerberg",
+    "title": "Mark Zuckerberg \u2014 Llama 3, $10B models, Caesar Augustus, & 1 GW datacenters",
+    "post_date": "2024-04-18T15:49:17.220Z",
+    "audience": "everyone",
+    "wordcount": 11828,
+    "podcast_duration": 4674.168
+  },
+  {
+    "slug": "sholto-douglas-trenton-bricken",
+    "title": "Sholto Douglas & Trenton Bricken \u2014 How LLMs actually think",
+    "post_date": "2024-03-28T15:10:09.561Z",
+    "audience": "everyone",
+    "wordcount": 32940,
+    "podcast_duration": 11540.689
+  },
+  {
+    "slug": "demis-hassabis",
+    "title": "Demis Hassabis \u2014 Scaling, superhuman AIs, AlphaZero atop LLMs, AlphaFold",
+    "post_date": "2024-02-28T15:49:28.076Z",
+    "audience": "everyone",
+    "wordcount": 10812,
+    "podcast_duration": 3693.636
+  },
+  {
+    "slug": "patrick-collison",
+    "title": "Patrick Collison \u2014 Why Silicon Valley's most talented should leave",
+    "post_date": "2024-02-21T15:25:58.879Z",
+    "audience": "everyone",
+    "wordcount": 16245,
+    "podcast_duration": 6887.3926
+  },
+  {
+    "slug": "tyler-cowen-3",
+    "title": "Tyler Cowen \u2014 Hayek, Keynes, & Smith on AI, animal spirits, anarchy, & growth",
+    "post_date": "2024-01-31T15:00:36.745Z",
+    "audience": "everyone",
+    "wordcount": 19893,
+    "podcast_duration": 6141.5444
+  },
+  {
+    "slug": "lyndon-johnson-narration",
+    "title": "Lessons from The Years of Lyndon Johnson by Robert Caro [Narration]",
+    "post_date": "2024-01-23T15:01:00.891Z",
+    "audience": "everyone",
+    "wordcount": 46,
+    "podcast_duration": 2192.4832
+  },
+  {
+    "slug": "will-scaling-work-narration",
+    "title": "Will scaling work? [Narration]",
+    "post_date": "2024-01-19T15:25:56.646Z",
+    "audience": "everyone",
+    "wordcount": 39,
+    "podcast_duration": 1543.1837
+  },
+  {
+    "slug": "jung-chang",
+    "title": "Jung Chang (Wild Swans author) \u2014 Living through history's largest man-made famine",
+    "post_date": "2023-11-29T15:01:22.419Z",
+    "audience": "everyone",
+    "wordcount": 9097,
+    "podcast_duration": 5475.2393
+  },
+  {
+    "slug": "andrew-roberts",
+    "title": "Andrew Roberts \u2014 Why Hitler lost WWII, Churchill as applied historian, & Napoleon as startup founder",
+    "post_date": "2023-11-22T15:06:19.078Z",
+    "audience": "everyone",
+    "wordcount": 11744,
+    "podcast_duration": 4729.156
+  },
+  {
+    "slug": "dominic-cummings",
+    "title": "Dominic Cummings - COVID, Brexit, & Fixing Western Governance",
+    "post_date": "2023-11-15T15:14:34.159Z",
+    "audience": "everyone",
+    "wordcount": 25657,
+    "podcast_duration": 9253.172
+  },
+  {
+    "slug": "paul-christiano",
+    "title": "Paul Christiano \u2014 Preventing an AI takeover",
+    "post_date": "2023-10-31T13:56:24.329Z",
+    "audience": "everyone",
+    "wordcount": 42234,
+    "podcast_duration": 11221.264
+  },
+  {
+    "slug": "shane-legg",
+    "title": "Shane Legg (DeepMind Founder) \u2014 2028 AGI, superhuman alignment, new architectures",
+    "post_date": "2023-10-26T15:12:11.954Z",
+    "audience": "everyone",
+    "wordcount": 7323,
+    "podcast_duration": 2658.534
+  },
+  {
+    "slug": "grant-sanderson",
+    "title": "Grant Sanderson (@3blue1brown) \u2014 Past, present, & future of mathematics",
+    "post_date": "2023-10-12T12:49:12.242Z",
+    "audience": "everyone",
+    "wordcount": 17428,
+    "podcast_duration": 5480.281
+  },
+  {
+    "slug": "sarah-paine",
+    "title": "Sarah C. M. Paine \u2014 Why dictators keep making the same fatal mistake",
+    "post_date": "2023-10-04T13:43:27.109Z",
+    "audience": "everyone",
+    "wordcount": 23820,
+    "podcast_duration": 8672.992
+  },
+  {
+    "slug": "dario-amodei",
+    "title": "Dario Amodei (Anthropic CEO) \u2014 The hidden pattern behind every AI breakthrough",
+    "post_date": "2023-08-08T13:40:07.841Z",
+    "audience": "everyone",
+    "wordcount": 20930,
+    "podcast_duration": 7123.357
+  },
+  {
+    "slug": "andy-matuschak",
+    "title": "Andy Matuschak \u2014 The reason most learning tools fail",
+    "post_date": "2023-07-12T13:12:00.990Z",
+    "audience": "everyone",
+    "wordcount": 24003,
+    "podcast_duration": 8559.752
+  },
+  {
+    "slug": "carl-shulman-2",
+    "title": "Carl Shulman (Pt 2) \u2014 AI Takeover, bio & cyber attacks, detecting deception, & humanity's far future",
+    "post_date": "2023-06-26T15:07:38.301Z",
+    "audience": "everyone",
+    "wordcount": 25560,
+    "podcast_duration": 11226.515
+  },
+  {
+    "slug": "carl-shulman",
+    "title": "Carl Shulman (Pt 1) \u2014 Intelligence explosion, primate evolution, robot doublings, & alignment",
+    "post_date": "2023-06-14T07:50:32.204Z",
+    "audience": "everyone",
+    "wordcount": 23206,
+    "podcast_duration": 9855.687
+  },
+  {
+    "slug": "richard-rhodes",
+    "title": "Richard Rhodes \u2014 The making of the atomic bomb",
+    "post_date": "2023-05-23T09:19:29.773Z",
+    "audience": "everyone",
+    "wordcount": 23445,
+    "podcast_duration": 9456.117
+  },
+  {
+    "slug": "eliezer-yudkowsky",
+    "title": "Eliezer Yudkowsky \u2014 Why AI will kill us, aligning LLMs, nature of intelligence, SciFi, & rationality",
+    "post_date": "2023-04-06T13:57:41.080Z",
+    "audience": "everyone",
+    "wordcount": 40955,
+    "podcast_duration": 14604.8
+  },
+  {
+    "slug": "ilya-sutskever",
+    "title": "Ilya Sutskever (OpenAI Chief Scientist) \u2014 Why next-token prediction could surpass human intelligence",
+    "post_date": "2023-03-27T13:57:39.998Z",
+    "audience": "everyone",
+    "wordcount": 8322,
+    "podcast_duration": 2861.035
+  },
+  {
+    "slug": "nat-friedman",
+    "title": "Nat Friedman (Github CEO) \u2014 Reading ancient scrolls, open source, & AI",
+    "post_date": "2023-03-22T11:16:09.818Z",
+    "audience": "everyone",
+    "wordcount": 17538,
+    "podcast_duration": 5903.203
+  },
+  {
+    "slug": "brett-harrison",
+    "title": "Brett Harrison \u2014 FTX US former president speaks out",
+    "post_date": "2023-03-13T15:15:11.212Z",
+    "audience": "everyone",
+    "wordcount": 27273,
+    "podcast_duration": 9457.606
+  },
+  {
+    "slug": "marc-andreessen",
+    "title": "Marc Andreessen \u2014 AI, crypto, 1000 Elon Musks, regrets, vulnerabilities, & managerial revolution",
+    "post_date": "2023-02-01T16:01:45.108Z",
+    "audience": "everyone",
+    "wordcount": 15159,
+    "podcast_duration": 4770.925
+  },
+  {
+    "slug": "garett-jones",
+    "title": "Garett Jones \u2014 Immigration, national IQ, & less democracy",
+    "post_date": "2023-01-24T13:01:36.866Z",
+    "audience": "everyone",
+    "wordcount": 12414,
+    "podcast_duration": 4440.528
+  },
+  {
+    "slug": "lars-doucet",
+    "title": "Lars Doucet \u2014 Progress, poverty, Georgism, & why rent is too damn high",
+    "post_date": "2023-01-09T13:01:21.882Z",
+    "audience": "everyone",
+    "wordcount": 17877,
+    "podcast_duration": 6023.418
+  },
+  {
+    "slug": "holden-karnofsky",
+    "title": "Holden Karnofsky \u2014 History's most important century",
+    "post_date": "2023-01-03T13:00:55.557Z",
+    "audience": "everyone",
+    "wordcount": 24301,
+    "podcast_duration": 6970.174
+  },
+  {
+    "slug": "bethany-mclean",
+    "title": "Bethany McLean \u2014 Enron, FTX, 2008, Musk, frauds, & visionaries",
+    "post_date": "2022-12-21T12:30:53.257Z",
+    "audience": "everyone",
+    "wordcount": 17172,
+    "podcast_duration": 5157.59
+  },
+  {
+    "slug": "nadia-asparouhova",
+    "title": "Nadia Asparouhova \u2014 Tech elites, democracy, open source, & philanthropy",
+    "post_date": "2022-12-15T12:01:16.899Z",
+    "audience": "everyone",
+    "wordcount": 13270,
+    "podcast_duration": 4930.298
+  },
+  {
+    "slug": "byrne-hobart-2",
+    "title": "Byrne Hobart - FTX, Drugs, Twitter, Taiwan, & Monasticism",
+    "post_date": "2022-12-01T11:01:10.064Z",
+    "audience": "everyone",
+    "wordcount": 15419,
+    "podcast_duration": 5407.8433
+  },
+  {
+    "slug": "edward-glaeser",
+    "title": "Edward Glaeser - Cities, Terrorism, Housing, & Remote Work",
+    "post_date": "2022-11-28T13:03:56.685Z",
+    "audience": "everyone",
+    "wordcount": 10015,
+    "podcast_duration": 3428.31
+  },
+  {
+    "slug": "kenneth-jackson",
+    "title": "Kenneth T. Jackson - Robert Moses, Hero of New York?",
+    "post_date": "2022-11-08T13:00:51.663Z",
+    "audience": "everyone",
+    "wordcount": 14129,
+    "podcast_duration": 5596.6562
+  },
+  {
+    "slug": "brian-potter",
+    "title": "Brian Potter - Future of Construction, Ugly Modernism, & Environmental Review ",
+    "post_date": "2022-10-27T12:09:43.852Z",
+    "audience": "everyone",
+    "wordcount": 22535,
+    "podcast_duration": 8757.315
+  },
+  {
+    "slug": "bryan-caplan-3",
+    "title": "Bryan Caplan - Feminists, Billionaires, and Demagogues",
+    "post_date": "2022-10-20T11:10:25.504Z",
+    "audience": "everyone",
+    "wordcount": 23292,
+    "podcast_duration": 7510.7524
+  },
+  {
+    "slug": "tyler-cowen-2",
+    "title": "Tyler Cowen - Talent, Collapse, & Pessimism of Sex",
+    "post_date": "2022-09-28T13:21:06.493Z",
+    "audience": "everyone",
+    "wordcount": 18304,
+    "podcast_duration": 5678.68
+  },
+  {
+    "slug": "charles-mann",
+    "title": "Charles C. Mann - Americas Before Columbus & Scientific Wizardry",
+    "post_date": "2022-09-14T09:38:32.261Z",
+    "audience": "everyone",
+    "wordcount": 14119,
+    "podcast_duration": 5487.543
+  },
+  {
+    "slug": "austin-vernon",
+    "title": "Austin Vernon - Energy Superabundance, Starship Missiles, & Finding Alpha",
+    "post_date": "2022-09-08T11:00:55.588Z",
+    "audience": "everyone",
+    "wordcount": 23765,
+    "podcast_duration": 8611.057
+  },
+  {
+    "slug": "steve-hsu",
+    "title": "Steve Hsu - Intelligence, Embryo Selection, & The Future of Humanity",
+    "post_date": "2022-08-23T05:56:07.642Z",
+    "audience": "everyone",
+    "wordcount": 21524,
+    "podcast_duration": 8448.549
+  },
+  {
+    "slug": "will-macaskill",
+    "title": "Will MacAskill - Longtermism, Altruism, History, & Technology",
+    "post_date": "2022-08-09T04:02:08.423Z",
+    "audience": "everyone",
+    "wordcount": 8233,
+    "podcast_duration": 3366.844
+  },
+  {
+    "slug": "joseph-carlsmith",
+    "title": "Joseph Carlsmith - Utopia, AI, & Infinite Ethics",
+    "post_date": "2022-08-03T05:00:26.370Z",
+    "audience": "everyone",
+    "wordcount": 143,
+    "podcast_duration": 5480.933
+  },
+  {
+    "slug": "fin-moorhouse",
+    "title": "Fin Moorhouse - Longtermism, Space, & Entrepreneurship",
+    "post_date": "2022-07-27T05:00:17.509Z",
+    "audience": "everyone",
+    "wordcount": 227,
+    "podcast_duration": 8388.44
+  },
+  {
+    "slug": "alexander-mikaberidze",
+    "title": "Alexander Mikaberidze - Napoleon, War, Progress, and Global Order",
+    "post_date": "2022-07-13T06:43:01.892Z",
+    "audience": "everyone",
+    "wordcount": 198,
+    "podcast_duration": 4990.093
+  },
+  {
+    "slug": "sbf",
+    "title": "Sam Bankman-Fried - Crypto, Altruism, and Leadership",
+    "post_date": "2022-07-05T06:55:22.089Z",
+    "audience": "everyone",
+    "wordcount": 7135,
+    "podcast_duration": 2716.16
+  },
+  {
+    "slug": "agustin-lebron",
+    "title": "Agustin Lebron - Trading, Crypto, and Adverse Selection",
+    "post_date": "2022-06-23T05:00:12.145Z",
+    "audience": "everyone",
+    "wordcount": 231,
+    "podcast_duration": 3844.1094
+  },
+  {
+    "slug": "ananyo-bhattacharya",
+    "title": "Ananyo Bhattacharya - John von Neumann, Jewish Genius, and Nuclear War",
+    "post_date": "2022-05-11T05:00:40.155Z",
+    "audience": "everyone",
+    "wordcount": 179,
+    "podcast_duration": 3284.144
+  },
+  {
+    "slug": "stephen-grugett",
+    "title": "Stephen Grugett (Manifold Markets Founder) - Predictions Markets & Revolutionizing Governance",
+    "post_date": "2022-05-05T05:04:41.876Z",
+    "audience": "everyone",
+    "wordcount": 191,
+    "podcast_duration": 3053.3486
+  },
+  {
+    "slug": "pradyu-prasad",
+    "title": "Pradyu Prasad - Imperial Japan, the God Emperor, and Militarization in the Modern World",
+    "post_date": "2022-04-27T14:13:00.000Z",
+    "audience": "everyone",
+    "wordcount": 202,
+    "podcast_duration": 5939.801
+  },
+  {
+    "slug": "razib-khan",
+    "title": "Razib Khan - Genomics, Intelligence, and The Church of Science",
+    "post_date": "2022-04-20T10:05:00.000Z",
+    "audience": "everyone",
+    "wordcount": 145,
+    "podcast_duration": 3798.0212
+  },
+  {
+    "slug": "jimmy-soni",
+    "title": "Jimmy Soni - Peter Thiel, Elon Musk, and the Paypal Mafia",
+    "post_date": "2022-04-16T10:00:00.000Z",
+    "audience": "everyone",
+    "wordcount": 178,
+    "podcast_duration": 4068.5452
+  },
+  {
+    "slug": "bryan-caplan-2",
+    "title": "Bryan Caplan - Discrimination, Poverty, & Mental Illness",
+    "post_date": "2022-04-12T06:00:00.000Z",
+    "audience": "everyone",
+    "wordcount": 236,
+    "podcast_duration": 3822.3152
+  },
+  {
+    "slug": "richard-hanania",
+    "title": "Richard Hanania - Foreign Policy, Fertility, and Wokeness",
+    "post_date": "2022-02-24T06:00:00.000Z",
+    "audience": "everyone",
+    "wordcount": 256,
+    "podcast_duration": 3722.328
+  },
+  {
+    "slug": "david-deutsch",
+    "title": "David Deutsch - AI, America, Fun, & Bayes",
+    "post_date": "2022-01-31T15:55:20.000Z",
+    "audience": "everyone",
+    "wordcount": 10977,
+    "podcast_duration": 5051.507
+  },
+  {
+    "slug": "byrne-hobart",
+    "title": "Byrne Hobart - Optionality, Stagnation, and Secret Societies",
+    "post_date": "2021-10-05T05:00:00.000Z",
+    "audience": "everyone",
+    "wordcount": 178,
+    "podcast_duration": 4292
+  },
+  {
+    "slug": "david-friedman",
+    "title": "David Friedman - Dating Markets, Legal Systems, Bitcoin, and Automation",
+    "post_date": "2021-08-09T15:08:06.000Z",
+    "audience": "everyone",
+    "wordcount": 139,
+    "podcast_duration": 5033
+  },
+  {
+    "slug": "sarah-fitz",
+    "title": "Sarah Fitz-Claridge - Taking Children Seriously",
+    "post_date": "2021-06-04T16:26:22.000Z",
+    "audience": "everyone",
+    "wordcount": 180,
+    "podcast_duration": 3494
+  },
+  {
+    "slug": "michael-huemer",
+    "title": "Michael Huemer - Anarchy, Capitalism, and Progress",
+    "post_date": "2021-05-28T22:02:41.000Z",
+    "audience": "everyone",
+    "wordcount": 197,
+    "podcast_duration": 5824
+  },
+  {
+    "slug": "uncle-bob",
+    "title": "Uncle Bob - The Long Reach of Code",
+    "post_date": "2020-11-28T01:12:45.000Z",
+    "audience": "everyone",
+    "wordcount": 149,
+    "podcast_duration": 2750
+  },
+  {
+    "slug": "scott-aaronson",
+    "title": "Scott Aaronson - Quantum Computing, Complexity, and Creativity",
+    "post_date": "2020-11-20T23:31:16.000Z",
+    "audience": "everyone",
+    "wordcount": 163,
+    "podcast_duration": 5225
+  },
+  {
+    "slug": "scott-young",
+    "title": "Scott Young - Ultralearning",
+    "post_date": "2020-11-16T20:25:33.000Z",
+    "audience": "everyone",
+    "wordcount": 178,
+    "podcast_duration": 5937
+  },
+  {
+    "slug": "charles-murray",
+    "title": "Charles Murray - Human Accomplishment and the Future of Liberty",
+    "post_date": "2020-10-28T13:50:45.000Z",
+    "audience": "everyone",
+    "wordcount": 250,
+    "podcast_duration": 6738
+  },
+  {
+    "slug": "alex-tabarrok",
+    "title": "Alex Tabarrok - Prizes, Prices, and Public Goods",
+    "post_date": "2020-10-19T19:23:34.000Z",
+    "audience": "everyone",
+    "wordcount": 178,
+    "podcast_duration": 5161
+  },
+  {
+    "slug": "caleb-watney",
+    "title": "Caleb Watney - America's Innovation Engine",
+    "post_date": "2020-09-04T13:53:32.000Z",
+    "audience": "everyone",
+    "wordcount": 161,
+    "podcast_duration": 3306
+  },
+  {
+    "slug": "robin-hanson",
+    "title": "Robin Hanson - The Long View",
+    "post_date": "2020-08-31T14:41:39.000Z",
+    "audience": "everyone",
+    "wordcount": 154,
+    "podcast_duration": 6029
+  },
+  {
+    "slug": "jason-crawford",
+    "title": "Jason Crawford - The Roots of Progress",
+    "post_date": "2020-08-25T18:32:55.000Z",
+    "audience": "everyone",
+    "wordcount": 70,
+    "podcast_duration": 2917
+  },
+  {
+    "slug": "matjaz-leonardis",
+    "title": "Matja\u017e Leonardis - Science, Identity, and Probability",
+    "post_date": "2020-08-22T00:36:27.000Z",
+    "audience": "everyone",
+    "wordcount": 86,
+    "podcast_duration": 2072
+  },
+  {
+    "slug": "tyler-cowen",
+    "title": "Tyler Cowen - The Great Reset",
+    "post_date": "2020-07-10T16:55:22.000Z",
+    "audience": "everyone",
+    "wordcount": 8691,
+    "podcast_duration": 2824
+  },
+  {
+    "slug": "bryan-caplan",
+    "title": "Bryan Caplan - Nurturing Orphaned Ideas",
+    "post_date": "2020-05-22T18:31:47.000Z",
+    "audience": "everyone",
+    "wordcount": 119,
+    "podcast_duration": 3599
+  }
+]
