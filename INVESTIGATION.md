@@ -62,17 +62,89 @@ existing engine LoRA pipeline.
 
 The generator only synthesizes — it needs the facts in the prompt. We don't have Dwarkesh's
 real prep, and there'd be a train/inference mismatch if we trained on facts that won't be
-available at deploy time. Resolution (`research.py`):
+available at deploy time (where prep comes from broad research, with no transcript). So prep
+is built **broad-first, reverse-engineering last** — a three-stage pipeline (`research.py`):
 
-- **reverse** (train-time): reconstruct, from each transcript, the dossier a prep team would
-  have assembled — every fact/paper/stat/prior-claim the questions draw on, minus the
-  questions. This guarantees the model is never rewarded for citing something not in its prep.
-- **blind** (deploy-time analogue): a broad dossier from the guest's bio, mirroring "Claude
-  researches the guest" at inference.
+1. **Broad research (primary):** wide research on the guest, run by an agent that has
+   **only the guest's name** and never sees the interview. Two non-obvious constraints:
+   - **Neutral, not interview-shaped.** `_BROAD_SYSTEM` deliberately does NOT ask for
+     "controversial angles a sharp interviewer would press." Steering research toward
+     Dwarkesh-shaped material leaks the generator's job into the research step (confounding
+     the eval — we couldn't tell whether the *method* works or the research pre-chewed it)
+     and biases coverage upward. Dwarkesh judgment lives in the generator/SFT, not here.
+   - **Blindness as a protocol.** The research agent is told to exclude ALL Dwarkesh
+     Podcast / Lunar Society content (transcripts, clips, recaps, summaries) and to avoid
+     podcast-recap sources generally, preferring the guest's own primary sources. Best run
+     with a web-search backend; retrieved sources inject via `research_context/{slug}.md`.
+2. **Coverage check:** extract the facts the interview actually drew on and measure what
+   fraction the broad dossier captured. **Target ≥ 80%.** Report it two ways: count-coverage
+   AND **value-weighted coverage** (the deep/obscure "gems" that make his questions special,
+   which are likely the ones blind research misses — count-coverage alone overstates the
+   result). Low coverage is a signal to improve the broad-research recipe, not to lean on the
+   transcript. The harness flags low-coverage episodes.
+3. **Gap-fill (reverse, last resort):** reverse-engineer ONLY the missed facts from the
+   transcript, kept as a small, clearly-labeled supplement so the train/deploy gap stays small.
+
+Why this ordering matters: if we trained on heavily reverse-engineered dossiers, the model
+would learn to rely on facts broad research won't surface at inference. Reverse-fill is a
+minimized, measured patch — and the coverage metric doubles as a quality gauge on broad research.
+
+**Contamination caution (learned 2026-06-17):** an early Karpathy demo showed ~83% coverage,
+but that was inflated — the guest's 2025 web footprint is dominated by recaps of *that very
+interview*, and the search terms used were the interview's own catchphrases. Honest blindness
+requires a fresh agent that never saw the transcript, source restrictions, and testing on
+guests whose interview doesn't dominate their public record.
+
+**Blindness sweep results (2026-06-18, n=4 guests, blind sub-agents, split metric):**
+
+| Guest | Type | Factual coverage | Live-reasoning share | Miss character |
+|-------|------|------------------|----------------------|----------------|
+| Richard Rhodes | author/historian | ~80% (→~90% w/ depth) | ~15% | book-internal anecdotes (depth-recoverable) |
+| Sarah Paine | strategy historian | ~75–80% | ~20–25% | book-internal historical anecdotes (depth-recoverable) |
+| John Schulman | frontier AI researcher | ~70–75% | ~55–60% | mostly live speculation (not research's job) |
+| Terence Tao | mathematician | ~55–65% | ~50% | live AI speculation + a public-output breadth gap |
+
+Three robust findings:
+1. **Factual-groundable coverage is consistently 55–80%** — never catastrophic, never complete.
+   Blind research reliably grounds the *majority* of factual/callback questions.
+2. **Two distinct miss-types, different fixes.** (a) *Depth/breadth misses* (Rhodes/Paine
+   anecdotes that live inside their books; Tao's 3Blue1Brown "cosmic distance ladder" series the
+   dossier overlooked) — factual, guest-groundable, recoverable by deeper/broader research; a
+   research-quality lever. (b) *Live reasoning* (Schulman's "AGI next year — what's the plan,"
+   Tao's AI-for-math speculation, hypotheticals) — not facts; grounded by the conversation, not prep.
+3. **Live-reasoning share is guest-type-dependent and large for "frontier thinker" guests**
+   (Schulman ~55–60%, Tao ~50%) vs small for "expert-on-a-corpus" guests (Rhodes ~15%, Paine ~20–25%).
+
+Secondary: one blind dossier covered *both* of Paine's episodes — research generalizes across
+same-guest episodes.
+
+**Legibility test (2026-06-18):** fed an agent ONLY the Rhodes brief + the system prompt (no outside
+knowledge, no transcript) and had it generate prep questions. Result: it produced genuinely sharp
+questions *exactly where the brief contained two facts in mutual tension* (e.g. "the bomb was
+inevitable / couldn't be suppressed" vs. "Bohr's push to share it") — contradictions are where this
+style lives. But where the brief gave a *position without the reasoning beneath it* (e.g. "Teller
+retarded H-bomb progress") it could only fall back to "what's your evidence?" — one notch above
+generic — because it had the claim but not the substructure to interrogate. **Conclusion: the dossier
+wasn't too short on facts; it was too FLAT — a list of settled positions, missing (a) the reasoning/
+mechanism under each and (b) named opponents' actual counterarguments.** Fix applied to `_BROAD_SYSTEM`
+/ `BLIND_RESEARCH_PROMPT`: require argumentative substructure (reasoning + real counterarguments +
+internal tensions). This is still source material, NOT angles — opposing arguments are facts about the
+discourse — so it doesn't reintroduce the eval confound. This makes prep-mode questions legible to an
+LLM with no prior familiarity with the guest, which is the deploy case.
+
+**Key reframe:** the un-coverable part isn't missing *facts* — it's live reasoning, and in
+copilot mode the generator already receives the transcript-so-far that grounds it. So research
+only needs to ground (a) prep/opening questions and (b) factual callbacks. The coverage metric
+should therefore be split: **factual-groundable** threads (research's job — measure these) vs.
+**live-reasoning** threads (the conversation's job — don't penalize research). Implication for
+SFT: never train the model to produce, from research alone, a question that depends on live
+reasoning — keep prep-mode targets to research-groundable openers; deep drill-downs stay
+copilot-mode examples, where transcript context exists at both train and inference time. This
+makes the train/inference mismatch avoidable by construction. (n=2 — repeat across more guests.)
 
 Open question for the liaison: at deploy time, will full prep be passed in the system prompt
-(as both methods assume)? If not, blind-bootstrap is the fallback path. Any real prep docs or
-planned question lists from Dwarkesh would augment the data but aren't required.
+(as both methods assume)? Any real prep docs or planned question lists from Dwarkesh would
+augment the data but aren't required.
 
 ## Data pipeline notes
 
@@ -89,3 +161,11 @@ planned question lists from Dwarkesh would augment the data but aren't required.
 2. Get oracle annotations (Dwarkesh and/or us) → calibrate and freeze the judge.
 3. Bootstrap research dossiers for the corpus (`research.py --all`).
 4. If prompting plateaus below target → Phase 2 SFT on the engine pipeline.
+
+## Follow-up investigation items (deferred)
+
+- **Per-guest-type leaderboard breakdown.** The sweep found live-reasoning share varies by
+  guest type (corpus-experts vs frontier-thinkers), which likely makes prep-mode value
+  guest-type-dependent. Worth slicing the leaderboard by guest type eventually — but it's an
+  extra axis we're NOT building now. The eval stays guest-type-agnostic for the first pass.
+  (The guest-type observation in the blindness sweep above is recorded data, not built machinery.)
