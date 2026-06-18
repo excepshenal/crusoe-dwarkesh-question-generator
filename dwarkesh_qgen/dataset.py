@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import random
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -50,11 +51,50 @@ def is_question(text: str) -> bool:
     return "?" in text and len(text) >= _MIN_QUESTION_CHARS
 
 
+# Admin/meta turns and conversational-fragment markers that make a turn a poor
+# standalone reference question for the oracle.
+_ADMIN_MARKERS = (
+    "audience question", "game for some", "respectful of your time", "welcome to the",
+    "thanks for", "thank you for", "rapid-fire", "rapid fire", "before we wrap", "final question",
+)
+# Conversational/hedge openers that signal a musing turn rather than a clean standalone question.
+_FRAG_STARTS = (
+    "and ", "but ", "so ", "right,", "yeah", "okay", "i guess", "i mean", "well,",
+    "it might", "i'm not sure", "i don't", "maybe ", "correct me", "just to make sure",
+)
+
+
+def is_clean_question(text: str) -> bool:
+    """A self-contained, SUBSTANTIVE question suitable as an oracle/eval reference — not a
+    conversational fragment, a musing, a trailing-off turn, an admin line, or a read-aloud
+    audience question. Stricter than is_question()."""
+    t = text.strip()
+    if len(t) < 70 or "?" not in t:
+        return False
+    if "…" in t or "..." in t:  # trailing-off / interrupted turns
+        return False
+    if t[0] in "\"'“”":  # read-aloud audience question (quoted)
+        return False
+    low = t.lower()
+    if any(m in low for m in _ADMIN_MARKERS) or re.search(r"\basks[,:]", low):  # admin / "X asks,"
+        return False
+    first = next((c for c in t if c.isalpha()), "")
+    if first.islower() or low.startswith(_FRAG_STARTS):  # mid-stream continuation / musing
+        return False
+    return True
+
+
+def _guest_slug(guest: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", guest.lower()).strip("-")
+
+
 def default_research(t: Transcript) -> str:
-    """Research seed for a transcript: Claude-bootstrapped file if present, else his framing."""
-    f = RESEARCH / f"{t.slug}.md"
-    if f.exists():
-        return f.read_text()
+    """Research for a transcript: dossier by episode slug, else by guest name (one dossier can
+    cover multiple episodes of the same guest), else his written framing."""
+    for name in (t.slug, _guest_slug(t.guest)):
+        f = RESEARCH / f"{name}.md"
+        if f.exists():
+            return f.read_text()
     parts = [f"Guest: {t.guest}"]
     if t.description:
         parts.append(t.description)
@@ -71,6 +111,7 @@ class NextQExample:
     transcript_so_far: str  # rendered context ending on a guest turn
     target: str  # Dwarkesh's real next turn
     turn_idx: int
+    section: str = ""  # enclosing section/topic title, for legible context display
 
 
 def next_question_examples(t: Transcript, research: str | None = None, min_context_turns: int = 2) -> list[NextQExample]:
@@ -85,6 +126,7 @@ def next_question_examples(t: Transcript, research: str | None = None, min_conte
         ctx = t.turns[:i]
         if len(ctx) < min_context_turns:
             continue
+        section = t.sections[turn.section_idx].title if 0 <= turn.section_idx < len(t.sections) else ""
         out.append(
             NextQExample(
                 slug=t.slug,
@@ -93,6 +135,7 @@ def next_question_examples(t: Transcript, research: str | None = None, min_conte
                 transcript_so_far=render_transcript(ctx),
                 target=turn.text,
                 turn_idx=i,
+                section=section,
             )
         )
     return out
@@ -172,11 +215,21 @@ def sample_few_shots(
     return shots
 
 
-def split_slugs(heldout_n: int = 6, seed: int = 13) -> tuple[list[str], list[str]]:
-    """Frozen train/held-out split by slug for eval (held-out is never used for few-shots)."""
+# FROZEN held-out eval set: 20 distinct guests spanning domains (AI, AI-risk, physics, math,
+# nuclear/Russia/Renaissance/genetic history, economics, energy, hardware, finance, construction,
+# politics). Never use these for few-shots or SFT. One episode per guest.
+HELDOUT_SLUGS = (
+    "andrej-karpathy", "john-schulman", "terence-tao", "richard-rhodes", "sarah-paine-east-asia",
+    "dario-amodei-2", "eliezer-yudkowsky", "adam-brown", "tyler-cowen-3", "stephen-kotkin",
+    "david-reich-2", "daniel-yergin", "george-church", "patrick-collison", "jensen-huang",
+    "charles-mann", "byrne-hobart-2", "brian-potter", "grant-sanderson", "dominic-cummings",
+)
+
+
+def split_slugs(heldout_n: int | None = None, seed: int = 13) -> tuple[list[str], list[str]]:
+    """Frozen train/held-out split: held-out is the explicit HELDOUT_SLUGS set (never used for
+    few-shots/SFT). heldout_n is ignored (kept for call-site compatibility)."""
     slugs = iter_slugs()
-    rng = random.Random(seed)
-    rng.shuffle(slugs)
-    heldout = sorted(slugs[:heldout_n])
-    train = sorted(slugs[heldout_n:])
+    heldout = sorted(s for s in slugs if s in HELDOUT_SLUGS)
+    train = sorted(s for s in slugs if s not in HELDOUT_SLUGS)
     return train, heldout

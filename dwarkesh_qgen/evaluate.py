@@ -148,35 +148,38 @@ def compare_method_vs_reference(
 
 
 def judge_agreement(oracle_path: str, judge: LLM) -> dict:
-    """Agreement between the LLM judge and human labels on an oracle file.
+    """Judge↔ground-truth agreement on a stratified oracle file, broken down by stratum.
 
-    Oracle JSONL records: {guest, research, transcript_so_far, question_a, question_b,
-    human_winner: "a"|"b"|"tie"}. Reports accuracy and decisive-only accuracy.
+    Ground truth per record = `human_winner` if set, else `expected` (known-answer strata
+    score with no humans). Records with neither are skipped. Only decisive (a/b) ground
+    truths count toward accuracy. Reports overall + per-stratum so the bias_probe subset
+    (the verbosity-bias test) is visible separately.
     """
+    from .oracle import context_view  # same recap+recent view the human annotator saw
+
     records = [json.loads(l) for l in Path(oracle_path).read_text().splitlines() if l.strip()]
-    agree = decisive = decisive_agree = 0
+    by_stratum: dict[str, list[int]] = {}  # stratum -> [agree, total_decisive]
+    overall = [0, 0]
     for r in records:
+        truth = str(r.get("human_winner") or r.get("expected") or "").lower()
+        if truth not in ("a", "b"):
+            continue  # skip ties and unlabeled-open items
         v = judge_pairwise(
-            guest=r["guest"],
-            research=r.get("research", ""),
-            transcript_so_far=r.get("transcript_so_far", ""),
-            question_a=r["question_a"],
-            question_b=r["question_b"],
-            judge=judge,
+            guest=r["guest"], research=r.get("research", ""),
+            transcript_so_far=context_view(r.get("recap", ""), r.get("transcript_so_far", "")),
+            question_a=r["question_a"], question_b=r["question_b"], judge=judge,
         )
-        human = str(r["human_winner"]).lower()
-        if v.winner == human:
-            agree += 1
-        if human in ("a", "b"):
-            decisive += 1
-            if v.winner == human:
-                decisive_agree += 1
-    n = len(records)
+        hit = int(v.winner == truth)
+        st = r.get("stratum", "?")
+        by_stratum.setdefault(st, [0, 0])
+        by_stratum[st][0] += hit
+        by_stratum[st][1] += 1
+        overall[0] += hit
+        overall[1] += 1
     return {
-        "n": n,
-        "accuracy": agree / n if n else 0.0,
-        "decisive_n": decisive,
-        "decisive_accuracy": decisive_agree / decisive if decisive else 0.0,
+        "decisive_n": overall[1],
+        "accuracy": overall[0] / overall[1] if overall[1] else 0.0,
+        "by_stratum": {st: {"n": t, "accuracy": a / t if t else 0.0} for st, (a, t) in by_stratum.items()},
     }
 
 
