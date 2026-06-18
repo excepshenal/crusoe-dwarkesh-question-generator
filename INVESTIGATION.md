@@ -16,14 +16,20 @@ Collaboration: Crusoe (eng) × a liaison from Dwarkesh Patel (Max Farrens).
 
 ## Status
 
-- **Current status:** in progress — Phase 0 scaffolding + data complete.
+- **Current status:** in progress — Phase 1 (prompting) at an initial **v0** (runs on the live
+  endpoint); Phase 0 (eval) harness built but **no judge calibrated yet**.
 - **Started:** 2026-06-17
-- **Corpus:** 96 interview transcripts scraped (15,580 turns; ~4,086 host questions;
-  4,020 next-question examples). 33 non-interview posts (essays/stubs) correctly skipped.
-- **Frozen held-out set (6):** andrej-karpathy, john-schulman, richard-rhodes,
-  sarah-paine-east-asia, sarah-paine-russo-chinese, terence-tao.
-- **Blocked on:** (1) inference endpoint for the generator; (2) human oracle annotations
-  to calibrate the judge. Both have tooling ready and waiting.
+- **Corpus:** 96 interview transcripts (15,580 turns; ~4,086 host questions; ~4,020 next-question
+  examples). 33 non-interview posts (essays/stubs) correctly skipped.
+- **Inference endpoint:** live — Crusoe (`https://api.inference.crusoecloud.com/v1`,
+  OpenAI-compatible; gpt-oss-120b / Qwen3-235B / Llama-3.3-70B / DeepSeek / etc.).
+- **Frozen held-out set:** **20 domain-diverse guests** (`dataset.HELDOUT_SLUGS`), each grounded by
+  a blind research dossier. Never used for few-shots/SFT.
+- **Eval:** `vs_tool`-primary pairwise judge (the tool's next-question vs. real Dwarkesh) + a small
+  auto-scored `bias_probe` guard. v0 labeling batch (40 items) generated; a first n=40 calibration
+  pass shows the default judge is **not yet calibrated** (below) — the harness is ready, the judge isn't.
+- **Blocked on:** human oracle labels — ideally **Dwarkesh's own** — to calibrate/tune the judge.
+  A liaison handoff pack for the prompting method lives in `handoff/`.
 
 ## Approach (2 phases + 1 prerequisite)
 
@@ -38,8 +44,10 @@ calibrate it against human taste.
   compare each method's question against his at the same point → win-rate vs. Dwarkesh.
 - **Calibration:** an oracle set of pairwise items, human-labeled (by Dwarkesh and/or us).
   We measure judge↔human agreement before trusting the judge. (`oracle.py` → `evaluate.py calibrate`)
-  - v0 oracle is a *floor test*: real in-context question vs. a real question lifted from a
-    different context. A judge that tracks taste prefers the genuinely reactive one.
+  - **Primary stratum = `vs_tool`**: the tool's next-question vs. real Dwarkesh's at the same
+    moment, blinded; humans pick the better one. A small **`bias_probe`** stratum (a concise real
+    question vs. a bloated rewrite of it) is auto-scored as a guard against the judge's verbosity
+    bias. (floor/quality/tool_vs_tool strata exist in `oracle.py` but aren't used in the v0 set.)
 
 ### Phase 1 — prompting (no fine-tuning)
 
@@ -157,10 +165,12 @@ augment the data but aren't required.
 
 ## Next steps
 
-1. Get the inference endpoint → run Phase 1 leaderboard (A/B/C vs. Dwarkesh).
-2. Get oracle annotations (Dwarkesh and/or us) → calibrate and freeze the judge.
-3. Bootstrap research dossiers for the corpus (`research.py --all`).
-4. If prompting plateaus below target → Phase 2 SFT on the engine pipeline.
+1. **Human oracle labels** — ideally Dwarkesh + one more annotator on the same 40 `vs_tool` items
+   (target taste + an inter-annotator ceiling) → calibrate/tune the judge to match them.
+2. Add a **`tool_vs_tool`** stratum (same-form comparison cancels the style/pivot confound) and a
+   **prep-mode** slice; expand toward ~100–150 items if discriminating *close* judge configs.
+3. Once the judge is trusted → run the **leaderboard** and iterate the prompt v0 → v1 → v2.
+4. If prompting plateaus below target → **Phase 2 SFT** — the lever for the residual style/insight gap.
 
 ## Model sweep + judge-bias finding (2026-06-18, Crusoe inference endpoint)
 
@@ -188,6 +198,51 @@ the models:**
   wrong rankings. This empirically vindicates the eval-first/calibrate-the-judge design and makes
   oracle calibration (`oracle.py`) a hard gate before any leaderboard. The length-hardening folded
   into `prompts/judge.md` is a sensible default but does NOT substitute for calibration.
+
+## Eval redesign + first calibration (2026-06-19)
+
+Following the judge-bias finding, the eval settled on **`vs_tool` as the primary metric** (the tool's
+question vs. real Dwarkesh, same moment) plus a small auto-scored **`bias_probe`** guard; the human
+sheet shows only `vs_tool` (known-answer strata stay in the JSONL). The oracle was hardened through
+two independent audit passes: distinct context per card (no cross-card answer leakage), blinded/stable
+ids, sanitized candidates (no markdown/speaker-labels), conversation recap + recent turns for
+legibility, a short guest bio, and a defined confidence scale.
+
+**Style confound (and fix).** An audit found the prompted tool reliably wrote a verbose, em-dash,
+"you said X — how do you Y?" multi-clause register vs. Dwarkesh's terse one — so the comparison risked
+training a *style detector*, not taste. Tightened `system.md` (concise, ONE question, plain text, no
+speaker-labels, stay-on-the-thread, no fabricated callbacks). After the fix the tool's questions are
+terse, reactive, and grounded — a genuine contest, not "spot the LLM." This is a real product fix, not
+hiding the gap; the residual *insight* gap is what SFT is for.
+
+**Frozen held-out + dossiers.** Expanded the held-out set to **20 domain-diverse guests** (AI,
+AI-risk, physics, math, multiple histories, economics, genetics, energy, hardware, finance,
+construction, politics) and generated a **blind research dossier per guest** (one web-search agent
+each, name+role only, all Dwarkesh content excluded), so every `vs_tool` comparison is grounded.
+
+**v0 labeling batch + first calibration (n=40).** Generated 40 `vs_tool` items (2/guest × 20 guests,
+gpt-oss-120b as the tool) + 5 `bias_probe`. Claude labeled all 40 as a stand-in annotator
+(`evals/oracle_answers_claude.csv`); judge = Qwen3-235B:
+
+| metric | result |
+|--------|-------:|
+| judge ↔ Claude agreement | 21/40 = **52%** (70% on Claude's high-confidence items) |
+| judge preferred Dwarkesh | **1/40** (~2%) |
+| Claude preferred Dwarkesh | 20/40 (50%); tool 13 / Dwarkesh 7 among confident picks |
+
+The judge picks the tool ~98% vs. ~50% for humans → **still miscalibrated** (now a pro-tool/
+pro-reactive extremity, opposite the original verbosity bug). Secondary finding: on *isolated
+next-question merit* the v0 tool is **competitive with Dwarkesh** by both Claude's labels and the
+earlier human spot-checks — largely because the tool stays on the live thread while Dwarkesh's real
+turn often pivots. Read cautiously: that's local-merit, not whole-interview interviewing skill, and
+vs-Dwarkesh is confounded by form/path-dependence.
+
+**Is the oracle enough to tune a judge?** Enough to **screen / reject** one — n=40 exposed the
+98%-vs-50% gap unambiguously. **Not enough alone to tune** to Dwarkesh's taste, and the gaps aren't
+mostly sample size: (1) **target** — need Dwarkesh's own labels (Claude's ≠ his taste); (2) **ceiling**
+— a 2nd annotator on the same items to learn human↔human agreement; (3) **clean substance** — a
+`tool_vs_tool` stratum (same form cancels the style/pivot confound); (4) **coverage** — copilot-only
+so far, no prep mode; (5) **power** — ~100–150 items to separate *close* judge configs.
 
 ## Follow-up investigation items (deferred)
 
