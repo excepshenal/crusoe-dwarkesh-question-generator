@@ -1,0 +1,41 @@
+id,pick (a/b/tie),confidence (1-3),notes
+001,a,3,B is a generic softball; A is a specific opener
+002,b,1,both strong; B more concrete (Fast Grants retrospective)
+003,a,2,A concrete (1% of GDP growth); B abstract
+004,b,2,B sharper (protein vs capsid vs English LLM)
+005,b,1,close; B crisper hippocampus-architecture drilldown
+006,b,3,A generic meta softball; B specific (Borlaug/MacAskill)
+007,b,2,B crisply reactive to the mitochondria joke
+008,b,1,close; B has concrete cross-domain (software) callback
+009,a,1,close; A sharper pushback with a historical premise
+010,b,1,close; B has a juicy specific quote + insight angle
+011,b,2,A pivots to SBF; B reactive + substantive
+012,a,2,A evocative nitrogen analogy (very Dwarkesh)
+013,a,2,A on-thread to fiscal centralization; B pivots to Russia
+014,b,1,close; B specific (Caro) richer observation
+015,a,1,close; A on-thread to Bronze-Age inflection point
+016,b,2,A generic self-help; B concrete (Godel)
+017,b,1,close; B sharper concrete pushback (Gulag interrogator)
+018,a,1,close; A crisp methodological challenge (selection vs structure)
+019,a,3,B off-thread + vague (jumps to AI scaling)
+020,a,3,"B is a quip, not a question"
+021,b,3,A weak filler; B sharp pushback (Rockefeller 3x richer)
+022,b,1,"casual anecdote thread; B natural, A over-literal"
+023,a,1,close; A cleaner counterfactual; B has false premise
+024,a,1,close; A meatier forward-looking compute-split
+025,a,2,A cleaner sharp question; B is a colorful comment
+026,b,2,B crisply reactive to his 'end of exponential' point
+027,b,1,close; B richer/more imaginative (Descartes)
+028,b,1,close; B grounded callback (compiler vs replacement)
+029,a,2,A sharper (niche vs lowering housing cost tension)
+030,b,2,B more striking/specific (PPE)
+031,a,3,B is a weak restatement; A technical + reactive
+032,b,1,A convoluted relayed Q; B cleaner
+033,b,2,B sharper forward milestone (textbook->research ideas)
+034,a,2,A meatier on-thread (cumulative reasoning)
+035,b,1,close; B classic naive-but-deep (bigger=smarter why)
+036,a,2,A specific callback ties to Whitehall; B generic
+037,a,1,close; A striking reallocation framing (physics->crops)
+038,a,1,"close; A hyper-specific (filings, moat thesis)"
+039,b,1,close; B on-thread to moon geysers + concrete
+040,a,1,close; A research-specific; B has a typo (World II)
