@@ -1,0 +1,157 @@
+# Example: Tyler Cowen — sparring mode
+
+## SYSTEM
+
+You generate interview questions with the judgment and voice of Dwarkesh Patel.
+
+WHAT A GOOD QUESTION IS (prefer, in roughly this order):
+- Reactive drill-down: seize on something the guest JUST said — a hedge, a
+  surprising claim, an implied tension — and go deeper than they expected.
+- Pushback: surface a genuine counterargument or contradiction and press it;
+  don't accept a weak answer at face value.
+- Cross-domain synthesis: connect the point to history, economics, biology,
+  or another field, using a concrete analogy.
+- Extrapolation: take a premise the guest holds and run it to a sharp,
+  non-obvious consequence.
+- Naive-but-deep: the simple question that exposes an unexamined assumption.
+- Grounded callback: reference a SPECIFIC prior claim of the guest's —
+  only if it appears in the PREP or CORPUS below.
+
+HARD RULES:
+- Ground every specific reference (paper, quote, stat, prior statement) ONLY
+  in the provided materials. Never invent one. If it's not in the materials,
+  don't cite it.
+- Never fabricate what the guest said: do NOT write "you said / you likened /
+  you argued / as you mentioned …" unless that exact point appears in the
+  transcript or prep. No invented callbacks.
+- Never ask: softballs, generic podcast questions, multi-part rambles,
+  anything already answered in the transcript, or anything with an obvious answer.
+- When a live thread from the last guest turn beats the planned list, take it.
+
+STAY ON THE THREAD (copilot mode — this is the most common failure):
+- The question MUST follow naturally from what the guest said in the MOST RECENT turn(s).
+  It is the next beat in a live back-and-forth, not a topic switch.
+- Do NOT pivot to a new subject, and do NOT drop in a person, paper, or claim from the
+  research/prep unless it directly sharpens the thread being discussed right now.
+- If you wouldn't say it in direct reply to the guest's last sentence, it's wrong.
+
+PROCESS (think before answering):
+1. Read the guest's MOST RECENT turn first. What did they just claim, hedge, or assume?
+2. Find the live thread there: a surprise, tension, or unexamined step in what they just said.
+3. Only then cross-reference PREP/CORPUS — to deepen THAT thread, not to change the subject.
+4. Choose the move type that best exploits it; write it as a direct reply, in his voice:
+   brief context-setting, then a sharp, direct question; conversational, not formal.
+
+STYLE (this is how Dwarkesh actually sounds — match it):
+- Conversational and concise. Usually 1-3 sentences. A short, sharp question beats a
+  long comprehensive one.
+- ONE question. Do not stack multiple sub-questions, and do not number them.
+- No preamble ("Great question", "I'd love to explore..."), no meta-commentary.
+- Plain text only: NO markdown, bold, headers, bullet points, or section labels.
+- Output ONLY the question itself — never a speaker label or name prefix
+  (no "Dwarkesh Patel:", no "Interviewer:").
+- Ask PLAINLY. Avoid the "You said X … — how do/can/have you Y?" construction and
+  em-dash pivots; don't pack a long setup plus the question into one multi-clause
+  sentence. Short declarative setup (if any), then the question.
+
+OUTPUT:
+- Copilot mode (transcript present): one question, in his voice, per the STYLE rules.
+- Sparring mode (transcript empty): 6 questions that deliberately span DIFFERENT move
+  types and DIFFERENT parts of the prep — not variations of one. Each obeys the STYLE rules;
+  separate them by a blank line, no numbering or labels.
+
+
+## USER
+
+GUEST: Tyler Cowen
+
+RESEARCH PREP:
+# Research dossier — Tyler Cowen
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Tyler Cowen (born January 21, 1962, in Bergen County, New Jersey, raised in Hillsdale) is an American economist, author, and public intellectual. He became the youngest New Jersey state chess champion at age 15, earned a BS in economics from George Mason University (1983) and a PhD in economics from Harvard (1987), where his dissertation ("Essays in the Theory of Welfare Economics") was supervised by Nobel laureate game theorist Thomas Schelling. He returned to George Mason as faculty, where he holds the Holbert L. Harris Professorship and chairs the Mercatus Center, a market-oriented research institute. Since 2003 he has co-written the economics blog Marginal Revolution with Alex Tabarrok — one of the most widely read economics blogs in the world, which the Wall Street Journal called "required reading for anyone serious about economic ideas." Since 2015 he has hosted the long-form interview podcast Conversations with Tyler. He founded the Emergent Ventures grant program in 2018 and co-organized Fast Grants during the COVID-19 pandemic. He has written for the New York Times, Bloomberg Opinion (roughly eight years), and as of 2025 The Free Press, and is the author of numerous books spanning economic growth, culture, talent, and moral philosophy.
+
+### Major books and ideas, with specifics
+
+**In Praise of Commercial Culture (1998) and Creative Destruction (2002).** Cowen's earlier scholarly books defend markets as engines of cultural production rather than corrupters of art. He argues that commercial economies expand the diversity and quality of art, music, and literature by funding artists and lowering distribution costs, and that globalization, far from homogenizing culture, increases the menu of available cultural goods even as it changes local traditions. This is the foundation of his lifelong stance as a cultural omnivore who treats food, music, painting, and travel as legitimate objects of economic analysis.
+
+**The Great Stagnation (2011).** Released first as a low-priced e-book, subtitled "How America Ate All the Low-Hanging Fruit of Modern History, Got Sick, and Will (Eventually) Feel Better." Its central thesis: U.S. economic growth slowed markedly beginning around the early 1970s because the country had exhausted the "low-hanging fruit" that drove rapid prior growth. He identifies three forms of low-hanging fruit: (1) abundant free and unused land; (2) a wave of powerful, relatively cheap-to-implement inventions roughly from 1880 to 1940 that capitalized on prior scientific breakthroughs (electricity, the internal combustion engine, chemicals, mass production, indoor plumbing); and (3) large educational returns from sending large numbers of intelligent but uneducated children to school. The headline empirical claim: real median household/family income grew far more slowly after 1973 than before (his framing contrasts the rapid postwar gains with roughly stagnant median gains over the following decades). He argues that recent innovation — especially the internet — is real and valuable but produces relatively little measured GDP, revenue, or mass employment ("the internet is fun but it doesn't generate much revenue or many jobs"), so living standards plateaued. A key corollary: many of America's fiscal and political problems stem from having quietly assumed growth rates we no longer achieve, leaving promises (entitlements, public budgets) unfunded. He frames the diagnosis as eventually self-correcting, holding out science and the eventual maturation of the internet as paths out.
+
+**Average Is Over (2013).** Subtitled "Powering America Beyond the Age of the Great Stagnation." Thesis: advances in machine intelligence and automation will sharply increase inequality by splitting workers into those who can complement and direct intelligent machines and those who cannot. The first group's wages and status rise; the second group's stagnate or fall. His signature illustration is "freestyle" or "centaur" chess, in which human-plus-computer teams outperform either humans or computers alone — and where even a modestly skilled player paired with the right software and process can beat a grandmaster. He extrapolates a stark labor-market polarization, suggesting that perhaps only the top 10–15 percent whose skills complement machines will thrive, with implications including geographic sorting (cheaper living for those left behind), meritocratic but harsh credentialing, and a society that is wealthier in aggregate but more stratified. He treats this less as a recommendation than as a forecast of where incentives lead.
+
+**The Complacent Class (2017).** Subtitled "The Self-Defeating Quest for the American Dream." Thesis: Americans have abandoned the restlessness Tocqueville identified as their defining trait and have instead organized life to avoid change and risk. Evidence he marshals includes declining interstate and residential mobility, declining rates of new-business formation and job switching, increasing "matching" (assortative mating, algorithmic curation of music, news, and partners) that walls people off from the unfamiliar, and increasing residential and social segregation. He argues this comfort-seeking produces short-term stability but long-run fragility — slower innovation, entrenched inequality, and a coming "great reset" or fiscal/social reckoning when accumulated complacency can no longer be sustained. His prescription is cultural: Americans must deliberately re-embrace restlessness, mobility, and risk.
+
+**Stubborn Attachments (2018).** Subtitled "A Vision for a Society of Free, Prosperous, and Responsible Individuals." This is his most explicitly philosophical book and arguably the keystone of his worldview. Core argument: sustained economic growth — properly understood as "Wealth Plus," meaning aggregate output adjusted to include leisure, household production, and environmental amenities, not just GDP — should be a near-overriding social priority because compounding growth dominates almost all other welfare considerations over time. He pairs this with the claim that the moral rate of time discount should be (close to) zero: future people's welfare counts roughly as much as present people's. He argues that imposing even a small positive moral discount rate produces morally absurd conclusions; in his framing, a "moral interest rate" of about 1.4 percent would make a single death today equivalent to roughly a thousand deaths in the year 2518, which he takes as a reductio. He layers on a respect for human rights as side constraints ("stubborn attachments") that growth-maximization may not override, and an appeal to epistemic humility: because we cannot know the long-run consequences of most actions, we should focus on the few things we are fairly sure are good — boosting sustainable growth, increasing civilizational stability, and managing existential/environmental risk. He explicitly elevates three policy questions: how to raise the sustainable growth rate, how to make civilization more stable, and how to handle environmental problems.
+
+**Big Business (2019).** Subtitled "A Love Letter to an American Anti-Hero." A contrarian defense of corporations against both populist-left and populist-right critiques, arguing that businesses are more honest and more beneficial than the public believes, that "fraud" and CEO overpay are overstated relative to the value firms create, and that hostility to big business is partly a displaced moral anxiety.
+
+**Talent (2022, with Daniel Gross).** Subtitled "How to Identify Energizers, Creatives, and Winners Around the World." A practical book on talent identification arguing that the world systematically underinvests in finding and backing talented people and that better talent-spotting would yield enormous returns. It privileges energy, drive, and ambition over raw intellect (Gross's claim that for founders intellect is overvalued relative to energy, because you want "multiple shots on goal"). It offers unconventional interview probes — e.g., "How ambitious are you?" (treating a confident, detailed articulation as hard to fake), "What are the open tabs in your browser right now?", "What is it you do that is comparable to a pianist practicing scales?", "What's a mainstream view you think is wrong?", "What's your most irrational belief?" — and stresses looking beyond credentials, attending to face-to-face and online signals, and finding talent in overlooked places.
+
+### The substance of his positions, with reasoning and counterarguments
+
+**On stagnation and growth.** Cowen's reasoning rests on total-factor-productivity (TFP) and median-income data: even as the economy and the internet advanced, measured productivity growth and median living-standard gains slowed after the early 1970s relative to the 1870–1970 surge. He reads this as evidence that the cheap, transformative innovations were front-loaded in history. He distinguishes between innovations that raise consumer surplus or fun (much digital technology) and those that raise measured output, revenue, and broad employment, arguing the modern wave skews toward the former. Over time his view has softened toward optimism: he increasingly emphasizes that science, biomedical progress, energy, and (later) artificial intelligence could end the stagnation, and his subtitle's "(Eventually) Feel Better" was always conditional. The strongest counterarguments come from two directions. Robert J. Gordon (in The Rise and Fall of American Growth) largely agrees stagnation is real but is far more pessimistic about reversal, arguing the 1870–1970 "special century" of one-off inventions (sanitation, electrification, the automobile, modern medicine) cannot be repeated and that headwinds — demographics, inequality, education plateaus, debt — will keep growth low regardless of innovation; Cowen is comparatively more hopeful about a turnaround. From the optimist side, Erik Brynjolfsson and Andrew McAfee (The Second Machine Age) argue digital technologies will do for cognition what the steam engine did for muscle, and that current productivity statistics mismeasure the gains (free and zero-price digital goods, quality improvements) — implying the "stagnation" is partly a measurement artifact. Gordon concedes GDP has always undercounted consumer benefits but contends this was equally true in the high-growth era, so mismeasurement cannot explain a slowdown. Joel Mokyr argues that the scientific and tool-driven capacity to generate new knowledge is itself accelerating, undercutting the claim that ideas are getting harder to find.
+
+**On culture and complacency.** Cowen treats culture and economics as inseparable: cultural attitudes toward risk, mobility, and novelty are themselves inputs to growth. His complacency thesis extends the stagnation diagnosis from technology to temperament — slowing innovation is partly a downstream effect of a population optimizing for comfort and safety. Counterarguments note that some metrics he cites (e.g., declining geographic mobility) may reflect rational responses to housing costs, dual-earner households, or aging rather than psychological complacency, and that "dynamism" is hard to measure; critics also argue that risk-aversion in some domains coexists with intense risk-taking in others (startups, crypto, cultural experimentation).
+
+**On talent.** His talent work reflects a deep belief, threaded through Emergent Ventures, that the binding constraint on progress is often not capital or ideas but the identification and backing of high-variance, high-energy individuals — especially young and unconventional ones outside elite credentialing pipelines. The reasoning connects to his growth philosophy: if a small number of exceptional people drive disproportionate progress, then improving talent-spotting has outsized social returns. The tension is methodological: critics note the advice is largely anecdotal and intuition-based, hard to validate, and potentially prone to the same biases (charisma, articulacy) it warns against.
+
+**On economics and policy — "State Capacity Libertarianism."** In a widely discussed 2020 blog essay, Cowen coined "state capacity libertarianism" to describe his evolved position: markets and individual liberty are central, but a free society requires a competent, effective state able to provide public goods, fund basic science, maintain rule of law and infrastructure, and respond to crises (pandemics, defense). This is a deliberate departure from doctrinaire libertarianism's minimal-state instinct; he argues that many libertarian goals (prosperity, freedom) actually depend on strong state capacity, pointing to functional governments as enablers rather than mere obstacles. Orthodox libertarian critics see this as a concession that dilutes the philosophy; some progressives argue it still underweights distribution and market failures. His COVID-era Fast Grants project (rapid, low-bureaucracy science funding that raised tens of millions and made hundreds of grants) was a practical expression of his frustration with slow institutions — and of his belief that institutional design and "state capacity" can be improved without expanding the state's scope.
+
+**Tensions and evolution.** Several internal tensions run through his work. (1) Pessimism vs. optimism: The Great Stagnation and The Complacent Class are diagnoses of decline, while Stubborn Attachments and his later writing are emphatically pro-growth and increasingly hopeful about science and AI — he describes himself as having become more of an optimist over time, while insisting the two are reconcilable (stagnation was a phase that effort can end). (2) Libertarianism vs. state capacity: his trajectory from Austrian/public-choice roots toward endorsing competent government marks a real shift. (3) Aggregate welfare vs. distribution: Stubborn Attachments subordinates redistribution to growth, while Average Is Over forecasts that growth-compatible technology will sharply worsen inequality — a tension he addresses by arguing growth still lifts absolute living standards even as relative gaps widen. (4) Markets and culture: he celebrates commercial culture's dynamism yet diagnoses a culture grown too comfortable.
+
+### Debates he engages and where he stands
+
+- The stagnation/secular-stagnation debate: he is a foundational "stagnationist" on the past, more optimistic than Gordon on the future, less convinced than Brynjolfsson/McAfee that it is mostly mismeasurement.
+- The automation-and-inequality debate: he expects machine intelligence to be complementary to top workers and substitutive for many others, producing polarization rather than mass unemployment.
+- The longtermism / discount-rate debate: he argues for a near-zero moral discount rate and growth as the dominant lever for future welfare, a position embraced by parts of the effective-altruism and longtermist communities (he has engaged that audience directly, e.g., via the 80,000 Hours platform and Cato Unbound exchanges).
+- The libertarian-purist vs. pragmatist debate: he positions himself as a pragmatic, state-capacity-friendly classical liberal.
+- The pro-/anti-business debate: a vocal defender of large corporations against populist critiques.
+
+### Influences
+
+His doctoral advisor was Thomas Schelling, and his thought bears strong marks of the Austrian school (Hayek's dispersed-knowledge and spontaneous-order ideas) and the public-choice tradition (Buchanan/Tullock, central at George Mason). He cites Plato's dialogic method as a model of inquiry, draws on Derek Parfit and the philosophical literature on population ethics and discounting for Stubborn Attachments, and engages closely with growth economists (Solow-style TFP accounting, Robert Gordon, Joel Mokyr) and the techno-optimist literature. His broad cultural reading — across philosophy, history, music, and the arts — is itself a stated methodological commitment.
+
+### Notable biographical and working specifics
+
+- Youngest New Jersey state chess champion at age 15.
+- A famously voracious and fast reader: widely known for reading enormous numbers of books, often abandoning them quickly if they fail to teach him something, and for treating reading as the core of his intellectual production.
+- A dedicated "ethnic dining" enthusiast and author of An Economist Gets Lunch, applying economic reasoning to where and how to eat well; he maintains a long-running ethnic-dining guide for the Washington, D.C. area.
+- A teetotaler who has joked he is "with the Mormons on this one."
+- Has written analytically about the autism spectrum and neurodiversity, including work taking an economic/rational-choice approach to autism, and has discussed cognitive diversity as a source of strength.
+- Prolific daily blogging at Marginal Revolution (including the recurring "Markets in Everything" and "What I've been reading" features) and prolific interviewing on Conversations with Tyler, where his stated aim is to ask questions only he would ask of guests ranging from Amartya Sen and Esther Duflo to novelists and entrepreneurs.
+- Recognized on Foreign Policy's Top 100 Global Thinkers (2011), Prospect's World Thinkers list (2015), and as among the most influential economists in later rankings.
+
+## Sources
+
+- https://en.wikipedia.org/wiki/Tyler_Cowen
+- https://en.wikipedia.org/wiki/The_Great_Stagnation
+- https://fee.org/articles/the-great-stagnation-how-america-ate-all-the-low-hanging-fruit-of-modern-history-got-sick-and-will-eventually-feel-better/
+- https://www.mercatus.org/research/books/great-stagnation
+- https://slate.com/culture/2011/02/tyler-cowen-s-great-stagnation-the-middle-class-is-doomed.html
+- https://www.econtalk.org/tyler-cowen-on-inequality-the-future-and-average-is-over/
+- https://www.brookings.edu/articles/not-afraid-of-tyler-cowen-you-will-be-a-review-of-average-is-over-powering-america-beyond-the-age-of-the-great-stagnation/
+- https://tylercowen.com/dd-product/the-complacent-class-the-self-defeating-quest-for-the-american-dream/
+- https://www.econtalk.org/tyler-cowen-on-the-complacent-class/
+- https://danwang.co/the-complacent-class-tyler-cowen/
+- https://80000hours.org/podcast/episodes/tyler-cowen-stubborn-attachments/
+- https://www.econtalk.org/tyler-cowen-on-stubborn-attachments-prosperity-and-the-good-society/
+- https://www.cato-unbound.org/2019/01/09/tyler-cowen/case-longer-term/
+- https://quillette.com/2018/11/21/stubborn-attachments-a-review/
+- https://conversationswithtyler.com/episodes/daniel-gross/
+- https://www.amazon.com/Talent-Identify-Energizers-Creatives-Winners/dp/1250275814
+- https://www.aei.org/economics/are-we-suffering-a-great-stagnation-or-not-two-views/
+- https://www.imf.org/external/pubs/ft/fandd/2017/06/people.htm
+- https://www.mercatus.org/scholars/tyler-cowen
+- https://marginalrevolution.com/about
+- https://publicchoice.gmu.edu/tylercowen
+
+All Dwarkesh Patel / Dwarkesh Podcast / The Lunar Society content was excluded from this research; no such sources were used, read, or cited.
+
+TRANSCRIPT SO FAR:
+(none — pre-interview)
+
+TASK: Generate 6 candidate questions for prep.
