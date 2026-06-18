@@ -162,6 +162,33 @@ augment the data but aren't required.
 3. Bootstrap research dossiers for the corpus (`research.py --all`).
 4. If prompting plateaus below target → Phase 2 SFT on the engine pipeline.
 
+## Model sweep + judge-bias finding (2026-06-18, Crusoe inference endpoint)
+
+First end-to-end run of the generator (Method B, copilot mode) against real models, judged
+pairwise vs. real Dwarkesh on 3 held-out guests (Rhodes/Schulman/Tao, 2 examples each, n=6/model).
+Judge = Qwen3-235B (off the generator set). **The point of the run turned out to be the judge, not
+the models:**
+
+| Generator | win-rate vs Dwarkesh, BIASED judge | win-rate, LENGTH-HARDENED judge |
+|-----------|-----------------------------------:|--------------------------------:|
+| gpt-oss-120b | 100% | 50% |
+| Llama-3.3-70B | 75% | 42% |
+| gemma-4-31b | 100% | 83% |
+| DeepSeek-V3-0324 | 100% | 67% |
+
+- Three models "beating" Dwarkesh 100% is not credible. Order is already de-biased (both directions;
+  flip→tie) and there were **zero ties** → not position bias but a genuine content-style preference:
+  classic **verbosity/elaboration bias** (e.g. real Dwarkesh's 188-char naive-but-deep counterfactual
+  lost to a 457-char multi-clause question that was itself correctly grounded — not a hallucination).
+- **Just changing the judge rubric moved win-rates 17–33 points AND reordered the models** (Llama
+  went 75%→42% worst; gemma 100%→83% best). So both the absolute numbers and the *rankings* are
+  artifacts of judge specification.
+- **Conclusion: no model comparison is trustworthy until the judge is calibrated against human/
+  Dwarkesh pairwise labels.** An uncalibrated judge is worse than no number — it gives confident,
+  wrong rankings. This empirically vindicates the eval-first/calibrate-the-judge design and makes
+  oracle calibration (`oracle.py`) a hard gate before any leaderboard. The length-hardening folded
+  into `prompts/judge.md` is a sensible default but does NOT substitute for calibration.
+
 ## Follow-up investigation items (deferred)
 
 - **Per-guest-type leaderboard breakdown.** The sweep found live-reasoning share varies by

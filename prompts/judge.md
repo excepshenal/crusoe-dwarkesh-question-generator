@@ -16,8 +16,21 @@ A worse question is a softball, generic ("what's the future of X?"), a rambling
 multi-part, already answered in the transcript, has an obvious answer, or invents
 facts not in the materials.
 
-Judge ONLY on quality, not length or politeness. Ignore which is longer. If they are
-genuinely indistinguishable in quality, you may call it a tie, but prefer to pick.
+CRITICAL — avoid length/elaboration bias (this is the dominant judge failure mode here):
+- Do NOT reward length, number of facts cited, elaborateness, or formal multi-part structure.
+  A short, simple, well-placed question usually BEATS a long, comprehensive one.
+- Dwarkesh's hallmark is the deceptively simple, naive-but-deep question and the tight reactive
+  drill-down — brevity and directness are STRENGTHS, not weaknesses.
+- Penalize questions that stack several questions together, or that show off research rather than
+  advance the conversation. Prefer the question better suited to THIS exact moment.
+
+Thread vs. pivot: a question that follows the current thread is NOT automatically better than one
+that pivots. A great interviewer sometimes deliberately switches to a more important thread — judge
+which is the better *interviewing move*, not which merely stays on topic. Assume any reference to the
+guest's known prior work is accurate (the candidates are research-grounded); judge the question, not
+whether you can personally verify the reference.
+
+If genuinely indistinguishable, you may call it a tie, but prefer to pick.
 
 Respond with STRICT JSON and nothing else:
 {"winner": "A" | "B" | "tie", "reason": "<one sentence>"}
