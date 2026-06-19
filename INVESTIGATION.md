@@ -244,6 +244,49 @@ mostly sample size: (1) **target** — need Dwarkesh's own labels (Claude's ≠ 
 `tool_vs_tool` stratum (same form cancels the style/pivot confound); (4) **coverage** — next-question-only
 so far, no prep mode; (5) **power** — ~100–150 items to separate *close* judge configs.
 
+## Human-label failure taxonomy: WHERE the tool loses, and which lever fixes it (2026-06-19)
+
+A second human annotator (Max, Dwarkesh's liaison) labeled the first 10 vs_tool items (gpt-oss-120b,
+Method B, next-question). Result: **10/10 he correctly tracked which side was the real Dwarkesh;
+9/10 he preferred it** (the lone exception, item 7, he correctly ID'd Dwarkesh's question and chose
+the tool's on an *informed* preference). This is the mirror image of the uncalibrated Qwen judge
+(~98% pro-tool). Max also reported the **recognition-vs-preference contamination**: it was "almost
+always obvious which one Dwarkesh actually asked," and he had to work to separate recognizing from
+preferring — i.e. the tool has a *tell*, recognition is near-perfect, and recognition leaks into the
+preference judgment. (Direct support for promoting the `tool_vs_tool` stratum, which cancels the tell.)
+
+**Per-item diagnosis (the tool's output, the rule it breaks, the root cause).** Notably, in almost
+every case the rule it breaks is *already written in the system prompt*:
+
+| id | tool's move | system-prompt rule broken | root cause |
+|----|-------------|---------------------------|------------|
+| 1  | generic "what's most urgent for the public?" opener | "never ask softballs / generic questions" | taste |
+| 2  | re-asks Patrick's own "find the Moncef" line back | "non-obvious"; "grounded callback" | material (lacked Fast-Grants-vs-NIH retrospective) |
+| 3  | "how do you keep earnestness from becoming bureaucratic inertia?" | "avoid the 'You said X… — how do you Y?' construction" + coherence | taste/coherence (manufactured a fake tension) |
+| 4  | "what's stopping more scientists jumping in?" | "anything with an obvious answer" | material (lacked protein/capsid/LLM fork) |
+| 5  | "what concrete architecture gives transformers hippocampal memory?" | answerability (implied) | dialogue (asked an unanswerable on-the-spot research problem) |
+| 6  | asks the author "most surprising thing an *interviewee* gave *you*" | "not a topic switch" | dialogue (misread who the guest is — author, not interviewer) |
+| 7  | mitochondria → "do AI sub-processes deserve moral consideration?" | — (**this one works**) | success (seized the live concrete hook) |
+| 8  | "is plug-and-play modular construction possible?" | "cross-domain synthesis" (prescribed, not done) | material (lacked Ben-Kuhn software parallel) |
+| 9  | "why would an AI reliably obey an alignment directive?" | "pushback" (it *endorsed* instead) | dialogue (inverted Dwarkesh's devil's-advocate stance) |
+| 10 | "Teller called him the best lab director — why?" | "anything already answered in the transcript" | taste (re-surfaced info already stated — verified in transcript) |
+
+**Two root causes, two different levers:**
+
+1. **Material gap** (items 2, 4, 8; partly 1). Dwarkesh wins by carrying in a *specific external fact
+   or cross-domain hook* the tool simply didn't have. No prompt rule manufactures facts; the prompt
+   even *asks* for "cross-domain synthesis"/"grounded callback" but those need raw material. **Fix =
+   richer RESEARCH PREP** (named critics, specific stats, cross-domain parallels), not prompting, not
+   SFT. Empirical confirmation of the "extraction tool bounded by prep" thesis.
+2. **Judgment/taste gap** (items 1, 3, 5, 6, 9, 10). The model *parsed the content fine* — it failed
+   on the **move**: misread stance (9), the guest's role (6), or answerability (5); or defaulted to
+   the generic/obvious/templated thing it was *explicitly told not to do* (1, 3, 10). The criteria
+   are in the prompt and violated anyway ⇒ **prompting headroom is largely exhausted here.** True
+   "didn't understand the history" is rare (only item 6); the rest are pragmatic/stance/taste.
+
+**Ceiling signal:** item 7 — when the immediate turn hands a vivid concrete hook, the tool is sharp
+enough that a human prefers it over real Dwarkesh. Quality is highly elastic to material-in-context.
+
 ## Follow-up investigation items (deferred)
 
 - **Per-guest-type leaderboard breakdown.** The sweep found live-reasoning share varies by

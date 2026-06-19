@@ -320,9 +320,10 @@ def write(items: list[OracleItem], out_prefix: str, seed: int = 0) -> tuple[Path
     out = [
         "# Oracle annotation sheet (blind)", "",
         "Each item shows the conversation context and two candidate next-questions, **A** and **B**. "
-        "Pick the better *next* question by Dwarkesh's standard — sharp, specific, non-obvious. A short, "
-        "direct question can beat a long one; and a deliberate pivot to a more important thread can beat "
-        "staying on the current one. Assume any reference to the guest's known prior work is accurate. "
+        "Pick the question you think is better — the one **Dwarkesh** would most want asked next: sharp, "
+        "specific, non-obvious. **Judge each question on its own merits — even if it is clear that Dwarkesh "
+        "said one of the responses, if Dwarkesh hypothetically wished he had said the other response, go "
+        "with the latter.** Assume any reference to the guest's known prior work is accurate. "
         f"**For each item's number, fill `pick` (A / B / tie) and `confidence` in `{Path(out_prefix).name}_answers.csv`** "
         "(a one-line reason in `notes` is welcome). "
         "**Confidence:** 3 = clear (the pick is clearly the better question); 2 = lean (you prefer it but the "
