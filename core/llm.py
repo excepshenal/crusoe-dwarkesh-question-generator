@@ -6,11 +6,12 @@ and Claude is reachable via its OpenAI-compatible endpoint, so one client covers
 
 Configure per role with env vars (prefix in {GENERATOR, JUDGE, RESEARCH}):
     {PREFIX}_BASE_URL   e.g. https://api.anthropic.com/v1/   (generator: your endpoint)
-    {PREFIX}_API_KEY
+    {PREFIX}_API_KEY    optional; falls back to the shared CRUSOE_API_KEY
     {PREFIX}_MODEL      e.g. claude-opus-4-8
 
-Defaults point the JUDGE/RESEARCH roles at Claude; the GENERATOR has no default
-endpoint until you provide one (the inference API is supplied later).
+The key is CRUSOE_API_KEY everywhere by default; set a per-role {PREFIX}_API_KEY only to
+override (e.g. an Anthropic key for a Claude-backed JUDGE/RESEARCH role). Defaults point the
+JUDGE/RESEARCH roles at Claude; the GENERATOR has no default endpoint until you provide one.
 """
 
 from __future__ import annotations
@@ -37,7 +38,7 @@ class LLMConfig:
         d = _DEFAULTS.get(prefix, {})
         return cls(
             base_url=os.getenv(f"{prefix}_BASE_URL", d.get("base_url")),
-            api_key=os.getenv(f"{prefix}_API_KEY") or os.getenv("ANTHROPIC_API_KEY"),
+            api_key=os.getenv(f"{prefix}_API_KEY") or os.getenv("CRUSOE_API_KEY") or os.getenv("ANTHROPIC_API_KEY"),
             model=os.getenv(f"{prefix}_MODEL", d.get("model")),
         )
 

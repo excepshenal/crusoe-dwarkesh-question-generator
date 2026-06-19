@@ -89,8 +89,8 @@ don't need to scrape or bootstrap to run things.
 
 ```bash
 pip install -r requirements.txt          # openai, pydantic (curl must be on PATH)
-# endpoints/keys via env or .env (see .env.example): GENERATOR_* (model under test),
-# JUDGE_* (the judge), RESEARCH_* (only if regenerating dossiers).
+# one key for everything: export CRUSOE_API_KEY=<your key>  (per-role base_url/model in .env.example:
+# GENERATOR_* = model under test, JUDGE_* = the judge, RESEARCH_* = only if regenerating dossiers).
 
 # Generate one question:
 python -m prompting.generate --slug dario-amodei-2 --mode next-question --method b --turn 6

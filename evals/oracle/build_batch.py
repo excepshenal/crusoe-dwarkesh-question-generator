@@ -9,7 +9,7 @@ repeated card). Generates each model's next-question, then lays out three strata
   - model_b vs Dwarkesh     (vs_tool)
 Writes {out}_items.jsonl (hidden truth) + {out}_sheet.md (blind) + {out}_answers.csv (blank).
 
-  export TOKEN=<crusoe key>
+  export CRUSOE_API_KEY=<crusoe key>
   python evals/oracle/build_batch.py --out evals/oracle/v3 --exclude v1,v2
 
 This reproduces the v2 recipe (defaults: qwen vs glm, 10/5/5). One generation per cell, temp 0.7
@@ -46,8 +46,7 @@ def main():
     a = ap.parse_args()
 
     rng = random.Random(a.seed)
-    base = os.environ.get("GENERATOR_BASE_URL", "https://api.inference.crusoecloud.com/v1")
-    token = os.environ.get("JUDGE_API_KEY") or os.environ.get("GENERATOR_API_KEY") or os.environ["TOKEN"]
+    base, token = "https://api.inference.crusoecloud.com/v1", os.environ["CRUSOE_API_KEY"]
     A = LLM(LLMConfig(base_url=base, api_key=token, model=a.model_a))
     B = LLM(LLMConfig(base_url=base, api_key=token, model=a.model_b))
     SA, SB, DW = short(a.model_a), short(a.model_b), "dwarkesh"

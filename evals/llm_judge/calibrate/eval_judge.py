@@ -6,8 +6,8 @@ card we ask the judge in BOTH A/B orders (de-bias: a flip => tie), give it the S
 human saw (topic + recap + recent turns), and compare its pick to `human_winner`. Spoiled cards
 (a candidate came back blank) are skipped.
 
-  export JUDGE_MODEL=deepseek-ai/DeepSeek-V4-Pro      # neutral judge (not a candidate)
-  python evals/llm_judge/calibrate/eval_judge.py --prompt evals/llm_judge/calibrate/judge_v2.md
+  export CRUSOE_API_KEY=<crusoe key>
+  python evals/llm_judge/calibrate/eval_judge.py --prompt evals/llm_judge/calibrate/judge_v2.md --model zai/GLM-5.1
 """
 import argparse, json, os, sys
 from pathlib import Path
@@ -17,8 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 from core.llm import LLM, LLMConfig
 from evals import oracle
 
-BASE = os.environ.get("JUDGE_BASE_URL", "https://api.inference.crusoecloud.com/v1")
-TOKEN = os.environ.get("JUDGE_API_KEY") or os.environ["TOKEN"]
+BASE = "https://api.inference.crusoecloud.com/v1"
 
 
 def judge_context(r):
@@ -63,7 +62,7 @@ def main():
     a = ap.parse_args()
 
     system = Path(a.prompt).read_text()
-    judge = LLM(LLMConfig(base_url=BASE, api_key=TOKEN, model=a.model))
+    judge = LLM(LLMConfig(base_url=BASE, api_key=os.environ["CRUSOE_API_KEY"], model=a.model))
     recs = [json.loads(l) for l in open(a.labeled) if l.strip()]
     cards = [r for r in recs if r["human_winner"] != "tie" and (a.include_spoiled or not r["spoiled"])]
 

@@ -5,7 +5,7 @@ Produces one next-question per (model, context) so we can compare generator mode
 on identical inputs. Used for the model-selection finding in INVESTIGATION.md (GLM-5.1 / DeepSeek
 beat the v0 gpt-oss baseline; not pure scale). Shells out to curl (no SDK dependency).
 
-  export TOKEN=<crusoe key>
+  export CRUSOE_API_KEY=<crusoe key>
   python evals/model_sweep.py --items evals/oracle/v1_items.jsonl --ids 1-10 --out evals/model_sweep_results.json
 """
 import argparse, json, os, subprocess, sys
@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-ENDPOINT = os.environ.get("GENERATOR_BASE_URL", "https://api.inference.crusoecloud.com/v1").rstrip("/") + "/chat/completions"
+ENDPOINT = "https://api.inference.crusoecloud.com/v1/chat/completions"
 SYSTEM = (REPO / "prompting" / "system.md").read_text().replace("{n}", "5")
 
 DEFAULT_MODELS = [
@@ -61,7 +61,7 @@ def main():
     ap.add_argument("--out", default="evals/model_sweep_results.json")
     a = ap.parse_args()
 
-    token = os.environ.get("GENERATOR_API_KEY") or os.environ["TOKEN"]
+    token = os.environ["CRUSOE_API_KEY"]
     items = {json.loads(l)["display_id"]: json.loads(l) for l in open(a.items) if l.strip()}
     ids, models = parse_ids(a.ids), a.models.split(",")
     results = {m: {} for m in models}
