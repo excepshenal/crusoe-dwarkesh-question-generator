@@ -3,8 +3,8 @@
 One system + user template drives two modes and three prompting methods:
 
   Modes:
-    - COPILOT  ("next-question"): transcript present -> generate ONE next question.
-    - SPARRING ("prep-stage"):    transcript empty   -> generate N starter questions.
+    - NEXT_QUESTION: transcript present -> generate ONE next question.
+    - PREP:          transcript empty   -> generate N starter questions.
 
   Methods (increasing complexity; mirrors the project's Method-1 a/b/c):
     - A: user prompt only (research + instruction), no system prompt, no shots.
@@ -24,8 +24,8 @@ _SYSTEM_PATH = Path(__file__).resolve().parent.parent / "prompts" / "system.md"
 
 
 class Mode(str, Enum):
-    COPILOT = "copilot"  # next-question, transcript present
-    SPARRING = "sparring"  # prep-stage, transcript empty
+    NEXT_QUESTION = "next-question"  # transcript present
+    PREP = "prep"  # transcript empty
 
 
 class Method(str, Enum):
@@ -42,7 +42,7 @@ class FewShot:
     research_prep: str
     transcript_so_far: str  # rendered, possibly empty
     mode: Mode
-    answer: str  # his real next turn (copilot) or real starter questions (sparring)
+    answer: str  # his real next turn (next-question) or real starter questions (prep)
 
 
 def load_system_prompt(n: int = 5) -> str:
@@ -67,7 +67,7 @@ def build_user_message(
     mode: Mode,
     n: int = 5,
 ) -> str:
-    if mode == Mode.SPARRING:
+    if mode == Mode.PREP:
         task = f'Generate {n} candidate questions for prep.'
         transcript_block = "(none — pre-interview)"
     else:
@@ -115,7 +115,7 @@ def build_messages(
         instr = (
             f"Generate {n} sharp, non-obvious interview questions for prepping this guest, "
             "grounded in the research below.\n\n"
-            if mode == Mode.SPARRING
+            if mode == Mode.PREP
             else "Generate the single best next interview question, grounded in the materials below.\n\n"
         )
         user = instr + user

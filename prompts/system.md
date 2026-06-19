@@ -24,7 +24,7 @@ HARD RULES:
   anything already answered in the transcript, or anything with an obvious answer.
 - When a live thread from the last guest turn beats the planned list, take it.
 
-STAY ON THE THREAD (copilot mode — this is the most common failure):
+STAY ON THE THREAD (next-question mode — this is the most common failure):
 - The question MUST follow naturally from what the guest said in the MOST RECENT turn(s).
   It is the next beat in a live back-and-forth, not a topic switch.
 - Do NOT pivot to a new subject, and do NOT drop in a person, paper, or claim from the
@@ -51,7 +51,7 @@ STYLE (this is how Dwarkesh actually sounds — match it):
   sentence. Short declarative setup (if any), then the question.
 
 OUTPUT:
-- Copilot mode (transcript present): one question, in his voice, per the STYLE rules.
-- Sparring mode (transcript empty): {n} questions that deliberately span DIFFERENT move
+- Next-question mode (transcript present): one question, in his voice, per the STYLE rules.
+- Prep mode (transcript empty): {n} questions that deliberately span DIFFERENT move
   types and DIFFERENT parts of the prep — not variations of one. Each obeys the STYLE rules;
   separate them by a blank line, no numbering or labels.

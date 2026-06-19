@@ -14,8 +14,8 @@ the full plan, rationale, and status.
 
 You'll be given an **API key** separately. Then:
 
-### 1) The prompting method → [`handoff/`](handoff/)
-The generator is a base model + one fixed prompt. Full guide in `handoff/README.md`. Fastest taste:
+### 1) Try the question generator tool (backed by prompting method) → [`handoff/`](handoff/)
+The generator is a base model + one fixed prompt (`system_prompt.txt`) — no SFT yet. Full guide in `handoff/README.md`. Fastest taste:
 ```bash
 export CRUSOE_API_KEY=<your key>
 cd handoff
@@ -25,7 +25,6 @@ python3 generate_question.py --guest "Tyler Cowen" --research ../research/tyler-
 python3 generate_question.py --guest "Dario Amodei" --research ../research/dario-amodei-2.md \
   --transcript examples/dario-amodei-2_convo.txt
 ```
-`examples/*.md` show the exact assembled prompts; `system_prompt.txt` is the fixed system prompt.
 
 ### 2) The eval → [`evals/`](evals/)
 How we measure the generator against the real thing:
@@ -36,13 +35,7 @@ How we measure the generator against the real thing:
 - **`evals/oracle_answers_claude.csv`** — a sample annotator's picks + reasons, for comparison.
 - These human labels **calibrate an LLM judge** so it can grade at scale. The writeup (and the
   finding that an *uncalibrated* judge was ~98% biased toward the tool vs. ~50% for humans) is in
-  `INVESTIGATION.md`. To compute the judge-vs-your-labels number yourself:
-  ```bash
-  pip install -r requirements.txt
-  export JUDGE_BASE_URL=https://api.inference.crusoecloud.com/v1 JUDGE_MODEL=Qwen/Qwen3-235B-A22B-Instruct-2507 JUDGE_API_KEY=<key>
-  python -m dwarkesh_qgen.oracle --ingest evals/oracle              # fold your CSV picks into the items
-  python -m dwarkesh_qgen.evaluate calibrate --oracle evals/oracle_items.jsonl
-  ```
+  `INVESTIGATION.md`.
 
 ## Status
 
@@ -87,7 +80,7 @@ pip install -r requirements.txt          # openai, pydantic (curl must be on PAT
 # JUDGE_* (the judge), RESEARCH_* (only if regenerating dossiers).
 
 # Generate one question:
-python -m dwarkesh_qgen.generate --slug dario-amodei-2 --mode copilot --method b --turn 6
+python -m dwarkesh_qgen.generate --slug dario-amodei-2 --mode next-question --method b --turn 6
 # Build a fresh oracle batch (vs_tool primary + a small bias_probe guard):
 python -m dwarkesh_qgen.oracle --out evals/oracle --n 40 --strata "vs_tool,bias_probe=5"
 # Calibrate the judge against human labels (after filling evals/oracle_answers.csv → --ingest):

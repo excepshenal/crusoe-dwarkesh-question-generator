@@ -127,7 +127,7 @@ def compare_method_vs_reference(
         exs = dataset.next_question_examples(t)[:max_examples_per_slug]
         for ex in exs:
             res = generate(
-                slug=slug, mode=Mode.COPILOT, method=method, turn=ex.turn_idx, n=n, llm=generator
+                slug=slug, mode=Mode.NEXT_QUESTION, method=method, turn=ex.turn_idx, n=n, llm=generator
             )
             verdict = judge_pairwise(
                 guest=ex.guest,

@@ -21,7 +21,7 @@ endpoint with the materials here.
    TRANSCRIPT SO FAR:
    <the conversation so far>          # or "(none — pre-interview)"
 
-   TASK: Next question.               # copilot mode (transcript present)
+   TASK: Next question.               # next-question mode (transcript present)
    ```
    For **prep mode** (no transcript), the TASK line is `Generate N candidate questions for prep.`
 
@@ -29,8 +29,8 @@ So: same fixed system prompt every time; you slot `(guest research, conversation
 user message. That's the whole method.
 
 ## Two modes
-- **Copilot / next-question:** pass the conversation so far → one sharp next question.
-- **Prep / sparring:** no transcript → N starter questions for interview prep.
+- **Next-question:** pass the conversation so far → one sharp next question.
+- **Prep:** no transcript → N starter questions for interview prep.
 
 ## Run it
 Use `generate_question.py` (Python 3 + curl, both preinstalled on macOS/Linux):

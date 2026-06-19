@@ -146,7 +146,7 @@ def _sanitize(text: str, guest: str) -> str:
 
 def _tool_question(llm: LLM, guest: str, research: str, transcript_so_far: str) -> str:
     msgs = build_messages(
-        method=Method.B, mode=Mode.COPILOT, guest=guest,
+        method=Method.B, mode=Mode.NEXT_QUESTION, guest=guest,
         research_prep=research, transcript_so_far=transcript_so_far,
     )
     return _sanitize(_gen(llm, msgs, max_tokens=1024), guest)
@@ -202,7 +202,7 @@ def build_items(
     def ctx_of(ex) -> dict:
         if generator is not None and ex.transcript_so_far not in recap_cache:
             recap_cache[ex.transcript_so_far] = summarize_context(ex.transcript_so_far, generator)
-        return dict(slug=ex.slug, guest=ex.guest, mode="copilot", research=ex.research,
+        return dict(slug=ex.slug, guest=ex.guest, mode="next-question", research=ex.research,
                     transcript_so_far=ex.transcript_so_far, section=ex.section,
                     recap=recap_cache.get(ex.transcript_so_far, ""))
 

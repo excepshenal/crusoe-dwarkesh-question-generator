@@ -1,10 +1,10 @@
 """Run the question generator for a given method + mode.
 
     # next-question, method C, against a held-out episode at a real turn
-    python -m dwarkesh_qgen.generate --slug eric-jang --mode copilot --method c --turn 12
+    python -m dwarkesh_qgen.generate --slug eric-jang --mode next-question --method c --turn 12
 
     # prep-stage, method B, N starter questions from research only
-    python -m dwarkesh_qgen.generate --slug eric-jang --mode sparring --method b -n 8
+    python -m dwarkesh_qgen.generate --slug eric-jang --mode prep --method b -n 8
 
 Requires GENERATOR_BASE_URL / GENERATOR_MODEL (+ API key) in the env.
 """
@@ -35,9 +35,9 @@ def generate(
 
     transcript_so_far = ""
     reference = None
-    if mode == Mode.COPILOT:
+    if mode == Mode.NEXT_QUESTION:
         if turn is None:
-            raise ValueError("copilot mode needs --turn (index of the host question to predict)")
+            raise ValueError("next-question mode needs --turn (index of the host question to predict)")
         ctx = t.turns[:turn]
         transcript_so_far = render_transcript(ctx)
         if turn < len(t.turns) and t.turns[turn].role == "host":
@@ -74,7 +74,7 @@ def generate(
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True)
-    ap.add_argument("--mode", type=Mode, choices=list(Mode), default=Mode.COPILOT)
+    ap.add_argument("--mode", type=Mode, choices=list(Mode), default=Mode.NEXT_QUESTION)
     ap.add_argument("--method", type=Method, choices=list(Method), default=Method.B)
     ap.add_argument("--turn", type=int, default=None)
     ap.add_argument("-n", type=int, default=5)

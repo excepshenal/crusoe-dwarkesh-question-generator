@@ -4,9 +4,9 @@
 No Python installs needed (stdlib + curl, which ships on macOS/Linux). Set your key, then:
 
   export CRUSOE_API_KEY=...                       # the key you were given
-  # next-question (copilot) mode — pass the conversation so far:
+  # next-question mode — pass the conversation so far:
   python generate_question.py --guest "Dario Amodei" --research research.md --transcript convo.txt
-  # prep (sparring) mode — research only, get N starter questions:
+  # prep mode — research only, get N starter questions:
   python generate_question.py --guest "Tyler Cowen" --research research.md
 
 research.md = the guest dossier; convo.txt = the conversation so far, e.g.

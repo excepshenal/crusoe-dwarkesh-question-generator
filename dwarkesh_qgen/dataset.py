@@ -2,11 +2,11 @@
 
 Two example types, matching the two generator modes:
 
-  - next-question (COPILOT): context = transcript up to and including a guest turn;
+  - next-question: context = transcript up to and including a guest turn;
     target = Dwarkesh's actual next turn (a question). The held-out set of these
     is what we grade methods against — real Dwarkesh vs. each LLM method.
 
-  - prep (SPARRING): context = research only; target = the pool of Dwarkesh's
+  - prep: context = research only; target = the pool of Dwarkesh's
     substantive questions across the whole interview. (His literal opening line
     isn't a deep question, so the target is the *pool*, not turn 1.)
 
@@ -183,7 +183,7 @@ def sample_few_shots(
             break
         t = load_transcript(slug)
         research = default_research(t)
-        if mode == Mode.COPILOT:
+        if mode == Mode.NEXT_QUESTION:
             exs = next_question_examples(t, research)
             if not exs:
                 continue
@@ -193,7 +193,7 @@ def sample_few_shots(
                     guest=t.guest,
                     research_prep=_head(research, max_shot_research_chars),
                     transcript_so_far=_tail(ex.transcript_so_far, max_shot_transcript_chars),
-                    mode=Mode.COPILOT,
+                    mode=Mode.NEXT_QUESTION,
                     answer=ex.target,
                 )
             )
@@ -208,7 +208,7 @@ def sample_few_shots(
                     guest=t.guest,
                     research_prep=_head(research, max_shot_research_chars),
                     transcript_so_far="",
-                    mode=Mode.SPARRING,
+                    mode=Mode.PREP,
                     answer=answer,
                 )
             )

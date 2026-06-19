@@ -84,7 +84,7 @@ BEFORE any given interview (prior public record)."""
 
 # Stage 2: audit coverage, SPLIT by what research can be held accountable for.
 # Live-reasoning threads (the guest's in-the-moment speculation/answers) are NOT facts any
-# prep could contain — in copilot mode the generator grounds them on the transcript-so-far —
+# prep could contain — in next-question mode the generator grounds them on the transcript-so-far —
 # so they're excluded from the coverage denominator. Research is scored only on the facts.
 _COVERAGE_SYSTEM = """You audit how well a prep dossier covers what an interview drew on, and you
 separate two kinds of things the interviewer's questions rely on:

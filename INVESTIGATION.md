@@ -5,8 +5,8 @@
 Build an LLM tool that produces Dwarkesh-Patel-quality interview questions when prompted
 with deep research about a guest. One system serves two modes:
 
-- **Prep-stage / sparring**: starter questions from research only (interview prep).
-- **Next-question / copilot**: the next question given the conversation so far.
+- **Prep**: starter questions from research only (interview prep).
+- **Next-question**: the next question given the conversation so far.
 
 Key assumption: the model is an **extraction/synthesis tool**, not a researcher. It can
 only ask about facts present in the prompt's `RESEARCH PREP`. Research is collected
@@ -141,13 +141,13 @@ discourse — so it doesn't reintroduce the eval confound. This makes prep-mode 
 LLM with no prior familiarity with the guest, which is the deploy case.
 
 **Key reframe:** the un-coverable part isn't missing *facts* — it's live reasoning, and in
-copilot mode the generator already receives the transcript-so-far that grounds it. So research
+next-question mode the generator already receives the transcript-so-far that grounds it. So research
 only needs to ground (a) prep/opening questions and (b) factual callbacks. The coverage metric
 should therefore be split: **factual-groundable** threads (research's job — measure these) vs.
 **live-reasoning** threads (the conversation's job — don't penalize research). Implication for
 SFT: never train the model to produce, from research alone, a question that depends on live
 reasoning — keep prep-mode targets to research-groundable openers; deep drill-downs stay
-copilot-mode examples, where transcript context exists at both train and inference time. This
+next-question-mode examples, where transcript context exists at both train and inference time. This
 makes the train/inference mismatch avoidable by construction. (n=2 — repeat across more guests.)
 
 Open question for the liaison: at deploy time, will full prep be passed in the system prompt
@@ -174,7 +174,7 @@ augment the data but aren't required.
 
 ## Model sweep + judge-bias finding (2026-06-18, Crusoe inference endpoint)
 
-First end-to-end run of the generator (Method B, copilot mode) against real models, judged
+First end-to-end run of the generator (Method B, next-question mode) against real models, judged
 pairwise vs. real Dwarkesh on 3 held-out guests (Rhodes/Schulman/Tao, 2 examples each, n=6/model).
 Judge = Qwen3-235B (off the generator set). **The point of the run turned out to be the judge, not
 the models:**
@@ -241,7 +241,7 @@ vs-Dwarkesh is confounded by form/path-dependence.
 98%-vs-50% gap unambiguously. **Not enough alone to tune** to Dwarkesh's taste, and the gaps aren't
 mostly sample size: (1) **target** — need Dwarkesh's own labels (Claude's ≠ his taste); (2) **ceiling**
 — a 2nd annotator on the same items to learn human↔human agreement; (3) **clean substance** — a
-`tool_vs_tool` stratum (same form cancels the style/pivot confound); (4) **coverage** — copilot-only
+`tool_vs_tool` stratum (same form cancels the style/pivot confound); (4) **coverage** — next-question-only
 so far, no prep mode; (5) **power** — ~100–150 items to separate *close* judge configs.
 
 ## Follow-up investigation items (deferred)
