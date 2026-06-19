@@ -1,6 +1,6 @@
 # Oracle — compiled human labels (Max)
 
-30 labeled cards: v1 (gpt-oss vs Dwarkesh, first 10) + v2 (qwen/glm vs each other & Dwarkesh).
+30 labeled cards from batches: v1,v2.
 Ground truth (which model wrote which) is revealed here — this file is NOT blind.
 ⚠️ = a candidate came back blank/fragment (generation bug, now fixed); the pick was forced — excluded from judge calibration.
 

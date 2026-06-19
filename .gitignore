@@ -4,6 +4,7 @@ data/raw/
 data/scrape.log
 # Generated outputs / eval runs.
 runs/
+last_run.json
 *.pyc
 __pycache__/
 .env

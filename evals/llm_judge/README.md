@@ -3,10 +3,28 @@
 Human labels don't scale; an LLM judge does. This folder iterates on a **system-prompt judge** whose
 goal is to reproduce Max's picks on `../oracle/labeled.jsonl`, so we can grade generations in volume.
 
+## Status (as of 2026-06-19): ready to deploy, though more labels would improve robustness
+
+- **Best config:** `calibrate/judge_v2.md` + `zai/GLM-5.1` → **85% agreement with Max (23/27)**; 14/15
+  on the matchups where GLM isn't itself a candidate. Good enough to use as the at-scale grader now.
+- **What's settled:** the *judge model* dominates (DeepSeek/gpt-oss are anti-correlated — they reward
+  the verbose "drills-into-a-tension" question Max rejects); the v2 elimination-procedure prompt lifts
+  an aligned model (GLM 56%→85%) but can't rescue a misaligned one (DeepSeek stuck at 22%).
+- **Ways to make it more robust / lower the variance** (improvements, not blockers):
+  1. **Confirm out-of-sample.** `judge_v2` was tuned by inspecting these 27 cards, so score it once on
+     a **fresh held-out batch** (`../oracle/build_batch.py` → Max labels → re-score) to confirm the
+     number holds.
+  2. **More volume** — n=27 gives a ±13% interval; more labels tighten it.
+  3. **Add annotators** — Dwarkesh's own picks (the real target) and a 2nd labeler to establish the
+     human↔human agreement ceiling (so we know what "as good as a human" even is).
+  4. **glm-free validation** — GLM judges glm candidates; its misses cluster on glm-vs-qwen. Neutral
+     for the qwen-vs-Dwarkesh eval we care about, but worth confirming on a glm-free batch.
+- Once confirmed out-of-sample, promote `judge_v2.md` to the production `../judge.md`.
+
 ## Run
 
 ```bash
-export TOKEN=<crusoe key>                                  # or JUDGE_API_KEY
+export CRUSOE_API_KEY=<crusoe key>
 python evals/llm_judge/calibrate/eval_judge.py \
     --prompt evals/llm_judge/calibrate/judge_v2.md \
     --model zai/GLM-5.1
