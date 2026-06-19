@@ -15,7 +15,7 @@ the full plan, rationale, and status.
 You'll be given an **API key** separately. Then:
 
 ### 1) Try the question generator tool (backed by prompting method) → [`handoff/`](handoff/)
-The generator is a base model + one fixed prompt (`system_prompt.txt`) — no SFT yet. Full guide in `handoff/README.md`. Fastest taste:
+The generator is a base model + one fixed prompt (`system_prompt.txt`) — no SFT yet. Pick the model with `--model` (default `Qwen/Qwen3-235B-A22B-Instruct-2507`, the strongest we can fine-tune; **`zai/GLM-5.1` is the strongest overall**). Full guide in `handoff/README.md`. Fastest taste:
 ```bash
 export CRUSOE_API_KEY=<your key>
 cd handoff
@@ -24,6 +24,9 @@ python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/t
 # next-question mode: feed a real interview truncated to a turn, get the next question
 python3 generate_question.py --guest "Dario Amodei" --research ../data/research/dario-amodei-2.md \
   --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
+# swap the model (GLM-5.1 is strongest in our eval); --help lists all available
+python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md \
+  --model zai/GLM-5.1
 ```
 Ready-made cuts live in `data/transcript_subsets/` (`{slug}-turn-{k}.json`, varied guests and depths) —
 each is a real interview truncated right before one of Dwarkesh's actual questions.

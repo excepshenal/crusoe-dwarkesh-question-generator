@@ -17,11 +17,25 @@ data/transcript_subsets/*.json file (a real interview truncated to a turn) or a 
   Dwarkesh Patel: ...
   Dario Amodei: ...
 (omit --transcript for prep mode). Prints the model's question(s).
+
+--model picks the generator (default: qwen3-235b, the strongest model we can fine-tune).
+In our eval, zai/GLM-5.1 is the strongest overall — try it with `--model zai/GLM-5.1`.
+See MODELS below (or --help) for the full list available on the endpoint.
 """
 import argparse, json, os, subprocess
 
 ENDPOINT = "https://api.inference.crusoecloud.com/v1/chat/completions"
-MODEL = "openai/gpt-oss-120b"
+# Models available on the Crusoe inference endpoint (GET /v1/models). GLM-5.1 is the
+# strongest overall; Qwen3-235B is the strongest we can fine-tune, so it's the default.
+MODELS = [
+    "Qwen/Qwen3-235B-A22B-Instruct-2507", "zai/GLM-5.1", "deepseek-ai/DeepSeek-V4-Pro",
+    "deepseek-ai/Deepseek-V4-Flash", "deepseek-ai/DeepSeek-V3-0324",
+    "nvidia/NVIDIA-Nemotron-3-Ultra-550B", "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B", "nvidia/Nemotron-3-Nano-Omni-Reasoning-30B-A3B",
+    "openai/gpt-oss-120b", "meta-llama/Llama-3.3-70B-Instruct", "google/gemma-4-31b-it",
+    "yutori/n1.5",
+]
+DEFAULT_MODEL = "Qwen/Qwen3-235B-A22B-Instruct-2507"
 SYSTEM = open(os.path.join(os.path.dirname(__file__), "system_prompt.txt")).read()
 
 
@@ -52,6 +66,8 @@ def main():
     ap.add_argument("--research", required=True, help="path to the guest dossier (markdown/text)")
     ap.add_argument("--transcript", default=None, help="path to conversation-so-far (omit for prep mode)")
     ap.add_argument("--n", type=int, default=6, help="number of starter questions in prep mode")
+    ap.add_argument("--model", default=DEFAULT_MODEL, choices=MODELS,
+                    help="generator model (default: qwen3-235b; zai/GLM-5.1 is strongest)")
     a = ap.parse_args()
 
     research = open(a.research).read()
@@ -59,16 +75,21 @@ def main():
     system = SYSTEM.replace("{n}", str(a.n))
     messages = [{"role": "system", "content": system},
                 {"role": "user", "content": user_message(a.guest, research, transcript, a.n)}]
-    body = json.dumps({"model": MODEL, "messages": messages, "temperature": 0.7, "max_tokens": 1024})
+    # Generous cap: reasoning models (e.g. GLM-5.1) spend tokens on hidden reasoning first,
+    # so a low cap leaves the answer empty.
+    body = json.dumps({"model": a.model, "messages": messages, "temperature": 0.7, "max_tokens": 4096})
     # Shell out to curl: the endpoint blocks Python's default TLS fingerprint (curl's is accepted).
     proc = subprocess.run(
-        ["curl", "-sS", "--fail", "--max-time", "120", "-X", "POST", ENDPOINT,
+        ["curl", "-sS", "--fail", "--max-time", "240", "-X", "POST", ENDPOINT,
          "-H", f"Authorization: Bearer {os.environ['CRUSOE_API_KEY']}",
          "-H", "Content-Type: application/json", "--data-binary", "@-"],
         input=body, capture_output=True, text=True)
     if proc.returncode != 0:
         raise SystemExit(f"request failed: {proc.stderr.strip() or proc.returncode}")
-    print(json.loads(proc.stdout)["choices"][0]["message"]["content"].strip())
+    content = json.loads(proc.stdout)["choices"][0]["message"].get("content")
+    if not content:
+        raise SystemExit("model returned empty content — a reasoning model may need a higher token cap; retry or try a different --model")
+    print(content.strip())
 
 
 if __name__ == "__main__":

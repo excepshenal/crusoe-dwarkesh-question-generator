@@ -6,7 +6,9 @@ endpoint with the materials here.
 
 ## Endpoint
 - **URL:** `https://api.inference.crusoecloud.com/v1` (OpenAI-compatible)
-- **Model:** `openai/gpt-oss-120b`
+- **Model:** any on the endpoint via `--model` (default `Qwen/Qwen3-235B-A22B-Instruct-2507`,
+  the strongest we can fine-tune; **`zai/GLM-5.1` is the strongest overall** — try it). Run
+  `python3 generate_question.py --help` for the full list.
 - **Auth:** `Authorization: Bearer <YOUR_API_KEY>` — you'll be given a key separately.
 
 ## The prompt (two messages)
@@ -43,9 +45,13 @@ python3 generate_question.py --guest "Dario Amodei" \
   --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
 # prep mode — research only, get starter questions:
 python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md
+# swap the model — GLM-5.1 is the strongest in our eval:
+python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md \
+  --model zai/GLM-5.1
 ```
 `--research` is the guest dossier (`data/research/{slug}.md`). `--transcript` is the conversation
-so far; omit it for prep mode. The ready-made cuts live in **`data/transcript_subsets/`** —
+so far; omit it for prep mode. `--model` picks the generator (default `Qwen/Qwen3-235B-A22B-Instruct-2507`;
+`--help` lists all). The ready-made cuts live in **`data/transcript_subsets/`** —
 each is a real interview truncated right before one of Dwarkesh's actual questions (filename
 `{slug}-turn-{k}.json`; the question he asked next is recorded in the file's
 `reference_next_question` field so you can compare). Pick any guest with a dossier in
