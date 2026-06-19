@@ -24,10 +24,10 @@ research sub-agent) using `research_prompt(guest, role)`. Drop its output at
 data/research_context/{slug}.md; build_research then uses it directly and wraps coverage + gap-fill
 around it. With no backend dossier, it falls back to the (parametric) RESEARCH LLM.
 
-    python -m dwarkesh_qgen.research --missing                          # guests still needing a dossier
-    python -m dwarkesh_qgen.research --slug eric-jang --broad-only      # ingest backend dossier, no scoring
-    python -m dwarkesh_qgen.research --slug eric-jang                   # + coverage/gap-fill (needs key)
-    python -m dwarkesh_qgen.research --all --coverage-threshold 0.8
+    python -m data.research --missing                          # guests still needing a dossier
+    python -m data.research --slug eric-jang --broad-only      # ingest backend dossier, no scoring
+    python -m data.research --slug eric-jang                   # + coverage/gap-fill (needs key)
+    python -m data.research --all --coverage-threshold 0.8
 """
 
 from __future__ import annotations
@@ -36,8 +36,8 @@ import argparse
 import json
 
 from . import dataset
-from .llm import LLM
-from .prompts import render_transcript
+from core.llm import LLM
+from prompting.prompts import render_transcript
 
 RESEARCH_DIR = dataset.RESEARCH
 CONTEXT_DIR = dataset.RESEARCH.parent / "research_context"

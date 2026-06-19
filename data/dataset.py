@@ -24,10 +24,10 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from .prompts import FewShot, Mode, render_transcript
+from prompting.prompts import FewShot, Mode, render_transcript
 from .transcript import Section, Transcript, Turn
 
-DATA = Path(__file__).resolve().parent.parent / "data"
+DATA = Path(__file__).resolve().parent
 TRANSCRIPTS = DATA / "transcripts"
 RESEARCH = DATA / "research"
 

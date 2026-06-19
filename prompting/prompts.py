@@ -20,7 +20,7 @@ from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 
-_SYSTEM_PATH = Path(__file__).resolve().parent.parent / "prompts" / "system.md"
+_SYSTEM_PATH = Path(__file__).resolve().parent / "system.md"
 
 
 class Mode(str, Enum):

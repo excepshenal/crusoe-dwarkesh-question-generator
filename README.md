@@ -14,33 +14,36 @@ the full plan, rationale, and status.
 
 You'll be given an **API key** separately. Then:
 
-### 1) Try the question generator tool (backed by prompting method) → [`handoff/`](handoff/)
-The generator is a base model + one fixed prompt (`system_prompt.txt`) — no SFT yet. Pick the model with `--model` (default `Qwen/Qwen3-235B-A22B-Instruct-2507`, the strongest we can fine-tune; **`zai/GLM-5.1` is the strongest overall**). Full guide in `handoff/README.md`. Fastest taste:
+### 1) Try the question generator tool (the prompting method) → [`prompting/`](prompting/)
+The generator is a base model + one fixed system prompt (`prompting/system.md`) — no SFT
+yet. It hits the OpenAI-compatible Crusoe endpoint (`https://api.inference.crusoecloud.com/v1`) with two
+messages: the system prompt, and a templated user message (`GUEST / RESEARCH PREP / TRANSCRIPT SO FAR /
+TASK`). Pick the model with `--model` (default `Qwen/Qwen3-235B-A22B-Instruct-2507`, the strongest we can
+fine-tune; **`zai/GLM-5.1` is the strongest overall**; `--help` lists all). From the repo root:
 ```bash
 export CRUSOE_API_KEY=<your key>
-cd handoff
-# prep mode: generate starter questions from research only (no transcript)
-python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md
+# prep mode: starter questions from research only (no transcript)
+python3 prompting/generate_question.py --guest "Tyler Cowen" --research data/research/tyler-cowen-3.md
 # next-question mode: feed a real interview truncated to a turn, get the next question
-python3 generate_question.py --guest "Dario Amodei" --research ../data/research/dario-amodei-2.md \
-  --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
-# swap the model (GLM-5.1 is strongest in our eval); --help lists all available
-python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md \
-  --model zai/GLM-5.1
+python3 prompting/generate_question.py --guest "Dario Amodei" --research data/research/dario-amodei-2.md \
+  --transcript data/transcript_subsets/dario-amodei-2-turn-40.json
+# swap the model (GLM-5.1 is strongest in our eval)
+python3 prompting/generate_question.py --guest "Tyler Cowen" --research data/research/tyler-cowen-3.md --model zai/GLM-5.1
 ```
 Ready-made cuts live in `data/transcript_subsets/` (`{slug}-turn-{k}.json`, varied guests and depths) —
-each is a real interview truncated right before one of Dwarkesh's actual questions.
+each is a real interview truncated right before one of Dwarkesh's actual questions. The runner is
+stdlib + curl only (no install); bring your own `(research, conversation)` pairs to probe any guest.
 
 ### 2) The eval → [`evals/`](evals/)
 How we measure the generator against the real thing:
-- **`evals/oracle_sheet.md`** — 40 **blind** head-to-head cards: for the same moment in a real
-  interview, candidate next-questions **A vs B** (one is the tool, one is real Dwarkesh — you can't
-  tell which), spanning 20 guests. Read them and decide which is the better next question.
-- **`evals/oracle_answers.csv`** — record your picks (`a`/`b`/`tie` + confidence 1–3 + a note).
-- **`evals/oracle_answers_claude.csv`** — a sample annotator's picks + reasons, for comparison.
-- These human labels **calibrate an LLM judge** so it can grade at scale. The writeup (and the
-  finding that an *uncalibrated* judge was ~98% biased toward the tool vs. ~50% for humans) is in
-  `INVESTIGATION.md`.
+- **`evals/oracle/`** — blind **A vs B** head-to-head cards for the same moment in a real interview
+  (one candidate may be real Dwarkesh, one a model — you decide which question is better). `v1_*` =
+  gpt-oss vs Dwarkesh; `v2_*` = qwen3-235b & glm-5.1 vs each other and vs Dwarkesh. `*_sheet.md` is
+  the blind sheet, `*_answers_max.csv` are the human (Max) picks, `*_items.jsonl` is the hidden truth.
+- **`evals/oracle/labeled.md`** — the compiled labels with context + ground truth revealed.
+- **`evals/llm_judge/`** — iterating on a system-prompt LLM judge to reproduce those human picks, so
+  the eval can run at scale. The finding that an *uncalibrated* judge was ~98% biased toward the tool
+  vs. ~50% for humans is in `INVESTIGATION.md`.
 
 ## Status
 
@@ -54,30 +57,34 @@ See `INVESTIGATION.md` for the full plan and findings.
 
 ## Layout
 
+Flat top-level packages by stage — each holds its code *and* its artifacts:
 ```
-dwarkesh_qgen/
+core/          llm.py  — OpenAI-compatible client, configured per role by env var.
+data/          corpus + dataset building, beside the data files:
   scrape.py      Pull public transcripts from the Substack API (shells out to curl).
   transcript.py  Parse Substack body_html -> speaker-attributed turns (3 HTML eras).
   dataset.py     Derive next-question / prep examples, few-shots, frozen train/heldout split.
-  prompts.py     Assemble chat messages for methods A/B/C across both modes.
   research.py    Bootstrap guest "research prep" with Claude (reverse / blind).
-  llm.py         OpenAI-compatible client, configured per role by env var.
-  generate.py    Run the generator for one query.
-  evaluate.py    Pairwise LLM-as-judge: method-vs-Dwarkesh leaderboard + judge calibration.
-  oracle.py      Emit a human-annotation set to calibrate the judge.
-prompts/
+  transcripts/   Parsed corpus, 96 episodes (plain JSON).   research/  Blind dossiers, one per held-out guest.
+  transcript_subsets/  Real interviews truncated to a turn ({slug}-turn-{k}.json), for the runner.
+prompting/     the prompting method:
+  prompts.py     Assemble chat messages for methods A/B/C across both modes.
+  generate.py    Run the generator for one query (package entry point).
   system.md      "What makes a great Dwarkesh question" (the generator system prompt).
-  judge.md       Pairwise judge rubric.
-data/transcripts/        Parsed corpus, 96 episodes (committed as plain JSON).
-data/research/           Blind research dossiers, one per held-out guest.
-data/transcript_subsets/ Real interviews truncated to a turn ({slug}-turn-{k}.json), for the runner.
-evals/             Oracle set (blind sheet + answers CSV + hidden ground truth) — see evals/README.md.
-handoff/           Liaison test pack for the prompting method (prompt + runner).
+  generate_question.py  Standalone liaison runner (stdlib + curl; reads system.md).
+evals/         evaluation, beside the eval artifacts:
+  evaluate.py    Pairwise LLM-as-judge: method-vs-Dwarkesh leaderboard + judge calibration.
+  oracle.py      Emit a blind human-annotation set to calibrate the judge.
+  judge.md       Pairwise judge rubric (production; superseded by llm_judge/calibrate/judge_v2.md).
+  oracle/        Blind A/B sheets + human (Max) picks + hidden truth + compiled labels — see its README.
+  llm_judge/     System-prompt LLM judge + calibrate/ harness scoring it against the human labels.
+sft/           (future) supervised fine-tuning.
 ```
+Run from the repo root (it's on the path): `python -m evals.oracle`, `python -m prompting.generate`, etc.
 
 ## Developer setup (full pipeline)
 
-The corpus (`data/transcripts/`) and research dossiers (`research/`) are committed here, so you
+The corpus (`data/transcripts/`) and research dossiers (`data/research/`) are committed here, so you
 don't need to scrape or bootstrap to run things.
 
 ```bash
@@ -86,11 +93,11 @@ pip install -r requirements.txt          # openai, pydantic (curl must be on PAT
 # JUDGE_* (the judge), RESEARCH_* (only if regenerating dossiers).
 
 # Generate one question:
-python -m dwarkesh_qgen.generate --slug dario-amodei-2 --mode next-question --method b --turn 6
+python -m prompting.generate --slug dario-amodei-2 --mode next-question --method b --turn 6
 # Build a fresh oracle batch (vs_tool primary + a small bias_probe guard):
-python -m dwarkesh_qgen.oracle --out evals/oracle --n 40 --strata "vs_tool,bias_probe=5"
-# Calibrate the judge against human labels (after filling evals/oracle_answers.csv → --ingest):
-python -m dwarkesh_qgen.evaluate calibrate --oracle evals/oracle_items.jsonl
+python -m evals.oracle --out evals/oracle/v3 --n 40 --strata "vs_tool,bias_probe=5"
+# Score a judge prompt against the human (Max) labels — see evals/llm_judge/:
+python evals/llm_judge/calibrate/eval_judge.py --prompt evals/llm_judge/calibrate/judge_v2.md
 ```
 
 To (re)generate research dossiers, run a blind web-search agent per guest and drop the result at

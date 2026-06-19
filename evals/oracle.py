@@ -22,10 +22,10 @@ Outputs three files:
   - {out}_answers.csv   the grid annotators fill (id, pick, confidence, notes); --ingest reads it
 
     # default: vs_tool (the primary eval, tool vs real Dwarkesh) + a small bias_probe judge guard:
-    python -m dwarkesh_qgen.oracle --out evals/oracle --n 20
+    python -m evals.oracle --out evals/oracle/v3 --n 20
     # after humans fill the answers csv:
-    python -m dwarkesh_qgen.oracle --ingest evals/oracle
-    python -m dwarkesh_qgen.evaluate calibrate --oracle evals/oracle_items.jsonl
+    python -m evals.oracle --ingest evals/oracle/v3
+    python -m evals.evaluate calibrate --oracle evals/oracle/v3_items.jsonl
 """
 
 from __future__ import annotations
@@ -39,9 +39,9 @@ import re
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-from . import dataset
-from .llm import LLM
-from .prompts import Method, Mode, build_messages
+from data import dataset
+from core.llm import LLM
+from prompting.prompts import Method, Mode, build_messages
 
 KNOWN_STRATA = ("floor", "quality", "bias_probe")  # auto-scorable (no humans)
 OPEN_STRATA = ("vs_tool", "tool_vs_tool")  # need human labels
@@ -149,7 +149,9 @@ def _tool_question(llm: LLM, guest: str, research: str, transcript_so_far: str) 
         method=Method.B, mode=Mode.NEXT_QUESTION, guest=guest,
         research_prep=research, transcript_so_far=transcript_so_far,
     )
-    return _sanitize(_gen(llm, msgs, max_tokens=1024), guest)
+    # Generous cap: reasoning models (e.g. GLM-5.1) spend tokens on hidden reasoning first,
+    # so a low cap returns empty/truncated content (spoils the card).
+    return _sanitize(_gen(llm, msgs, max_tokens=4096), guest)
 
 
 def build_items(
@@ -368,7 +370,7 @@ def ingest(out_prefix: str) -> int:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="evals/oracle", help="path prefix (writes _items.jsonl + _sheet.md + _answers.csv)")
+    ap.add_argument("--out", default="evals/oracle/set", help="path prefix (writes _items.jsonl + _sheet.md + _answers.csv)")
     ap.add_argument("--n", type=int, default=20, help="items per stratum (unless overridden as name=count)")
     # vs_tool is the primary eval (tool vs real Dwarkesh); bias_probe is a small judge guard.
     ap.add_argument("--strata", default="vs_tool,bias_probe=5", help="comma-separated; use name=count to override --n")
@@ -389,7 +391,7 @@ def main() -> None:
             counts[name] = int(c)
     strata = tuple(strata)
     gen = None if set(strata) <= {"floor"} else LLM.for_role("GENERATOR")
-    gen_b = LLM(__import__("dwarkesh_qgen.llm", fromlist=["LLMConfig"]).LLMConfig(
+    gen_b = LLM(__import__("core.llm", fromlist=["LLMConfig"]).LLMConfig(
         base_url=gen.cfg.base_url, api_key=gen.cfg.api_key, model=args.model_b)) if (gen and args.model_b) else None
 
     items = build_items(n=args.n, strata=strata, counts=counts, generator=gen, generator_b=gen_b,
@@ -401,7 +403,7 @@ def main() -> None:
     print(f"  reading sheet (blind): {sheet}")
     print(f"  answers to fill:       {answers}")
     print(f"  ground truth (hidden): {jl}")
-    print(f"After humans fill {answers.name}: python -m dwarkesh_qgen.oracle --ingest {args.out}")
+    print(f"After humans fill {answers.name}: python -m evals.oracle --ingest {args.out}")
 
 
 if __name__ == "__main__":

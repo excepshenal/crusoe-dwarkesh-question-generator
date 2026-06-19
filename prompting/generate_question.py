@@ -36,7 +36,7 @@ MODELS = [
     "yutori/n1.5",
 ]
 DEFAULT_MODEL = "Qwen/Qwen3-235B-A22B-Instruct-2507"
-SYSTEM = open(os.path.join(os.path.dirname(__file__), "system_prompt.txt")).read()
+SYSTEM = open(os.path.join(os.path.dirname(__file__), "system.md")).read()
 
 
 def load_transcript(path):

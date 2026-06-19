@@ -29,7 +29,7 @@ Collaboration: Crusoe (eng) × a liaison from Dwarkesh Patel (Max Farrens).
   auto-scored `bias_probe` guard. v0 labeling batch (40 items) generated; a first n=40 calibration
   pass shows the default judge is **not yet calibrated** (below) — the harness is ready, the judge isn't.
 - **Blocked on:** human oracle labels — ideally **Dwarkesh's own** — to calibrate/tune the judge.
-  A liaison handoff pack for the prompting method lives in `handoff/`.
+  A liaison handoff pack for the prompting method lives in `prompting/`.
 
 ## Approach (2 phases + 1 prerequisite)
 
@@ -39,7 +39,7 @@ We can't scalably tell if a method beats baselines without a grader. Build it fi
 calibrate it against human taste.
 
 - **Grader:** LLM-as-judge, **pairwise** (more robust than 1–5 scalar grading). Position
-  bias killed by running both orders; a flip counts as a tie. (`evaluate.py`, `prompts/judge.md`)
+  bias killed by running both orders; a flip counts as a tie. (`evaluate.py`, `evals/judge.md`)
 - **Benchmark:** a frozen held-out interview set. For each real Dwarkesh next-question, we
   compare each method's question against his at the same point → win-rate vs. Dwarkesh.
 - **Calibration:** an oracle set of pairwise items, human-labeled (by Dwarkesh and/or us).
@@ -54,7 +54,7 @@ calibrate it against human taste.
 A base model + engineered prompt. Three variants of increasing complexity (`prompts.py`):
 
 - **A** — user prompt only: research + instruction to generate a question.
-- **B** — A + the "what makes a great Dwarkesh question" system prompt (`prompts/system.md`).
+- **B** — A + the "what makes a great Dwarkesh question" system prompt (`prompting/system.md`).
 - **C** — B + few-shot real (prep + transcript → his next turn) examples.
 
 The B→C jump previews how much fine-tuning might buy us. (Note: few-shots with full
@@ -197,7 +197,7 @@ the models:**
   Dwarkesh pairwise labels.** An uncalibrated judge is worse than no number — it gives confident,
   wrong rankings. This empirically vindicates the eval-first/calibrate-the-judge design and makes
   oracle calibration (`oracle.py`) a hard gate before any leaderboard. The length-hardening folded
-  into `prompts/judge.md` is a sensible default but does NOT substitute for calibration.
+  into `evals/judge.md` is a sensible default but does NOT substitute for calibration.
 
 ## Eval redesign + first calibration (2026-06-19)
 
@@ -222,7 +222,7 @@ each, name+role only, all Dwarkesh content excluded), so every `vs_tool` compari
 
 **v0 labeling batch + first calibration (n=40).** Generated 40 `vs_tool` items (2/guest × 20 guests,
 gpt-oss-120b as the tool) + 5 `bias_probe`. Claude labeled all 40 as a stand-in annotator
-(`evals/oracle_answers_claude.csv`); judge = Qwen3-235B:
+(`evals/oracle/v1_answers_claude.csv`); judge = Qwen3-235B:
 
 | metric | result |
 |--------|-------:|

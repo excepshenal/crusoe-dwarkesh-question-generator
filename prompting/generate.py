@@ -1,10 +1,10 @@
 """Run the question generator for a given method + mode.
 
     # next-question, method C, against a held-out episode at a real turn
-    python -m dwarkesh_qgen.generate --slug eric-jang --mode next-question --method c --turn 12
+    python -m prompting.generate --slug eric-jang --mode next-question --method c --turn 12
 
     # prep-stage, method B, N starter questions from research only
-    python -m dwarkesh_qgen.generate --slug eric-jang --mode prep --method b -n 8
+    python -m prompting.generate --slug eric-jang --mode prep --method b -n 8
 
 Requires GENERATOR_BASE_URL / GENERATOR_MODEL (+ API key) in the env.
 """
@@ -13,8 +13,8 @@ from __future__ import annotations
 
 import argparse
 
-from . import dataset
-from .llm import LLM
+from data import dataset
+from core.llm import LLM
 from .prompts import Method, Mode, build_messages, render_transcript
 
 

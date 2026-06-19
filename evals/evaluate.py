@@ -20,10 +20,10 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from .llm import LLM
-from .prompts import Method, Mode
+from core.llm import LLM
+from prompting.prompts import Method, Mode
 
-_JUDGE_PATH = Path(__file__).resolve().parent.parent / "prompts" / "judge.md"
+_JUDGE_PATH = Path(__file__).resolve().parent / "judge.md"
 
 
 def _judge_system() -> str:
@@ -118,8 +118,8 @@ def compare_method_vs_reference(
     n: int = 5,
 ) -> MethodScore:
     """Generate next-questions with `method` and grade them against real Dwarkesh."""
-    from . import dataset  # local import to avoid cycle at module load
-    from .generate import generate
+    from data import dataset  # local import to avoid cycle at module load
+    from prompting.generate import generate
 
     score = MethodScore(0, 0, 0, 0)
     for slug in slugs:
@@ -186,7 +186,7 @@ def judge_agreement(oracle_path: str, judge: LLM) -> dict:
 def main() -> None:
     import argparse
 
-    from . import dataset
+    from data import dataset
 
     ap = argparse.ArgumentParser(description="Pairwise eval: methods vs. real Dwarkesh, or judge calibration.")
     sub = ap.add_subparsers(dest="cmd", required=True)

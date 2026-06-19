@@ -1,0 +1,21 @@
+id,pick (a/b/tie),confidence (1-3),notes
+1,A,2,I am just personally way more curious about question A
+2,A,3,A is open ended where B is basically just confirming understanding with a yes/no
+3,B,1,B connects a historical idea to the present and uses it to understand the future
+4,B,3,A is just a fragment - looks like an error
+5,A,1,"To be honest, I don't really like either of the options. But B reads like Dwarkesh trying to signal that he's cultured or political or well-read. A reads more like genuine curiosity"
+6,B,2,A is too convoluted
+7,B,1,B gets at a technical crux rather than just an either-or
+8,A,1,I don't love either option. But A points towards the possibility of discussing other interesting examples
+9,A,2,B just confirms a point rather than expanding on it or going in a new direction
+10,A,3,A feels like a real continuation of the conversation
+11,B,2,"B is too antagonistic… it makes me uncomfortable. That being said, A is boring and doesn't really make sense. It's not a smart question"
+12,B,2,"Both interesting questions, but A is confusingly phrased"
+13,B,3,B is phrased as a yes or no question (which is generally bad) but it's really the opening to a line of discussion. 
+14,B,3,A is just parroting back what the guest has already said. No new info
+15,B,3,"Again, A focuses too much on paraphrasing info that has already been given"
+16,B,3,A is blank. So there's no real choice here -- there's just an error
+17,B,3,A is blank. So there's no real choice here -- there's just an error
+18,B,1,Honestly both are reasonable questions here
+19,B,2,Both are similar questions but B is better phrased. Clearer and more concise
+20,B,3,"I actually don't love either option, but B expands on something that the guest glossed over, which is important."

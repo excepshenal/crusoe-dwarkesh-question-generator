@@ -4,9 +4,9 @@ Enumeration uses the paginated list endpoint; full bodies come from the per-slug
 endpoint (the list endpoint occasionally truncates long posts). Only public
 (`audience == "everyone"`) podcast posts are saved.
 
-    python -m dwarkesh_qgen.scrape            # scrape all public episodes
-    python -m dwarkesh_qgen.scrape --limit 5  # first 5 (smoke test)
-    python -m dwarkesh_qgen.scrape --slug eric-jang
+    python -m data.scrape            # scrape all public episodes
+    python -m data.scrape --limit 5  # first 5 (smoke test)
+    python -m data.scrape --slug eric-jang
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ BASE = "https://www.dwarkesh.com/api/v1"
 # Substack sits behind Cloudflare, which blocks Python's TLS fingerprint (JA3) even
 # with browser headers. curl's fingerprint is allowed, so we shell out to it.
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-DATA = Path(__file__).resolve().parent.parent / "data"
+DATA = Path(__file__).resolve().parent
 RAW = DATA / "raw"
 TRANSCRIPTS = DATA / "transcripts"
 
