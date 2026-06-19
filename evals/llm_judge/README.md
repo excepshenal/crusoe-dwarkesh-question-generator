@@ -64,11 +64,10 @@ back blank) are skipped. It prints overall + per-matchup agreement and a disagre
 
 ## Current best & next steps
 
-Current best judge: **`judge_v2.md` + `zai/GLM-5.1`**. Not yet promoted to the production
-`evals/judge.md` — promote only after:
-- **More labels + a held-out split.** n=27 is too small to trust 85% or to add few-shot calibration
-  shots without leakage. Get Dwarkesh's own labels and more volume, hold out a test slice.
-- **Validate on a glm-free batch** to fully rule out self-preference (judge candidates that don't
-  include the judge model).
+Current judge: **`judge_v2.md` + `zai/GLM-5.1`**, now promoted to the frozen production judge
+(`evals/judge.md` ← `judge_v2.md`) and used by `evals/judge.py` / `evals/run_eval.py`. Hardening is
+still wanted (treat as pending, not blocking — see the Status section above):
+- **More labels + a held-out split.** n=27 is small; get Dwarkesh's own labels and more volume, and
+  confirm the 85% out-of-sample (the prompt was tuned on these cards).
+- **Validate on a glm-free batch** to fully rule out self-preference.
 - **Try Claude as judge** (needs an Anthropic endpoint) as a neutral, likely-aligned alternative.
-- Then wire the winner into `evals/evaluate.py calibrate` for the scaled leaderboard.

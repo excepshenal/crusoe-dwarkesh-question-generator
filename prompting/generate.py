@@ -12,10 +12,36 @@ Requires GENERATOR_BASE_URL / GENERATOR_MODEL (+ API key) in the env.
 from __future__ import annotations
 
 import argparse
+import os
 
 from data import dataset
-from core.llm import LLM
+from core.llm import LLM, LLMConfig
+from core.generator import EvalCard
 from .prompts import Method, Mode, build_messages, render_transcript
+
+_CRUSOE = "https://api.inference.crusoecloud.com/v1"
+
+
+class PromptingGenerator:
+    """A Generator backed by the prompting method (system.md + templated user message), methods A/B/C.
+
+    The default tool: Method B (system prompt + user message, no shots) on qwen3-235b.
+    """
+
+    def __init__(self, model: str = "Qwen/Qwen3-235B-A22B-Instruct-2507", method: Method = Method.B,
+                 k_shots: int = 2, llm: LLM | None = None):
+        self.model, self.method, self.k_shots = model, method, k_shots
+        self.llm = llm or LLM(LLMConfig(base_url=_CRUSOE, api_key=os.environ["CRUSOE_API_KEY"], model=model))
+        self.name = f"prompt-{method.value}:{model.split('/')[-1]}"
+
+    def generate(self, card: EvalCard, *, n: int = 5) -> str:
+        few_shots = None
+        if self.method == Method.C:
+            few_shots = dataset.sample_few_shots(mode=card.mode, exclude_slug=card.slug, k=self.k_shots, n_prep=n)
+        messages = build_messages(method=self.method, mode=card.mode, guest=card.guest,
+                                  research_prep=card.research, transcript_so_far=card.transcript_so_far,
+                                  n=n, few_shots=few_shots)
+        return (self.llm.chat(messages, temperature=0.7) or "").strip()
 
 
 def generate(
