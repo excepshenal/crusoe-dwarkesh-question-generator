@@ -83,7 +83,7 @@ is built **broad-first, reverse-engineering last** — a three-stage pipeline (`
    - **Blindness as a protocol.** The research agent is told to exclude ALL Dwarkesh
      Podcast / Lunar Society content (transcripts, clips, recaps, summaries) and to avoid
      podcast-recap sources generally, preferring the guest's own primary sources. Best run
-     with a web-search backend; retrieved sources inject via `research_context/{slug}.md`.
+     with a web-search backend; retrieved sources inject via `data/research_context/{slug}.md`.
 2. **Coverage check:** extract the facts the interview actually drew on and measure what
    fraction the broad dossier captured. **Target ≥ 80%.** Report it two ways: count-coverage
    AND **value-weighted coverage** (the deep/obscure "gems" that make his questions special,

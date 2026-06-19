@@ -20,11 +20,13 @@ The generator is a base model + one fixed prompt (`system_prompt.txt`) — no SF
 export CRUSOE_API_KEY=<your key>
 cd handoff
 # prep mode: generate starter questions from research only (no transcript)
-python3 generate_question.py --guest "Tyler Cowen" --research ../research/tyler-cowen-3.md
-# next-question mode: generate the next question from both research and the conversation so far
-python3 generate_question.py --guest "Dario Amodei" --research ../research/dario-amodei-2.md \
-  --transcript examples/dario-amodei-2_convo.txt
+python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md
+# next-question mode: feed a real interview truncated to a turn, get the next question
+python3 generate_question.py --guest "Dario Amodei" --research ../data/research/dario-amodei-2.md \
+  --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
 ```
+Ready-made cuts live in `data/transcript_subsets/` (`{slug}-turn-{k}.json`, varied guests and depths) —
+each is a real interview truncated right before one of Dwarkesh's actual questions.
 
 ### 2) The eval → [`evals/`](evals/)
 How we measure the generator against the real thing:
@@ -63,10 +65,11 @@ dwarkesh_qgen/
 prompts/
   system.md      "What makes a great Dwarkesh question" (the generator system prompt).
   judge.md       Pairwise judge rubric.
-data/transcripts/  Parsed corpus, 96 episodes (committed as plain JSON).
-research/          Blind research dossiers, one per held-out guest.
+data/transcripts/        Parsed corpus, 96 episodes (committed as plain JSON).
+data/research/           Blind research dossiers, one per held-out guest.
+data/transcript_subsets/ Real interviews truncated to a turn ({slug}-turn-{k}.json), for the runner.
 evals/             Oracle set (blind sheet + answers CSV + hidden ground truth) — see evals/README.md.
-handoff/           Liaison test pack for the prompting method (prompt + examples + runner).
+handoff/           Liaison test pack for the prompting method (prompt + runner).
 ```
 
 ## Developer setup (full pipeline)
@@ -88,4 +91,4 @@ python -m dwarkesh_qgen.evaluate calibrate --oracle evals/oracle_items.jsonl
 ```
 
 To (re)generate research dossiers, run a blind web-search agent per guest and drop the result at
-`research/{slug}.md` (or `research_context/{slug}.md`); `research.py` then wraps coverage + gap-fill.
+`data/research/{slug}.md` (or `data/research_context/{slug}.md`); `research.py` then wraps coverage + gap-fill.

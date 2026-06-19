@@ -12,7 +12,7 @@ Two example types, matching the two generator modes:
 
 RESEARCH PREP is the open dependency. Until we have Dwarkesh's real prep, the
 caller supplies a `research` string; `default_research()` uses his written
-intro+description as a weak seed, and `research/{slug}.md` (Claude-bootstrapped)
+intro+description as a weak seed, and `data/research/{slug}.md` (Claude-bootstrapped)
 overrides it when present.
 """
 
@@ -29,7 +29,7 @@ from .transcript import Section, Transcript, Turn
 
 DATA = Path(__file__).resolve().parent.parent / "data"
 TRANSCRIPTS = DATA / "transcripts"
-RESEARCH = Path(__file__).resolve().parent.parent / "research"
+RESEARCH = DATA / "research"
 
 # Host turns shorter than this (in chars) are likely acks ("Right.", "Interesting.").
 _MIN_QUESTION_CHARS = 40

@@ -37,16 +37,20 @@ Use `generate_question.py` (Python 3 + curl, both preinstalled on macOS/Linux):
 ```bash
 export CRUSOE_API_KEY=<your key>
 cd handoff
-# next-question mode — pass the conversation so far (ready-made example):
-python3 generate_question.py --guest "Dario Amodei" --research ../research/dario-amodei-2.md \
-  --transcript examples/dario-amodei-2_convo.txt
+# next-question mode — feed a real interview truncated to a turn:
+python3 generate_question.py --guest "Dario Amodei" \
+  --research ../data/research/dario-amodei-2.md \
+  --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
 # prep mode — research only, get starter questions:
-python3 generate_question.py --guest "Tyler Cowen" --research ../research/tyler-cowen-3.md
+python3 generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md
 ```
-`--research` is the guest dossier; `--transcript` is the conversation so far (speaker-labeled lines;
-omit it for prep mode). Bring your own `(research, conversation)` pairs to probe any guest.
-`examples/*.md` show the exact assembled prompt for reference; `system_prompt.txt` is the fixed
-system prompt.
+`--research` is the guest dossier (`data/research/{slug}.md`). `--transcript` is the conversation
+so far; omit it for prep mode. The ready-made cuts live in **`data/transcript_subsets/`** —
+each is a real interview truncated right before one of Dwarkesh's actual questions (filename
+`{slug}-turn-{k}.json`; the question he asked next is recorded in the file's
+`reference_next_question` field so you can compare). Pick any guest with a dossier in
+`data/research/`, at any depth `k`. You can also pass your own `.txt` of speaker-labeled lines.
+`system_prompt.txt` is the fixed system prompt.
 
 ## What to look for
 Is the question sharp, specific, non-obvious, and genuinely reactive to the last thing the guest

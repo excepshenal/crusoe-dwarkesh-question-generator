@@ -4,12 +4,16 @@
 No Python installs needed (stdlib + curl, which ships on macOS/Linux). Set your key, then:
 
   export CRUSOE_API_KEY=...                       # the key you were given
-  # next-question mode — pass the conversation so far:
-  python generate_question.py --guest "Dario Amodei" --research research.md --transcript convo.txt
+  # next-question mode — pass the conversation so far (a real interview subset):
+  python generate_question.py --guest "Dario Amodei" \
+      --research ../data/research/dario-amodei-2.md \
+      --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
   # prep mode — research only, get N starter questions:
-  python generate_question.py --guest "Tyler Cowen" --research research.md
+  python generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md
 
-research.md = the guest dossier; convo.txt = the conversation so far, e.g.
+--research = the guest dossier. --transcript = the conversation so far, either a
+data/transcript_subsets/*.json file (a real interview truncated to a turn) or a plain
+.txt of speaker-labeled lines:
   Dwarkesh Patel: ...
   Dario Amodei: ...
 (omit --transcript for prep mode). Prints the model's question(s).
@@ -19,6 +23,18 @@ import argparse, json, os, subprocess
 ENDPOINT = "https://api.inference.crusoecloud.com/v1/chat/completions"
 MODEL = "openai/gpt-oss-120b"
 SYSTEM = open(os.path.join(os.path.dirname(__file__), "system_prompt.txt")).read()
+
+
+def load_transcript(path):
+    """Render the conversation-so-far to speaker-labeled text. A .json file (our
+    transcript_subsets format, or any {turns:[{speaker,text}]}/[...]) is rendered;
+    anything else is read as raw text."""
+    raw = open(path).read()
+    if not path.endswith(".json"):
+        return raw
+    data = json.loads(raw)
+    turns = data["turns"] if isinstance(data, dict) else data
+    return "\n\n".join(f"{t['speaker']}: {t['text']}" for t in turns)
 
 
 def user_message(guest, research, transcript, n):
@@ -39,7 +55,7 @@ def main():
     a = ap.parse_args()
 
     research = open(a.research).read()
-    transcript = open(a.transcript).read() if a.transcript else ""
+    transcript = load_transcript(a.transcript) if a.transcript else ""
     system = SYSTEM.replace("{n}", str(a.n))
     messages = [{"role": "system", "content": system},
                 {"role": "user", "content": user_message(a.guest, research, transcript, a.n)}]

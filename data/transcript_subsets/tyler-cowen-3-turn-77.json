@@ -1,0 +1,395 @@
+{
+  "slug": "tyler-cowen-3",
+  "guest": "Tyler Cowen",
+  "host": "Dwarkesh Patel",
+  "up_to_turn": 77,
+  "total_turns": 319,
+  "reference_next_question": "Would you count the ’50s period in the Soviet Union as more centrally planned or more decentralized by that point?",
+  "turns": [
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "It’s a book written for smart people."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Okay, so let’s just jump into it. The book we’re talking about is Goat, who is the greatest economist of all time, and why does it matter? Alright, let’s start with Keynes. So in the section on Keynes, you quote him, I think, talking about Alfred Marshall. He says, “The master economist must possess a rare combination of gifts. He must be a mathematician, historian, statesman, philosopher. No part of man’s nature or his institutions must lie entirely outside his regard.” And you say, well, Keynes is obviously talking about himself because he was all those things, and he was arguably the only person who was all those things at the time. He must have known that.\n\n00:00:57\n\nOkay, well, you know what I’m going to ask now. So what should we make of Tyler Cowen citing Keynes using this quote? A quote that also applies to Tyler Cowen?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I don’t think it applies to me. What’s the exact list again? Am I a statesman? Did I play a role at the Treaty of Versailles or something comparable?"
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "I don’t know. We’re in Washington. I’m sure you talk to all the people who matter quite a bit."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, I guess I’m more of a statesman than most economists, but I don’t come close to Keynes in the breadth of his high-level achievement in each of those areas."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Okay, let’s talk about those achievements. So, chapter twelve, General Theory of Interest, Employment, and Money. Here’s a quote. “It is probable that the actual average result of investments, even during periods of progress and prosperity, have disappointed the hopes which promoted them. If human nature felt no temptation to take a chance, no satisfaction, profit apart, in constructing a factory, a railway, a mine, or a farm, there might not be much investment merely as a result of cold calculation.” Now, it’s a fascinating idea that investment is irrational, or most investment throughout history has been irrational. But when we think today about the fact that active investing exists for winners’ curse like reasons, VCs probably make, on average, less returns than the market, there’s a whole bunch of different examples you can go through, right? M&A usually doesn’t achieve the synergies it expects. Throughout history, has most investment been selfishly irrational?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, Adam Smith was the first one I know to have made this point, that projectors, I think he called them, are overly optimistic. So people who do startups are overly optimistic. People who have, well, entrenched VC franchises make a lot of money, and there’s some kind of bifurcation in the distribution, right? Then there’s a lot of others who are just playing at it and maybe hoping to break even. So the rate of return on private investment, if you include small businesses, it’s highly skewed. And just a few percent of the people doing this make anything at all. So there’s a lot to what Keynes said. I don’t think he described it adequately in terms of a probability distribution, but then again, he probably didn’t have the data. But I wouldn’t reject it out of hand."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Another example here is this is something your colleague Alex Tabarrok talks about a lot, is that innovators don’t internalize most of the gains they give to society. So here’s another example. The entrepreneur compared to one of his first employees, is he that much better off for taking the extra risk and working that much harder? What does this tell us? It’s a marvelous insight that we’re actually more risk-seeking than it’s selfishly good for us."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "That was Reuven Brenner’s claim in some of his books on risk. Again, I think you have to distinguish between different parts of the distribution. So it seems there’s a very large number of people who foolishly start small businesses. Maybe they overly value autonomy when they ought to just get a job with a relatively stable company. So there, part of the thesis is correct, and I doubt if there’s really big social returns to whatever those people do, even if they could make a go of it. But there’s another part of the distribution, people who are actually innovating or have realistic prospects of doing so. Where I do think those social returns are very high. Now, that 2% figure that’s cited a lot, I don’t think it’s really based in much real. It’s maybe not a crazy seat of the pants estimate, but people think like, oh, we know it’s 2% and we really don’t. So look at Picasso, right? He helped generate cubism with Braque and some other artists. How good is our estimate of Picasso’s income compared to the spin-offs from Picasso? We just don’t really know. Right? We don’t know. It’s 2%. It could be 1%, it could be 6%."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "How different do you think it is in art versus, I don’t know, entrepreneurship versus different kinds of entrepreneurship? There are different industries there as well, right?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I’m not sure it’s that different. So say if some people start blogging, a lot of people copy them, right? Well, some people start painting in a particular style, a lot of people copy them. I’m not saying the numbers are the same, but they don’t sound like issues that in principle are so different in 2%."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Overestimate or underestimate. It might be wrong, but in which way is it wrong?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "My seat of the pants estimate would be two to 5%, so I think it’s pretty close. But again, that’s not based on anything firm."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Here’s another quote from Keynes. “Investment based on genuine long-term expectation is so difficult as to be scarcely practicable. He who attempts it must surely lead much more laborious days and run greater risks than he who tries to guess better than the crowd how the crowd will behave.” So one way to look at this is like, oh, he just doesn’t understand the efficient market hypothesis. It’s like before random walks or something. But there are things you can see in the market today. Where are the prospects for future dividends so much higher after Covid than they were immediately after the crash? How much of market behavior can be explained by these sorts of claims from Keynes?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I think Keynes had the view that for his time, you could be a short-run speculator and in fact beat the markets. And he believed that he did so, and at least he did for some periods of his life. That may have been luck, or maybe he did have special insight. It probably wasn’t true in general, though we don’t really know. Did efficient markets hold during Britain at that time? Maybe there just were profit opportunities for smarter than average people. So that’s a view. I’m inclined not to believe it. But again, I don’t think it’s absurd. Keynes is saying, for people who want money, this is biased toward the short term. You can get your profits and get out. And that’s damaging long-term investment, which in fact, he wanted to socialize. So he’s being led to a very bad place by the argument. But again, we shouldn’t dismiss it out of hand."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Why is it not easy to retrospectively study how efficient markets were back then, in the same way we can study it now? You look at the price-to-earnings ratios, and then what were the dividends afterwards over the coming decades for those companies based on their stock price or something?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I don’t know how many publicly traded firms there were in Britain at that time. I don’t know how good the data are. Things like bid, ask, spread, at what price you actually executed trades can really matter for testing efficient markets hypothesis, so probably we can’t tell, even though there must be share price data of some sort. At what frequency? Well, is it once a day? Is it once a week? We don’t have the sort of data we have now where you can just test anything you want."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "He also made an interesting point. Not only is it not profitable, but even if you succeed, society will look at the contrarian in a very negative light. You will be doubly punished for being a contrarian. But that doesn’t seem to be the case. Right? You have somebody like Warren Buffett or Charlie Munger. People who do beat the market are actually pretty revered. They’re not punished in public opinion."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "They pursued mostly long-term strategies."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Right."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "But again, trying to make sense of Keynes, if you think about long-term investing, and I don’t think he meant Buffett-style investing. I think he meant building factories, trying to figure out what people would want to buy 25 years from that point in time. That probably was much harder than today. You had way less access to data. Your ability to build an international supply chain was much weaker. Geopolitical turmoil at various points in time was much higher. So again, it’s not a crazy view. I think there’s a lot in Keynes that’s very much of his time, that he presents out of a kind of overconfidence as being general. And it’s not general. It may not even be true, but there were some reasons why you could believe it."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Another quote from Keynes, I guess I won’t read the whole quote in full, but basically says, over time, as investments, markets get more mature, more and more of equities are held basically by passive investors, people who don’t have a direct hand in the involvement of the enterprise, and the share of the market that’s passive investment now is much bigger. Should we be worried about this?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "As long as at the margin people can do things, I’m not very worried about it. So there are two different kinds of worries. One is that no one monitors the value of companies. It seems to me those incentives aren’t weaker. There’s more research than ever before. There’s maybe a problem. Not enough companies are publicly held. But you can always, if you know something the rest of the market doesn’t, buy or sell-short and do better. The other worry is those passive investors have economies of scale, and they’ll end up colluding with each other. You’ll have, say, like three to five mutual funds, private equity firms owning a big chunk of the market portfolio. And in essence, directly or indirectly, they’ll tell those firms not to compete. It’s a weird form of collusion. They don’t issue explicit instructions like, say the same few mutual funds own Coke and Pepsi. Should Coke and Pepsi compete, or should they collude? Well, they might just pick lazier managers who in some way give you implicit collusion."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Maybe this is another example of the innovators being unable to internalize their gains. As active investors who are providing this information to the market, they don’t make out that much better than the passive investors, but they’re actually providing a valuable service. But the benefits are diffused throughout society."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I think overconfidence helps us on that front. So there’s, quote-unquote, too much trading from a private point of view. But from a social point of view, maybe you can only have too much trading or too little trading, and you might rather have too much trading."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Explain that. Why can it only be too much or too little?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, let’s say the relevant choice variable is investor temperament. So, yes, you’d prefer it if everyone had the temperament just to do what was socially optimal. But if temperament is some inclination in you, and you can just be overconfident or not confident enough, and overconfidence gives you too much trading, that might be the best we can do. Again, fine-tuning would be best of all, but I’ve never seen humans where you could just fine-tune all their emotions to the point where they ought to be."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah. Okay, so we can ask the question, how far above optimal are we? Or if we are above optimal? In the chapter, Keynes says that over time, as markets get more mature, they become more speculative. And the example he gives is like, the New York market seems more speculative to him than the London market at that time. But today, finance is 8% of GDP. Is that what we should expect it to be to efficiently allocate capital? Is there some reason we can just look at that number and say that that’s too big?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I think the relevant number for the financial sector is what percentage it is of wealth, not GDP. So you’re managing wealth, and the financial sector has been a pretty constant 2% of wealth for a few decades in the United States, with bumps. Obviously, 2008 matters, but it’s more or less 2%, and that makes it sound a lot less sinister. It’s not actually growing at the expense of something and eating up the economy. So you would prefer it’s less than 2%? Right. But 2% does not sound outrageously high to me. And if the ratio of wealth to GDP grows over time, which it tends to do when you have durable capital and no major wars. The financial sector will grow relative to GDP. But again, that’s not sinister. Think of it in terms of wealth."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "I see. So one way to think about it is like the management cost as a fraction of the assets under management or something. And that’s right. In that case, 2% is not that bad. Yeah. Okay, interesting. I want to go back to the risk aversion thing again, because I don’t know how to think about this. So his whole thing is these animal spirits, they guide us to make all these bets and engage in all this activity. In some sense, he’s saying, like, not only are we not risk-neutral, but we’re more risk-seeking than is rational. Whereas the way you’d conventionally think about it is that humans are risk-averse, right. They prefer to take less risk than is rational in some sense. How do we square this?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, here, Milton Friedman, another goat contender, comes into the picture. So his famous piece with Savage makes the point that risk aversion is essentially context dependent. So he was a behavioral economist before we knew of such things. So the same people typically will buy insurance and gamble. Gambling you can interpret quite broadly, and that’s the right way to think about it. So just flat out risk aversion or risk-loving behavior, it doesn’t really exist. Almost everyone is context-dependent now. Why you choose the contexts you do, maybe it’s some kind of exercise in mood management. So you insure your house, so you can sleep well at night, you buy fire insurance, but then you get a little bored. And to stimulate yourself, you’re betting on these NBA games. And yes, that’s foolish, but it keeps you busy and it helps you follow analytics, and you read about the games online, and maybe that’s efficient mood management, and that’s the way to think about risk behavior. I don’t bet, by the way. I mean, you could say I bet with my career, but I don’t bet on things."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "What’s your version of the lottery ticket? What is the thing where you, just for the entertainment value or the distraction value, take more risk than would seem rational?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, writing the book titled “GPT-4,” which is not with any known publisher. It’s just online; it’s free, published within GPT-4. It took me quite a while to write the book. I’m not sure there’s a huge downside, but it’s risky in the sense that it’s not what anyone else was doing. So that was a kind of risk. I invested a lot of my writing time in something weird, and I’ve done things like that pretty frequently. So that keeps me, you could say, excited, or starting MRU, the online education videos in economics no pecuniary return to me at all. Indirectly, it costs me a lot of money. That’s a sort of risk. I feel it’s paid off for me in a big way. But on one hand, you can say, “Well, Tyler, what do you actually have from that?” And the answer is nothing."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah, well, this actually raises the question I was going to ask about these GO contenders in general, and how you’re judging them, where you’re looking at their work as a whole. Given that, I don’t know, some of these risks pay off that these intellectuals take, some of them don’t pay off. Should we just be looking at their top contributions and just disregard everything else? For Hayek, I think one of the points you have against him is that his top three articles are amazing. But after that, there’s a drop-off. The top risk you take, are they the only ones that matter? Why are we looking at the other stuff?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I don’t think they’re the only ones that matter, but I’ll weight them pretty heavily. But your failures do reflect usually in how you think or what you know about the world. So Hayek’s failures, for instance, his inability to come up with a normative standard in “The Constitution of Liberty,” show in some ways he just wasn’t rigorous enough. He was content with the kind of Germanic, put a lot of complex ideas out there and hope they’re profound. And you see that even in his best work. Now, that is profound. But it’s not as if the failures and the best work for all these people are unrelated. And same with Keynes. Like Keynes, more or less changed his mind every year. That’s a strength, but it’s also a weakness. And by considering Keynes’s really good works and bad works, like his defenses of tariffs, you see that. And the best work, he also moved on from in some way. If you read “How to Pay for the War” in 1940, if you didn’t know better, you would think it’s someone criticizing the General Theory."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Does quantity have a quality all of its own? When you think of great intellectuals, were many of these people have like volumes and volumes of work. Was that necessary for them to get the greatest sets? Or is the rest of it just a distraction from the things that really stand the test of time?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "For the best people, it’s necessary. So John Stuart Mill wrote an enormous amount. Most of it’s quite interesting, but his ability to see things from multiple perspectives, I think, was in part stemming from the fact that he wrote a lot about many different topics, like French history, ancient Greece. He had real depth and breadth."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "If Keynes is alive today, what are the odds that he’s in a polycule in Berkeley, writing the best-written Less Wrong post you’ve ever seen?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I’m not sure what the counterfactual means. So Keynes is so British. Maybe he’s an effective altruist at Cambridge. And given how he seems to have run his sex life, I don’t think he needed a polycule. Like a polycule is almost a Williamsonian device to economize on transactions costs. But Keynes, according to his own notes, seems to have done things on a very casual basis."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "He had a spreadsheet, right, of his special partners?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "And from context, it appears he met these people very casually and didn’t need to be embedded in, oh, we’re the five people who get together regularly, so that’s not a hypothetical. We think we saw what he did, and I think he’d be at Cambridge, right? That’s where he was. Why should he not today, be at Cambridge?"
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "How did a gay intellectual get that amount of influence in Britain of that time? When you think of somebody like Alan Turing, helps Britain win World War II and is castrated because of one illicit encounter that is caught, was it just not public? How did he get away with it?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Basically, I don’t think it was a secret about Keynes. He had interacted with enough people that I think it was broadly known. He was politically very powerful. He was astute as someone managing his career. He was one of the most effective people you could say, of all time, not just amongst economists. And I’ve never seen evidence that Keynes was in any kind of danger. Turing also may have intersected with national security concerns in a different way. I’m not sure we know the Alan Turing story and why it went as badly as it did, but there was in the past, very selectively, and I do mean very selectively, more tolerance of deviance than people today sometimes realize."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Oh, interesting."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "And Keynes’s benefited from that. But again, I would stress the word selectively."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Does it say more? What determines who is selected for this tolerance?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I don’t feel I understand that very well. But there’s plenty say in Europe and Britain of the early 20th century where quote-unquote outrageous things were done. And it’s hard to find evidence that people were punished for it. Now, what accounts for the difference between them and the people who were punished? I would like to see a very good book on it."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah, I guess it’s similar to our time. Right. We have certain taboos and you can get away with."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Yeah, they say whatever on Twitter and."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Other people get cancelled, actually. How have you gotten away with it? I feel like you’ve never been in, at least as far as I know. I haven’t heard you being in the part of any single controversy. But you have some opinions out there."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I feel people have been very nice to me."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah. What’d you do? How did you become the Keynes of our time if we’re comparing after all? Right."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I think just being good-natured helps, and helping a lot of people helps. And Turing, I’m a huge fan of, wrote a paper on him with Michelle Dawson, but it’s not obvious that he was a very good diplomat, and it seems he very likely was a pretty terrible diplomat, and that might be feeding into this difference."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "How do you think about the long-term value and the long-term impact of intellectuals you disagree with? So, do you think over the course of history, basically, the improvements they make to the discourse and the additional things they give us a chance to think about, that washes out their object level, the things they were object level wrong about?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, it’s worked that way so far. Right. So we’ve had economic growth, obviously with interruptions, but so much has fed into the stream. And you have to be pretty happy with today’s world compared with, say, 1880. The future may or may not bring us the same, but if the future brings us continuing economic growth, then I’m going to say exactly that. Oh, be happy. They fed into the stream. They may have been wrong, but things really worked out. But if the future brings us a shrinking population asymptotically approaching a very low level, and greater poverty and more war, and you’ve got to wonder, well, who is responsible for that, right?"
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Who would be responsible for that?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "We don’t know, but I think secular thinkers will fall in relative status if that’s the outcome. And that’s most prominent intellectuals today, myself included."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah. Who would rise in status as a result?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, there’s a number of people complaining strenuously about fertility declines. If there’s more war, probably the hawks will rise in status whether or not they should, and alternative scenarios that the pacifists rise in status. But I basically never see the pacifists rising in status for any more than brief moments like after the Vietnam War. Maybe they did after World War I. Yes, but again, that didn’t last because World War II swept all that away."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Right."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "So the pacifists seemed to lose long-term status no matter what. And that means the Hawks would gain in status. And those worried about fertility and whatever technology drives the new wars, if that is what happens. Let’s say it’s drones. It’s possible, right? People who warned against drones, which is not currently that big a thing. There are quite a few such people, but there’s no one out there known for worrying about drones the way, say, Eliezer is known for worrying about AI. Now drones, in a way, are AI, but it’s different."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah. Although Nat Friedman, Stuart Armstrong, other people have talked about, we’re not that far away from drones. I guess you have millions of views. Whoever made that would rise, I think. Stuart Armstrong. No, sorry, not Stuart. Anyways."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Yeah, but those people could end up as much more important than they are now."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Yeah. Okay. Let’s talk about Hayek. Sure. So before we get into his actual views, I think his career is a tremendous white pill in the sense that he writes The Road to Serfdom in 1944 when Nazi Germany and Soviet Union are both prominent players. And honestly, the way things shaked out, he would be pretty pleased that a lot of the biggest collectivisms of the day have been wiped out. So it is a tremendous white bill. You can have a career like that."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "He was not as right as he thought at the time, but he ended up being too grumpy in his later years."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Oh really?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "He thought, well, collectivism is still going to engulf the world. And I think he became a grumpy old man. And maybe it’s one thing to be a grumpy old man in 2024, but to be a grumpy old man in the 80s didn’t seem justified."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "What was the cause? What specifically did he see? That he."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "He thought there were atavistic instincts in the human spirit which were biologically built in, that led us to be collectivists and too envious and not appreciative of how impersonal orders worked and that this would cause the west to turn into something quite crummy. I wouldn’t say he’s been proven wrong, but a lot of the west has had a pretty good run since then and there’s not major evidence that he’s correct. The bad events we’ve seen, like some war coming back, something weird happening in our politics. I’m not sure how to describe it. I’m not sure they fit the Hayek model. Of sort of simply the accretion of more socialism."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "But in terms of the basic psychological urges towards envy and resentment, doesn’t the rise of wokeness provide evidence for his view?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "But now wokeness, I would say, is peaked and is falling. That’s a big debate. I don’t see wokeness as our biggest problem. I see excessive bureaucracy, sclerotic institutions, kludocracy as bigger problems. They’re not unrelated to wokeness, to be clear, but I think they’re more fundamental and harder to fix."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Let’s talk about Hayek’s arguments. So obviously he has a famous argument about decentralization. But when we look at companies like Amazon, Uber, these other big tech companies, they actually do a pretty good job of central planning, right? There’s like a sea of logistics and drivers and trade-offs that they have to square. Do they provide evidence that central planning can work?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Well, I’m not a Coasian, so Coase in his famous 1937 article said the firm is planning. And he contrasted that to the market, right? I think the firm is the market. The firm is always making contracts in the market, is subject to market checks and balances. To me, it’s not an island of central planning in the broader froth of the market. So I’m just not Coasian. So for people who are Coasian, this is an embarrassing question for them, but I’ll just say Amazon being great, is the market working? And they’re not centrally planning. Even the Soviet Union, it was very bad, but it didn’t end up being central planning. It started off that way for a few years. So, I think people misinterpret large business firms in many ways on both the left and the right."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Wait. But under this argument, it still adds to the credence of the people who argue that basically we need the government to control. Because if it is the case that the Soviet Union is still not central planning, people would say, well yeah, but that’s kind of what I want in terms of there’s still kind of checks in terms of import, exports, of the market test. It still applied to the government in that sense. What’s wrong with that argument that basically you can treat the government as that kind of firm?"
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "I’m not sure I followed your question. I would say this. I view the later Soviet Union as being highly decentralized managers optimizing their own rents and setting prices too low to take bribes."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Allah."
+    },
+    {
+      "speaker": "Tyler Cowen",
+      "role": "guest",
+      "text": "Paul Craig Roberts, what he wrote in that’s a very bad decentralized system. And it was sort of backed up by something highly central communist party in the USSR. But it’s not like the early attempts at true central planning in the Soviet Union, after the revolution, which did totally fail and were abandoned pretty quickly, even by Lenin."
+    }
+  ]
+}

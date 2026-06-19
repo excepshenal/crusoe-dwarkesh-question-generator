@@ -1,0 +1,230 @@
+{
+  "slug": "jensen-huang",
+  "guest": "Jensen Huang",
+  "host": "Dwarkesh Patel",
+  "up_to_turn": 44,
+  "total_turns": 181,
+  "reference_next_question": "This is actually quite interesting. For many years Nvidia has been the company in AI making money, making lots of money. Now you’re investing it. It’s been reported that you’ve done up to $30 billion in OpenAI and $10 billion in Anthropic. But now their valuations have increased, and I’m sure they’ll continue to increase.\n\nSo if over these many years you were giving them the compute, you saw where it was headed, and they were worth like one tenth what they’re worth now a couple years ago—or even a year ago in some cases and you had all this cash — there’s a world where either Nvidia themselves becomes a foundation lab, does a huge investment to make that possible, or has made the deals you’ve made now at current valuations much earlier on. And you had the cash to do it. So I am curious, actually, why not have done it earlier?",
+  "turns": [
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "We’ve seen the valuations of a bunch of software companies crash because people are expecting AI to commoditize software. There’s a potentially naive way of thinking about things, which is: look, Nvidia sends a GDS2 file to TSMC. TSMC builds the logic dies, it builds the switches, then it packages them with the HBM that SK Hynix, Micron, and Samsung make. Then it sends it to an ODM in Taiwan where they assemble the racks. Nvidia is fundamentally making software that other people are manufacturing, and if software gets commoditized, does Nvidia get commoditized?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "In the end, something has to transform electrons to tokens. The transformation of electrons to tokens and making those tokens more valuable over time is hard to completely commoditize. The transformation from electrons to tokens is such an incredible journey. Making that token is like making one molecule more valuable than another molecule, making one token more valuable than another. The amount of artistry, engineering, science, and invention that goes into making that token valuable, obviously we’re watching it happen in real time. The transformation, the manufacturing, all of the science that goes in there is far from deeply understood and the journey is far from over. I doubt that it will happen.\n\nWe’re going to make it more efficient, of course. The way that you framed the question is my mental model of our company. The input is electrons, the output is tokens. In the middle is Nvidia. Our job is to do as much as necessary and as little as possible to enable that transformation to be done at incredible capabilities. What I mean by “as little as possible,” whatever I don’t need to do, I partner with somebody and make it part of my ecosystem.\n\nIf you look at Nvidia today, we probably have the largest ecosystem of partners, both in the supply chain upstream and downstream, all of the computer companies, application developers, and model makers. AI is a five-layer cake, if you will. We have ecosystems across the entire five layers. We try to do as little as possible, but the part that we have to do, as it turns out, is insanely hard. I don’t think that gets commoditized.\n\nIn fact, I also don’t think the enterprise software companies, the tools makers… Most software companies today are tool makers. Some of them are not. Some of them are workflow codification systems. But for a lot of companies, they’re tool makers. For example, Excel is a tool, PowerPoint is a tool, Cadence makes tools, Synopsys makes tools. I actually see the opposite of what people see. I think the number of agents is going to grow exponentially, and the number of tool users is going to grow exponentially. It’s very likely that the number of instances of all these tools is going to skyrocket.\n\nIt’s very likely that the number of instances of Synopsys Design Compiler is going to skyrocket, along with the number of agents using the floor planners, our layout tools, and our design rule checkers. Today we’re limited by the number of engineers. Tomorrow, those engineers are going to be supported by a bunch of agents. We’re going to be exploring the design space like you’ve never seen before, and we’re going to use the tools that we use today.\n\nI think tool use is going to cause the software companies to skyrocket. The reason why it hasn’t happened yet is because the agents aren’t good enough at using their tools yet. Either these companies are going to build the agents themselves, or agents are going to get good enough to be able to use those tools. I think it’s going to be a combination of both."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "I think in your latest filings, you had almost a $100 billion in purchase commitments with foundries, memory, and packaging. SemiAnalysis has reported that you will have $250 billion of these kinds of purchase commitments. One interpretation is that Nvidia’s moat is really that you’ve locked up many years of these scarce components. Somebody else might have an accelerator, but can they actually get the memory to build it? Can they actually get the logic to build it? Is this really Nvidia’s big moat for the next few years?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "It’s one of the things that we can do that is hard for someone else to do. We’ve made enormous commitments upstream. Some of it is explicit, these commitments that you mentioned. Some of it is implicit. For example, a lot of the investments that are upstream are made by our supply chain because I said to the CEOs, “Let me tell you how big this industry is going to be, let me explain to you why, let me reason through it with you, and let me show you what I see.”\n\nAs a result of that process of informing, inspiring, and aligning with CEOs of all different industries upstream, they’re willing to make the investments. Why are they willing to make the investments for me and not someone else? The reason for that is because they know that I have the capacity to buy their supply and sell it through my downstream. The fact is that Nvidia’s downstream supply chain and our downstream demand is so large, they’re willing to make the investment upstream.\n\nIf you look at GTC, people are marveled by the scale of it and the people that go. It’s a full 360 degrees, the entire universe of AI all in one place. They’re all in one place because they need to see each other. I bring them together so that the downstream can see the upstream, the upstream can see the downstream, and all of them can see the advances in AI. Very importantly, they can all meet the AI natives, all the AI startups being built, and all the amazing things happening so they can see firsthand all the things that I tell them. I spend a lot of my time informing, directly or indirectly, our supply chain, partners, and ecosystem about the opportunity in front of us.\n\nSome people always say, “Jensen, in most keynotes, it’s one announcement after another.” With our keynotes, there’s always a part of it that’s a little torturous in the sense that it almost comes across like education. In fact, that’s exactly on my mind. I need to make sure the entire supply chain, upstream and downstream, the ecosystem, understands what is coming at us, why it’s coming, when it’s coming, how big it’s going to be, and is able to reason about it systematically, just like I reason about it.\n\nRegarding the moat as you describe it, we’re able to build for a future. If our next several years are a trillion dollars in scale, we have the supply chain to do it. Without our reach, the velocity of our business… Just as there’s cash flow, there’s supply chain flow, there’s churns. Nobody is going to build a supply chain for an architecture if the business churns are low. Our ability to sustain the scale is only because our downstream demand is so great. And they see it, they hear about it, they see it all coming. That allows us to do the things we’re able to do at the scale we do them."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "I do want to understand more concretely whether the upstream can keep up. For many years now, you guys have been 2x-ing revenue year over year. You’ve been more than tripling the amount of flops you’re providing to the world year over year."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "And 2x-ing at this scale now is really incredible."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Exactly. But then you look at logic. You’re the biggest customer on TSMC’s N3 node, and you’re one of the biggest on N2. AI as a whole this year is going to be sixty percent of N3. It’s going to be 86% next year, according to SemiAnalysis. How do you double if you’re the majority? And how do you do that year over year? Are we in a regime now where the growth rate in AI compute has to slow because of upstream? Do you see a way to get around this? How do we build 2x more fabs year over year, ultimately?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "At some level, the instantaneous demand is greater than the supply upstream and downstream in the world. At any instant, we could be limited by the number of plumbers, which actually happens."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "The plumbers are invited to next year’s GTC."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "By the way, great idea. But that’s a good condition. You want an industry where the instantaneous demand is greater than the total supply of the industry. The opposite is obviously less good. If we’re too far apart, if one particular component is too far away, the industry swarms it. For example, notice people aren’t talking very much about CoWoS anymore.\n\nThe reason for that is because for two years we swarmed the living daylights out of it. We doubled, doubled, doubled on several doubles. Now I think we’re in fairly good shape. TSMC now knows that CoWoS supply has to keep up with the rest of the logic demand and the memory demand. They’re scaling CoWoS and future packaging technologies at the same level as they scale logic. This is terrific, because for a long time, CoWoS and HBM memory were rather specialty. But they’re not specialties anymore. People now realize they’re mainstream computing technology.\n\nOf course, we’re now much more able to influence a larger scope of our supply chain. At the beginning of the AI revolution, all the things that I say now, I was saying five years ago. Some people believed in it and invested in it, for example, Sanjay and the Micron team. I still remember the meeting really well where I was clear about exactly what was going to happen, why it was going to happen, and the predictions of today. They really doubled down on it. We partnered with them across LPDDR and HBM memories, and they really invested in it. It obviously has been tremendous for the company. Some people came a little bit later, but now they’re all here.\n\nEach one of these bottlenecks gets a great deal of attention. Now we’re prefetching the bottlenecks years in advance. For example, the investments that we’ve done with Lumentum, Coherent, and the silicon photonics ecosystem over the last several years really reshaped the supply chain. We built up an entire supply chain around TSMC. We partnered with them on COUPE, invented a whole bunch of technology, and licensed those patents to the supply chain to keep it nice and open.\n\nWe’re preparing the supply chain through the invention of new technologies, new workflows, new testing equipment like double-sided probing, investing in companies, and helping them scale up their capacity. You can see that we’re trying to shape the ecosystem so that the supply chain is ready to support the scale."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "It seems like some bottlenecks are easier than others. Scaling up CoWoS versus scaling up—"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "I went to the hardest one, by the way."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Which is?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Plumbers. Plumbers and electricians. This is one of the concerns that I have about the doomers describing the end of work and killing of jobs. If we discourage people from being software engineers, we’re going to run out of software engineers. The same prediction happened ten years ago. Some of the doomers were telling people, “Whatever you do, don’t be a radiologist.” You might hear some of those videos still on the web saying radiology is going to be the first career to go and the world is not going to need any more radiologists. Guess what we’re short of? Radiologists."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Going back to this point about how some things you can scale, and other things… How do you actually manufacture 2x the amount of logic a year? Ultimately, memory and logic are bottlenecked by EUV. How do you get to 2x as many EUV machines year over year?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "None of that is impossible to scale quickly. All of that is easy to do within two or three years. You just need a demand signal. Once you can build one, you can build ten, and once you can build ten, you can build a million. These things are not hard to replicate."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "How far down the supply chain do you go? Do you go to ASML and say, “Hey, if I look out three years from now, for Nvidia to be generating two trillion a year in revenue, we need way more EUV machines”?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Some of them I have to directly, some of them indirectly, and some of them… If I can convince TSMC, ASML will be convinced. We have to think about the critical pinch points. But if TSMC is convinced, you’ll have plenty of EUV machines in a few years.\n\nMy point is that none of the bottlenecks last longer than a couple of years, two, three years, none of them. Meanwhile, we’re improving computing efficiency by 10x 20x, and in the case of Hopper to Blackwell, 30x to 50x. We’re coming up with new algorithms because CUDA is so flexible. We’re developing all kinds of new techniques so that we drive efficiency in addition to increasing capacity. None of those things worry me. It’s the stuff that’s downstream from us. Energy policies that prevent energy from… You can’t create an industry without energy. You can’t create a whole new manufacturing industry without energy.\n\nWe want to reindustrialize the United States. We want to bring back chip manufacturing, computer manufacturing, and packaging. We want to build new things like EVs and robots. We want to build AI factories. You can’t build any of these things without energy, and those things take a long time. More chip capacity, that’s a 2-3 year problem. More CoWoS capacity, 2-3 year problem."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Interesting. I feel like I have guests tell me the exact opposite thing sometimes. In this case, I just don’t have the technical knowledge to adjudicate."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "The beautiful thing is you’re talking to the expert."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "True. I want to ask about your competitors. If you look at the TPU, arguably two out of the top three models in the world, Claude and Gemini, were trained on TPU. What does that mean for Nvidia going forward?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "We build a very different thing. What Nvidia built is accelerated computing, not a tensor processing unit. Accelerated computing is used for all kinds of things: molecular dynamics, quantum chromodynamics, data processing, data frames, structured data, and unstructured data. It’s also used for fluid dynamics and particle physics. In addition, we use it for AI.\n\nAccelerated computing is much more diverse. Although AI is the conversation today and is obviously very important and impactful, computing is much broader than that. Nvidia has reinvented the way computing is done, moving from general-purpose computing to accelerated computing. Our market reach is far greater than any TPU or ASIC can possibly have. If you look at our position, we’re the only company that accelerates applications of all kinds. We have a gigantic ecosystem. So all kinds of frameworks and algorithms run on Nvidia.\n\nBecause our computers are designed to be operated by other people, anyone who’s an operator can buy our systems. With most of these home-built systems, you have to be your own operator because they were never designed to be flexible enough for others to operate. Because anybody can operate our systems, we’re in every cloud, including Google, Amazon, Azure, and OCI.\n\nIf you want to operate it to rent, you better have a large ecosystem of customers in many industries to be the offtakers. If you want to operate it for yourself, we obviously have the ability to help you operate it yourself, like we did for Elon with xAI. And because we can enable operators in any company and any industry, you could use it to build a supercomputer for scientific research and drug discovery at Lilly. We can help them operate their own supercomputer and use it for the entire diversity of drug discovery and biological sciences that we accelerate.\n\nThere are just a whole bunch of applications that we can address that you can’t do with TPUs. Nvidia built CUDA to be a fantastic tensor processing unit as well, but it also handles every life cycle of data processing, computing, AI, and so on. Our market opportunity is just a lot larger, and our reach is a lot greater. Because we support every application in the world now, you can build Nvidia systems anywhere and know that there will be customers for it. It’s a very different thing."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "This is going to be a long question. You have spectacular revenue, and you’re not making $60 billion a quarter from pharma and quantum. You’re making it because AI is an unprecedented technology that is growing unprecedentedly fast.\n\nThe question then is what is best for AI specifically. I’m not in the details, but I talk to my AI researcher friends and they say, “Look, when I use a TPU, it’s this big systolic array that’s perfect for doing matrix multiplies, whereas a GPU is very flexible. It’s great when you have lots of branching or irregular memory access.”\n\nBut what is AI? It’s just these very predictable matrix multiplies again and again and again. You don’t have to give up any die area for warp schedulers or switches between threads and memory banks. And the TPU is really optimized for the bulk of this growth in revenue and use case for compute that is coming online right now. I wonder how you react to that."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Matrix multiplies are an important part of AI, but they’re not the only part. If you want to come up with a new attention mechanism, disaggregate in a different way, or invent a whole new type of architecture altogether—like a hybrid SSM—you want an architecture that’s generally programmable. If you want to create a model that fuses diffusion and autoregressive techniques, you want an architecture that’s just generally programmable. We run everything you can imagine. That’s the advantage. It allows for the invention of new algorithms a lot more easily, because it’s a programmable system.\n\nThe ability to invent new algorithms is really what makes AI advance so quickly. TPUs, like anything else, are impacted by Moore’s Law, which we know is increasing by about 25% per year. The only way to really get 10x or 100x leaps is to fundamentally change the algorithm and how it’s computed every single year.\n\nThat’s Nvidia’s fundamental advantage. The only reason we were able to make Blackwell to Hopper 50x… When I first announced Blackwell was going to be 35x more energy efficient than Hopper, nobody believed it. Then Dylan wrote an article saying I sandbagged, and it’s actually fifty times. You can’t reasonably do that with just Moore’s Law. The way we solve that problem is with new models, like MoEs, that are parallelized, disaggregated, and distributed across a computing system. Without the ability to really get down and come up with new kernels with CUDA, it’s really hard to do.\n\nIt’s the combination of the programmability of our architecture and the fact that Nvidia is an extreme co-design company. We can even offload some of the computation into the fabric itself, like NVLink, or into the network with Spectrum-X. We could affect change across the processors, the system, the fabric, the libraries, and the algorithm simultaneously. Without CUDA to do that, I wouldn’t even know where to start."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "This gets at an interesting question about Nvidia’s clientele. 60% of your revenue is coming from these big five hyperscalers. In a different era with different customers—let’s say professors running experiments—they need CUDA. They can’t use another accelerator. They just needed to run PyTorch with CUDA and have everything optimized.\n\nBut these hyperscalers have the resources to write their own kernels. In fact, they have to in order to get that last 5% of performance they need for their specific architecture. Anthropic and Google are mostly running their own accelerators or running TPUs and Trainium. But even OpenAI, using GPUs, has Triton because they need their own kernels. Down to CUDA C++, instead of using cuBLAS and NCCL, they’ve got their own stack which compiles to other accelerators as well. If most of your customers can and do make replacements for CUDA, to what extent is CUDA really the thing that is going to make frontier AI happen on Nvidia?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "CUDA is a rich ecosystem. If you want to build on any computer first, building on CUDA first is incredibly smart. Because the ecosystem is so rich, we support every framework. If you want to create custom kernels… For example, we contribute enormously to Triton. So the back end of Triton has huge amounts of Nvidia technology.\n\nWe’re delighted to help every framework become as great as it can be. There are lots and lots of frameworks. There’s Triton, vLLM, SGLang, and more. Now there’s a whole bunch of new reinforcement learning frameworks coming out, like verl and NeMo RL. With post-training and reinforcement learning, that entire area is just exploding. So if you want to build on an architecture, building on CUDA makes the most sense because you know the ecosystem is great.\n\nYou know that if something happens, it’s more likely in your code and not in the mountain of code underneath. Don’t forget the amount of code you’re dealing with when building these systems. When something doesn’t work, was it you or was it the computer? You would like it to always be you and to be able to trust the computer. Obviously, we still have lots of bugs ourselves, but our system is so well wrung out that you can at least build on top of the foundation. That’s number one: the richness, programmability, and capability of the ecosystem.\n\nThe second thing is, if you’re a developer building anything at all, the single most important thing you want is an install base. You want the software you write to run on a whole bunch of other computers. You’re not building software just for yourself. You’re building it for your fleet or everybody else’s fleet because you’re a framework builder. Nvidia’s CUDA ecosystem is ultimately its great treasure.\n\nWe have several hundred million GPUs out there now. Every cloud has it. It goes back to the A10, A100, H100, H200, the L series, the P series. There’s a whole bunch of them. They’re in all kinds of sizes and shapes. If you’re a robotics company, you want that CUDA stack to actually run in the robot itself. We’re literally everywhere. The install base means that once you develop the software or the model, it’s going to be useful everywhere. That is just incredibly valuable.\n\nLastly, the fact that we’re in every single cloud makes us genuinely unique. If you’re an AI company or developer, you’re not exactly sure which cloud service provider you’re going to partner with or where you’d like to run it. We run everywhere, including on-prem for you if you like. The combination of the richness of the ecosystem, the expansiveness of the install base, and the versatility of where we are makes CUDA invaluable."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "That makes a lot of sense. I guess the thing I’m curious about is whether those advantages matter a lot to your main customers. There’s many people for whom they might matter. The kind of person who can actually build their own software stack makes up most of your revenue. Especially if you go to a world where AI is getting especially good at the things which have tight verification loops where you can RL on them…. This question of how do you write a kernel that does attention or MLP the most efficiently across a scale up? It’s a very verifiable sort of feedback loop.\n\nCan all the hyperscalers write these custom kernels for themselves? Nvidia still has great price performance, so they might still prefer to use Nvidia. But then the question is, does it just become a question of who is offering the best specs, the best flops and memory bandwidth for a given dollar. Whereas historically Nvidia has just had, and still has, the best margins in all of AI across hardware and software, +70%, because of this CUDA moat. And the question is, can you sustain those margins if for most of your customers, they can actually afford to build, instead of the CUDA moat?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "The number of engineers we have assigned to these AI labs is insane, working with them, optimizing their stack. The reason for that is because nobody knows our architecture better than we do. These architectures are not as general purpose as a CPU. A CPU is kind of like a Cadillac. It’s a nice cruiser. It never goes too fast. Everybody drives it pretty well. It’s got cruise control, and everything’s easy. But in a lot of ways, Nvidia’s GPUs, accelerators, are like F1 racers. I could imagine everybody’s able to drive it at a hundred miles an hour, but it takes quite a bit of expertise to be able to push it to the limit. We use a ton of AI to create the kernels that we have.\n\nI’m pretty sure we’re going to still be needed for quite some time. Our expertise helps our AI lab partners to get another 2x out of their stack easily oftentimes. It’s not unusual that by the time we’re done optimizing their stack or optimizing a particular kernel, their model sped up by 3x, 2x, 50%. That’s a huge number, especially when you’re talking about the install base of the fleet that they have, of all the Hoppers and Blackwells that they have. When you increase it by a factor of two, that doubles the revenues. That directly translates to revenues.\n\nNvidia’s computing stack is the best performance per TCO in the world, bar none. Nobody can demonstrate to me that any single platform in the world today has a better performance-TCO ratio. Not one company. In fact, the benchmarks that are out there. Dylan’s InferenceMAX is sitting out there for everybody to use, and not one… TPU won’t come, Trainium won’t come.\n\nI encourage them to use InferenceMAX and demonstrate their incredible inference cost. It’s really hard. Nobody wants to show up. MLPerf. I would welcome Trainium to demonstrate their 40% that they claim all the time. I would love to hear them demonstrate the cost advantage of TPUs. It makes no sense in my mind. It makes absolutely zero sense. On first principles, it makes no sense.\n\nSo I think the reason why we’re so successful is simply because our TCO is so great. Secondly, you say 60% of our customers are the top five, but most of that business is external. For example, most of Nvidia in AWS is for external customers, not internal use. Most of our customers at Azure, obviously all of our customers are external. All of our customers at OCI are external, not internal use. The reason why they favor us is because our reach is so great. We can bring them all of the great customers in the world. They’re all built on Nvidia. And the reason why all these companies are built on Nvidia is because our reach and our versatility is so great.\n\nSo I think the flywheel is really install base, the programmability of our architecture, the richness of our ecosystem, and the fact that there’s so many AI companies in the world. There’s tens of thousands of them now. If you were one of those AI startups, what architecture would you choose? You would choose an architecture that’s most abundant. We’re the most abundant in the world. You’d choose the one that has the largest installed base. We’re the largest install base. And you’d choose the one that has a rich ecosystem.\n\nSo that’s the flywheel. That’s the reason why, between the combination of: one, our perf per dollar is so great that they have the lowest cost tokens. Second, our perf per watt is the highest in the world. So if one of these companies, if our partners, built a one gigawatt data center, that one gigawatt data center better deliver the maximum amount of revenues and number of tokens, which directly translates to revenues. You want it to generate as many tokens as possible, maximize the revenues for that data center. We are the highest tokens per watt architecture in the world. Lastly, if your goal is to rent the infrastructure, we have the most customers in the world. So that’s the reason why the flywheel works."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Interesting. I guess the question comes down to, what is the actual market structure here? Because even if there’s other companies… There could have been a world where there’s tens of thousands of AI companies that have roughly equal share of compute. But even through these five hyperscalers, really the people on Amazon using the compute are Anthropic, OpenAI, and these big foundation labs who can themselves afford and have the ability to make different accelerators work."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "No, I think your premise is wrong."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Maybe. But let me ask you a slightly different question."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Come back and make me correct your premise."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Okay. Let me just ask you a different question."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "But still make sure to make me come back and fix because it’s just too important to AI. It’s too important to the future of science. It’s too important to the future of the industry. That premise… Look —"
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Let me just finish the question and then we can address it together."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Yeah."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "If all these things are true about price, performance, and performance per watt, et cetera, are true, why do you think it is the case that, say, Anthropic for example, just announced a couple days ago they have a multi-gigawatt deal with Broadcom and Google for TPUs and majority of their compute?\n\nObviously for Google, TPU is a majority of compute. So if I look at these big AI companies, it seems like a lot of their compute… There was some point where it’s all Nvidia and now it’s not. So I’m curious how to square, if these things are true on paper, why are they going with other accelerators?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Anthropic is a unique instance, not a trend. Without Anthropic, why would there be any TPU growth at all? It’s 100% Anthropic. Without Anthropic, why would there be Trainium growth at all? It’s 100% Anthropic. I think that’s fairly well known and well understood. It’s not that there’s an abundance of ASIC opportunities. There’s only one Anthropic."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "But OpenAI’s deals with AMD… They’re building their own Titan accelerator."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Yeah, but I think we could all acknowledge they’re vastly Nvidia. We’re going to still do a lot of work together. I’m not offended by other people using something else and trying things. If they don’t try these other things, how would they know how good ours is? Sometimes you’ve got to be reminded of it. We have to continuously earn the position that we’re in.\n\nThere are always big claims. Look at the number of ASICs that have been canceled. Just because you’re going to build an ASIC… You still have to build something better than Nvidia. It’s not that easy building something better than Nvidia. It’s not sensible, actually. Nvidia’s got to be missing something, seriously. Because of our scale, our velocity, we’re the only company in the world that’s cranking it out every single year. Big leaps, every single year."
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "I guess their logic is, “Hey, it doesn’t need to be better. It just needs to be not more than 70% worse,” because they’re paying you 70% margins."
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "No, don’t forget, even in ASICs margins are really quite high. Nvidia’s margin is 70%, let’s say. But ASIC margins are 65%. What are you really saving?"
+    },
+    {
+      "speaker": "Dwarkesh Patel",
+      "role": "host",
+      "text": "Oh, you mean from Broadcom or something like that?"
+    },
+    {
+      "speaker": "Jensen Huang",
+      "role": "guest",
+      "text": "Yeah, sure. You’ve got to pay somebody. I think the ASIC margins are incredibly good, from what I can tell. They believe it too. They’re quite proud of their incredible ASIC margins.\n\nSo, you asked the question why. A long time ago, we just didn’t have the ability to do it. At the time, I didn’t deeply internalize how difficult it would be to build a foundation AI lab like OpenAI and Anthropic, and the fact that they needed huge investments from the supplier themselves. We just weren’t in a position to make the multi-billion dollar investment into Anthropic so that they could use our compute. But Google and AWS were. They put in huge investments in the beginning so that Anthropic, in return, used their compute. We just weren’t in a position to do that at the time.\n\nI would say my mistake is I didn’t deeply internalize that they really had no other options, that a VC would never put in $5-10 billion of investment into an AI lab with the hopes of it turning out to be Anthropic. So that was my miss. But even if I understood it, I don’t think we would’ve been in a position to do that at the time. But I’m not going to make that same mistake again.\n\nI’m delighted to invest in OpenAI, and I’m delighted to help them scale, and I believe it’s essential to do so. And then, when I was able to, when Anthropic came to us, I’m delighted to be an investor, delighted to help them scale. We just weren’t, at the time, able to do it. If I could rewind everything—and Nvidia could have been as big back then as we are now—I would’ve been more than happy to do it."
+    }
+  ]
+}

@@ -14,14 +14,14 @@ like broad research too, or we get a train/inference mismatch. Pipeline per gues
      transcript, kept as a small, clearly-flagged supplement.
 
 Broad research is best run with a web-search-enabled backend (the model call here has
-no web access). Pass retrieved sources via `context` / research_context/{slug}.md;
+no web access). Pass retrieved sources via `context` / data/research_context/{slug}.md;
 without it, the broad stage falls back to the model's parametric knowledge.
 
-Writes research/{slug}.md (broad section + flagged supplement) and records coverage.
+Writes data/research/{slug}.md (broad section + flagged supplement) and records coverage.
 
 Backend: broad research is best produced by a web-search agent (the `deep-research` skill or a
 research sub-agent) using `research_prompt(guest, role)`. Drop its output at
-research_context/{slug}.md; build_research then uses it directly and wraps coverage + gap-fill
+data/research_context/{slug}.md; build_research then uses it directly and wraps coverage + gap-fill
 around it. With no backend dossier, it falls back to the (parametric) RESEARCH LLM.
 
     python -m dwarkesh_qgen.research --missing                          # guests still needing a dossier
