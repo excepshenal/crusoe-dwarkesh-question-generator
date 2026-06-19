@@ -3,8 +3,8 @@
 An LLM tool that produces Dwarkesh-Patel-quality interview questions when prompted
 with research about a guest. One system, two modes:
 
-- **Sparring / prep-stage** — generate starter questions from research only (no transcript).
-- **Copilot / next-question** — generate the next question given the conversation so far.
+- **Prep** — generate starter questions from research only (no transcript).
+- **Next-question** — generate the next question from both research and the conversation so far.
 
 Core assumption: the model is an **extraction/synthesis** tool, not a researcher. It can
 only ask about facts present in the prompt's `RESEARCH PREP`. See `INVESTIGATION.md` for
@@ -19,13 +19,11 @@ The generator is a base model + one fixed prompt. Full guide in `handoff/README.
 ```bash
 export CRUSOE_API_KEY=<your key>
 cd handoff
-# next question given a conversation so far (ready-made example):
-curl -s https://api.inference.crusoecloud.com/v1/chat/completions \
-  -H "Authorization: Bearer $CRUSOE_API_KEY" -H "Content-Type: application/json" \
-  -d @examples/dario-amodei-2_copilot.json \
-  | python3 -c "import sys,json; print(json.load(sys.stdin)['choices'][0]['message']['content'])"
-# or your own guest (prep mode = research only; add --transcript for next-question mode):
-python3 try_prompt.py --guest "Tyler Cowen" --research ../research/tyler-cowen-3.md
+# prep mode: generate starter questions from research only (no transcript)
+python3 generate_question.py --guest "Tyler Cowen" --research ../research/tyler-cowen-3.md
+# next-question mode: generate the next question from both research and the conversation so far
+python3 generate_question.py --guest "Dario Amodei" --research ../research/dario-amodei-2.md \
+  --transcript examples/dario-amodei-2_convo.txt
 ```
 `examples/*.md` show the exact assembled prompts; `system_prompt.txt` is the fixed system prompt.
 

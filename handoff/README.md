@@ -33,25 +33,20 @@ user message. That's the whole method.
 - **Prep / sparring:** no transcript → N starter questions for interview prep.
 
 ## Run it
-**Option A — ready-made examples (curl).** `examples/*.json` are complete request bodies (3 guests:
-Dario Amodei + Sarah Paine in copilot mode, Tyler Cowen in prep mode). `examples/*.md` show the
-exact assembled prompt for each.
+Use `generate_question.py` (Python 3 + curl, both preinstalled on macOS/Linux):
 ```bash
 export CRUSOE_API_KEY=<your key>
-curl -s https://api.inference.crusoecloud.com/v1/chat/completions \
-  -H "Authorization: Bearer $CRUSOE_API_KEY" -H "Content-Type: application/json" \
-  -d @examples/dario-amodei-2_copilot.json \
-  | python3 -c "import sys,json; print(json.load(sys.stdin)['choices'][0]['message']['content'])"
+cd handoff
+# next-question mode — pass the conversation so far (ready-made example):
+python3 generate_question.py --guest "Dario Amodei" --research ../research/dario-amodei-2.md \
+  --transcript examples/dario-amodei-2_convo.txt
+# prep mode — research only, get starter questions:
+python3 generate_question.py --guest "Tyler Cowen" --research ../research/tyler-cowen-3.md
 ```
-
-**Option B — your own inputs (script; needs only Python 3 + curl, both preinstalled on macOS/Linux).**
-```bash
-export CRUSOE_API_KEY=<your key>
-python3 try_prompt.py --guest "Dario Amodei" --research research.md --transcript convo.txt   # next question
-python3 try_prompt.py --guest "Tyler Cowen"  --research research.md                            # prep questions
-```
-where `research.md` is the guest dossier and `convo.txt` is the conversation so far (speaker-labeled
-lines). Bring your own `(research, conversation)` pairs to probe it on whatever guests you like.
+`--research` is the guest dossier; `--transcript` is the conversation so far (speaker-labeled lines;
+omit it for prep mode). Bring your own `(research, conversation)` pairs to probe any guest.
+`examples/*.md` show the exact assembled prompt for reference; `system_prompt.txt` is the fixed
+system prompt.
 
 ## What to look for
 Is the question sharp, specific, non-obvious, and genuinely reactive to the last thing the guest

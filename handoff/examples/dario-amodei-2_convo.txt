@@ -1,0 +1,3 @@
+Dwarkesh Patel: How close are we to AI that can do real, autonomous research?
+
+Dario Amodei: On narrow, well-specified tasks we're already surprisingly close. The hard part is long-horizon reliability — staying coherent and self-correcting over a project that takes days, not minutes.
