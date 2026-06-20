@@ -49,8 +49,8 @@ How we measure the generator against the real thing:
 
 | Phase | State |
 |-------|-------|
-| **0 — eval harness** | *partly done.* The oracle + harness are built (`vs_tool`-primary, 20-guest frozen held-out, v0 labeling batch). **No judge is calibrated yet** — a first n=40 pass showed the default judge is miscalibrated (~98% pro-tool vs. ~50% human). Calibration is pending human (ideally Dwarkesh or a member of his team) labels. |
-| **1 — prompting** | *initial v0 done.* The generator runs against the live Crusoe endpoint (methods A/B/C, both modes); the v0 baseline is locked. Not yet scored against a calibrated judge. |
+| **0 — eval harness** | *built.* Oracle + frozen LLM judge (`evals/judge.py`: GLM-5.1 + `judge.md`, ~85% agreement with the human oracle) + `run_eval` grading any generator vs Dwarkesh at scale. Hardening pending (more labels, out-of-sample confirmation — see `evals/llm_judge/`). |
+| **1 — prompting** | *v0 scored.* qwen3-235b, Method B = **20% win-rate vs Dwarkesh** (frozen judge, temp 0, n=73 train). Now iterating the prompt. See `evals/results.md`. |
 | **2 — SFT** | not started. |
 
 See `INVESTIGATION.md` for the full plan and findings.
