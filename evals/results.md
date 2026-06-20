@@ -14,15 +14,23 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | version | generator | train (dev) | held-out (test) | judge |
 |---------|-----------|-------------|-----------------|-------|
 | prompting_v0 | qwen3-235b · Method B, no SFT | ~18% (3-pass) | 14.7% ± 3.1% (n=60, 3-pass) | GLM-5.1 |
-| **prompting_v1** | v0 + anti-"syllogism" prompt edit | **24.2% ± 0.3%** (n=73, 3-pass) | **29.7% ± 1.0%** (n=60, 3-pass) | GLM-5.1 |
+| prompting_v1 | v0 + anti-"syllogism" ban (73-line prompt) | 24.2% ± 0.3% (n=73, 3-pass) | 29.7% ± 1.0% (n=60, 3-pass) | GLM-5.1 |
+| **prompting_v2** | **leaner rewrite (73→24 lines)** | **34.5% ± 2.9%** (n=73, 3-pass) | **40.0% ± 1.2%** (n=60, 3-pass) | GLM-5.1 |
 
-**v0 → v1: held-out win-rate 14.7% → 29.7% (doubled).** v0's dominant failure (from the judge's
-reasons): qwen defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
-(clause-stacking / faux-rigor, ~50/73 train cards) — which the v0 prompt forbade in prose and qwen
-ignored. **v1** added a prominent, concrete ban on that construction (no "If/Given/So if" openers, no
-em-dash pivots, no invented tension; plain short questions). It bit *mechanically*: outputs starting
-"If/So/Given" fell 63%→42%, em-dash pivots 77%→42%, average length 359→210 chars — and the win-rate
-followed. The remaining gap to Dwarkesh is the target for v2 → eventually SFT.
+**Held-out: 14.7% → 29.7% → 40.0% over two prompt iterations (no SFT).**
+
+- **v0 → v1:** v0 defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
+  (~50/73 train losses). v1 added a concrete ban → outputs starting "If/So/Given" 63%→42%, em-dash
+  77%→42%, length 359→210; held-out doubled.
+- **v1 → v2 (leaner won):** the v1 prompt was 73 lines / 8 overlapping sections, and the model began
+  *routing around* rules (the syllogism relocated mid-sentence) and ignoring others (off-thread
+  pivots). v2 is a **24-line rewrite** that leads with the few things that move the metric (plain
+  short questions; no syllogism *chains* anywhere; stay on the EXACT live thread, don't zoom out or
+  parrot) and drops the inline examples (they were being cargo-culted). Removing rules added **+10
+  points held-out** — the long rule-list was diluting attention, not constraining behavior.
+- **Still failing in v2** (judge reasons on losses): off-thread pivots (~20/46) and residual
+  convolution (~22/46). These are *disposition* issues prompting only partly moves — the cue that
+  further gains likely come from **SFT**.
 
 ## ⚠️ Noise: even temp 0 is NOT deterministic here
 
