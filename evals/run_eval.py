@@ -105,6 +105,30 @@ def write_report(sc: Scorecard, judge_name: str, path: Path):
     path.write_text("\n".join(out))
 
 
+_REPO = Path(__file__).resolve().parents[1]
+
+
+def _full_json(sc: Scorecard) -> str:
+    return json.dumps({"name": sc.name, "split": sc.split, "opponent": sc.opponent, "win_rate": sc.win_rate,
+                       "n": sc.n, "wins": sc.wins, "ties": sc.ties, "losses": sc.losses,
+                       "verdicts": sc.verdicts}, indent=2, ensure_ascii=False)
+
+
+def save_version(out_dir, sc: Scorecard, judge_name: str, args) -> Path:
+    """Write a self-contained version record: report.md + meta.json + a snapshot of the system prompt."""
+    d = Path(out_dir)
+    d.mkdir(parents=True, exist_ok=True)
+    write_report(sc, judge_name, d / "report.md")
+    (d / "meta.json").write_text(json.dumps({
+        "generator": sc.name, "model": args.model, "method": args.method.value, "temperature": args.temperature,
+        "split": sc.split, "opponent": sc.opponent, "judge": judge_name, "n": sc.n,
+        "win_rate": sc.win_rate, "wins": sc.wins, "ties": sc.ties, "losses": sc.losses}, indent=2) + "\n")
+    sysmd = _REPO / "prompting" / "system.md"
+    if sysmd.exists():
+        (d / "system_prompt.md").write_text(sysmd.read_text())  # freeze the exact prompt for this version
+    return d
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="train", choices=["train", "heldout", "test"])
@@ -118,7 +142,9 @@ def main():
     ap.add_argument("--repeat", type=int, default=1, help="passes over the same cards for variance/average (use with temp>0)")
     ap.add_argument("--workers", type=int, default=12, help="max concurrent API calls (across all passes)")
     ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--out", default=None, help="write full verdicts JSON here (default runs/eval_<name>.json)")
+    ap.add_argument("--out-dir", default=None, help="write a version record here (report.md + meta.json + system_prompt.md), "
+                                                     "e.g. prompting/prompting_v0 (train) or evals/prompting_v0 (held-out)")
+    ap.add_argument("--out", default=None, help="path PREFIX for ad-hoc output -> {out}.json + {out}.md (default runs/eval_<name>)")
     a = ap.parse_args()
 
     gen = PromptingGenerator(model=a.model, method=a.method, temperature=a.temperature)
@@ -141,15 +167,15 @@ def main():
         print(f"MEAN {statistics.mean(rates):.1%}   std {statistics.pstdev(rates):.1%}   "
               f"range [{min(rates):.0%}, {max(rates):.0%}]   spread {max(rates)-min(rates):.1%}")
         stem = f"eval_{gen.name.replace(':', '_').replace('/', '_')}_{a.split}_x{a.repeat}"
-        base = Path(a.out).with_suffix("") if a.out else Path("runs") / stem
-        base.parent.mkdir(parents=True, exist_ok=True)
-        base.with_suffix(".json").write_text(json.dumps({
+        prefix = a.out or str(Path("runs") / stem)   # verbatim prefix (no .with_suffix dotted-path mangling)
+        Path(prefix).parent.mkdir(parents=True, exist_ok=True)
+        Path(f"{prefix}.json").write_text(json.dumps({
             "name": gen.name, "split": a.split, "opponent": opp, "temperature": a.temperature, "passes": a.repeat,
             "win_rates": rates, "mean": statistics.mean(rates), "std": statistics.pstdev(rates),
             "per_pass": [{"win_rate": s.win_rate, "wins": s.wins, "ties": s.ties, "losses": s.losses} for s in scs]},
             indent=2, ensure_ascii=False))
-        write_report(scs[0], judge.name, base.with_suffix(".md"))
-        print(f"\nsummary -> {base.with_suffix('.json')}\nreport (pass 1) -> {base.with_suffix('.md')}")
+        write_report(scs[0], judge.name, Path(f"{prefix}.md"))
+        print(f"\nsummary -> {prefix}.json\nreport (pass 1) -> {prefix}.md")
         return
 
     sc = run_eval(gen, cards, judge, opponent=opponent, split=a.split, workers=a.workers)
@@ -162,14 +188,15 @@ def main():
         for v in losses:
             print(f"  [{v['guest']}]\n    tool : {v['output'][:150]}\n    ref  : {v['opponent_text'][:150]}\n    judge: {v['reason'][:150]}")
 
-    stem = f"eval_{sc.name.replace(':', '_').replace('/', '_')}_{a.split}"
-    base = Path(a.out).with_suffix("") if a.out else Path("runs") / stem
-    base.parent.mkdir(parents=True, exist_ok=True)
-    base.with_suffix(".json").write_text(json.dumps({"name": sc.name, "split": sc.split, "opponent": sc.opponent,
-                               "win_rate": sc.win_rate, "n": sc.n, "wins": sc.wins, "ties": sc.ties,
-                               "losses": sc.losses, "verdicts": sc.verdicts}, indent=2, ensure_ascii=False))
-    write_report(sc, judge.name, base.with_suffix(".md"))
-    print(f"\nfull verdicts -> {base.with_suffix('.json')}\nreadable report -> {base.with_suffix('.md')}")
+    if a.out_dir:
+        d = save_version(a.out_dir, sc, judge.name, a)
+        print(f"\nversion record -> {d}/ (report.md, meta.json, system_prompt.md)")
+    else:
+        prefix = a.out or str(Path("runs") / f"eval_{sc.name.replace(':', '_').replace('/', '_')}_{a.split}")
+        Path(prefix).parent.mkdir(parents=True, exist_ok=True)
+        Path(f"{prefix}.json").write_text(_full_json(sc))
+        write_report(sc, judge.name, Path(f"{prefix}.md"))
+        print(f"\nfull verdicts -> {prefix}.json\nreadable report -> {prefix}.md")
 
 
 if __name__ == "__main__":

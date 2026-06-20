@@ -50,7 +50,7 @@ How we measure the generator against the real thing:
 | Phase | State |
 |-------|-------|
 | **0 — eval harness** | *built.* Oracle + frozen LLM judge (`evals/judge.py`: GLM-5.1 + `judge.md`, ~85% agreement with the human oracle) + `run_eval` grading any generator vs Dwarkesh at scale. Hardening pending (more labels, out-of-sample confirmation — see `evals/llm_judge/`). |
-| **1 — prompting** | *v0 scored.* qwen3-235b, Method B = **20% win-rate vs Dwarkesh** (frozen judge, temp 0, n=73 train). Now iterating the prompt. See `evals/results.md`. |
+| **1 — prompting** | *v0 scored.* qwen3-235b, Method B ≈ **15% win-rate vs Dwarkesh** (held-out 14.7%±3.1%, n=60, frozen GLM judge). Now iterating the prompt. See `evals/results.md`. |
 | **2 — SFT** | not started. |
 
 See `INVESTIGATION.md` for the full plan and findings.
