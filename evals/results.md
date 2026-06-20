@@ -13,13 +13,16 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 
 | version | generator | train (dev) | held-out (test) | judge |
 |---------|-----------|-------------|-----------------|-------|
-| **prompting_v0** | qwen3-235b · Method B, no SFT | ~16% (n=73, 1 pass) | **14.7% ± 3.1%** (n=60, 3-pass mean) | GLM-5.1 |
+| prompting_v0 | qwen3-235b · Method B, no SFT | ~18% (3-pass) | 14.7% ± 3.1% (n=60, 3-pass) | GLM-5.1 |
+| **prompting_v1** | v0 + anti-"syllogism" prompt edit | **24.2% ± 0.3%** (n=73, 3-pass) | **29.7% ± 1.0%** (n=60, 3-pass) | GLM-5.1 |
 
-**v0 ≈ 15% vs Dwarkesh on both splits** — far behind, as expected with no fine-tuning. **Dominant
-failure** (from the judge's reasons): qwen defaults to a syllogistic **"If [premise] — why doesn't
-[contrived tension]?"** form (clause-stacking / faux-rigor, flagged on ~50/73 train cards). The
-system prompt already forbids this in prose and qwen ignores it — the instruction-can't-override-
-disposition gap. Target for prompt iteration → eventually SFT.
+**v0 → v1: held-out win-rate 14.7% → 29.7% (doubled).** v0's dominant failure (from the judge's
+reasons): qwen defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
+(clause-stacking / faux-rigor, ~50/73 train cards) — which the v0 prompt forbade in prose and qwen
+ignored. **v1** added a prominent, concrete ban on that construction (no "If/Given/So if" openers, no
+em-dash pivots, no invented tension; plain short questions). It bit *mechanically*: outputs starting
+"If/So/Given" fell 63%→42%, em-dash pivots 77%→42%, average length 359→210 chars — and the win-rate
+followed. The remaining gap to Dwarkesh is the target for v2 → eventually SFT.
 
 ## ⚠️ Noise: even temp 0 is NOT deterministic here
 

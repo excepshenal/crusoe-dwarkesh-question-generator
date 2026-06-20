@@ -119,6 +119,7 @@ def save_version(out_dir, sc: Scorecard, judge_name: str, args) -> Path:
     d = Path(out_dir)
     d.mkdir(parents=True, exist_ok=True)
     write_report(sc, judge_name, d / "report.md")
+    (d / "results.json").write_text(_full_json(sc))  # machine-readable verdicts (for analysis)
     (d / "meta.json").write_text(json.dumps({
         "generator": sc.name, "model": args.model, "method": args.method.value, "temperature": args.temperature,
         "split": sc.split, "opponent": sc.opponent, "judge": judge_name, "n": sc.n,
