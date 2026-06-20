@@ -65,12 +65,13 @@ _RECAP = (
 )
 
 
-def summarize_context(transcript_so_far: str, llm: LLM) -> str:
-    """Recap of the earlier conversation so judges/humans have whole-context awareness."""
+def summarize_context(transcript_so_far: str, llm: LLM, temperature: float = 0.2) -> str:
+    """Recap of the earlier conversation so judges/humans have whole-context awareness.
+    Pass temperature=0 for a deterministic recap (e.g. in run_eval, so the metric is reproducible)."""
     if not transcript_so_far.strip():
         return ""
     # Generous cap so the trailing "Open thread" bullet never gets truncated on dense convos.
-    return _gen(llm, [{"role": "user", "content": f"{_RECAP}\n\nTRANSCRIPT:\n{transcript_so_far}"}], max_tokens=1000, temperature=0.2)
+    return _gen(llm, [{"role": "user", "content": f"{_RECAP}\n\nTRANSCRIPT:\n{transcript_so_far}"}], max_tokens=1000, temperature=temperature)
 
 
 def context_view(recap: str, transcript_so_far: str, n_turns: int = 4) -> str:

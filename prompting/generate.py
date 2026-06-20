@@ -29,8 +29,8 @@ class PromptingGenerator:
     """
 
     def __init__(self, model: str = "Qwen/Qwen3-235B-A22B-Instruct-2507", method: Method = Method.B,
-                 k_shots: int = 2, llm: LLM | None = None):
-        self.model, self.method, self.k_shots = model, method, k_shots
+                 k_shots: int = 2, temperature: float = 0.7, llm: LLM | None = None):
+        self.model, self.method, self.k_shots, self.temperature = model, method, k_shots, temperature
         self.llm = llm or LLM(LLMConfig(base_url=_CRUSOE, api_key=os.environ["CRUSOE_API_KEY"], model=model))
         self.name = f"prompt-{method.value}:{model.split('/')[-1]}"
 
@@ -41,7 +41,7 @@ class PromptingGenerator:
         messages = build_messages(method=self.method, mode=card.mode, guest=card.guest,
                                   research_prep=card.research, transcript_so_far=card.transcript_so_far,
                                   n=n, few_shots=few_shots)
-        return (self.llm.chat(messages, temperature=0.7) or "").strip()
+        return (self.llm.chat(messages, temperature=self.temperature) or "").strip()
 
 
 def generate(
