@@ -7,13 +7,13 @@ human saw (topic + recap + recent turns), and compare its pick to `human_winner`
 (a candidate came back blank) are skipped.
 
   export CRUSOE_API_KEY=<crusoe key>
-  python evals/llm_judge/calibrate/eval_judge.py --prompt evals/llm_judge/calibrate/judge_v2.md --model zai/GLM-5.1
+  python evals/llm_judge/calibrate_judge.py --prompt evals/llm_judge/system_prompt/judge_v2.md --model zai/GLM-5.1
 """
 import argparse, json, os, sys
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from core.llm import LLM, LLMConfig
 from evals import oracle
 
@@ -55,7 +55,7 @@ def judge_card(judge, system, r):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--prompt", default="evals/llm_judge/calibrate/judge_v2.md")
+    ap.add_argument("--prompt", default="evals/llm_judge/system_prompt/judge_v2.md")
     ap.add_argument("--labeled", default="evals/oracle/labeled.jsonl")
     ap.add_argument("--model", default=os.environ.get("JUDGE_MODEL", "deepseek-ai/DeepSeek-V4-Pro"))
     ap.add_argument("--include-spoiled", action="store_true")
@@ -91,7 +91,7 @@ def main():
         print(f"     Max:   {r['notes'][:110]}")
         print(f"     judge: {jr[:110]}")
 
-    Path("evals/llm_judge/calibrate/last_run.json").write_text(json.dumps(
+    Path("evals/llm_judge/last_run.json").write_text(json.dumps(
         {"model": a.model, "prompt": a.prompt, "n": n, "agreement": agree / n, "judge_ties": ties,
          "by_matchup": {m: by[m] for m in by},
          "disagreements": [{"id": f"{r['set']}-{r['display_id']}", "matchup": r["matchup"],

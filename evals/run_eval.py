@@ -47,8 +47,11 @@ def run_eval(gen: Generator, cards: list[EvalCard], judge: Judge,
         if not other:
             return None  # prep card with no opponent has no reference to grade against
         ctx = card_context(card, judge)
-        w = judge_pairwise(judge, ctx, out, other)   # 'a' => gen (out) preferred
-        return {"slug": card.slug, "guest": card.guest, "winner": w, "output": out, "opponent_text": other}
+        jv = judge_pairwise(judge, ctx, out, other)   # winner 'a' => gen (out) preferred, plus reasons
+        recent = "\n".join(card.transcript_so_far.strip().split("\n")[-6:])  # tail, for the report
+        return {"slug": card.slug, "guest": card.guest, "winner": jv.winner, "reason": jv.reason,
+                "order1": jv.order1, "order2": jv.order2, "reason1": jv.reason1, "reason2": jv.reason2,
+                "output": out, "opponent_text": other, "recent_context": recent}
 
     with ThreadPoolExecutor(max_workers=8) as ex:
         verdicts = [v for v in ex.map(grade, cards) if v is not None]
@@ -58,6 +61,26 @@ def run_eval(gen: Generator, cards: list[EvalCard], judge: Judge,
     losses = sum(v["winner"] == "b" for v in verdicts)
     return Scorecard(name=gen.name, split=split, opponent=opp_name, n=len(verdicts),
                      wins=wins, ties=ties, losses=losses, verdicts=verdicts)
+
+
+def write_report(sc: Scorecard, judge_name: str, path: Path):
+    """Readable per-card report: tool question vs reference + the judge's reasoning. Losses first."""
+    label = {"b": "LOSS", "tie": "TIE", "a": "WIN"}
+    order = {"b": 0, "tie": 1, "a": 2}
+    rows = sorted(sc.verdicts, key=lambda v: order[v["winner"]])
+    out = [f"# Eval: {sc.name} — {sc.split} vs {sc.opponent} — judge {judge_name}", "",
+           f"**Win-rate {sc.win_rate:.0%}**  (n={sc.n}: {sc.wins} win / {sc.ties} tie / {sc.losses} loss). "
+           "Each card: the tool's question vs the reference, and why the judge picked one. "
+           "(Judged in both A/B orders; a disagreement across orders = tie.)", ""]
+    for v in rows:
+        out += [f"## [{label[v['winner']]}] {v['guest']}", "",
+                f"**Context (recent):**\n```\n{v['recent_context']}\n```" if v["recent_context"] else "_(prep — no transcript)_", "",
+                f"**Tool ({sc.name}):** {v['output']}", "",
+                f"**Reference ({sc.opponent}):** {v['opponent_text']}", "",
+                f"**Judge:** tool **{label[v['winner']]}** — order1 {v['order1']}, order2 {v['order2']}",
+                f"> {v['reason1']}",
+                (f"> {v['reason2']}" if v["reason2"] and v["reason2"] != v["reason1"] else ""), "", "---", ""]
+    path.write_text("\n".join(out))
 
 
 def main():
@@ -84,19 +107,20 @@ def main():
 
     print(f"\n=== {sc.name}  |  {sc.split} vs {sc.opponent}  |  judge {judge.name} ===")
     print(f"WIN-RATE: {sc.win_rate:.0%}   (n={sc.n}: {sc.wins} win / {sc.ties} tie / {sc.losses} loss)")
-    losses = [v for v in sc.verdicts if v["winner"] == "b"][:5]
+    losses = [v for v in sc.verdicts if v["winner"] == "b"][:4]
     if losses:
-        print("\nsample losses (for iterating on the prompt):")
+        print("\nsample losses (tool Q / Dwarkesh Q / why the judge preferred Dwarkesh):")
         for v in losses:
-            print(f"  [{v['guest']}] tool: {v['output'][:130]}")
-            print(f"            ref : {v['opponent_text'][:130]}")
+            print(f"  [{v['guest']}]\n    tool : {v['output'][:150]}\n    ref  : {v['opponent_text'][:150]}\n    judge: {v['reason'][:150]}")
 
-    out = Path(a.out) if a.out else Path("runs") / f"eval_{sc.name.replace(':', '_').replace('/', '_')}_{a.split}.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"name": sc.name, "split": sc.split, "opponent": sc.opponent,
+    stem = f"eval_{sc.name.replace(':', '_').replace('/', '_')}_{a.split}"
+    base = Path(a.out).with_suffix("") if a.out else Path("runs") / stem
+    base.parent.mkdir(parents=True, exist_ok=True)
+    base.with_suffix(".json").write_text(json.dumps({"name": sc.name, "split": sc.split, "opponent": sc.opponent,
                                "win_rate": sc.win_rate, "n": sc.n, "wins": sc.wins, "ties": sc.ties,
                                "losses": sc.losses, "verdicts": sc.verdicts}, indent=2, ensure_ascii=False))
-    print(f"\nfull verdicts -> {out}")
+    write_report(sc, judge.name, base.with_suffix(".md"))
+    print(f"\nfull verdicts -> {base.with_suffix('.json')}\nreadable report -> {base.with_suffix('.md')}")
 
 
 if __name__ == "__main__":

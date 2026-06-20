@@ -5,7 +5,7 @@ goal is to reproduce Max's picks on `../oracle/labeled.jsonl`, so we can grade g
 
 ## Status (as of 2026-06-19): ready to deploy, though more labels would improve robustness
 
-- **Best config:** `calibrate/judge_v2.md` + `zai/GLM-5.1` → **85% agreement with Max (23/27)**; 14/15
+- **Best config:** `system_prompt/judge_v2.md` + `zai/GLM-5.1` → **85% agreement with Max (23/27)**; 14/15
   on the matchups where GLM isn't itself a candidate. Good enough to use as the at-scale grader now.
 - **What's settled:** the *judge model* dominates (DeepSeek/gpt-oss are anti-correlated — they reward
   the verbose "drills-into-a-tension" question Max rejects); the v2 elimination-procedure prompt lifts
@@ -25,12 +25,12 @@ goal is to reproduce Max's picks on `../oracle/labeled.jsonl`, so we can grade g
 
 ```bash
 export CRUSOE_API_KEY=<crusoe key>
-python evals/llm_judge/calibrate/eval_judge.py \
-    --prompt evals/llm_judge/calibrate/judge_v2.md \
+python evals/llm_judge/calibrate_judge.py \
+    --prompt evals/llm_judge/system_prompt/judge_v2.md \
     --model zai/GLM-5.1
 ```
 
-`calibrate/eval_judge.py` scores a (prompt, model) pair against the human labels: for each labeled card it asks
+`calibrate_judge.py` scores a (prompt, model) pair against the human labels: for each labeled card it asks
 the judge in BOTH A/B orders (de-bias — a flip counts as a tie), gives it the SAME context the human
 saw (topic + recap + recent turns), and compares to `human_winner`. Spoiled cards (a candidate came
 back blank) are skipped. It prints overall + per-matchup agreement and a disagreement log, and dumps

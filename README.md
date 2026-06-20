@@ -75,9 +75,9 @@ prompting/     the prompting method:
 evals/         evaluation, beside the eval artifacts:
   evaluate.py    Pairwise LLM-as-judge: method-vs-Dwarkesh leaderboard + judge calibration.
   oracle.py      Emit a blind human-annotation set to calibrate the judge.
-  judge.md       Pairwise judge rubric (production; superseded by llm_judge/calibrate/judge_v2.md).
+  judge.md       Pairwise judge rubric (production; superseded by llm_judge/system_prompt/judge_v2.md).
   oracle/        Blind A/B sheets + human (Max) picks + hidden truth + compiled labels — see its README.
-  llm_judge/     System-prompt LLM judge + calibrate/ harness scoring it against the human labels.
+  llm_judge/     System-prompt LLM judge + calibrate_judge.py harness scoring it against the human labels.
 sft/           (future) supervised fine-tuning.
 ```
 Run from the repo root (it's on the path): `python -m evals.oracle`, `python -m prompting.generate`, etc.
@@ -97,7 +97,7 @@ python -m prompting.generate --slug dario-amodei-2 --mode next-question --method
 # Build a fresh oracle batch (vs_tool primary + a small bias_probe guard):
 python -m evals.oracle --out evals/oracle/v3 --n 40 --strata "vs_tool,bias_probe=5"
 # Score a judge prompt against the human (Max) labels — see evals/llm_judge/:
-python evals/llm_judge/calibrate/eval_judge.py --prompt evals/llm_judge/calibrate/judge_v2.md
+python evals/llm_judge/calibrate_judge.py --prompt evals/llm_judge/system_prompt/judge_v2.md
 ```
 
 To (re)generate research dossiers, run a blind web-search agent per guest and drop the result at
