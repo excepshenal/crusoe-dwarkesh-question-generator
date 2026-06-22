@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Test the Dwarkesh question-generator prompt against the Crusoe inference endpoint.
 
-No Python installs needed (stdlib + curl, which ships on macOS/Linux). Set your key, then:
+No Python installs needed (stdlib + curl, which ships on macOS/Linux); run it from inside
+the repo (it reads the frozen prompts and, for v3, few-shots from the corpus). Set your key:
 
   export CRUSOE_API_KEY=...                       # the key you were given
   # next-question mode — pass the conversation so far (a real interview subset):
@@ -10,6 +11,11 @@ No Python installs needed (stdlib + curl, which ships on macOS/Linux). Set your 
       --transcript ../data/transcript_subsets/dario-amodei-2-turn-40.json
   # prep mode — research only, get N starter questions:
   python generate_question.py --guest "Tyler Cowen" --research ../data/research/tyler-cowen-3.md
+
+--version picks the frozen prompt method (default v3, the strongest; see evals/results.md):
+  v0 base prompt · v1 anti-syllogism · v2 lean rewrite · v3 = v2 prompt + few-shot demos (Method C).
+v0-v2 are system-prompt only; v3 prepends real (guest said -> what Dwarkesh asked next) few-shots
+drawn from the TRAIN split (never the held-out guests), so it needs the repo's data corpus.
 
 --research = the guest dossier. --transcript = the conversation so far, either a
 data/transcript_subsets/*.json file (a real interview truncated to a turn) or a plain
@@ -22,9 +28,18 @@ data/transcript_subsets/*.json file (a real interview truncated to a turn) or a 
 In our eval, zai/GLM-5.1 is the strongest overall — try it with `--model zai/GLM-5.1`.
 See MODELS below (or --help) for the full list available on the endpoint.
 """
-import argparse, json, os, subprocess
+import argparse, json, os, subprocess, sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # repo root, for the data corpus (v3 shots)
 
 ENDPOINT = "https://api.inference.crusoecloud.com/v1/chat/completions"
+HERE = Path(__file__).resolve().parent
+# Frozen prompt versions (see evals/results.md). v0-v2: system prompt only (Method B).
+# v3: v2's prompt + few-shot demonstrations (Method C, k=2 real pairs).
+VERSIONS = {"v0": False, "v1": False, "v2": False, "v3": True}  # value = uses few-shots
+DEFAULT_VERSION = "v3"
+K_SHOTS = 2
 # Models available on the Crusoe inference endpoint (GET /v1/models). GLM-5.1 is the
 # strongest overall; Qwen3-235B is the strongest we can fine-tune, so it's the default.
 MODELS = [
@@ -36,7 +51,27 @@ MODELS = [
     "yutori/n1.5",
 ]
 DEFAULT_MODEL = "Qwen/Qwen3-235B-A22B-Instruct-2507"
-SYSTEM = open(os.path.join(os.path.dirname(__file__), "system.md")).read()
+
+
+def load_system(version):
+    """The frozen system prompt for a version (prompting_v{N}/system_prompt.md)."""
+    return (HERE / f"prompting_{version}" / "system_prompt.md").read_text()
+
+
+def few_shot_messages(guest, has_transcript, n):
+    """v3 (Method C): real (context -> his next turn) pairs from the TRAIN split, as chat
+    turns. Drawn corpus-side, so held-out guests never leak; excludes the guest under test."""
+    from data import dataset
+    from prompting.prompts import Mode
+
+    mode = Mode.NEXT_QUESTION if has_transcript else Mode.PREP
+    exclude = __import__("re").sub(r"[^a-z0-9]+", "-", guest.lower()).strip("-")
+    msgs = []
+    for shot in dataset.sample_few_shots(mode=mode, exclude_slug=exclude, k=K_SHOTS, n_prep=n):
+        msgs.append({"role": "user", "content": user_message(
+            shot.guest, shot.research_prep, shot.transcript_so_far, n)})
+        msgs.append({"role": "assistant", "content": shot.answer})
+    return msgs
 
 
 def load_transcript(path):
@@ -66,15 +101,19 @@ def main():
     ap.add_argument("--research", required=True, help="path to the guest dossier (markdown/text)")
     ap.add_argument("--transcript", default=None, help="path to conversation-so-far (omit for prep mode)")
     ap.add_argument("--n", type=int, default=6, help="number of starter questions in prep mode")
+    ap.add_argument("--version", default=DEFAULT_VERSION, choices=list(VERSIONS),
+                    help="frozen prompt method (default v3, the strongest; see evals/results.md)")
     ap.add_argument("--model", default=DEFAULT_MODEL, choices=MODELS,
                     help="generator model (default: qwen3-235b; zai/GLM-5.1 is strongest)")
     a = ap.parse_args()
 
     research = open(a.research).read()
     transcript = load_transcript(a.transcript) if a.transcript else ""
-    system = SYSTEM.replace("{n}", str(a.n))
-    messages = [{"role": "system", "content": system},
-                {"role": "user", "content": user_message(a.guest, research, transcript, a.n)}]
+    system = load_system(a.version).replace("{n}", str(a.n))
+    messages = [{"role": "system", "content": system}]
+    if VERSIONS[a.version]:  # v3: prepend few-shot demonstrations
+        messages += few_shot_messages(a.guest, bool(transcript.strip()), a.n)
+    messages.append({"role": "user", "content": user_message(a.guest, research, transcript, a.n)})
     # Generous cap: reasoning models (e.g. GLM-5.1) spend tokens on hidden reasoning first,
     # so a low cap leaves the answer empty.
     body = json.dumps({"model": a.model, "messages": messages, "temperature": 0.7, "max_tokens": 4096})

@@ -15,11 +15,12 @@ the full plan, rationale, and status.
 You'll be given an **API key** separately. Then:
 
 ### 1) Try the question generator tool (the prompting method) → [`prompting/`](prompting/)
-The generator is a base model + one fixed system prompt (`prompting/system.md`) — no SFT
-yet. It hits the OpenAI-compatible Crusoe endpoint (`https://api.inference.crusoecloud.com/v1`) with two
-messages: the system prompt, and a templated user message (`GUEST / RESEARCH PREP / TRANSCRIPT SO FAR /
-TASK`). Pick the model with `--model` (default `Qwen/Qwen3-235B-A22B-Instruct-2507`, the strongest we can
-fine-tune; **`zai/GLM-5.1` is the strongest overall**; `--help` lists all). From the repo root:
+The generator is a base model + a frozen system prompt. It hits the OpenAI-compatible Crusoe endpoint
+(`https://api.inference.crusoecloud.com/v1`) with the system prompt + a templated user message (`GUEST /
+RESEARCH PREP / TRANSCRIPT SO FAR / TASK`). Pick the prompt method with `--version` (default **`v3`**,
+the strongest — see [`evals/results.md`](evals/results.md)) and the model with `--model` (default
+`Qwen/Qwen3-235B-A22B-Instruct-2507`, the strongest we can fine-tune; **`zai/GLM-5.1` is the strongest
+overall**; `--help` lists all). From the repo root:
 ```bash
 export CRUSOE_API_KEY=<your key>
 # prep mode: starter questions from research only (no transcript)
@@ -27,9 +28,14 @@ python3 prompting/generate_question.py --guest "Tyler Cowen" --research data/res
 # next-question mode: feed a real interview truncated to a turn, get the next question
 python3 prompting/generate_question.py --guest "Dario Amodei" --research data/research/dario-amodei-2.md \
   --transcript data/transcript_subsets/dario-amodei-2-turn-40.json
+# compare prompt versions: v0 base · v1 anti-syllogism · v2 lean · v3 (default) = v2 + few-shot demos
+python3 prompting/generate_question.py --guest "Tyler Cowen" --research data/research/tyler-cowen-3.md --version v0
 # swap the model (GLM-5.1 is strongest in our eval)
 python3 prompting/generate_question.py --guest "Tyler Cowen" --research data/research/tyler-cowen-3.md --model zai/GLM-5.1
 ```
+`--version` selects the **frozen prompt** from `prompting/prompting_v{0,1,2,3}/system_prompt.md`; v3 also
+prepends real (context → his next question) few-shots drawn from the **train** split (held-out guests
+never leak). Held-out win-rate climbs **14.7% → 29.7% → 40.0% → 48.3%** across v0→v3.
 Ready-made cuts live in `data/transcript_subsets/` (`{slug}-turn-{k}.json`, varied guests and depths) —
 each is a real interview truncated right before one of Dwarkesh's actual questions. The runner is
 stdlib + curl only (no install); bring your own `(research, conversation)` pairs to probe any guest.
@@ -70,8 +76,9 @@ data/          corpus + dataset building, beside the data files:
 prompting/     the prompting method:
   prompts.py     Assemble chat messages for methods A/B/C across both modes.
   generate.py    Run the generator for one query (package entry point).
-  system.md      "What makes a great Dwarkesh question" (the generator system prompt).
-  generate_question.py  Standalone liaison runner (stdlib + curl; reads system.md).
+  system.md      "What makes a great Dwarkesh question" (current = v2 prompt; v3 reuses it).
+  prompting_v{0..3}/  Frozen per-version records: system_prompt.md + report.md + meta.json.
+  generate_question.py  Standalone liaison runner (stdlib + curl; --version v0..v3, default v3).
 evals/         evaluation, beside the eval artifacts:
   evaluate.py    Pairwise LLM-as-judge: method-vs-Dwarkesh leaderboard + judge calibration.
   oracle.py      Emit a blind human-annotation set to calibrate the judge.
