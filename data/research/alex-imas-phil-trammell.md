@@ -1,0 +1,150 @@
+# Research dossier — Alex Imas
+# (broad research; factual coverage=0.49, gap-filled 26, 14 live-reasoning threads excluded [deep-research backend])
+
+## Broad research
+
+# Reference Dossier: Alex Imas and Phil Trammell
+
+Two economists working at very different frontiers. **Alex Imas** is a behavioral/experimental economist (University of Chicago Booth) studying how people mentally represent choices — risk, losses, attention, beliefs — and, increasingly, how those same lenses apply to AI as an economic actor. **Phil Trammell** is a theoretical/macro economist (Oxford / Global Priorities Institute) working on the long-run economics of transformative AI and on the optimal timing of altruistic spending ("patient philanthropy"). The two intersect at one live question — what an economy with vastly more cognitive labor looks like — but approach it from opposite ends (micro-cognition vs. growth theory).
+
+---
+
+# ALEX IMAS
+
+## Bio
+
+Alex Imas was born in Bender, Moldova. He earned a B.A. in Economics (with Honors) from Northwestern (2007) and a Ph.D. in Economics from the University of California, San Diego (2014). (Note: he is closely associated with Carnegie Mellon, but as a postdoc and then faculty member, not as a doctoral student — his PhD is from UCSD.) He was a postdoctoral fellow and then assistant professor in Social and Decision Sciences at Carnegie Mellon (2013–2020), where he collaborated heavily with the psychologist-economist George Loewenstein. He is now the Roger L. and Rachel M. Goetz Professor of Behavioral Science, Economics and Applied AI at the University of Chicago Booth School of Business, an NBER Faculty Research Associate, a CESifo fellow, and a 2023 Alfred P. Sloan Research Fellow. As of 2025–2026 he is on leave serving as Director of AGI Economics at Google DeepMind. His research centers on cognition and mental representation in dynamic decision-making.
+
+## Realization Effect and Mental Accounting
+
+Imas's best-known single paper is "The Realization Effect: Risk-Taking after Realized versus Paper Losses" (*American Economic Review*, 2016). It resolves a long-standing contradiction in the literature: some studies find people take *more* risk after a loss (loss-chasing), others find they take *less*. Imas's claim is that the key moderator is whether the loss has been **realized** (crystallized, closed out) or remains a **paper** loss. After a realized loss, people become risk-*averse*; after an unrealized paper loss, they chase, taking on more risk to "break even." The mechanism is mental accounting: realizing a loss closes the mental account and resets the reference point, so the loss is integrated and treated as sunk, whereas an open paper loss keeps the account active and the reference point sticky, motivating recovery.
+
+This sits inside a broader program on mental accounting and the violation of fungibility. With Loewenstein and Carey Morewedge, "Mental Money Laundering: A Motivated Violation of Fungibility" shows people exploit the flexibility of mental accounts to relax self-imposed moral and spending constraints — e.g., money earned unethically is spent more freely once "laundered" by exchanging it for an equivalent sum from a neutral source. With Evers and Kang ("On the Role of Similarity in Mental Accounting and Hedonic Editing," *Psychological Review*, 2021), he models accounts as forming bottom-up from perceptual similarity: outcomes that overlap on salient attributes get pooled, those that don't get separated.
+
+## Effort, Incentives, and "Warm Glow"
+
+"Working for the 'Warm Glow': On the Benefits and Limits of Prosocial Incentives" (with Loewenstein-circle collaborators) studies a real-effort task in which pay is routed either to oneself or to charity. People work *harder* for charity than for themselves — but only at low stakes. Raise the stakes and self-interested effort rises while prosocial effort stalls, erasing the gap. Subjects anticipate this and self-select: working for charity when incentives are small and for themselves when they are large. The mechanism is warm-glow giving (impure altruism): the intrinsic emotional payoff of helping does not scale with money the way self-interested payoffs do, so material incentives crowd into the prosocial domain only up to a point.
+
+## Attention, Trading, and Asymmetric Cognition
+
+"Selling Fast and Buying Slow: Heuristics and Trading Performance of Institutional Investors" (with Akepanidtaworn, Di Mascio, and Schmidt; *Journal of Finance*, 2023) uses portfolios averaging ~$573M. Professional investors show skill in *buying* but their *selling* underperforms even a random-sell benchmark. The proposed mechanism is an **asymmetric allocation of attention**: buying is the focal, deliberative act, while selling is treated as a secondary disposal problem handled by heuristics (e.g., selling salient extreme-return positions). This connects to his theoretical interest in how constrained attention distorts which assets people favor — attention gravitates to large payoff *contrasts*, biasing choice.
+
+## Beliefs, Feedback, and Motivated Reasoning
+
+Imas works on how people update from good vs. bad news and on motivated belief formation — the tendency to over-weight favorable signals and discount unfavorable ones, and the related literature on information avoidance (preferring not to learn news that threatens a desired self-image). His working paper "Over- and Underreaction to Information" (revision requested at the *QJE*) sits in this space, studying when people overreact vs. underreact to signals. The broader behavioral claim is that belief updating is not a clean Bayesian process; it is shaped by the hedonic and identity value of the conclusion.
+
+## Cognitive Uncertainty and the "Cognitive Turn"
+
+Imas is part of a cohort — alongside Benjamin Enke and Thomas Graeber — pushing behavioral economics toward explaining anomalies via *cognitive* limits (noise, complexity, compression of probabilities toward an ignorance prior) rather than a proliferating list of preference-based biases. Enke's "cognitive uncertainty" program argues that when people are unsure of their own reasoning, they shrink probabilities toward 50/50, which unifies phenomena like probability weighting. Imas is acknowledged in this work and his "joint vs. separate prediction" research (joint/comparative forecasts systematically overestimate behavioral responses) is in the same family: representation and mode of evaluation drive the anomaly.
+
+## Replication and AI/LLM Work
+
+With Richard Thaler, Imas co-authored the updated edition of *The Winner's Curse: Behavioral Economics Anomalies, Then and Now* (2025), which revisits the classic "Anomalies" findings and reports that they largely **replicate** and, importantly, show up "in the wild" beyond the lab — Imas's stance on the replication/external-validity debate is that the core anomalies are robust. His recent AI work treats LLMs both as **simulated economic subjects** (they reproduce many human decision biases) and as **agents** acting in markets and negotiations on behalf of humans. With Lee and Misra he studies humans instructing LLM negotiation agents — how principal personality transmits through instructions, whether social norms survive agent-to-agent interaction, and how outcome variance grows. He has publicly weighed scenarios in which AI could drive *negative* growth (demand collapse) and how behavioral notions of satiation and meaning reshape preferences in an AI-rich economy.
+
+## Strongest Counterarguments and Tensions
+
+The standing external critique of the program Imas works in comes from **Gerd Gigerenzer** and the ecological-rationality / "ABC" school: many "biases" identified by the heuristics-and-biases tradition are artifacts of artificial lab framings, and the heuristics people actually use are *adaptive* — often outperforming "rational" models in uncertain, real-world environments. On this view, calling fast-and-frugal heuristics "errors" mistakes ecologically tuned behavior for irrationality. A second critique is the replication/external-validity worry that lab anomalies don't survive in markets with stakes, learning, and competition. Imas's own *Winner's Curse* update is partly a rebuttal — he argues the anomalies do replicate and appear in field data like institutional trading — yet a tension remains: his cognitive-uncertainty leanings concede that some "biases" are really just noise/complexity effects, which is closer to the ecological-rationality critique than the classic biases framing. A further internal tension is between his motivated-reasoning work (beliefs distorted by what people *want* to be true) and the cognitive-noise account (errors as unmotivated computational limits); these are competing explanations for similar updating anomalies, and which dominates is unsettled.
+
+---
+
+# PHIL TRAMMELL
+
+## Bio
+
+Phil Trammell is an economist trained at the University of Oxford (economics PhD), where he has been a Research Fellow / affiliate at the Global Priorities Institute (GPI), the Oxford center founded to bring economics and philosophy to bear on doing the most good. He is associated with the effective-altruism and longtermism intellectual communities. His work spans two main areas: the macroeconomics of transformative AI and long-run growth, and the normative economics of altruistic resource allocation over time (patient philanthropy, discounting, existential risk). He maintains his papers at philiptrammell.com.
+
+## Economic Growth under Transformative AI
+
+Trammell's flagship work is "Economic Growth under Transformative AI" (with Anton Korinek), released as NBER Working Paper No. 31815 (October 2023) and published in the *Annual Review of Economics* — a synthesis of the prior decade's growth-theory work on AI. The central question: could AI cause a **growth explosion**, and through what mechanism?
+
+The core logic runs through the elasticity of substitution between capital and labor. In standard growth models, capital and labor are **gross complements** (ρ < 0): you cannot grow indefinitely by piling up capital, because the scarce, un-accumulable input (labor) becomes the binding constraint. Sustained growth therefore requires *labor-augmenting* technical change. The pivotal claim is that AI changes this regime. If AI makes capital a sufficiently good **substitute** for labor (ρ > 0) — i.e., machines that can do essentially all tasks and, crucially, **self-replicate** — then accumulating capital *is* accumulating "labor," and saving alone can drive accelerating growth. Fully automating production this way would sharply raise the growth rate, **lower the labor share**, and break the long-stable "Kaldor facts" (constant factor shares, constant capital-output ratio). Automating **R&D** on top of this — machines that **self-improve** — adds a feedback loop (more "scientists" → more technology → more "scientists") that can push toward a **singularity**: Type I (growth rate rising without bound) or even Type II (output diverging in finite time). The paper notes automating R&D alone may not produce explosion in isolation; the production-automation channel is doing the heavy lifting. Wages — the product of exploding output and a collapsing labor share — can go *either* way, depending on returns to scale, the scarcity of natural resources, and the direction of technical change.
+
+The AI-as-capital vs. AI-as-labor distinction is central. Tools that augment humans (e.g., coding assistants) act as labor-augmenting technology and tend to *preserve* wage growth; autonomous systems that substitute for humans act as capital, and can drive wages toward zero even as output booms. The qualitative break, on Trammell's account, is removing the human from the loop.
+
+## The Baumol / Bottleneck Objection
+
+The most important brake on explosive-growth scenarios is the **Baumol-bottleneck** argument, originating with Aghion, Benjamin Jones, and Charles Jones ("Artificial Intelligence and Economic Growth," 2017): growth may be limited "not by what we are good at but by what is essential and hard to improve." If production requires some set of **essential complementary tasks** that resist automation — Baumol's cost disease — then those un-automated "weak links" capture an ever-growing share of spending and cap the aggregate growth rate, no matter how cheap everything else becomes. Trammell engages this directly: explosive growth requires automating *essentially all* tasks, because a single essential bottleneck task left to humans can hold the whole economy to a human-paced growth rate. He treats the "humans retain value in artisanal/care work consumers prefer done by humans" version of the bottleneck as a real but secondary possibility.
+
+## The "Ideas Are Getting Harder to Find" Objection
+
+The second major counter is the Bloom–Jones–Van Reenen–Webb finding ("Are Ideas Getting Harder to Find?", *AER* 2020): research **productivity is falling sharply** — sustaining Moore's-law-type progress now takes ~18× the researchers it did in the early 1970s. Formally, the research-feedback parameter (φ) is estimated strongly **negative** (around −2 or worse in aggregate), meaning you need ever more researchers just to hold progress constant — which works *against* an R&D-driven singularity. Trammell's response is that this parameter is domain-specific: in some narrow areas (e.g., computing) the feedback looks slightly positive, so if AI/compute-intensive innovation comes to dominate, positive feedback there could override the negative aggregate trend. He is explicit that this is fragile — "only slightly positive and zero within the error bars."
+
+## Patient Philanthropy and the Timing of Giving
+
+Trammell's other major contribution is the case for **patient philanthropy**: the argument that an altruist who is genuinely time-neutral (cares equally about welfare whenever it occurs) should typically **invest and give later** rather than give now. The mechanism: market interest rates are set by the *impatient* majority, who discount the future. A patient altruist who does *not* discount can exploit that wedge — by waiting, invested resources compound at a rate exceeding the rate at which good opportunities decay, so the altruist can do more good per dollar later. This logic compounds over time, in principle for a very long time. The early write-up "Discounting for Patient Philanthropists" (which he has since flagged as containing errors) gave way to the rigorous "Dynamic Public Good Provision under Time Preference Heterogeneity: Theory and Applications to Philanthropy" (GPI, 2021). There he shows that the common-discount-rate assumption is **knife-edge**: introducing time-preference heterogeneity produces "intertemporal polarization" — patient funders invest essentially everything for long stretches while impatient funders spend early. He argues the empirical growth of donor-advised funds (then ~$150B in the US, with contributions outpacing disbursements) is consistent with rational patient-philanthropist behavior.
+
+## Existential Risk, Growth, and Discounting
+
+Trammell connects timing to existential risk in two ways. First, with Leopold Aschenbrenner, "Existential Risk and Growth" argues that although faster technological development can raise the hazard rate in the short run, acceleration also shortens time spent at each dangerous technology level, and richer societies will spend more on safety — yielding an "existential-risk Kuznets curve" where risk eventually falls as growth continues. Second, his "Existential Risk and Exogenous Growth" and related work treat per-period extinction risk as effectively a component of the discount rate: even modest annual x-risk (say 1%) feeds into the effective interest rate but, on his analysis, the investment premium for patient giving can still outweigh the case for spending immediately on risk reduction — with the caveat that reducing x-risk is special, since it doesn't directly raise anyone's welfare but rather raises the probability that future people exist at all. He has also argued that monitoring **long-run real interest rates** is a useful, market-based instrument for forecasting AI timelines, since higher expected growth should push long-term real rates up.
+
+## Strongest Counterarguments and Tensions
+
+Against explosive growth: the **Baumol bottleneck** (Aghion–Jones–Jones) and **ideas-getting-harder** (Bloom et al.) critics hold that essential un-automatable complements and falling research productivity will keep growth bounded — AI may raise levels and even growth rates modestly without ever escaping these constraints. Skeptics also question the empirical basis for ρ > 0 economy-wide and note that "machines that self-replicate and do every task" is a strong, possibly never-satisfied premise.
+
+Against patient philanthropy, the strongest objections are: (1) **expropriation and value drift** — funds held over long horizons face confiscation, institutional capture, or the slow corruption of the founder's values, risks Trammell concedes can be reduced but never driven to zero; (2) the **hinge-of-history** challenge — if the present is an unusually pivotal ("hinge") moment, as some longtermists believe, then near-term spending dominates and waiting forfeits irreplaceable leverage. Notably, **Will MacAskill** argues *against* the hinge-of-history hypothesis, which would *support* patience; Trammell has pointed out the reflexive tension that if patient investing itself counts as influence, earlier eras were actually more influential, complicating naive hinge claims. A deeper tension in Trammell's own commitments: the AI-growth work suggests we may be approaching a genuinely transformative, high-stakes period (a kind of hinge), which cuts against the patient-philanthropy conclusion that one should keep waiting — explosive growth and high near-term x-risk are exactly the conditions under which giving now, not later, could be optimal. Reconciling "invest and wait" with "transformative AI may arrive soon and change everything" is the central unresolved strain across his two research programs.
+
+---
+
+## Sources
+
+- Alex Imas, personal site: http://www.aleximas.com/
+- Imas, Chicago Booth faculty page: https://www.chicagobooth.edu/faculty/directory/i/alex-imas
+- "The Realization Effect: Risk-Taking after Realized versus Paper Losses," *AER* 2016: https://www.aeaweb.org/articles?id=10.1257/aer.20140386 ; SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2403865
+- "Mental Money Laundering: A Motivated Violation of Fungibility": https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3662841
+- "Working for the 'Warm Glow': On the Benefits and Limits of Prosocial Incentives": https://www.sciencedirect.com/science/article/abs/pii/S0047272713002168
+- "Selling Fast and Buying Slow," *Journal of Finance* 2023: https://onlinelibrary.wiley.com/doi/abs/10.1111/jofi.13271 ; NBER: https://www.nber.org/papers/w29076
+- Benjamin Enke, "The Cognitive Turn in Behavioral Economics": https://cognitioncommerce.ca/wp-content/uploads/2024/07/cognitive_turn.pdf ; Enke & Graeber, "Cognitive Uncertainty": https://www.nber.org/system/files/working_papers/w26518/w26518.pdf
+- Thaler & Imas, *The Winner's Curse: Behavioral Economics Anomalies, Then and Now* (2025): https://www.behavioraleconomics.com/resources/books/the-winners-curse-behavioral-economics-anomalies-then-and-now-richard-h-thaler-alex-imas-2025/
+- Imas profile / AI work coverage (Fortune): https://fortune.com/2026/04/19/alex-imas-human-jobs-ai-economy-chicago-economist-substack-doomsday-scenario/
+- Heinz College / CMU profile: https://www.heinz.cmu.edu/faculty-research/profiles/imas-alex/ ; CMU CESifo award: https://www.cmu.edu/dietrich/news/news-stories/2014/alex-imas-cesifo.html
+- Gigerenzer / ecological rationality (Wikipedia overview): https://en.wikipedia.org/wiki/Ecological_rationality
+- Trammell, personal site: https://philiptrammell.com/
+- Trammell & Korinek, "Economic Growth under Transformative AI," NBER w31815: https://www.nber.org/papers/w31815 ; PDF: https://philiptrammell.com/static/economic_growth_under_transformative_ai.pdf ; SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4616883
+- Trammell, "Dynamic Public Good Provision under Time Preference Heterogeneity" (GPI 2021): https://www.globalprioritiesinstitute.org/wp-content/uploads/Philip-Trammell-Dynamic-Public-Good-Provision-under-Time-Preference-Heterogeneity-1.pdf
+- Trammell, "Discounting for Patient Philanthropists": https://philiptrammell.com/static/discounting_for_patient_philanthropists.pdf
+- Aschenbrenner & Trammell, "Existential Risk and Growth": https://www.globalprioritiesinstitute.org/wp-content/uploads/Leopold-Aschenbrenner-and-Philip-Trammell-Existential-Risk-and-Growth-2.pdf ; Trammell, "Existential Risk and Exogenous Growth": https://philiptrammell.com/static/ExistentialRiskAndExogenousGrowth.pdf
+- Aghion, B. Jones & C. Jones, "Artificial Intelligence and Economic Growth," NBER w23928: https://www.nber.org/system/files/working_papers/w23928/w23928.pdf
+- Bloom, Jones, Van Reenen & Webb, "Are Ideas Getting Harder to Find?," *AER* 2020: https://www.aeaweb.org/articles?id=10.1257%2Faer.20180338
+- MacAskill, "Are We Living at the Hinge of History?" (GPI): https://www.globalprioritiesinstitute.org/wp-content/uploads/William-MacAskill_Are-we-living-at-the-hinge-of-history.pdf
+
+*All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded; no such sources were used or relied upon.*
+
+## Reverse-engineered supplement (gap-fill — keep small)
+
+**Alex Imas – Personal & Academic Background**
+- Born in Bender, Moldova.
+- Earned a B.A. in Economics from Northwestern University (2007) and a Ph.D. from the University of California, San Diego (2014).
+- Served as a postdoctoral researcher and assistant professor at Carnegie Mellon University (2013–2020), where he collaborated with George Loewenstein.
+- Currently holds the Roger L. and Rachel M. Goetz Professorship at the University of Chicago Booth School of Business.
+- Faculty Research Associate at the National Bureau of Economic Research (NBER).
+- Fellow at CESifo.
+- Named a 2023 Sloan Research Fellow.
+
+**Alex Imas – Key Research Contributions**
+- **The Realization Effect (AER, 2016):** Foundational paper on how risk-taking behavior changes after realized versus paper losses.
+- **Mental Money Laundering:** Work on motivated violation of fungibility in mental accounting.
+- **Similarity in Mental Accounting (Psychological Review, 2021):** Paper titled "On the Role of Similarity in Mental Accounting and Hedonic Editing."
+- **Prosocial Incentives:** Paper titled "Working for the Warm Glow," examining warm-glow giving.
+- **Institutional Trading (Journal of Finance, 2023):** Paper titled "Selling Fast and Buying Slow" on asymmetric attention in institutional trading.
+- **Motivated Reasoning & Information Avoidance:** Includes work on the "Over- and Underreaction to Information" paper.
+- **Cognitive Turn in Behavioral Economics:** Associated with this movement alongside Benjamin Enke and Thomas Graeber.
+- **The Winner’s Curse (2025):** Co-authored the updated edition with Richard Thaler.
+- **AI Research:** Treats large language models (LLMs) as simulated economic subjects and as agents in negotiations.
+- **External Critique:** Engages with the ecological-rationality school of Gerd Gigerenzer.
+
+**Phil Trammell – Personal & Academic Background**
+- Earned his economics PhD from the University of Oxford.
+- Affiliated with the Global Priorities Institute (GPI).
+
+**Phil Trammell – Key Research Contributions**
+- **AI & Economic Growth (NBER w31815, 2023):** Flagship paper "Economic Growth under Transformative AI," co-authored with Anton Korinek.
+- **Growth Model Logic:** Core model hinges on the elasticity of substitution between capital and labor, treating AI as a substitute.
+- **AI-as-Capital vs. AI-as-Labor:** Distinguishes between these framings and the conditions for a singularity (Type I/II).
+- **Baumol Bottleneck Objection:** Addresses the critique from Aghion, B. Jones, and C. Jones (2017).
+- **Ideas Getting Harder to Find:** Engages with the objection from Bloom, Jones, Van Reenen, and Webb (AER, 2020).
+- **Patient Philanthropy (GPI, 2021):** Paper on "Dynamic Public Good Provision under Time Preference Heterogeneity."
+- **Interest Rate Wedge:** Argues that market interest rates are set by the impatient majority, creating a wedge for patient altruists.
+- **Existential Risk & Growth:** Work with Aschenbrenner on the existential-risk Kuznets curve.
+- **Forecasting AI Timelines:** Argues that monitoring long-run real interest rates is useful for forecasting.
+- **Counterarguments to Patient Philanthropy:** Addresses expropriation/value drift and the hinge-of-history challenge.
+- **Tension in Work:** Notes the tension between his AI-growth work (suggesting a transformative hinge) and his patient-philanthropy conclusion.
