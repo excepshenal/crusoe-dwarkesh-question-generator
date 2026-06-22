@@ -133,6 +133,8 @@ def save_version(out_dir, sc: Scorecard, judge_name: str, args) -> Path:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="train", choices=["train", "heldout", "test"])
+    ap.add_argument("--generator", choices=["prompt", "sft"], default="prompt",
+                    help="prompt = prompting method (--model/--method); sft = fine-tuned model (SFT_* env socket)")
     ap.add_argument("--model", default="Qwen/Qwen3-235B-A22B-Instruct-2507")
     ap.add_argument("--method", type=Method, choices=list(Method), default=Method.B)
     ap.add_argument("--mode", type=Mode, choices=list(Mode), default=Mode.NEXT_QUESTION)
@@ -148,7 +150,12 @@ def main():
     ap.add_argument("--out", default=None, help="path PREFIX for ad-hoc output -> {out}.json + {out}.md (default runs/eval_<name>)")
     a = ap.parse_args()
 
-    gen = PromptingGenerator(model=a.model, method=a.method, temperature=a.temperature)
+    if a.generator == "sft":
+        from sft.generate import SFTGenerator
+        gen = SFTGenerator(temperature=a.temperature)
+        a.model = gen.model  # record the served SFT model in the version meta
+    else:
+        gen = PromptingGenerator(model=a.model, method=a.method, temperature=a.temperature)
     opponent = (PromptingGenerator(model=a.opponent_model, method=a.method, temperature=a.temperature)
                 if a.opponent_model else None)
     judge = default_judge()

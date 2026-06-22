@@ -4,7 +4,7 @@ Everything (the generator under test, the LLM judge, the research bootstrapper)
 speaks the OpenAI chat API. The platform's inference endpoint is OpenAI-compatible,
 and Claude is reachable via its OpenAI-compatible endpoint, so one client covers all.
 
-Configure per role with env vars (prefix in {GENERATOR, JUDGE, RESEARCH}):
+Configure per role with env vars (prefix in {GENERATOR, SFT, JUDGE, RESEARCH}):
     {PREFIX}_BASE_URL   e.g. https://api.anthropic.com/v1/   (generator: your endpoint)
     {PREFIX}_API_KEY    optional; falls back to the shared CRUSOE_API_KEY
     {PREFIX}_MODEL      e.g. claude-opus-4-8
@@ -24,6 +24,7 @@ _DEFAULTS = {
     "JUDGE": {"base_url": "https://api.anthropic.com/v1/", "model": "claude-opus-4-8"},
     "RESEARCH": {"base_url": "https://api.anthropic.com/v1/", "model": "claude-opus-4-8"},
     "GENERATOR": {"base_url": None, "model": None},
+    "SFT": {"base_url": None, "model": None},  # fine-tuned model serving socket — filled in later
 }
 
 

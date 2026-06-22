@@ -35,9 +35,22 @@ quality-filtered SFT (drop targets he loses) or DPO with the judge — the phase
   half) for a faster run.
 
 ## Eval
-`SFTGenerator` (implements `core.generator.Generator`) → `evals/run_eval.py` on the **held-out** test
-set, compared to the prompting leaderboard (v3 = 48.3%). Held-out is the number that counts.
-(For a fair comparison, the prompting baseline should be re-scored under the same 10k truncation.)
+`sft/generate.py::SFTGenerator` implements `core.generator.Generator`, so it drops into the same
+harness as the prompting versions — it rebuilds the **exact training input** (Method-B chat + 10k
+transcript truncation, no few-shots) so eval matches what the model saw. The serving socket is
+**deferred** (fill in later): set `SFT_BASE_URL` + `SFT_MODEL` (api key falls back to `CRUSOE_API_KEY`).
+
+```bash
+export CRUSOE_API_KEY=<key>
+export SFT_BASE_URL=<fine-tuned model endpoint>  SFT_MODEL=<served id>   # ← fill in after training
+# held-out vs real Dwarkesh, averaged (the number that counts):
+python -m evals.run_eval --generator sft --split heldout --n-per-guest 3 --temperature 0 --repeat 3 \
+  --out-dir evals/sft_v0
+# ad-hoc single question against a corpus moment:
+python -m sft.generate --slug eric-jang --turn 12
+```
+Compare to the prompting leaderboard (v3 = 48.3%). Held-out is the number that counts. For a fair
+comparison the prompting baseline should be re-scored under the same 10k truncation.
 
 ## Next
 Quality-filtered SFT / DPO (judge as preference signal) to exceed the ~50% imitation ceiling.
