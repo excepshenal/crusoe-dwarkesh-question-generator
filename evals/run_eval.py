@@ -134,8 +134,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="train", choices=["train", "heldout", "test"])
     ap.add_argument("--generator", choices=["prompt", "sft"], default="prompt",
-                    help="prompt = prompting method (--model/--method); sft = fine-tuned model (SFT_* env socket)")
-    ap.add_argument("--model", default="Qwen/Qwen3-235B-A22B-Instruct-2507")
+                    help="prompt = prompting method (--model/--method); sft = fine-tuned model (--serving/--model)")
+    ap.add_argument("--serving", choices=["vllm", "crusoe"], default=None,
+                    help="sft backend: vllm=localhost:8000 (LoRA adapter), crusoe=inference API (or set SFT_BASE_URL)")
+    ap.add_argument("--model", default=None,
+                    help="prompt: generator model (default qwen3-235b); sft: served model / vLLM adapter name")
     ap.add_argument("--method", type=Method, choices=list(Method), default=Method.B)
     ap.add_argument("--mode", type=Mode, choices=list(Mode), default=Mode.NEXT_QUESTION)
     ap.add_argument("--opponent-model", default=None, help="set for tool_vs_tool (else vs real Dwarkesh)")
@@ -152,10 +155,11 @@ def main():
 
     if a.generator == "sft":
         from sft.generate import SFTGenerator
-        gen = SFTGenerator(temperature=a.temperature)
-        a.model = gen.model  # record the served SFT model in the version meta
+        gen = SFTGenerator(model=a.model, serving=a.serving, temperature=a.temperature)
     else:
-        gen = PromptingGenerator(model=a.model, method=a.method, temperature=a.temperature)
+        gen = PromptingGenerator(model=a.model or "Qwen/Qwen3-235B-A22B-Instruct-2507",
+                                 method=a.method, temperature=a.temperature)
+    a.model = gen.model  # record the served model / adapter in the version meta
     opponent = (PromptingGenerator(model=a.opponent_model, method=a.method, temperature=a.temperature)
                 if a.opponent_model else None)
     judge = default_judge()

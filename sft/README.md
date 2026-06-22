@@ -37,18 +37,24 @@ quality-filtered SFT (drop targets he loses) or DPO with the judge — the phase
 ## Eval
 `sft/generate.py::SFTGenerator` implements `core.generator.Generator`, so it drops into the same
 harness as the prompting versions — it rebuilds the **exact training input** (Method-B chat + 10k
-transcript truncation, no few-shots) so eval matches what the model saw. The serving socket is
-**deferred** (fill in later): set `SFT_BASE_URL` + `SFT_MODEL` (api key falls back to `CRUSOE_API_KEY`).
+transcript truncation, no few-shots) so eval matches what the model saw.
+
+**Two serving backends** (`--serving`, or set `SFT_BASE_URL`/`SFT_MODEL`; api key → `CRUSOE_API_KEY`):
+- `vllm` — local vLLM at `http://localhost:8000/v1`; `--model` is the **LoRA adapter name**.
+- `crusoe` — the Crusoe inference API; `--model` is the served model id.
 
 ```bash
 export CRUSOE_API_KEY=<key>
-export SFT_BASE_URL=<fine-tuned model endpoint>  SFT_MODEL=<served id>   # ← fill in after training
+# ad-hoc single question against a corpus moment (local adapter on vLLM):
+python -m sft.generate --serving vllm --model dwarkesh-run1-ckpt32 --slug eric-jang --turn 12
 # held-out vs real Dwarkesh, averaged (the number that counts):
-python -m evals.run_eval --generator sft --split heldout --n-per-guest 3 --temperature 0 --repeat 3 \
-  --out-dir evals/sft_v0
-# ad-hoc single question against a corpus moment:
-python -m sft.generate --slug eric-jang --turn 12
+python -m evals.run_eval --generator sft --serving vllm --model dwarkesh-run1-ckpt32 \
+  --split heldout --n-per-guest 3 --temperature 0 --repeat 3 --out-dir evals/sft_v0
+# Crusoe-served instead: --serving crusoe --model <served id>
 ```
+**Serve at ≥ the training seq len.** Rows are ~5.5–6k tokens (dossier + 10k-char transcript + system),
+so launch vLLM with `--max-model-len 8192`+ — a 4096 cap rejects deeper cards and crashes the run.
+
 Compare to the prompting leaderboard (v3 = 48.3%). Held-out is the number that counts. For a fair
 comparison the prompting baseline should be re-scored under the same 10k truncation.
 
