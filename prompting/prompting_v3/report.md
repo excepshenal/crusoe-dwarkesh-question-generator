@@ -1,0 +1,1387 @@
+# Eval: prompt-c:Qwen3-235B-A22B-Instruct-2507 — train vs Dwarkesh — judge judge:GLM-5.1
+
+**Win-rate 37%**  (n=61: 13 win / 19 tie / 29 loss). Each card: the tool's question vs the reference, and why the judge picked one. (Judged in both A/B orders; a disagreement across orders = tie.)
+
+## [LOSS] Jung Chang
+
+**Context (recent):**
+```
+
+Jung Chang: It's a device that really separates society, making people against each other and being on guard against each other. Earlier you were talking about why can't people get together? Because this other person at the next criticism or self-criticism meetings could well say, "So-and-so had said this to me, and I hadn't reported to the party, therefore I'm guilty."
+
+Dwarkesh Patel: Talk about the way in which it forced good people to be immoral. You have these quota systems where if you're in charge of a department or something, the Mao says 5% are rightists, 5% are capitalist roaders. And so if you don't give 5% of names who are capitalists, who are going to get denounced, then you must be a rightist yourself. Talk about that aspect of the system.
+
+Jung Chang: Well, the result is you are in a tremendous dilemma of either sacrificing you, your family, and other people, which is another way of breaking these people. These are all his weapons, psychological weapons to force people to do what he ordered them to do.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said Mao used psychological weapons to break people, but it seems like the system also required ordinary people to become complicit—like, to survive, you had to denounce someone. What does that do to a society over decades? Not just the fear, but the moral injury of everyone having to participate in the cruelty?
+
+**Reference (Dwarkesh):** Why was there such a big reservoir of support for communist ideas and also the personality cult that formed around Mao? In China, people give different explanations of Emperor worship beforehand led to this, or peasant rice farming. What explains why China got taken over by this ideology?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> A paraphrases what was just said and asks a generic long-term-effects question, while B makes a worthwhile pivot to a genuinely curious and specific question about why China was vulnerable to this ideology in the first place.
+> Candidate A asks a genuinely curious, specific historical question about why China was susceptible to Maoism—a natural pivot after understanding the mechanics of control—while Candidate B paraphrases what was just said and then asks a vague, generic question ('what does that do to a society over dec
+
+---
+
+## [LOSS] Brett Harrison
+
+**Context (recent):**
+```
+
+Brett Harrison: Yeah, again, it was one share repo. I mean, there was an enormous amount of code. And one of the big problems, another problem that I raised while I was there, was that 90 plus percent of all the code of FTX was written by these two people. And it was very hard to follow. I don't know if you've ever seen like a large Python code base before. So whenever there were issues that arose there's, like this particular problem with an account on the exchange, the only answer was like, call Nashad, call Gary. Which I also knew to be unsustainable from the organizational perspective. One of the guiding principles at Janetree, for example, was mentor your junior dev so that you can hand off all your responsibilities to them. And in the process of handing off responsibilities, you make the code better, more automated, more robust problems, more easily debuggable in real time. If you hoard everything to yourself in your own brain, you end up with a code base that is just only understandable by that one person. And so it was the kind of thing where a lot of people talked about this internally. Like if Gary got hit by a bus and couldn't come to work anymore, fjs was done. It's done. Exactly.
+
+Dwarkesh Patel: What do you think was the motivation behind this? Was it just that he wanted to avoid as a sort of like Google growing to 100,000 people kind of thing? Or was there something else going on? Like what? Why did it why this sort of concentration?
+
+Brett Harrison: Clearly there was something else going on. I think an open question now, only thinking about this in hindsight was how much of this very cloistered organizational decision around the development team was a function of the various things they were doing that they were hiding from the rest of the company? Or was it really this sort of like one, ultra paranoia about growing too large too quickly and getting losing control of the organization, and two, an almost like sort of cultlike belief in this small team, like being the but for cause of all past, present, and future success.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the code was so tightly controlled by Gary and Nishad, and you’ve said that 90% of it was written by them, how did that not raise red flags about what they might be hiding in the code itself—like, could you not see the parts that handled transfers between FTX and Alameda?
+
+**Reference (Dwarkesh):** What was the discretion that you had at FTX US? It sounds like you weren't even given the capacity to hire more engineers if you wanted to. What were the things you did? Control.
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A essentially re-asks what Harrison just raised himself (the connection between code hoarding and hiding things), adding only an accusatory tone; Candidate B naturally pivots to a genuinely new and important thread—what Harrison actually controlled at FTX US—which hasn't been established y
+> Candidate A is short, direct, and genuinely curious about what authority Harrison actually had—information not yet established—while Candidate B is a longer, more leading 'gotcha' question whose premise is largely already answered by Harrison's account that he couldn't access the code.
+
+---
+
+## [LOSS] Dylan Patel
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: And fully indigenized EUV by 2030?
+
+Dylan Patel: I think they’ll have working tools. I don’t think that they’ll be able to manufacture a bunch yet. There’s having it work, and then there’s production hell. ASML had EUV working in the early 2010s at some capacity. The tools were not accurate enough. They were not scaled for high-volume manufacturing or reliable enough. They had to ramp production, and that all took time.
+
+Production hell takes time. That’s why it took another five to seven years to get EUV into mass production at a fab rather than just working in the lab.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If China has working EUV tools by 2030 but not at volume, and the West is bottlenecked by ASML’s slow ramp, is the real constraint not the machine itself but the ecosystem of precision manufacturing around it—like Zeiss optics or Cymer sources—that can’t be replicated quickly even if you have the design?
+
+**Reference (Dwarkesh):** How many DUV tools do you think they’ll be able to manufacture in 2030?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate B is short, specific, and naturally follows up on the DUV indigenization Dylan just confirmed, while Candidate A is a clause-stacking, name-dropping question that parrots the production-hell point Dylan just made and adds little new.
+> Candidate A is short, specific, and asks a concrete follow-up that a curious person would actually want the answer to; Candidate B is a clause-stacking, name-dropping question that manufactures a tension and answers itself.
+
+---
+
+## [LOSS] Casey Handmer
+
+**Context (recent):**
+```
+
+Casey Handmer: I don't actually know what the retail price is. I would suspect that if their price is flexible, it would have gone up a lot. But if I recall correctly, $35 a megawatt hour is just the flag-four cost for..
+
+Dwarkesh Patel: How much, sorry?
+
+Casey Handmer: $35 a megawatt hour just for the Brayton cycle. We're not talking about the fuel, we're not talking about the heat exchanges, we're not talking about the cooling ponds or anything like that. Just the amortized cost of the high-speed, high-temperature spinning components is $35 a megawatt hour.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the amortized cost of just the spinning components is $35 per megawatt hour, how much cheaper can solar get when you’re not dealing with any moving parts at all?
+
+**Reference (Dwarkesh):** Do you think the hyperscalers are being irrational, or do they have some reason?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A is a leading question that assumes solar is cheaper and invites a predictable answer, while B is short, genuinely curious, and cuts to the core tension of the entire conversation.
+> Candidate A is a short, genuinely curious question that directly addresses the core tension of the topic, while Candidate B paraphrases what was just said and leads the witness by assuming solar must be cheaper because it lacks moving parts.
+
+---
+
+## [LOSS] Elon Musk
+
+**Context (recent):**
+```
+
+Elon Musk: Yes. That’s what I mean by, ludicrous fraud.
+
+Dwarkesh Patel: Were those people getting payments?
+
+Elon Musk: Some were getting payments from Social Security. But the main fraud vector was to mark somebody as alive in Social Security and then use every other government payment system to basically do fraud. Because what those other government payment systems do, they would simply do an “are you alive” check to the Social Security database. It’s a bank shot.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said the only thing that could solve the national debt is AI and robots, but you also said we’re going to go bankrupt without them. If they’re the only solution, why are you spending time on DOGE at all? Shouldn’t you just be going all-in on accelerating AI and robotics?
+
+**Reference (Dwarkesh):** What would you estimate is the total amount of fraud from this mechanism?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate B is a short, naturally curious follow-up to the specific fraud mechanism Elon just described, while Candidate A manufactures a false dichotomy between DOGE and AI acceleration that doesn't logically hold (one can work on both) and exemplifies the elaborate 'drill into a tension' style tha
+> Candidate A is a short, natural follow-up that asks for the scale of the specific fraud mechanism Elon just described, while Candidate B pivots away to manufacture a tension that may not actually exist and reads as a gotcha rather than genuine curiosity.
+
+---
+
+## [LOSS] Reiner Pope
+
+**Context (recent):**
+```
+
+Reiner Pope: Output is more expensive, in fact.
+
+Dwarkesh Patel: Output is 5x more expensive.
+
+Reiner Pope: The result we want to work towards is that prefill is compute-limited and decode is memory bandwidth-limited.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If prefill is compute-limited and decode is memory bandwidth-limited, why doesn’t that mean inference clusters are fundamentally bottlenecked by memory bandwidth, not compute?
+
+**Reference (Dwarkesh):** Why don’t we do this? Why don’t we just chart it with len-pass on the X-axis and t on the Y-axis.
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A manufactures a tension that doesn't logically follow from what was just said (prefill and decode having different bottlenecks doesn't imply the cluster is fundamentally bottlenecked by one), while B is a natural, practical next step that moves the analysis forward in Dwarkesh's character
+> Candidate A is a practical, collaborative move that advances the analysis they're actively working through; Candidate B manufactures a pseudo-paradox that doesn't logically follow (both phases coexist, the bottleneck depends on workload mix) and sounds sophisticated but adds little.
+
+---
+
+## [LOSS] Kenneth Jackson
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: Can you talk more about what that change in philosophy has been since then? I feel like that's been one of the themes of this podcast, to see how our cultural attitude towards progress and technology have changed.
+
+Kenneth Jackson: One reason why The Power Broker, Robert Caro’s famous book, received such popular acclaim is it fits in with book readers' opinions today, which is “Old is better.” You got to think about New York City. If you say it's a pre-war apartment, you mean it's a better apartment. The walls are solid plaster, not fiber or board and stuff like that. Old has a reverence in New York that it doesn't have in Japan. In Japan, they tear down houses every 15 years. So it's a whole different thing.
+
+In this new country, new culture, we tend to value oldness in some places, especially in a place that's old like New York City. Most Americans don't realize that New York is not only the most dense American city and the largest, but also really the oldest. I know there's St. Augustine but that's taking the concept of what a city is to an extreme and then there's Jamestown in Virginia, but there's literally nobody there. And where the pilgrims landed in Massachusetts, Plymouth plantation, that's totally rebuilt as a kind of a theme park. For a place that's a city, it's Santa Fe a little bit in New Mexico, but it was a wide place on the road until after World War II. If you think about cities, New York is really old and it's never valued history, but the historic preservation movement here is very strong.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If New York is the oldest city and we now worship oldness, is the city uniquely trapped by its own preservationist instincts compared to other places?
+
+**Reference (Dwarkesh):** What is the reason for its resurgence? It's had a big impact on many cities. I'm in San Francisco right now and obviously you can't tear down one of these Victorian houses to build the housing that the city massively needs. Why have we gained a reverence for anything that was built 80 years ago?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B asks the genuinely curious 'why' question about the root cause of the cultural shift toward preservationism, grounded in a concrete San Francisco example, whereas A manufactures a loaded 'trapped' tension and asks a leading yes/no question.
+> A asks a genuinely curious, specific question about WHY the preservationist shift happened, with a concrete San Francisco example that makes it tangible; B is loaded with presupposed language ('uniquely trapped,' 'worship oldness') that manufactures a tension the guest didn't quite claim.
+
+---
+
+## [LOSS] Demis Hassabis
+
+**Context (recent):**
+```
+
+Demis Hassabis: I think we helped pioneer RLHF and other things like that which can obviously be used for performance but also for safety. I think that a lot of the self-play ideas and these kinds of things could also be used to auto-test a lot of the boundary conditions that you have with the new systems. Part of the issue is that with these very general systems, there’s so much surface area to cover about how these systems behave. So I think we are going to need some automated testing. Again, with things like simulations and games, very realistic virtual environments, I think we have a long history of using those kinds of systems and making use of them for building AI algorithms. I think we can leverage all of that history. And then around Google, we’re very lucky to have some of the world’s best cybersecurity experts, hardware designers. I think we can bring that to bear for security and safety as well.
+
+Dwarkesh Patel: Let’s talk about Gemini. So now you guys have the best model in the world. I’m curious. The default way to interact with these systems has been through chat so far. Now that we have multimodal and all these new capabilities, how do you anticipate that changing? Do you think that’ll still be the case?
+
+Demis Hassabis: I think we’re just at the beginning of actually understanding how exciting that might be to interact with a full multimodal model system. It’ll be quite different from what we’re used to today with the chatbots. I think the next versions of this over the next year, 18 months, we’ll maybe have some contextual understanding of the environment around you through a camera or a phone or some glasses. I could imagine that as the next step. And then I think we’ll start becoming more fluid in understanding “let’s sample from a video, let’s use voice.” Maybe even eventually things like touch and if you think about robotics, other types of sensors. So I think the world’s about to become very exciting in the next few years as we start getting used to the idea of what true multimodality means.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the next interface is contextual awareness through glasses or a phone, why hasn’t Apple cracked this? They have the hardware, the users, the brand — it seems like they should be the ones to ship the first real multimodal agent.
+
+**Reference (Dwarkesh):** On the robotics subject, when he was on the podcast Ilya said that the reason OpenAI gave up on robotics was because they didn’t have enough data in that domain, at least at the time they were pursuing it. You guys have put out different things like Robo-Transformer and other things. Do you think that’s still a bottleneck for robotics progress, or will we see progress in the world of atoms as well as the world of bits?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B directly follows up on the robotics thread the guest just introduced, anchors it with a concrete data point from Ilya, and asks a specific, answerable question about whether data remains a bottleneck—whereas A asks the guest to speculate about a competitor's strategy, which he has little insight o
+> A builds directly on Demis's mention of robotics/sensors with a concrete, informed reference (Ilya's data bottleneck comment) to ask a specific substantive question; B pivots to a generic 'why hasn't Apple done this' competitive question that invites a diplomatic non-answer.
+
+---
+
+## [LOSS] David Deutsch
+
+**Context (recent):**
+```
+
+David Deutsch: Yes, it's very simple. There are sociological factors in academic life, which have stultified the culture. Not totally and not everywhere, but that has been a tendency in what has happened. It has resulted in a loss of productivity in many sectors, in many ways, (but not in every sector, not in every way). For example, I've often said there was a solidification in theoretical physics, starting in the 1920s, and it still hasn't fully dissipated if it wasn't for that. Quantum computers wouldn’t have been invented in the 1930s and built in the 1960s. So that is just an accidental fact. But it just goes to show that there are no guarantees. The fact that our horizons are unlimited, does not guarantee that we will get anywhere and that we won't start declining tomorrow. I don't think we are currently declining. These declines that we see are parochial effects caused by specific mistakes that have been made, and which can be undone.
+
+Dwarkesh Patel: Okay, so I want to ask you a question about Bayesianism versus Praetorianism. So one reason why people prefer Bayes is because there seems to be a way of describing changes in epistemic status when the relative status of a theory hasn't changed. So I'll give you an example. Currently, the Many Worlds explanation is the best way to explain quantum mechanics. Right? But suppose in the future, we were able to build an AGI on a quantum computer and were able to design some clever interference experiment, as you suggest to have it be able to report back being in a superposition across many worlds. Now, it seems that even though many worlds remain the best, the only explanation somehow is that its epistemic status has changed as a result of the experiment. In terms of the Bayesian theory, you can say the credibility of this theory has increased. So how would you describe these sorts of changes in Praetorian view?
+
+David Deutsch: So what has happened is that at the moment, we have only one explanation that can't be immediately knocked down. If we did that thought experiment, we might well decide that this will provide the ammunition to knock down ideas for alternative explanations that have not been thought of yet. Obviously, it wouldn't be enough to knock down every possible explanation, because for a start, we know that quantum theory is false. We don't know for sure that the next theory will have many worlds in it. It will, but we can't prove anything like that. But I would replace the idea of increased credence with a theory that the experiment will provide a quiver full of arrows or a repertoire of arguments that goes beyond the known bad arguments andwill reach into other types of arguments. The reason I would say that is that some of the existing misconceptions about quantum theory reside in misconceptions about the methodology of science. Now I've written the paper about what it's the right methodology of science where that doesn't apply. But many physicists and many philosophers would disagree with that. And they would advocate a methodology of science that's more based on empiricism. Of course, that empiricism is at stake and can be knocked down in some terms. But not everybody thinks that. Now, once we have an experiment, such as my thought experiment, if that was actually done, then people could not use their arguments based on a fallacious idea of empiricism, because their theory would have been refuted, even by the standards of empiricism, which shouldn't have been needed in the first place. But, so that's why that's the way I would express that the repertoire of arguments will become more powerful if that experiment were done successfully.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the British system focuses blame better, why hasn’t that led to faster progress in science and technology compared to the US? The US has more breakthroughs despite a more fragmented system—does that suggest the Popperian criterion of falsifiability isn’t the main driver of progress?
+
+**Reference (Dwarkesh):** The next question I have is, how far do you take the principle that open ended scientific progress is the best way to deal with existential dangers. To give one example, you have something like data function research, right. And it's conceivable that it could lead to more knowledge and how to stop dangerous pathogens. But at least in Bayesian terms, you could say it seems even more likely that it can or has led to the spread of a manmade pathogen that would have not otherwise been naturally developed. So would your belief in open scientific Progress allow us to say, “Okay, let's stop doing some research?”
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A pivots to a 'British system' reference that's disconnected from the recent turns and stacks clauses to manufacture a tension; Candidate B, despite some garbled phrasing ('data function' = gain-of-function), asks a genuinely important follow-up to Deutsch's admission that 'there are no gu
+> Candidate B introduces concepts (British system, blame-focusing) with no connection to the preceding conversation, while A raises a genuine tension in Deutsch's philosophy—whether open-ended knowledge creation can ever be justifiably curtailed when it creates existential risk—using a concrete exampl
+
+---
+
+## [LOSS] Nat Friedman
+
+**Context (recent):**
+```
+
+Nat Friedman: By and large I would say that there is not a problem. Meaning open source software continues to be developed, continues to be broadly used. And there's areas where it works better and areas where it works less well, but it's sort of winning in all the areas where large-scale coordination and editorial control are not necessary. It tends to be great at infrastructure, stand-alone components and very, very horizontal things like operating systems. And it tends to be worse at user experiences and things where you need a sort of dictatorial aesthetic or an editorial control. I've had debates with Dylan Field of Figma, as to why it is that we don't have lots of good open source applications. And I've always thought it had something to do with this governance dynamic of – Gosh, it's such a pain to coordinate with tons of people who all sort of feel like they have a right to try to push the project in one way or another. Whereas in a hierarchical corporation there can be a head of this product or CEO or founder or designer who just says, we're doing it this way. And you can really align things in one direction very, very easily. Dylan has argued to me that it might be because there's just fewer designers, people with good design sense, in open source. I think that might be a contributing factor too, but I think it's still mostly the governance thing. And I think that's what Nadia's pointing at also. You're running a project and you gave it to people for free. For some reason, giving people something for free creates a sense of entitlement. And then they feel like they have the right to demand your time and push things around and give you input and you want to be polite and it's very draining. So I think that where that coordination burden is lower is where open source tends to succeed more. And probably software and other new forms of governance can improve that and expand the territory that open source can succeed in.
+
+Dwarkesh Patel: Yeah. Theoretically those two things are consistent, right? You could have very tight control over governance while the code itself is open source.
+
+Nat Friedman: And this happens in programming languages. Languages are eventually set in stone and then advanced by committee. But yeah, certainly you have these benign dictators of languages who enforce the strong set of ideas they have, a vision, master plan. That would be the argument that's most on Dylan's side. Hey, it works for languages why can't it work for end user applications? I think the thing you need to do though to build a good end user application is not only have a good aesthetic and idea, but somehow establish a tight feedback loop with a set of users. Where you can give them – Dwarkesh, try this. Oh my gosh. Okay, that's not what you need. Doing that is so hard, even in a company where you've total hierarchical control of the team in theory and everyone really wants the same thing and everyone's salary and stock options depend on the product being accepted by these users. It still fails many times in that scenario. Then additionally doing that in the context of open source, it's just slightly too hard.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If GitHub succeeded because of its open culture, and open source more broadly thrives on contribution and transparency, does that make it inherently incompatible with the kind of secrecy that AI labs will need as they get closer to AGI?
+
+**Reference (Dwarkesh):** The reason you acquired GitHub, as you said, is that there seems to be complementarity between Microsoft’s and GitHub's missions. And I guess that's been proven out over the last few years. Should there be more of these collaborations and acquisitions? Should there be more tech conglomerates? Would that be good for the system?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A manufactures a tension between GitHub's open culture and AI lab secrecy that feels forced and pivots away from the actual conversation about open source governance; Candidate B asks a naturally curious, specific question grounded in Nat's direct experience with the Microsoft-GitHub acqui
+> Candidate B manufactures a false tension (open source vs AI secrecy) that doesn't logically hold—many AI labs open-source models—and stacks convoluted premises; Candidate A, while a pivot, is at least clear, direct, and tied to Nat's specific experience with the GitHub acquisition.
+
+---
+
+## [LOSS] Ada Palmer
+
+**Context (recent):**
+```
+
+Ada Palmer: This is not going to sound plausible to anybody, but it’s true. We’ve been looking at some documents recently which pretty much confirm that they did figure out how to make industrial looms in the 1400s, and they didn’t want to. They wanted to make luxuriant artisanal fabrics.
+
+Dwarkesh Patel: This, by the way, was another interesting thing from the book. With the first printed books, there’s not this market of commodity things that are produced cheaply that the average person is going to be like, “Oh, if I can get this for $10.99, I’ll go buy it.” So they’re trying to make this thing look like it was produced as artisanal luxury grade.
+
+Ada Palmer: Right. The first printed fonts look like handwritten scripts, and often have a blank space to illuminate it so that it looks just as fancy as manuscripts.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the printing press enabled the Reformation by letting Luther’s theses spread in 17 days, and if pamphlets created a new kind of public sphere, why didn’t the Catholic Church just ban paper?
+
+**Reference (Dwarkesh):** One thing I wanted to ask you, back to the printing press. Not only does printing get cheaper, but around this time, paper itself also gets cheaper. So not just reading, but writing gets cheaper. Do you as historians see a marked change in this period in the amount of records that are taken and, as a result, our understanding?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A manufactures a paradox that doesn't hold up (banning paper would have been economically suicidal and logistically absurd, and the Church did censor specific books instead), while Candidate B asks a genuinely curious, specific question about whether cheaper paper changed the volume of rec
+> Candidate A is a genuine, curious question that naturally extends the conversation about production costs and their effects, while Candidate B manufactures a false paradox (the Church did censor books; banning paper itself was impractical and would have devastated the economy) and sounds clever rath
+
+---
+
+## [LOSS] Trenton Bricken
+
+**Context (recent):**
+```
+
+Trenton Bricken: I never know exactly how to think about the sample efficiency stuff because obviously a lot of things are hardwired in certain ways. They're the coevolution of language and the brain structure. So it's hard to say. There are also some results that indicate that if you make your model bigger, it becomes more sample efficient.
+
+Sholto Douglas: The original scaling laws paper, right? The logic model is almost empty.
+
+Trenton Bricken: Right. So maybe that just solves it. You don't have to be more data efficient, but if your model is bigger then you also just are more efficient.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the brain is 30 to 300 trillion synapses and we're still below that scale, why haven't we seen more capabilities emerge from simply increasing parameter count? Is there a missing algorithmic ingredient that evolution got but we haven't rediscovered?
+
+**Reference (Dwarkesh):** What is the explanation for why that would be the case? A bigger model sees these exact same data and at the end of seeing that data it learns more from it? Does it have more space to represent it?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B directly probes the mechanism behind the claim just made (bigger models are more sample efficient) with genuine curiosity, while A manufactures a false tension—we have seen capabilities emerge from scaling—and pivots away from the live thread.
+> A is a short, genuinely curious follow-up that directly probes the interesting claim just made (bigger models are more sample efficient), while B is convoluted, stacks multiple sub-questions, and manufactures a tension based on a questionable premise.
+
+---
+
+## [LOSS] Carl Shulman
+
+**Context (recent):**
+```
+
+At the media level there were many tales of doomsday stories but when you go further to the scientists and whether their arguments for it actually check out, it was not there. But by actually systematically looking through many of these candidates I wound up in a different epistemic situation than someone who's just buffeted by news reports and they see article after article that is claiming something is going to destroy the world and it turns out it's like by way of headline grabbing and attempts by media to like over interpret something that was said by some activists who was trying to over interpret some real phenomenon. Most of these go away and then a few things like nuclear war, biological weapons, artificial intelligence check out more strongly and when you weigh things like what do experts in the field think, what kind of evidence can they muster? You find this extremely skewed distribution and I found that was really a valuable benefit of doing those deep dive investigations into many things in a systematic way because now I can answer a loose agnostic who knows and all the all this nonsense by diving deeply.
+
+Dwarkesh Patel: I really enjoy talking to people who have a big picture thesis on the podcast and interviewing them but one thing that I've noticed and is not satisfying is that often they come from a very philosophical or vibes based perspective. This is useful in certain contexts but there's like basically maybe three people in the entire world, at least three people I'm aware of, who have a very rigorous and scientific approach to thinking about the whole picture. There’s no university or existing academic discipline for people who are trying to come up with a big picture and so there's no established standards.
+
+Carl Shulman: I hear you. This is a problem and this is an experience also with a lot of the world of investigations work. I think holden was mentioning this in your previous episode. These are questions where there is no academic field whose job it is to work on these and has norms that allow making a best effort go at it. Often academic norms will allow only plucking off narrow pieces that might contribute to answering a big question but the problem of actually assembling what science knows that bears on some important question that people care about the answer to it falls through the crack there's no discipline to do that job so you have countless academics and researchers building up local pieces of the thing and yet people don't follow the Hamming questions: What's the most important problem in your field, why aren't you working on it? I mean that one might not actually work because if the field boundaries are defined too narrowly you'll leave it out. But yeah there are important problems for the world as a whole that it's sadly not the job of a large professionalized academic field or organization to do. Hopefully that's something that can change in the future but for my career it's been a matter of taking low-hanging fruit of important questions that sadly people haven't invested in doing the basic analysis on
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said the market hasn't priced in explosive growth, but if investors are this short-sighted, why should we trust that their current valuations — which do reflect a huge AI boom — aren't just another overreaction? How do you distinguish a rational trend from a bubble when you're embedded in it?
+
+**Reference (Dwarkesh):** One thing I was trying to think about more recently for the podcast is, I would like to have a better world model after doing an interview. Often I feel like I do but in some cases after some interviews, I feel like that was entertaining but do I fundamentally have a better prediction of what the world looks like in 2200 or 2100? Or at least what counterfactuals are ruled out or something. I'm curious if you have advice on first, identifying the kinds of thinkers and topics which will contribute to a more concrete understanding of the world and second, how to go about analyzing their main ideas in a way that concretely adds to that picture? This was a great episode. This is literally the top in terms of contributing to my world model compared to all the episodes I've done. How do I find more of these? Ls
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A references a claim about markets not in the recent context and pivots to an unrelated topic, while B naturally follows the thread about rare rigorous big-picture thinkers by asking for practical advice on finding more of them.
+> Candidate A naturally extends the current thread about systematic big-picture thinking by asking for concrete advice on finding rigorous thinkers, while Candidate B pivots to a market/bubble question that ignores the ongoing discussion and asks a generic finance question that could be posed to anyon
+
+---
+
+## [LOSS] Arthur Kroeber
+
+**Context (recent):**
+```
+
+I think it's just physically impossible to achieve that on the scale that China's been operating on with 1.4 billion people. You look at the urban migration that they've done. It is completely unprecedented in the history of humanity, the speed at which they have converted people from rural residents into urban residents. For many years they were urbanizing at the rate of 20 million people a year added to the urban population.
+
+I forget the precise calculation that I made, but in terms of housing and urban infrastructure, they were building the equivalent of New York plus Philadelphia plus San Francisco every single year for 20 years. No one has ever done anything like this before. The lesson of this is that there's an arithmetic problem there. Even if you do this on this unprecedented scale, and do it faster and bigger than anyone has done it before, if you're trying to move 1.4 billion people into an income of United States-level, it just takes a really, really long time.
+
+Now of course, what's happened is that they have gone too far off the deep end of industrial policy and thinking the supply side will solve all of their problems. Growth has slowed down quite a bit in the last few years. It's probably well below potential. I don't think that there's a lot of evidence that China's growth was below potential from 2000 until 2020 on average. I think there's a lot of evidence that it is below potential now. They are sacrificing the ability of the average Chinese person to do more rapid catch-up with the living standards of the West, in order to achieve these industrial policy technology goals.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If effectiveness over efficiency explains their growth, why hasn’t that effectiveness translated into higher productivity growth recently? The urbanization and infrastructure build-out was incredibly productive in the past, but TFP seems to have slowed—so is the model now running out of steam, or is this just a temporary misallocation?
+
+**Reference (Dwarkesh):** I have a question just to react fast to some of the things you said. Obviously there's places in China now like Shanghai or Guangdong, which have per capita incomes approaching these East Asian neighbors that are really rich.
+
+To the extent that that's possible through this high tech manufacturing—and to the extent that it's already a problem that other countries are complaining that China is doing too much high tech manufacturing—I guess it makes sense then. How could you have literally 10x as many people doing the same thing?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B picks up on a concrete implication of what Kroeber just said—that some Chinese regions are already as rich as East Asian neighbors—and asks a genuinely curious, hard-to-answer question about whether the East Asian development model can even theoretically scale to 10x the population, whereas A part
+> A picks up on a concrete fact Arthur just implied—that some Chinese regions already approach rich-country income levels—and asks a genuinely curious, simple question about the scale constraint from a fresh angle (geopolitical/complaints), whereas B parrots Arthur's own point about slowing growth, dr
+
+---
+
+## [LOSS] Michael Nielsen
+
+**Context (recent):**
+```
+
+Right now, it’s hard to do. If China’s really good at manufacturing something, there’s this process knowledge that’s in the heads of 100 million people involved in the manufacturing sector in China. But in the future, it might be easier if AIs are doing it.
+
+Michael Nielsen: The question is to what extent our fabrication gets very uniform and gets really commoditized. 3D printers have been the next big thing for at least 20 years now. Why do they still not work all that well? Why are they still not at the center of manufacturing, and what comes after that? It is funny to look at the ribosome by contrast, which really is at the center of biology in a whole lot of really interesting ways.
+
+Whether or not that’s the future of manufacturing is something very simple, where everything goes as throughput through a bioreactor or something like that. You send the information, and then you grow stuff, or you have some 3D printer that actually works. If they’re good enough, then it does become much more a pure information problem, and some of this process knowledge becomes much less important.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If aliens gave us their entire GitHub and it was full of code that exploited a different branch of the tech tree, how would we even begin to verify which ideas are correct or useful—especially if they don’t interface cleanly with experiments we can run today?
+
+**Reference (Dwarkesh):** Can I ask a very clumsily phrased question? There are these deep principles that we’ve discovered a couple of. One is this idea that if there’s a symmetry across a dimension, it corresponds to a conserved quantity. It’s a very deep idea. There’s another—which you’ve written a lot about, written a textbook about in fact—about ways to understand what kinds of things you can compute, what kinds of physical systems you can understand with other physical systems, what a universal computer looks like, et cetera.
+
+Is your view that if you go down to this level of idea of Noether’s theorem or the Church-Turing principle, that there’s an infinite number of extremely deep such principles? Because I feel what makes them special is that they themselves encompass so many different possible ways the world could be. But no, the world has to be compatible with a couple of these very deep principles.
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate B directly engages the core thesis of the interview with concrete examples (Noether's theorem, Church-Turing) and poses a genuine intellectual tension about whether infinitely many such deep principles can exist given their scope, while Candidate A's alien GitHub hypothetical is showy but 
+> Candidate A directly engages the core topic—whether infinitely many Noether/Church-Turing-level deep principles can exist—by posing a genuine intellectual tension (their power seems to come from their scarcity), while Candidate B's alien-GitHub hypothetical is speculative, disconnected from the rece
+
+---
+
+## [LOSS] Marc Andreessen
+
+**Context (recent):**
+```
+
+When the companies we fund get to scale, they tend to get pulled into the managerial orbits, they tend to get pulled into the managerial matrix, which by the way, is when they stop being able to build new things, which is what causes the smart and aggressive people at those companies to leave and then come back to us and raise money and start a new bourgeois capitalist company.
+
+I view it as — the economy is like 99% managerial, and if we can just keep the 1% of the old model alive, we'll keep getting new things. By the way if venture capital ever gets snuffed, it's outlawed or whatever, it just fails and there is no more venture capital, there's no more tech startups or whatever then at that point the economy is going to be 100% managerial. And at that point, there will be no innovation forever.
+
+People might think they want that. I don't think they actually want that. I don't think we want to live in that world.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If most innovation comes from that 1% of bourgeois capitalist throwbacks, why haven’t we seen a massive divergence in growth rates between countries based on how much they support startups?
+
+**Reference (Dwarkesh):** Will this trend towards managerialism also happen to a16z as it scales? Or will it be immune? What happens to a16z in five decades?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B takes Marc's own framework—the inevitable pull of managerialism at scale—and turns it back on his own firm, which is the kind of specific, personally engaging question that yields revealing answers; A is an academic cross-country growth question that would require Marc to speculate on macro data h
+> A applies Marc's own managerialism framework back to his firm—a genuinely curious, short, specific follow-up that could yield a revealing answer; B asks Marc to explain cross-country growth divergence data, which is an unwieldy empirical challenge that doesn't directly build on what he just said.
+
+---
+
+## [LOSS] Ada Palmer
+
+**Context (recent):**
+```
+
+Ada Palmer: It’s important to remember that that never went away. Two halves of that. One, for ages it’s been true that half of the words we read every day are bespoke only for us, because they’re email. They’re letters. They’re the correspondence back and forth which has the audience of one, the addressee, and that’s the majority of what all of us read and write in our lives.
+
+It’s also always been the case that in the halls of power, there are book-long things with an audience of one or an audience of five. There are historians and other scholars and scientists whose job is to provide that 100-page report on the history of Syria, to be given to a committee of Congress, where these nine senators or these nine congresspeople need the background on what’s happening so that they can understand a current events thing.
+
+There are historian friends of mine who work for the Department of Defense Intelligence, who produce these book-length research projects with an audience of five or an audience of eight or an audience of a couple dozen, because it is the bespoke proprietary knowledge needed by the government at that moment. Sometimes it’s technological knowledge, but just as often it’s going to be historical knowledge of, “Here are the important rivers where military things are likely to happen,” says the historian who knows the history of this stuff.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If Machiavelli were alive today and saw that most of the words people read are bespoke—emails, AI-generated content, personalized reports—would he think we’re moving toward a world where the most important knowledge is again secret, distributed only to a few, like *The Prince*?
+
+**Reference (Dwarkesh):** That actually brings up the question of how many such tracts through history, which are of the quality of The Prince—as original at their time as The Prince is and as wonderfully crafted and so on—have been lost to history? Maybe one way to answer this question or think about it is to talk about how The Prince itself went into mass publishing.
+
+At some point in 1532, the Medici pope allows for its publishing, and then 27 years later, it is censored by that same papacy. So how does this book that Machiavelli himself did not want out in wide circulation end up in wide circulation and then stop ending up in wide circulation and then end up in wide circulation again?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate B asks a specific, historically grounded question that follows naturally from the discussion of bespoke texts with tiny audiences—how many such works were lost, and how did The Prince itself escape that fate—whereas Candidate A poses a generic hypothetical that largely ignores Palmer's poi
+> Candidate A asks a concrete, historically grounded question about the publishing journey of The Prince that follows naturally from the discussion of bespoke vs. public knowledge; Candidate B poses an unanswerable hypothetical about a dead person's opinion and ignores Palmer's point that bespoke know
+
+---
+
+## [LOSS] Carl Shulman
+
+**Context (recent):**
+```
+
+We would want to zoom in on those who are developing new methods rather than narrow applications. So inventing the transformer definitely counts but optimizing for some particular businesses data set cleaning probably not. So those people are doing this work, they're driving quite a lot of progress. What we observe in the growth of people relative to the growth of those capabilities is that pretty consistently the capabilities are doubling on a shorter time scale than the people required to do them are doubling. We talked about hardware and how it was pretty dramatic historically. Like four or five doublings of compute efficiency per doubling of human inputs. I think that's a bit lower now as we get towards the end of Moore's law although interestingly not as much lower as you might think because the growth of inputs has also slowed recently. On the software side there's some work by Tamay Besiroglu and collaborators; it may have been his thesis. It's called Are models getting harder to find? and it's applying the same analysis as the “Are ideas getting harder to find?” and you can look at growth rates of papers, from citations, employment at these companies, and it seems like the doubling time of these like workers driving the software advances is like several years whereas the doubling of effective compute from algorithmic progress is faster. There's a group called Epoch, they've received grants from open philanthropy, and they do work collecting datasets that are relevant to forecasting AI progress. Their headline results for what's the rate of progress in hardware and software, and growth in budgets are as follows — For hardware, they're looking at a doubling of hardware efficiency in like two years. It's possible it’s a bit better than that when you take into account certain specializations for AI workloads. For the growth of budgets they find a doubling time that's something like six months in recent years which is pretty tremendous relative to the historical rates. We should maybe get into that later and then on the algorithmic progress side, mainly using Imagenet type datasets right now they find a doubling time that's less than one year. So when you combine all of these things the growth of effective compute for training big AIs is pretty drastic.
+
+Dwarkesh Patel: I think I saw an estimate that GPT-4 cost like 50 million dollars or around that range to train. Now suppose that AGI takes a 1000x that, if you were just a scale of GPT-4 it might not be that but just for the sake of example, some part of that will come from companies just spending a lot more to train the models and that’s just greater investment. Part of that will come from them having better models.You get the same effect of increasing it by 10x just from having a better model. You can spend more money on it to train a bigger model, you can just have a better model, or you can have chips that are cheaper to train so you get more compute for the same dollars. So those are the three you are describing the ways in which the “effective compute” would increase?
+
+Carl Shulman: Looking at it right now, it looks like you might get two or three doublings of effective compute for this thing that we're calling software progress which people get by asking — how much less compute can you use now to achieve the same benchmark as you achieved before? There are reasons to not fully identify this with software progress as you might naively think because some of it can be enabled by the other. When you have a lot of compute you can do more experiments and find algorithms that work better. We were talking earlier about how sometimes with the additional compute you can get higher efficiency by running a bigger model. So that means you're getting more for each GPU that you have because you made this larger expenditure. That can look like a software improvement because this model is not a hardware improvement directly because it's doing more with the same hardware but you wouldn't have been able to achieve it without having a ton of GPUs to do the big training run.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If most of the effective compute gains are coming from spending more money on hardware, why expect that AI doing the research will change the game? After all, humans are already throwing tons of money at this—what does AI add that capital alone doesn’t?
+
+**Reference (Dwarkesh):** The feedback loop itself involves the AI that is the result of this greater effect of compute helping you train better AI or use less effective compute in the future to train better AI?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B directly follows up on the feedback loop Carl was just describing between compute and software progress, which is the natural next thread to pull; A mischaracterizes Carl's point (he didn't say most gains come from spending more money) and asks a more generic question that could apply to any conte
+> A naturally follows up on the feedback loop Carl just described between compute and software progress, while B mischaracterizes the discussion by claiming 'most gains come from hardware spending'—Carl never said that—and jumps to a confrontational framing about AI research that hasn't been establish
+
+---
+
+## [LOSS] Shane Legg
+
+**Context (recent):**
+```
+
+Shane Legg: This is not so much a Google DeepMind perspective on this. This is my take on how I think we need to do this kind of thing. There are many different views within and there are different variants on these sorts of ideas as well.
+
+Dwarkesh Patel: So then do you personally think there needs to be some sort of framework for as you arrive at certain capabilities, these are the concrete safety benchmarks that you must have instated at this point, or you should pause or slow down?
+
+Shane Legg: I think that's a sensible thing to do but it's actually quite hard to do. There are some people thinking about that. I know Anthropic has put out some things like that. We were thinking about similar things but actually putting concrete things down is quite a hard thing to do. I think it's an important problem and I certainly encourage people to work on it.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the system is reasoning step-by-step about ethics and you're verifying its reasoning process, who exactly is doing the verification — and how do you scale that when the AI can generate a million lines of reasoning in the time it takes a human to read one?
+
+**Reference (Dwarkesh):** It's interesting because you have these blog posts that you wrote when you started DeepMind, back in 2008, where the motivation was to accelerate safety.
+
+On net, what do you think the impact of DeepMind has been on safety versus capabilities?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A stacks sub-questions and pivots to a topic (verifying step-by-step reasoning) that wasn't discussed, while Candidate B is short, specific, references the guest's actual history, and asks a genuinely curious high-stakes question many listeners would want answered.
+> Candidate A asks a sharp, personal question tied to Legg's own founding motivations that creates a genuine tension he must grapple with; Candidate B manufactures a detailed scenario about verification that wasn't discussed and stacks sub-questions.
+
+---
+
+## [LOSS] Dylan Patel
+
+**Context (recent):**
+```
+
+Eventually, you run out of stuff. But then it's a pretty smooth transition from that into Chinese history, Taiwanese history. People started calling me Chinanometry. I didn't like that. So I moved to other parts of Asia.
+
+Dwarkesh Patel: What year did people start watching your videos? Let's say like a thousand views per video or something?
+
+Jon Y: Oh my gosh, I started the channel in 2017 and it wasn't until 2018 or 2019 that it actually… I labored on for the first three years with no one watching. I got like 200 views and I'd be like, "Oh, this is great."
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** When you say TSMC doesn’t need 2nm for Apple, but they’re building it anyway—how much of that capacity is being reserved or pre-ordered by AI companies right now? Is there a formal process for that?
+
+**Reference (Dwarkesh):** Were the videos basically like the ones you have now? Sorry, backing up for the audience who might not know, I imagine basically everybody knows Asianometry, but if you don't it's the most popular channel about semiconductors, Asian business history, business history in general, geopolitics, history and so forth. Honestly, I've done research for different AI guests and different things I'm trying to understand. How does hardware work? How does AI work?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A is a non-sequitur jumping back to semiconductor topics mid-conversation about Jon's origin story, while B naturally follows the current thread by asking about the early videos and providing helpful audience context about Asianometry.
+> Candidate A at least follows the current thread about Jon's origin story (asking whether the early videos resembled current ones), while Candidate B abruptly pivots away from the open origin-story thread back to semiconductor manufacturing topics already covered earlier, breaking the conversational 
+
+---
+
+## [LOSS] Jacob Kimmel
+
+**Context (recent):**
+```
+
+Another prominent way people go after this is using viral vectors. The basic idea being viruses had a lot of evolutionary history and very large population sizes. They've evolved to get into our cells. Maybe we can learn something from them, even better than Trojan horses. One type of virus people use a lot is called an AAV. Those AAVs carry DNA genomes. You can get genes, whole genes, into cells. They've got some packaging sizes. You can think of it like a very small delivery truck, so you can't put everything you want into it. They can go to certain cell types as well. On top of just where you actually get the nucleic acid to begin with, you can engineer the sequences a bit, and that basically allows you to add a NOT gate on it. You can make it turn off the nucleic acid in certain cell types, but you're never going to use the sequence engineering to get nucleic acid into cells where it didn't get delivered in the first place. You can start broad with your delivery vector and then use sequence to narrow down to make it more specific, but not the other way around.
+
+Both of those methods are super promising. If nothing else emerged for decades, we'd still have tons and tons of problems as a therapeutic development community to solve, even using just those.
+
+I have one very controversial opinion which people can roast me for later.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said viral vectors are a promising delivery method, but AAVs in particular have this packaging limit—how do you fit multiple transcription factors into such a small delivery truck, especially if you need several for reprogramming?
+
+**Reference (Dwarkesh):** You have just one? You're trying to solve aging and you have only one?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B naturally capitalizes on the guest's deliberate tease ('one very controversial opinion'), while A just drills into a packaging-limit detail the guest already mentioned, adding no new angle.
+> Candidate A naturally picks up on the guest's explicit tease about a controversial opinion, while Candidate B ignores that conversational hook to ask a technical question that could be raised at any time.
+
+---
+
+## [LOSS] Trenton Bricken
+
+**Context (recent):**
+```
+
+Trenton Bricken: The thing that most readily comes to mind is the MATS program for AI research. And this seems like it's just been incredibly successful at giving people the time, the funding and the social status justification, to do AI safety relevant research with mentors.
+
+Dwarkesh Patel: Oh, and you, you have a similar program…
+
+Trenton Bricken: We have the Anthropic Fellows Program.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You mentioned the MATS program and Anthropic Fellows as models for identifying and accelerating talent—what’s one thing those programs get wrong about how they select or develop people?
+
+**Reference (Dwarkesh):** That's right, yeah. And I know you're probably selecting for a slightly different thing, but I assume it's gonna be power law dominated. And have you noticed a pattern among the, whether it's the MATS fellows or your fellows, who is just like, "This made the whole thing worth it"?
+
+What's your first take on something?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B asks a genuinely curious, specific question about what patterns distinguish top fellows in these programs, while A forces a negative critique of programs that were just praised, manufacturing tension rather than following natural curiosity.
+> B manufactures a contrarian tension by asking what these programs get 'wrong' right after the guest praised them as 'incredibly successful,' while A naturally follows the guest's enthusiasm by asking for concrete patterns of success—a genuinely curious question that could yield real insight.
+
+---
+
+## [LOSS] François Chollet
+
+**Context (recent):**
+```
+
+All of our thoughts, everything we do, is a mixture of interpolated memorization-based thinking, Type 1 thinking, and Type 2 thinking.
+
+Dwarkesh Patel: Why are bigger models more sample efficient?
+
+François Chollet: Because they have more reusable building blocks that they can lean on to pick up new patterns in their training data.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If bigger models are just better at recombining building blocks, what actually changes when you go from recombination to genuine on-the-fly program synthesis? Is it a difference in kind or just degree?
+
+**Reference (Dwarkesh):** Does that pattern keep continuing as you keep getting bigger and bigger?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate B is a short, naturally curious follow-up to what Chollet just said, while Candidate A is a convoluted clause-stacking question that manufactures a tension between recombination and program synthesis and asks an abstract philosophical distinction that's unlikely to yield a concrete answer.
+> Candidate A is a short, natural follow-up that directly probes the limits of what Chollet just claimed, while Candidate B manufactures a tension between 'recombination' and 'genuine program synthesis' that sounds sophisticated but is convoluted and asks Chollet to solve an open definitional boundary
+
+---
+
+## [LOSS] Paul Christiano
+
+**Context (recent):**
+```
+
+Paul Christiano: Sure. So I guess the motivating. Question. It’s like, what should AI labs be doing right now to manage risk and to sort of build good habits or practices for managed risk into the future? I think my take is that current systems pose, from a catastrophic risk perspective, not that much risk today that is a failure to control or understand. GPT 4 can have real harms, but doesn’t have much harm with respect to the kind of takeover risk I’m worried about, or even much catastrophic harm with respect to misuse. So I think if you want to manage catastrophic harms, I think right now you don’t need to be that careful with GBT Four. And so to the extent you’re like, what should labs do? I think the single most important thing seems like understand whether that’s the case. Notice when that stops being the case, have a reasonable roadmap for what you’re actually going to do when that stops being the case. So that motivates this set of policies, which I’ve sort of been pushing for labs to adopt, which is saying, here’s what we’re looking for, here’s some threats we’re concerned about, here’s some capabilities that we’re measuring, here’s the level, here’s the actual concrete measurement results that would suggest to us that those threats are real. Here’s the action we would take in response to observing those capabilities if we couldn’t take those actions, like, if we’ve said that we’re going to secure the weights, but we’re not able to do that, we’re going to pause until we can take those actions. Yeah. So this sort of again, I think it’s motivated primarily, but what should you be doing as a lab to manage catastrophic risk now in a way that’s like a reasonable precedent and habit and policy for continuing to implement into the future?
+
+Dwarkesh Patel: And which labs I don’t know if this is public yet, but which labs are cooperating on this?
+
+Paul Christiano: Yeah. So Anthropic has written this document their current responsible scaling policy, and then have been talking with other folks, I guess don’t really want to comment on other conversations, but I think in general, people who are more interested in or more think you have plausible catastrophic harms on, like, a five year timeline are more interested in this. And there’s not that long a list of suspects like that.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said you're not that concerned about GPT-4 level systems from a catastrophic risk perspective, but how do you know when that changes? You can't just rely on qualitative impressions—what specific capability threshold would make you say, "Now we're in a danger zone"?
+
+**Reference (Dwarkesh):** There’s not that many laps. Okay, so if these companies would be willing to coordinate and say, at these different benchmarks, we’re going to make sure we have these safeguards, what happens? I mean, there are other companies and other countries which care less about this. Are you just slowing down the companies that are most aligned?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A parrots what Christiano just explained (he already described capability thresholds and measurement results), while B raises a genuinely important and unaddressed concern about coordination—whether responsible scaling just slows down the most aligned labs.
+> Candidate B asks Paul to specify capability thresholds, which he just finished explaining is the whole point of responsible scaling policies; Candidate A raises a genuinely new and important tension about competitive dynamics and coordination.
+
+---
+
+## [LOSS] Mark Zuckerberg
+
+**Context (recent):**
+```
+
+Mark Zuckerberg: Or just cause a lot of mayhem. I think the intuition is that this stuff ends up being pretty important and valuable for both economic and security reasons and other things. If someone whom you don't trust or an adversary gets something more powerful, then I think that that could be an issue. Probably the best way to mitigate that is to have good open source AI that becomes the standard and in a lot of ways can become the leader. It just ensures that it's a much more even and balanced playing field.
+
+Dwarkesh Patel: That seems plausible to me. If that works out, that would be the future I prefer. I want to understand mechanistically how the fact that there are open source AI systems in the world prevents somebody causing mayhem with their AI system? With the specific example of somebody coming with a bioweapon, is it just that we'll do a bunch of R&D in the rest of the world to figure out vaccines really fast? What's happening?
+
+Mark Zuckerberg: If you take the security one that I was talking about, I think someone with a weaker AI trying to hack into a system that is protected by a stronger AI will succeed less. In terms of software security–
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** So in the bioweapon case, is the idea that open-source AIs will help every lab rapidly develop countermeasures, or is it that they’ll help detect and monitor threats preemptively? What’s the mechanism there?
+
+**Reference (Dwarkesh):** How do we know everything in the world is like that? What if bioweapons aren't like that?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B is a short, sharp pushback that questions whether Zuckerberg's cybersecurity analogy generalizes to bioweapons—the core unresolved tension—while A is longer, leading, and offers its own candidate answers rather than just asking.
+> A is short, direct, and naturally pushes back on Zuckerberg's analogy—cybersecurity may be defense-favored, but bioweapons might not be—which is exactly the skeptical follow-up a curious interviewer would make; B is longer, more leading, and unnecessarily offers two candidate mechanisms rather than 
+
+---
+
+## [LOSS] Sholto Douglas
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: That's right. Yeah. Will we have variable compute per token?
+
+Trenton Bricken: I mean, you can already think of models... Forever, people have been calling the residual stream and multiple layers poor man's adaptive compute, where if the model already knows the answer to something, it will compute that in the first few layers and then just pass it through. I mean, that's getting into the weeds.
+
+Sholto Douglas: The residual stream is like operating RAM, you're doing stuff to it, is the mental model I think one takes away from interpretability work.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the residual stream is like RAM, and larger models are pulling more abstract features into a shared space, does that imply there's a natural limit to model size—where adding more parameters stops creating new abstractions and just refines existing ones?
+
+**Reference (Dwarkesh):** We've been talking a lot about scratchpads, them writing down their thoughts in ways in which they're already unreliable in some respects.
+
+Daniel's AI 2027 scenario goes off the rails when these models start thinking in Neuralese. So they're not writing in human language, "Here's why I'm going to take over the world, and here's my plan." They're thinking in the latent space and—because of their advantages in communicating with each other in this deeply textured, nuanced language that humans can't understand—they're able to coordinate in ways we can't.
+
+Is this the path for future models? Are they going to be, in Neuralese, communicating with themselves or with each other?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A manufactures a speculative paradox about scaling limits that doesn't naturally follow from the RAM metaphor; Candidate B directly engages the conversation's stated topic (Neuralese) and asks a genuinely important, concrete question about whether models will communicate in latent space ra
+> Candidate A directly engages the conversation's stated topic (Neuralese) with a concrete, genuinely curious question about whether models will communicate in latent space; Candidate B manufactures a scaling-limits paradox from the RAM metaphor that doesn't logically follow and pivots away from the a
+
+---
+
+## [LOSS] Satya Nadella
+
+**Context (recent):**
+```
+
+Satya Nadella: My God, it’s kind of loud.
+
+Dwarkesh Patel: Are you looking at this like, “Now I see where my money is going.”
+
+Satya Nadella: It’s like, “I run a software company. Welcome to the software company.”
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** Given how much of this is now about physical infrastructure, at what point does Microsoft start acting like a utility company rather than a software company?
+
+**Reference (Dwarkesh):** How big is the design space once you’ve decided to use the GB200s and the NVLink? How many other decisions are there to be made?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B asks a specific, genuinely curious question about the actual engineering decisions involved, while A poses a generic philosophical framing ('utility vs software company') that could be asked of any big tech CEO and manufactures a tension that isn't really there.
+> A is a specific, genuinely curious question about the actual design decisions remaining after component selection; B manufactures a tension (utility vs. software company) that's already been dissolved by Azure's existence and Satya's own joke.
+
+---
+
+## [LOSS] Patrick McKenzie
+
+**Context (recent):**
+```
+
+Assuming I’m remembering this article correctly — and it was a pivotal moment for me — The Wall Street Journal asserted that no future Americans would be hired at software companies. Assume this is true. What happens in the American software industry? Maybe I didn’t have enough knowledge to confidently predict that at the time.
+
+But I can confidently predict some things now. For example, software companies are going to break as older engineers age out and no one is coming up to replace them. The industry must hire people every year. Hiring freezes are necessarily temporary as a result of that. That’s as close to a law of physics as one can have. If you tell me something which says the laws of physics have been suspended and will be in the future, I won't agree with that.
+
+How would I learn the law of physics? I didn’t know anyone in software engineering at the time, which is partly why I was getting my advice from The Wall Street Journal. I was at a research university in the US. If I had been slightly more agentic about it, I could have found someone who knew someone in the software industry to explain this to me.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said you trusted institutions less after that experience—so what’s an institution you currently trust, and why?
+
+**Reference (Dwarkesh):** Couldn't you use that same logic to say that journalism jobs won't go down because senior journalists will have to be replaced by new journalists? It’s true, but it doesn't take that many people to study journalism. It actually would have been a bad call to major in journalism and pursue that as a career.
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> B directly challenges Patrick's 'law of physics' claim with a sharp, specific counterexample that exposes a real flaw in the reasoning (industries can shrink even while replacing retirees), whereas A pivots to a generic 'what institution do you trust' that could yield a forgettable answer.
+> Candidate A directly challenges the 'law of physics' reasoning Patrick just laid out with a concrete counterexample, while Candidate B pivots to a generic question about trusting institutions that abandons the interesting argument Patrick was building.
+
+---
+
+## [LOSS] Ilya Sutskever
+
+**Context (recent):**
+```
+
+Ilya Sutskever: The thing is that the scaling law tells you what happens to your log of your next word prediction accuracy, right? There is a whole separate challenge of linking next-word prediction accuracy to reasoning capability. I do believe that there is a link but this link is complicated. And we may find that there are other things that can give us more reasoning per unit effort. You mentioned reasoning tokens, I think they can be helpful. There can probably be some things that help.
+
+Dwarkesh Patel: Are you considering just hiring humans to generate tokens for you? Or is it all going to come from stuff that already exists out there?
+
+Ilya Sutskever: I think that relying on people to teach our models to do things, especially to make sure that they are well-behaved and they don't produce false things is an extremely sensible thing to do.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If reliability and controllability are the key emergent properties, and we can’t predict exactly when they’ll emerge, how do you decide how much to bet on them appearing in the next model scale-up versus treating them as open research problems that might require entirely new ideas?
+
+**Reference (Dwarkesh):** Isn't it odd that we have the data we needed exactly at the same time as we have the transformer at the exact same time that we have these GPUs? Like is it odd to you that all these things happened at the same time or do you not see it that way?
+
+**Judge:** tool **LOSS** — order1 B, order2 A
+> Candidate A manufactures a tension about 'reliability and controllability as key emergent properties' that Ilya never established, and is convoluted with stacked clauses; Candidate B asks a genuinely curious, simple question about the historical coincidence of data, transformers, and GPUs converging
+> Candidate B is a convoluted, clause-stacking question that manufactures a tension about 'reliability and controllability' not actually discussed in the recent turns, while A is short, direct, and genuinely curious—even if it pivots, it asks something a real person would wonder about.
+
+---
+
+## [TIE] Holden Karnofsky
+
+**Context (recent):**
+```
+
+Holden Karnofsky: I don't know. I think even then, the amount of money we'd be working with would be really small by the standards of any kind of government budget. In general, with philanthropy, I'm always looking for things where it's like, “Can we see the creation of a field? Can we fund people to introduce new ideas?” But, we're very small compared to the overall economy and the overall government. I think even multiplying everything by 10, that would still be true. I’m not sure exactly what we do with 10x as much money. I'm not even sure what we're going to do with the money that already exists.
+
+Dwarkesh Patel: Yeah, but do you think there will be more billionaires in the future and does that imply you should be spending money faster now if you are?
+
+Holden Karnofsky: In theory, we have all these models that say, “Here's our guess at how much money is eventually going to be available, and here's our guess at how many giving opportunities will eventually be there to fund. This is our guess about what's good enough to fund and what's not.” That's a very tentative guess. A lot of it is just really really, really imprecise stuff, but we have to have some view on it–– anyone who's spending money does. So, I mean, yeah, I do tend to assume that Sam Bankman Fried, Dustin Moskovitz and Cari Tuna are not the last billionaires who are interested in doing as much good as possible–– but it is really hard to model this stuff. Frankly, we have various rough models we've made over the years but we’ll also sometimes use our intuition and just say we fund the stuff that seems quite good and exciting and we don't fund stuff that doesn't. That's an input into our thinking too.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If you're right that we're in the most important century, and most people are completely unprepared for that, why isn't Open Philanthropy trying to change the Overton window on this? Why not fund massive public awareness campaigns, books, documentaries—stuff that forces society to take this seriously?
+
+**Reference (Dwarkesh):** Gotcha. How do you think about the risk that some of your giving might have negative impacts? People have brought this up in the context of your 30 million dollar investment in OpenAI, but in all sorts of context, especially when you're talking about political advocacy, people might think that the thing you do has negative side effects that counteract the positive effects. Is it just a straight calculation? How do you think about this?
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Candidate B follows naturally from the discussion about how Open Phil decides what to fund by raising a concrete, well-known concern (the OpenAI investment, negative side effects of political advocacy) and asking for their framework—whereas A presumes the answer (that massive awareness campaigns are
+> B naturally extends the conversation about scaling and spending by proposing a concrete category of action (public awareness/Overton window shifting) that Holden didn't mention, creating a genuine tension with his 'most important century' thesis; A pivots to a generic negative-impacts question that 
+
+---
+
+## [TIE] Garett Jones
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: Yep. If you look at the median voter in terms of their preferences on academic policies, it seems like they're probably more in favor of government involvement than the actual policies of the United States, for example. What explains this? Shouldn't the media voter theorem that we should be much less libertarian as a country than?
+
+Garett Jones: Yeah, that's a great point from Bryan Kaplan's excellent book on Myth of the Rational Voter. I think his stories are right, which is that politicians facing reelection have this tradeoff between giving voters what the voters say they want and giving the voters the economic growth that will help the politicians get reelected.
+
+It's a version of saying, “I don't want you to pull off the bandaid, but I want my wound to get better.” It's the politician's job to handle the contradictory demands of the voters. And by delegating authority to the elected politicians you get some of the benefits of elitism even in a so-called democracy.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the median voter wants more government intervention, and politicians give them growth instead, are politicians just systematically better at economics than the public, or are they just responding to elite consensus?
+
+**Reference (Dwarkesh):** Over the long run, should we expect all of the tensions of ethnic diversity to fade away? Nobody today worries about the different Parisian tribes in France butting heads at the workplace.
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> A merely drills into a distinction Jones already effectively answered (politicians balance voter demands vs. growth for reelection), while B makes a worthwhile pivot to a new but related thread about assimilation and ethnic diversity that Jones has written on, and asks a genuinely curious question w
+> B follows up directly on the current thread about politicians navigating voter demands, asking a specific mechanistic question about *how* they manage it, while A pivots abruptly to ethnic diversity—a generic, softball question disconnected from the ongoing discussion.
+
+---
+
+## [TIE] Bethany McLean
+
+**Context (recent):**
+```
+
+Bethany McLean: Well, I guess we, you know what? I don't know anymore because, so I last wrote about them when was it in 2016 and I don't know now. No, you're right. Their, their debt is still off, off, off balance sheet. So Yeah, in a lot of ways they, they were. . I would argue though that the old Fanny and Freddy were structured more honestly than, than the new Fanny and Freddy, that it really is conservatorship that have made them, um, that have made them America's off balance sheet entities, because at least when they were their own independent entities.
+
+Yes, there was this odd thing known as the implicit guarantee, which is when you think about, back to your point about efficient markets, how can you possibly believe there's an as such a thing as an efficient market when their [00:45:00] Fanny and Freddy had an implicit guarantee, meaning it wasn't real. There was no place where it was written down that the US government would bail Fanny and Freddie out in a crisis, and everybody denied that it existed and yet it did exist.
+
+Yeah.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said FTX and Theranos weren’t publicly traded and that helped the fraud stay hidden, but Enron was public and the fraud still worked for years—what’s the real difference between public and private markets when it comes to catching fraud? Is it just that short sellers like Jim Chanos are the actual mechanism that public markets rely on, and without them, even public companies can hide anything?
+
+**Reference (Dwarkesh):** No, but we, I feel like that confirms the official market hypothesis, right? The, the market correctly, they thought that mortgages backed by Fannie and Freddy would have governments. Uh, okay, okay. You might be father
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> Candidate B is incoherent and trails off mid-sentence ('You might be father'), while Candidate A at least poses a clear, answerable question, even if it's longer than ideal and pivots from the current Fannie/Freddie thread.
+> Candidate A directly engages with what Bethany just said about efficient markets and the implicit guarantee, offering a genuine counterpoint that would spark interesting debate, while Candidate B is a convoluted, clause-stacked pivot away from the current thread that name-drops Jim Chanos and tries 
+
+---
+
+## [TIE] Austin Vernon
+
+**Context (recent):**
+```
+
+And there are some limitations I think right now. A lot of people wouldn't use batteries and the batteries are just on the edge of good enough. You're going to have a 50 mile VTOL, not a couple hundred mile VTOL, but eventually my dream VTOL application is a nuclear power quadcopter that carries a container. So you can take the container directly from the factory in Vietnam or wherever, directly to the people who are using it or the warehouse in Arkansas or whatever.
+
+Dwarkesh Patel: Yeah. That would be interesting. Theoretically, you could have these drones that are carrying these huge payloads, weight wise.
+
+Austin Vernon: But you wouldn't necessarily want a large payload. You just want whatever the customer wants, you want to size your vehicle to deliver that payload, and that's the most efficient.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said the dream is a nuclear-powered quadcopter carrying a container, but if energy becomes super abundant, why not just make the drones bigger and more powerful instead of going all the way to nuclear?
+
+**Reference (Dwarkesh):** Oh, I see. Right. Because it doesn't need to be a shipping container or a shipping vessel where you just have it be huge. And then what does this mean for computing? If energy gets a lot cheaper, I guess if Bitcoin mining becomes, well, it doesn't necessarily become more profitable because other people's energy's cheaper too, but what are the other consequences? Is spinning up an AWS server just become trivial now and then building a deep learning model costs nothing in terms of GPU time? What impact does this have on computing?
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Candidate A manufactures a false dichotomy—nuclear IS the abundant energy source Austin is proposing, and making drones bigger worsens the energy-density problem he already explained—whereas B, despite being rambling, pivots to a genuinely interesting new thread about cheap energy's implications for
+> B is short, direct, and engages with what Austin just said about nuclear quadcopters, whereas A rambles through multiple sub-questions about computing in a convoluted pivot away from the current topic.
+
+---
+
+## [TIE] Richard Sutton
+
+**Context (recent):**
+```
+
+Richard Sutton: Are you thinking like, maybe we are like the Neanderthals that give rise to Homo sapiens. Maybe Homo sapiens will give rise to a new group of people.
+
+Dwarkesh Patel: Something like that. I’m basically taking the example you’re giving. Even if we consider them part of humanity, I don’t think that necessarily means that we should feel super comfortable.
+
+Richard Sutton: Kinship.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If we’re designing intelligences that can design other intelligences, and we’re already seeing how hard it is to maintain coherence in values across just one generation of human parents and children, what makes you think we can do better with AI?
+
+**Reference (Dwarkesh):** Like Nazis were humans, right? If we thought, “Oh, the future generation will be Nazis, I think we’d be quite concerned about just handing off power to them.” So I agree that this is not super dissimilar to worrying about more capable future humans, but I don’t think that addresses a lot of the concerns people might have about this level of power being attained this fast with entities we don’t fully understand.
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> B directly engages with Sutton's 'Kinship' point by offering a concrete counterexample (Nazis were human/kin, yet we'd fear them as successors), while A pivots to a different argument about value coherence and stacks clauses in a convoluted way.
+> Candidate A is more of a statement than a question and uses an inflammatory Nazi analogy that could derail the conversation, while B asks a genuine, specific question that naturally extends the kinship/parent-child analogy Sutton just introduced.
+
+---
+
+## [TIE] Andy Matuschak
+
+**Context (recent):**
+```
+
+Andy Matuschak: I guess what I'm saying is something like, if that were true, and there are like a bunch of people who are now astrophysicists or something, it's not clear to me actually that they would have been good teachers. Being a good teacher is often about empathy and effective communication and care. It's very personal. It's very intimate. You need to understand the subject but to teach a 15 year old or something, you actually don't need to understand it at a postgraduate level necessarily. It's very interesting to see that there's a bunch of studies of the impact of domain knowledge on teaching efficacy. I've read some in math, I'm sure they exist in all fields. And one of the things that comes up is like, if you aren't very familiar or comfortable in math, then you will struggle specifically to do inquiry oriented classes, classes that are more about creative ways of thinking with math, or open ended problems, as opposed to like here's how to do this algorithm. Because to conduct those kinds of classes, you have to be able to think on your feet. You pose a difficult question to which there may not be just one appropriate answer and your students will throw all kinds of stuff at you. And you have to be able to take that stuff and integrate it and show how one student's answer relates to another student's answer and show how those conceptions can be built upon in order to produce some useful understanding for what you had in mind. Anyway, this kind of improvisation requires a mathematical familiarity and ability. But I don't think it requires anything like extraordinary ability.
+
+Dwarkesh Patel: Yeah, but more than the extraordinary have been pulled out of teaching as a consequence.
+
+Andy Matuschak: Yeah, I guess I'm just wondering what the correlation is. If it's the case that actually effective teaching is mostly about empathy, then maybe it's anti-correlated. Like the people who are going to be good particle physicists are actually like they wouldn't make good teachers anyway. Maybe.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the ceiling hasn’t moved, and the production function for a von Neumann hasn’t changed, is the bottleneck just that we’re not identifying the top 0.001% early enough and giving them aristocratic tutoring, or is the bottleneck in the supply of people who can even deliver that tutoring?
+
+**Reference (Dwarkesh):** Interesting. Why hasn't hypertext changed how people write more? Often I write a blog post and I actually do wonder how much different it is with the knowledge that I can add footnotes and I can link to things. I'm actually kind of a fan of how Wikipedia organizes content. It is genuinely surprising how often the best explanation of a subject is just this resource that is trying to explain every single subject. Because there's this practice of you don't need to do exposition in every single topic. You can just hide it behind links and things like that. Anyway, so why hasn't hypertext changed online writing more?
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Candidate A is a convoluted, clause-stacking question that name-drops von Neumann and 'aristocratic tutoring' to sound deep, while Candidate B is a natural, genuinely curious pivot to Andy's core expertise in hypertext, asked simply and directly.
+> B stays on the current thread about teaching talent and asks a specific, answerable either/or question about bottlenecks; A pivots abruptly to hypertext with a long, rambling setup that abandons the active conversation.
+
+---
+
+## [TIE] Scott Alexander
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: It seems like in the whole scenario a big part of why certain things happen is because of this race with China. And if you read the scenarios, basically the difference between the one where things go well and the one where things don’t go well is whether we decide to slow down despite that risk.
+
+I guess the question I really want to know the answer to is like one, it just seems like you’re saying, well, it’s a mistake to try to race against China or to race intensely against China, at least in nationalization and at least to us, not prioritizing alignment.
+
+Daniel Kokotajlo: Not saying that. I mean, I also don’t want China to get the superintelligence before the US. That’s quite bad. Yeah, it’s a tricky thing that we’re going to have to do. People ask about P(doom), right? And my P(doom) is sort of infamously high, like 70%.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said your p(doom) is 70% — what specific failure mode does that number actually track? Is it one big moment, or a thousand small compromises?
+
+**Reference (Dwarkesh):** Oh, wait, really? Maybe I should have asked you that at the beginning of the conversation.
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Candidate B is a natural, genuinely surprised reaction to a striking claim (70% P(doom)), the kind of thing a real interviewer would blurt out; Candidate A manufactures a binary frame ('one big moment vs. thousand small compromises') that sounds deep but constrains the guest's answer before they've 
+> Candidate A is just a conversational reaction that doesn't ask a question and risks a dead-end response; Candidate B, despite a slightly manufactured binary, actually probes what drives the 70% number and moves the conversation forward.
+
+---
+
+## [TIE] Leopold Aschenbrenner
+
+**Context (recent):**
+```
+
+Leopold Aschenbrenner: The US, and the leading labs in the United States, have this huge lead. By default, China actually has some good LLMs because they're just using open source code, like Llama. People really underrate both the divergence on algorithmic progress and the lead the US would have by default because all this stuff was published until recently.
+
+Look at Chinchilla Scaling laws, MoE papers, transformers. All that stuff was published. That's why open source is good and why China can make some good models. Now, they're not publishing it anymore. If we actually kept it secret, it would be a huge edge.
+
+To your point about tacit knowledge and Alec Radford, there's another layer at the bottom that is something about large-scale engineering work to make these big training runs work. That is a little bit more like tacit knowledge, but China will be able to figure that out. It's engineering schlep, and they're going to figure out how to do it.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the core insight is something like “use self-play RL to get past the data wall,” and that’s not that complicated, why wouldn’t China just figure it out on their own even if we keep the weights and the code secret?
+
+**Reference (Dwarkesh):** Why can't they figure that out, but not how to get the RL thing working?
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> Candidate A directly challenges the tension in Leopold's argument—if the core insight is simple ('not that hard'), secrecy won't help because China can rediscover it—while Candidate B is confusingly phrased and less complete.
+> A asks the same sharp, genuinely curious follow-up as B but in a fraction of the words — B pads it out with assumed specifics and clause-stacking that adds no real value.
+
+---
+
+## [TIE] Lars Doucet
+
+**Context (recent):**
+```
+
+Lars Doucet: - 01:16:30:
+
+I've actually written a policy paper on how to apply the theories of land value tax to virtual worlds. The question with virtual real estate is when does something actually operate like a land-like asset? And then to what extent do Georgist principles apply? That doesn't necessarily mean to just do LVT.
+
+First of all, let me define what I mean by a land-like asset. A land-like asset has three properties. It is scarce in supply. It is necessary for production. And it obtains locational value by virtue of its position in some kind of graph. As an example, I create a fictional MMO and I give the example of a unicorn, a permit, and a plot of land. The unicorn is scarce, but it's not necessary for production. Any value you can get from the unicorn, you can get some other ways. It's really nice to have and there's only like 10,000 on the server. A permit is like a permit to brew potions. You're part of the witches guild. You can brew potions. My apprentice witch has to pay rent to me to gain access to my permit to be allowed to brew potions, but all permits are fungible. So there's no locational value. And then a plot of land like we've talked about. So this becomes the real speculative asset. Domain names are probably the closest thing to this. Vitalik Buterin has actually written a post about how to apply Georgist theory to domain names and also all the wrinkles that are involved.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You mentioned domain names as a pure example of a land-like asset—what would a land value tax even look like there? How do you tax the value of a .com when the only thing backing it is the expectation that someone else will pay more for it later?
+
+**Reference (Dwarkesh):** - 01:17:55:
+
+By the way, he did this on your blog, right? As a guest post.
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> Candidate A follows up on the interesting substantive point about domain names with a genuine, specific question about implementation; Candidate B is a trivial factual clarification that goes nowhere.
+> Candidate B manufactures a false tension by claiming domain names are only backed by speculative expectation, contradicting Lars's own explanation that they have locational value; A is a minor factual follow-up but at least genuine and natural.
+
+---
+
+## [TIE] Will MacAskill
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: When people think of somebody like Norman Borlaug and the Green Revolution. It's like, “If you could have done something that, you'd be the greatest person in the 20th century.” Obviously, he's still a very good man, but would that not be our view? Do you think the green revolution would have happened anyways?
+
+Will MacAskill: Yes. Norman Borlaug is sometimes credited with saving a billion lives. He was huge. He was a good force for the world. Had Norman Borlaug not existed, I don’t think a billion people would have died. Rather, similar developments would have happened shortly afterwards.
+
+Perhaps he saved tens of millions of lives—and that's a lot of lives for a person to save. But, it's not as many as simply saying, “Oh, this tech was used by a billion people who would have otherwise been at risk of starvation.” In fact, not long afterwards, there were similar kinds of agricultural development.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If moral progress is fragile and technological progress is robust, why focus on steering technology rather than reshaping moral values? Wouldn’t changing what people care about have a much bigger long-term impact?
+
+**Reference (Dwarkesh):** What kind of profession or career choice tends to lead to the highest counterfactual impact? Is it moral philosophers?
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> Candidate A directly draws out a genuine tension from Will's own framework—if moral progress is contingent and tech is robust, shouldn't we focus on moral change rather than tech steering?—while Candidate B asks a generic EA career question that could be asked of anyone in the community.
+> Candidate A follows naturally from the discussion about contingency—if tech progress is robust and moral progress is contingent, the career-impact question is genuinely curious and direct; Candidate B manufactures a false tension by assuming Will focuses on steering technology when much of his work 
+
+---
+
+## [TIE] Sergey Levine
+
+**Context (recent):**
+```
+
+What we will have is a bunch of things that good, effective robots need to satisfy. Just like good smartphones need to have a touchscreen. That's something that we all agreed on. Then they’ll need a bunch of other stuff that's optional, depending on the need, depending on the cost point, et cetera. There will be a lot of innovation where once we have very capable AI systems that can be plugged into any robot to endow it with some basic level of intelligence, then lots of different people can innovate on how to get the robot hardware to be optimal for each niche.
+
+Dwarkesh Patel: In terms of manufacturers, is there some Nvidia of robotics?
+
+Sergey Levine: Not right now. Maybe there will be someday. Maybe I'm being idealistic, but I would really like to see a world where there's a lot of heterogeneity in robots.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You mentioned that robots don’t need to look like people — they can be 100 feet tall or tiny — but if the minimal package for general-purpose manipulation is just two fingers and basic vision, isn’t there strong pressure toward a dominant design, like the smartphone? Why wouldn’t one company win by standardizing the most cost-effective general-purpose robot?
+
+**Reference (Dwarkesh):** What is the biggest bottleneck in the hardware today as somebody who's designing the algorithms that run on it?
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> A uses Sergey's own smartphone analogy to push back on his heterogeneity claim—smartphones converged on a dominant design, so why wouldn't robots?—which is a genuine tension worth probing, while B is a generic bottleneck question that abandons the active thread.
+> Candidate A is short, direct, and genuinely curious about a practical implication of Sergey's 'minimal package' framing, while Candidate B manufactures a tension that Sergey already addressed with his own smartphone analogy and does so in a convoluted, clause-stacking way.
+
+---
+
+## [TIE] Lewis Bollard
+
+**Context (recent):**
+```
+
+Lewis Bollard: It's mixed. So far globally, wealth has heavily correlated with more suffering. The drive of people getting richer has led to them eating far more meat and far more of that coming from factory farming. We have overwhelmingly seen that trend across all countries.
+
+In a few European countries, we are starting to see the dynamic where once countries have reached a certain degree of wealth, they are able to bring about reforms that actually reduce the total amount of suffering. I think it is quite likely that Germany has passed the top of that curve and is now on the other side of diminishing total animal suffering.
+
+The critical thing to bear in mind is that this does not happen on its own. In Germany, this happened because there are very talented advocates who harnessed that public opinion and concern to drive corporate reforms to the retailers and to drive government policy reforms. We need to do that. I don't think you can just count that people are going to get to a certain degree of wealth and this is going to happen. I think it only happens if there is advocacy to mobilize that public opinion.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If Germany is past the peak of the Kuznets curve, why hasn’t that happened in the US, where wealth and awareness are both higher? Is it just the strength of the meat lobby?
+
+**Reference (Dwarkesh):** A difficulty that these animal welfare policies have had is that even if you outlaw a practice domestically, to the extent that it's cheaper to produce meat that way, people will just import meat produced that way that is made elsewhere. States in the US who have tried to do this have had this problem. Countries in Europe that have tried to do this have had this problem. How do you solve the lowest common denominator problem in animal welfare standards?
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> A directly reacts to what the guest just said about Germany passing the Kuznets peak by naturally asking why the US hasn't followed, tying back to the episode's core topic (the meat lobby); B pivots to a generic trade/import problem that, while valid, is longer and less connected to the immediate th
+> Candidate A raises a genuinely new and important practical challenge (import competition undermining domestic reforms) that follows naturally from the Germany discussion, while Candidate B asks a somewhat generic question that ignores Lewis's just-stated point that wealth alone doesn't do it—advocac
+
+---
+
+## [TIE] Sam Bankman-Fried
+
+**Context (recent):**
+```
+
+Sam Bankman-Fried: At some point, I think that's probably true.
+
+Dwarkesh Patel: Continuing on the theme of politics, when is it more effective to give the marginal million dollars to a political campaign or institution to make some change at the government level (like putting in early detection)? Or when is it more effective to fund it yourself?
+
+Sam Bankman-Fried: It's a good question. It's not necessarily mutually exclusive. One thing worth looking at is the scale of the things that need to happen. How much are things like international cooperation important for it? When you look at pandemic prevention, we're talking tens of billions of dollars of scale necessary to start putting this infrastructure in place. So it's a pretty big scale thing—which is hard to fund to that level individually. It’s also something where we’re going to need to have cooperation between different countries on, for example, what their surveillance for new pathogens looks like. And vaccine distribution If some countries have a great distribution of vaccines and others don't, that's not good. It's both not fair and not equitable for the countries that get hit hardest. But also, in a global pandemic, it's going to spread. You need global coverage. That's another reason that government has to be involved, at least to some extent, in the efforts.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** So if government involvement is necessary for problems at that scale, does that mean your theory of change has shifted from funding direct interventions to trying to influence policy—even if the marginal return on political giving seems low?
+
+**Reference (Dwarkesh):** Let's talk about Future Fund. As you know, there are already many existing Effective Altruist organizations that do donations. What is the reason you thought there was more value in creating a new one? What's your edge?
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Candidate A manufactures a tension about a 'shift in theory of change' that SBF never claimed and stacks clauses awkwardly, while B asks a short, specific, genuinely curious question about SBF's actual institutional decisions and competitive edge.
+> Candidate B directly follows the thread of conversation—SBF just explained why government involvement is necessary at scale, and the natural question is whether that shifts his approach, whereas Candidate A pivots to a generic question about Future Fund that could be asked at any time.
+
+---
+
+## [TIE] Tony Blair
+
+**Context (recent):**
+```
+
+To begin with, there was one very difficult question. To what degree do you try and shut the place down in order to get rid of the disease? You had various approaches to that, but that's one very difficult question. Most governments try to strike a middle course, to do restrictions but then ease them up over time.
+
+Then you have the issue of vaccination. Normally with drugs it takes you years to trial a drug. You had to accelerate all of that. That was done to be fair. But then you have to distribute it. That is also a major challenge.
+
+Part of the problem was that governments weren't sure where to go for advice. They had scientific advice and medical advice. They had to balance that with the needs of their economy and the anxiety a lot of people had. They felt that when you were having a large shutdown, they were going to be hugely disadvantaged as indeed people were. There's an argument for saying for the developing world that lockdowns probably did more harm than good.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You mentioned governments struggled to balance health, economic, and social costs during COVID — but with AI, the risks are more opaque and the timeline more uncertain. How do you prevent the same pattern of delayed, half-measured responses when the crisis isn’t visibly killing people, but could still reshape power, truth, or security?
+
+**Reference (Dwarkesh):** It sounds like you're saying that they made the trade-off you're describing in the wrong way. They could have gone heavier on the testing and vaccination rollout so that the lockdowns could have been avoided and fundamentally more people's lives could have been saved.
+
+In some fundamental sense, the pandemic is a simpler problem to deal with than an AI crisis in a technical sense. Yes, you have to fast-track the vaccines, but it's a thing we've dealt with before. There are vaccines and you roll them out. If the government can't get that right, how worried should we be about their ability to deal with AI risk?
+
+Should we then just be fundamentally averse to a government-led answer to the solution? Should we hope the private sector can solve this because the government was so bad at COVID?
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> B asks a concrete, genuinely curious question—whether government's COVID performance should make us averse to government-led AI solutions—while A is a convoluted, manufactured-tension question that paraphrases Blair and puts words in his mouth with 'delayed, half-measured responses,' which he never 
+> A stacks multiple sub-questions and mischaracterizes Blair's balanced take as saying they got the trade-off wrong, while B asks one focused, genuinely interesting question about how government avoids half-measures when AI risks are invisible—reacting to the actual discussion and making a worthwhile 
+
+---
+
+## [TIE] Andrew Roberts
+
+**Context (recent):**
+```
+
+Andrew Roberts: Because we recognize that the skills you need in peace are completely different from the ones you need in war. And what the Labor Party was offering in 1945, for example, this sort of New Jerusalem of socialism and the welfare state and nationalizing the Bank of England and free stuff, essentially national Health Service was going to be given by Clement Attlee. But although much of that actually was going to be done by Winston Churchill as well, they recognized that the Conservatives didn’t have their heart in it in the same way that the socialists did. So it’s completely rational, isn’t it, in a democratic country to go for when you’ve got a choice of leaders to go for the one who’s going to lead you through the peace, however well the person who led you through the war did.
+
+Dwarkesh Patel: Although that particular example of socialism in Britain doesn’t seem like the rational choice for the British population to have made.
+
+Andrew Roberts: Well, it did after six years of grueling warfare, where people wanted to have a sort of more healthy and better life, and they assumed that socialism was going to be able to do that for them. It took us half a century before we grew out of that particular miasma.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the British public in 1945 was wrong to replace Churchill, and you’re saying it was rational at the time, does that mean democratic electorates are systematically bad at making this trade-off between wartime and peacetime leadership?
+
+**Reference (Dwarkesh):** Now let’s talk about future wars, which is something interesting that you and General Petraeus survey. In your most recent book, you mentioned that the balance of power has shifted more towards defense than offense recently. Why is that?
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Candidate A mischaracterizes what Roberts said (he didn't say the British public was wrong to replace Churchill) and manufactures a tension that isn't quite there, while B is short, specific, and asks about something concrete from Roberts's actual work.
+> B stays on the compelling thread about democratic electorates and wartime vs. peacetime leadership, probing a genuine tension in Roberts' own position (he called the choice 'rational' yet acknowledged it took half a century to recover from), whereas A abandons an active conversation for a topic-chan
+
+---
+
+## [TIE] Satya Nadella
+
+**Context (recent):**
+```
+
+But after having triaged my email, give me a higher-level cognitive labor task of, "Hey, these are the three drafts I really want you to review." That's a different abstraction.
+
+Dwarkesh Patel: But will AI ever get to the second thing?
+
+Satya Nadella: It may, but as soon as it gets to that second thing, there will be a third thing. Why are we thinking that somehow, when we have dealt with tools that have changed what cognitive labor is in history, why are we worried that all cognitive labor will go away?
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the nature of cognitive labor just keeps shifting upward, what’s the one task you’re doing now that you think will still require a human in 10 years?
+
+**Reference (Dwarkesh):** I'm sure you've heard these examples before, but the idea that horses can still be good for certain things, there are certain terrains you can't take a car on. But the idea that you're going to see horses around the street, they’re going to employ millions of horses, it’s just not happening.
+
+And then the idea is, could a similar thing happen with humans?
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> Candidate A is short, direct, and genuinely curious—it takes Nadella's own framework and asks him to put a concrete stake in the ground, while Candidate B is a rambling statement of the well-worn horses analogy that barely arrives at a question.
+> The horse analogy is the classic and most forceful counterargument to Satya's 'new tasks will always emerge' claim, and it's exactly what a curious listener would want to hear him grapple with; Candidate B is a softer personal prediction question that doesn't challenge the core argument.
+
+---
+
+## [TIE] Alex Imas
+
+**Context (recent):**
+```
+
+Alex Imas: The living forever is key. Again, we’re scenario-building here. If you could live forever, a lot of stuff changes for my story as well. To your point about rich people not consuming a lot and investing, this will all depend on the returns to capital. Right now, the returns to data centers are super high, but if we get into a situation where people are satiated with capital, then the returns to accumulating capital are going to be lower. Then these rich people are going to be consuming more, because the incentive to invest is smaller.
+
+Basically, you think about the general equilibrium of this sort of process… We have gotten tremendously richer since 1820. Many more people are investing, but you’re still getting a consumption response which keeps people employed and labor share high. That’s because—
+
+Phil Trammell: Hold on.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** But if returns to capital do stay high, does that imply the people who don’t satiate in capital will just end up owning everything, and everyone else gets priced out of the economy?
+
+**Reference (Dwarkesh):** Wait, not necessarily. I think you’re probably making the same point. It could be that their investment has to be titrated through actual laborers who have to do things for their investment to work. In the future, only the consumption is human-mediated, right? Because the investment can just be done by the robots.
+
+**Judge:** tool **TIE** — order1 A, order2 A
+> A is a short, clear, genuinely curious follow-up that presses on the key vulnerability of Alex's equilibrium story (what if returns don't fall?), while B is a convoluted statement-argument disguised as a question that stacks multiple clauses and presumes its own conclusion.
+> A directly pushes back on Alex's general-equilibrium argument with a concrete, important distinction—historically investment required human labor to implement, but with AI, investment can be robot-mediated—while B pivots to a more generic hypothetical that doesn't engage the specific mechanism Alex 
+
+---
+
+## [TIE] Nadia Asparouhova
+
+**Context (recent):**
+```
+
+I can back up a little bit there. What I associate with the Davos Wall Street kind of crowd is much more of this focus on quantitative thinking, measuring efficiency, and then also this globalist mindset. I think that the vision that they want to ensure for the world is this idea of a very interconnected world, the United Nations kind of mindset and that is really literally what the Davos gathering is.
+
+Whereas Bezos from his actions today feels much closer to the startup, Y Combinator, post-AWS kind of mindset of founders that made their money by taking these non-obvious bets on talented people. They were much less focused on credentialism and were much more into this idea of meritocracy. I think we forget how commonplace this trope is of the young founder in a dorm room. That was really popularized by the 2010s cohort of the startup elite of being someone that may have absolutely no skills, no background in industry, but can somehow turn the entire industry over on its head. And I think that was the unique insight of the tech startup crowd.
+
+When I think about just some of the things that Bezos is doing now, it feels that he identifies with that much more strongly of being this lone cowboy or having this one talented person with really great ideas who can change the world. I think about The Altos Institute, the new science initiative that he put out where he was recruiting these scientists from academic institutions and paying them really high salaries to attract the very best top scientists around the world. That's much more of that kind of mindset than it is about putting faith in existing institutions, which is what we would see from more of a Davos kind of mindset.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** But if the startup elite are defined by betting on non-obvious talent and rejecting credentialism, doesn't Bezos funding elite scientists with huge salaries actually represent a return to the old institutional model rather than the startup ethos?
+
+**Reference (Dwarkesh):** Interesting. Do you think the kids of today's tech billionaires will be future aristocrats? That they'll be tomorrow's Rockefellers? That effective altruism will be an elite aristocratic philosophy.
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> A manufactures a tension that isn't really there—paying top scientists well is perfectly consistent with the startup meritocracy ethos of attracting the best talent outside traditional institutions—while B asks a genuinely curious, short question that opens a fascinating new thread about whether tod
+> B identifies a genuine tension in Nadia's own argument—she cited Bezos recruiting credentialed scientists from elite institutions as evidence of the anti-credentialist startup ethos, which doesn't quite follow—whereas A pivots to a new topic (dynastic wealth/EA) and stacks three sub-questions togeth
+
+---
+
+## [TIE] Adam Marblestone
+
+**Context (recent):**
+```
+
+Some people certainly do think that there’s inductive biases built in the architecture that will shape the representations differently or that there are clever things that you can do. Astera, which is the same organization that employs Steve Byrnes, just launched this neuroscience project based on Doris Tsao’s work. She has some ideas about how you can build vision systems that basically require less training. They build into the assumptions of the design of the architecture things like objects are bounded by surfaces and surfaces have certain types of shapes and relationships of how they occlude each other and stuff like that. It may be possible to build more assumptions into the network. Evolution may have also put some changes of architecture. It’s just I think that also the cost functions and so on may be a key thing that it does.
+
+Dwarkesh Patel: I want to talk about this idea that you just glanced off of which was amortized inference. Maybe I should try to explain what I think it means, because I think it’s probably wrong and this will help you correct me.
+
+Adam Marblestone: It’s been a few years for me too.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the brain is doing amortized inference by learning to predict any subset of variables from any other, does that imply the training process has to be way more sample-efficient than current models, since it’s getting so much more mileage out of each data point?
+
+**Reference (Dwarkesh):** Right now, the way the models work is that you have an input, it maps it to an output, and this is amortizing a process, the real process, which we think is what intelligence is. It’s that you have some prior over how the world could be, what are the causes that make the world the way that it is. And then when you see some observation, you should be like, “Okay, here’s all the ways the world could be. This cause explains what’s happening best.”
+
+Now, doing this calculation over every possible cause is computationally intractable. So then you just have to sample like, “Oh, here’s a potential cause. Does this explain this observation? No, forget it. Let’s keep sampling.” And then eventually you get the cause, then the cause explains the observation, and then this becomes your posterior.
+
+**Judge:** tool **TIE** — order1 B, order2 B
+> Dwarkesh literally just said 'Maybe I should try to explain what I think it means' — Candidate B follows through on that promise by laying out his understanding for correction, while Candidate A jumps ahead to ask about sample-efficiency implications before the concept is even established.
+> Candidate A is a long monologue explaining a concept without actually asking a question, while B poses a specific, genuinely curious question about the sample-efficiency implications of amortized inference that naturally advances the conversation.
+
+---
+
+## [WIN] Eric Jang
+
+**Context (recent):**
+```
+
+Eric Jang: Or automating AI research.
+
+Dwarkesh Patel: Which is the real crux, the scary/incredible thing of making AIs make future versions of AIs. You’re suggesting the outer loop here could just be your win rate against KataGo?
+
+Eric Jang: That’s one of them. I think there are a lot of deeper questions that one could tackle. For example, let’s say you have an idea on how to improve a scaling-law compute multiplier. The outcome isn’t necessarily “achieve the best Go bot ever”. The outcome might just be, “Can I predict what the win rate of my Go bot will be?” Or, “Can I predict the scaling-law plots that emerge from my idea?” But then you can verify that you haven’t reward-hacked anything by using a very verifiable game like Go on the outer loop.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** You said the AI is bad at choosing the next research direction, but you also said Go is a good outer loop for testing automated science. If the outer loop is so clear—win rate against KataGo—why can’t the AI just keep iterating on whatever gets that number up? Why does it still fail to pick the right next step?
+
+**Reference (Dwarkesh):** I think there are a couple of interesting follow-on questions. There are questions on the inner loop and the outer loop. On the inner loop, there’s a question of how locally verifiable any modification you might make is. That is to say, would you know whether some idea you try out is actually an improvement or a degradation? Would you know if something isn’t working as a result of a bug, or is it the result of the idea itself being wrong?
+
+Ilya was talking about how one of the things he thinks makes him a good researcher is that he has a strong belief in what the correct idea is. He’s able to persevere through bugs and know which things are bugs versus mistakes in the fundamental idea, based on his high-level belief that “this idea should work, so therefore there has to be a bug”, versus the other way around. Why don’t we start with that question? How locally verifiable are things which are good ideas?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A is short, direct, and pinpoints a genuine tension in what Eric just said; Candidate B is a convoluted, clause-stacking monologue that buries its actual question under preamble and name-dropping.
+> Candidate B is short, direct, and identifies a genuine tension in what Eric just said—if the outer loop is clear and verifiable, why can't the AI just optimize against it?—whereas Candidate A is convoluted, name-drops Ilya, and stacks multiple sub-questions into one confusing prompt.
+
+---
+
+## [WIN] Nick Lane
+
+**Context (recent):**
+```
+
+I get this a lot, and it’s fair enough. Because if I assert to you that life’s going to be this way somewhere else in the universe… I grew up watching Star Wars and Star Trek and reading Hitchhiker’s Guide to the Galaxy. I love the idea that the universe is full of all kinds of stuff as much as anybody. So I don’t like my position of saying, “Actually it’s quite limited and you’re going to see the same kinds of things elsewhere.”
+
+It’s not a position that I dreamt of having. It’s just a position that I’ve been forced into by everything that I’ve learned about life on Earth. Now, maybe I’m just wrong. But if you simply say you’re limited by your imagination, you’re wrong because you can’t think of it. Well, that’s not science anymore. Now we’re talking about just imagination and hand-waving, but it’s not science.
+
+So I’m giving reasons why probabilistically it’s going to be this way. What I would say is if you’ve got a thousand planets with life on them, maybe life is going to be the same way 999 out of a thousand times because it’s going to be carbon-based, it’s going to be water, it’s going to be cells, it’s going to be charges, it’s going to be hydrogen and CO2, and you’re going to face the same constraints. But maybe one other occasion, it’s something completely different that I never thought of and under very different conditions. But there’s a probabilistic thing that carbon is so common, water is so common, you are going to keep seeing the same constraints again and again.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the bottleneck is having a small genome close to the site of energy production, why couldn’t a bacterium solve that by simply jettisoning all the unnecessary genes and keeping just a minimal genome near the membrane, instead of going through the whole endosymbiosis thing?
+
+**Reference (Dwarkesh):** If it’s the case that a significant fraction of rocky planets should have at least organics and cells and so forth, it feels like we should be able to learn pretty soon whether this story is correct, right? If that part ends up being true, and we also don’t see eukaryotes elsewhere, then the whole picture is lent a lot more credence. But are we about to go to a couple of moons and see if we can find some organics there and so forth?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> A directly engages with Lane's mechanistic argument and his challenge to think of alternatives, asking a specific, technical question about why bacteria couldn't solve the energy problem through genome reduction rather than endosymbiosis—while B is a generic 'how do we test this?' question that coul
+> Candidate B directly challenges the core mechanistic claim of Lane's argument with a specific, short, genuinely curious technical question, whereas A drifts into a generic 'when will we know if you're right?' question about upcoming missions that any guest on this topic could be asked.
+
+---
+
+## [WIN] Joe Carlsmith
+
+**Context (recent):**
+```
+
+Joe Carlsmith: The “Otherness and control” series is, in some sense, separable. It has a lot to do with misalignment stuff, but a lot of those issues are relevant even given various degrees of skepticism about some of the stuff I've been saying here.
+
+Dwarkesh Patel: By the way, on the actual mechanisms of how a takeover would happen, I did an episode with Carl Schulman which discusses this in detail. People can go check that out.
+
+Joe Carlsmith: In terms of why it is plausible that AI could take over from a given position, Carl's discussion is pretty good and gets into a bunch of the weeds that might give a more concrete sense.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If we end up in a world where multiple AIs are deployed and none are fully aligned, why should we expect their compromise to preserve humans at all, rather than just treating us like we treat chickens?
+
+**Reference (Dwarkesh):** All right. Now on to part two, where we discuss the “Otherness and Control in the Age of AGI” series. Here’s the first question. Let’s say in a hundred years time, we look back on alignment and consider it was a huge mistake. We should have just tried to build the most raw, powerful AI systems we could have. What would bring about such a judgment?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A asks a specific, vivid question about multi-agent misalignment dynamics that naturally follows the takeover discussion; Candidate B is a generic counterfactual thought experiment that could be asked of anyone and doesn't clearly lead to a productive line of inquiry.
+> B is shorter, more concrete, and asks a genuinely curious specific question about a real mechanism (multi-agent compromise), whereas A poses a manufactured counterfactual that invites vague speculation.
+
+---
+
+## [WIN] Edward Glaeser
+
+**Context (recent):**
+```
+
+Dwarkesh Patel: So you wrote a paper last year on the opioid epidemic. One of the points that you made there was that the opioid epidemic could be explained just by the demand side stuff about social isolation and joblessness. I wonder how this analysis makes you think about mass-scale automation in the future. What impact do you think that would have? Assume it’s paired with universal basic income or something like that. Do you think it would cause a tremendous increase in opioid abuse?
+
+Edward Glaeser: I would have phrased it slightly differently–– which is as opposed to the work of two amazing economists, Anne Case and Angus Deaton, who really emphasized the role of deaths of despair; we are much more focused on the supply side. WIth the demand side, meaning just the way that we handled the distribution of large-scale pain relieving medicines, we tell a story where every 30 to 50 years, someone comes up with the same sort of idea, which is we know that human beings love opioids in different forms. We also know they’re highly addicted and lead to a terrible cycle. So all of a sudden comes along this innovator says, you know what? I’ve got a new opioid and it’s safe. You don’t have to worry about getting addicted to this one. It’s magical.
+
+It won’t work. 100 years ago, that thing was called heroin. 200 years ago, that thing was called morphine. 300 years ago, that thing was called Meldonium. We have these new drugs which have come in, and they’ve never been safe. But in our case, it was OxyContin and the magic of the time relief was supposed to make it safe, and it wasn’t safe.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the supply side explains most of the opioid epidemic, why should we expect UBI to make things worse rather than just be neutral?
+
+**Reference (Dwarkesh):** There’s a lot of great work that just shows that the patterns of opioid use was related to the places that just had a lot of pain 30 years ago. Those places came with a lot of tendency to prescribe various things for pain. So when opioids came in, when OxyContin came in, those were the places that got addicted most. Now it’s also true that there are links between these economic issues. There are links with joblessness, and I basically do believe that things that create joblessness are pretty terrible and are actually much worse than income inequality. I push back against the universal basic income advocates who I think are basically engaging in a materialist fallacy of thinking that a human being’s life is shaped by their take home pay or their unearned pay.
+
+I think for most people, a job is much more than that. A job is a sense of purpose. A job is a sense of social connection. When you look at human misery and opioid use, you look at the difference between high-income earners, mid-income earners. There are differences, but they’re small. You then look at the difference between low-income earners and the jobless, then unhappiness spikes enormously, misery spikes enormously, family breakups spike enormously. So things like universal basic income, which the negative income tax experimented on in the 1970s, are the closest thing we have for its large-scale experiments in this area, which had very large effects on joblessness by just giving people money.
+
+They feel quite dangerous to me because they feel like they’re going to play into rising joblessness in America, which feels like a path for its misery. I want to just quickly deviate and some of the UBI advocates have brought together UBI in the US and UBI in the developing world. So UBI in the developing world, basically means that you give poor farmers in Sub-Saharan Africa fairly modest amounts of money. This is a totally sensible strategy.
+
+These people are not about to live life permanently not working. They’re darn poor. It’s very efficient relative to other ways of giving. I am in no sense pushing back on UBI with modest amounts of money in the poorest parts of the world. By all means, it’s been deemed to be effective. It’s just a very different thing if you’re saying I’m going to give $100 to a poor Congolese farmer, or I’m going to give $10,000 to a long-term jobless person in Eastern Kentucky. You’re not buying a PS5 for $100 in Congo.
+
+0:29:57
+
+I want to ask you about remote work. You write in The Survival of the City, that improvements in information technology can lead to more demand for face-to-face contact because FaceTime complements time spent communicating electronically. I’m curious, what distinguishes situations where FaceTime substitutes for in-person contact from situations where it complements FaceTime complements virtual contact?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A is a sharp, concise follow-up that presses Glaeser on the logical implication of his own supply-side emphasis for the original UBI question; Candidate B is not really a question but a transcript-like monologue followed by an unrelated pivot to remote work.
+> B is a sharp, short follow-up that identifies a genuine tension in Glaeser's own position—he stressed supply-side causes for opioids yet warned UBI would worsen misery—whereas A's question is convolutedly phrased and pivots away to remote work mid-thread.
+
+---
+
+## [WIN] Steve Hsu
+
+**Context (recent):**
+```
+
+Again, wokists hate this, but I can measure your IQ on a 12-minute test no problem, right? Not with perfect accuracy, but I can get instrumental measurements. If I take it the NFL has this thing called the Wonderlic—every player being considered for the draft is asked to take this Wonderlic—it's a short test, 12 minutes long, and it's pretty highly correlated (0.8 or 0.9), maybe with a more fulsome IQ measure. So, it would be trivial and inexpensive to gather this data. Once we have my prediction from this earlier math that I was talking about, when you get to a border a million, it could be 1 million or 2 million well-phenotyped people and genomes, we would be able to build a pretty decent IQ predictor that might have a standard error of maybe 10 points or something. That would be incredible for science, but not getting done.
+
+Dwarkesh Patel: Suppose there are differences in how things are tagged between different ancestral groups (I'm not talking about average differences or anything, just how the genotype is tagged). And if the Chinese do this first, then, they have an advantage that can't be transferred over, right? Because it's only applicable or advantageously applicable to their population.
+
+Steve Hsu: That's a great point. Even a small country like Singapore or Taiwan has enough data to do this. No problem for Estonia. They could do it and have this thing working and just not share it with anybody. So, it's certainly possible. Now that's a little bit too science-fictiony because the leaders who run these countries are not transhumanist rationalists people who read your blog or my blog posts on the internet. I don't think anything that exciting is going to happen. Maybe it will.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the Chinese government builds a better cognitive predictor using their data, and they use it to select for higher intelligence in embryos, how big of a lead could they get before Western countries even start?
+
+**Reference (Dwarkesh):** Do you think that the potential for pleiotropy is higher with intelligence? I mean, with certain populations? Oh, of course, by the way, they're slim or 5000 is not enough, blah blah blah. But given that you see with certain populations like Ashkenazi Jews, you have a higher incidence of nervous system disorders like Tay Sachs and other things, that seems potential to be the trade-off of higher average intelligence. Do you think that maybe pleiotropy has a higher chance of occurring with intelligence?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A is short, direct, and naturally extends the conversation about Chinese advantage into the concrete and provocative application of embryo selection; Candidate B has an interesting core question about pleiotropy but is delivered in a convoluted, rambling way with awkward dismissive filler 
+> B follows the conversation thread naturally—China building a predictor first was just discussed—and asks a concrete, specific question about the magnitude of the advantage, whereas A pivots awkwardly to pleiotropy with garbled phrasing and breaks the current line of discussion.
+
+---
+
+## [WIN] Kenneth Rogoff
+
+**Context (recent):**
+```
+
+The question is, at what point does that pain become real? As I mentioned, I think this would be catalyzed if we’re hit by a shock. In that kind of situation, it becomes easier to temporarily take back some independence from the Fed. I think it’s easier to do than people think. Given that I think shocks are going to happen—maybe AGI brings a shock we don’t yet imagine—people trust in Fed independence too much.
+
+Now, I love Fed independence. I actually wrote the first paper on why you should have an independent central bank back when there were virtually no independent central banks. I was a pawn at the Federal Reserve. I’m talking my own book when I say it’s a great idea. I don’t mean my “book” book, I mean my human capital.
+
+I like to say that the Federal Reserve fights for its independence every day. I hear senators say, “They’re idiots.” I hear people in Silicon Valley say, “They’re idiots. We should bring them under the Treasury.” I used to hear that just from progressives. But now I’ve heard that recently from some tech titans, saying things like, “Scott Bessent, the Treasury Secretary, he’s smarter than Powell. Why don’t we let him run things?” They could.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the Fed’s independence is so fragile, why hasn’t Congress already forced it to monetize more debt during moments of high spending, like during the pandemic or the 2008 crisis? What’s actually stopping them?
+
+**Reference (Dwarkesh):** It does seem like the Fed works really well as it exists now. It’s independent. Sure, there are people who criticize its actions as you say. But on the whole, it seems like a reliable institution that makes smart calls. They can be wrong, of course, but it seems so much more competent than much of the rest of government.
+
+If you wanted to replicate how the Fed works—if you wanted other parts of government to work that way—is there something we could do? Or is it more of a human capital problem than an independence problem? Like, bankers and economists are really smart. I don’t know if you could replicate that in the Department of Education or the Department of Agriculture.
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> A directly probes the tension in Rogoff's own claim—if independence is so fragile, why hasn't it already cracked?—while B meanders, takes a contrary-to-the-thread stance (reassuring Rogoff that the Fed works great when he just warned it's fragile), and pivots to a generic institutional-design questi
+> B directly probes the tension in Rogoff's claim that Fed independence is fragile by asking why it hasn't already broken during obvious moments of temptation, while A agrees with the guest and pivots to a generic question about replicating government institutions.
+
+---
+
+## [WIN] Ilya Sutskever
+
+**Context (recent):**
+```
+
+For example, human dexterity far exceeds… I mean robots can become dexterous too if you subject them to a huge amount of training in simulation. But to train a robot in the real world to quickly pick up a new skill like a person does seems very out of reach. Here you could say, “Oh yeah, locomotion. All our ancestors needed great locomotion, squirrels. So with locomotion, maybe we’ve got some unbelievable prior.”
+
+You could make the same case for vision. I believe Yann LeCun made the point that children learn to drive after 10 hours of practice, which is true. But our vision is so good. At least for me, I remember myself being a five-year-old. I was very excited about cars back then. I’m pretty sure my car recognition was more than adequate for driving already as a five-year-old. You don’t get to see that much data as a five-year-old. You spend most of your time in your parents’ house, so you have very low data diversity.
+
+But you could say maybe that’s evolution too. But in language and math and coding, probably not.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If evolution gave us priors for locomotion and vision, but not for language or math, why are models still so much worse at generalization even in those domains where we shouldn’t have a strong evolutionary advantage?
+
+**Reference (Dwarkesh):** It still seems better than models. Obviously, models are better than the average human at language, math, and coding. But are they better than the average human at learning?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> A directly follows the logical thread of Ilya's point—if evolution didn't give us priors for language/math/coding, what explains our superior generalization there?—while B is muddled, conflating performance with learning efficiency and opening with a confusing referent.
+> B directly follows up on Ilya's key concession—that evolution likely didn't give us priors for language/math/coding—and asks the natural next question: then why do humans still generalize better there? A is muddled, conflating performance with learning ability and asking a vague question.
+
+---
+
+## [WIN] Jeff Dean
+
+**Context (recent):**
+```
+
+Noam Shazeer: It really has to be a co-design thing because, if the algorithm designer doesn't realize that you can get greatly improved performance, throughput, with the lower precision, of course, the algorithm designer is going to say, "Of course, I don't want low precision. That introduces risk." And then it adds irritation.
+
+Then if you ask the chip designer, "Okay, what do you want to build?" And then they'll ask the person who's writing the algorithms today, who's going to say, "No, I don't like quantization. It's irritating." So you actually need to basically see the whole picture and figure out, "Oh, wait a minute, we can increase our throughput-to-cost ratio by a lot by quantizing."
+
+Jeff Dean: Then you're like, yes, quantization is irritating, but your model is going to be three times faster, so you're going to have to deal.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If you're going to one bit, does that mean the model is just memorizing the training set? How does generalization work at that point?
+
+**Reference (Dwarkesh):** Through your careers, at various times, you’ve worked on things that have an uncanny resemblance to what we're actually using now for generative AI. In 1990, Jeff, your senior thesis was about backpropagation. And in 2007- this is the thing that I didn’t realise until I was prepping for this episode – in 2007 you guys trained a two trillion token N-gram model for language modeling.
+
+Just walk me through when you were developing that model. Was this kind of thing in your head? What did you think you guys were doing at the time?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A follows naturally from the quantization discussion with a short, genuinely curious technical question, while Candidate B completely abandons the active thread for a long, prep-showing historical pivot.
+> Candidate B asks a short, genuinely curious follow-up that directly extends the conversation about extreme quantization, while Candidate A makes a jarring pivot to historical biography that ignores the active thread.
+
+---
+
+## [WIN] Mark Zuckerberg
+
+**Context (recent):**
+```
+
+But I don't know if that's the whole game. That's going to be a big industry, and it's going to be an important part of how AI gets developed. But I think there are still… One way to think about it is that this is a massive space. I don't think there's just going to be one company with one optimization function that serves everyone as best as possible. There are going to be a bunch of different labs doing leading work in different domains. Some will be more enterprise-focused or coding-focused. Some will be more productivity-focused. Some will be more social or entertainment-focused.
+
+Within the assistant space, there will be some that are more informational and productivity-focused, and some that are more companion-focused. It’s going to be a lot of stuff that’s just fun and entertaining and shows up in your feed.
+
+There's just a huge amount of space. Part of what's fun about going toward this AGI future is that there are a bunch of common threads for what needs to get invented, but also a lot of things that still need to be created. I think you're going to start seeing more specialization between different groups, if I had to guess.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If most code is being written by AI within 12 to 18 months, what happens to the legions of software engineers at big tech companies? Do they just get replaced, or do they become AI managers?
+
+**Reference (Dwarkesh):** It’s really interesting to me that you basically agree with the premise that there will be an intelligence explosion and we’ll get something like superintelligence on the other end. Tell me if I'm misunderstanding you. If that’s the case, why even bother with personal assistants and whatever else? Why not just get to superhuman intelligence first and then deal with everything else later?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A follows directly from Zuckerberg's point about AI writing higher-quality code than good engineers and asks a concrete, natural follow-up about labor implications; Candidate B mischaracterizes what Zuckerberg said (he never endorsed an intelligence explosion or superintelligence) and buil
+> Candidate A manufactures a position Zuckerberg didn't actually take (he never endorsed an intelligence explosion/superintelligence premise) then pushes back on that invented stance, while Candidate B is a short, direct, genuinely curious follow-up to what Zuckerberg actually just said about AI writi
+
+---
+
+## [WIN] Reiner Pope
+
+**Context (recent):**
+```
+
+Reiner Pope: Most of the decisions in chip design are sizing decisions. Already in what we’ve drawn so far… AI chips all have this circuit in them. They have a systolic array, and somewhere near it a register file providing inputs and outputs.
+
+Even within this scope, the sizing questions you have are: how big should I make my systolic array, and how big should I make the register file? These two questions are coupled. One way to think of it is to set a budget for what percentage of chip area you want to spend on data movement. Maybe I say that I want this to be 10% and the systolic array to be 90%.
+
+Then I can size my register file. Bigger register files are more flexible. They allow me to get more application-level performance out, but they take away from the area spent on the systolic array.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If bigger register files give more flexibility but take area from the systolic array, what’s a concrete example where a real model’s performance would tank if the register file were too small, even with a huge systolic array?
+
+**Reference (Dwarkesh):** Where does the clock cycle of a chip come in? What determines what that is? And what is a clock cycle of a chip?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> A directly follows up on the trade-off just described with a concrete, naturally curious question that would ground the abstract sizing discussion in a real example; B pivots abruptly to a very basic and somewhat generic question about clock cycles, stacking three sub-questions at once.
+> Candidate B directly follows up on the trade-off Reiner just described by asking for a concrete illustration, while Candidate A pivots to a very basic definitional question ('what is a clock cycle') that doesn't build on the current thread.
+
+---
+
+## [WIN] Bryan Caplan
+
+**Context (recent):**
+```
+
+Bryan Caplan: A lot of it is just not having stage fright. So I probably had just a tiny bit of stage fright at the Comedy Cellar, which normally I would have basically zero, but there it was a little bit different because it's like, “Am I going to forget something?” I actually have a joke in the set about how nothing is scarier than staying silent while thousands of people stare at you. So that was a self-referential joke that I worked in there.
+
+Dwarkesh Patel: I can't remember if it was Robin Hanson who said this, but didn't he have a theory about how the reason we have stage fright is because somehow, you're showing dominance or status, and you don't want to do that if you're not actually the most confident.
+
+Bryan Caplan: You're making a bid for status. In the ancestral environment, we're in small groups of 20-40 people. If you go and want to speak, you're saying, “I'm one of the most important people in this band here.” If you're not, or if there are a lot of people voicing that that guy is not important, then who knows? They might shove you off the cliff the next time they get a chance. So yeah, watch out.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If stage fright is about status, why do people still have it when they’re obviously high-status, like professional speakers or performers who’ve done this a hundred times?
+
+**Reference (Dwarkesh):** I wonder if this explains the cringe emotion. When somebody makes a bid for status, and it's not deserved. Okay, I want to talk about discrimination. So as you know, there's a Supreme court case about Harvard and affirmative action. You might also know that a lot of companies have filed a brief in favor of Harvard, saying that affirmative action is necessary for them to hire diverse work for ourselves, including Apple, Lyft, General Motors. So what is the explanation for corporations wanting to extend affirmative action? Or are they just saying this, but they don't want it?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate A is a short, natural follow-up that probes a genuine tension in the evolutionary status-bid explanation Caplan just offered, while Candidate B makes a jarring pivot from stage fright to corporate affirmative action briefs with only a thin, abandoned cringe connection.
+> B asks a short, genuinely curious follow-up that naturally probes the evolutionary status-bid theory Caplan just endorsed, while A abruptly pivots from an interesting cringe observation to a generic policy question about corporate affirmative action that could be asked of anyone.
+
+---
+
+## [WIN] Gwern
+
+**Context (recent):**
+```
+
+And then GPT-3 comes out and that was the crucial test. It's a big, big scale-up. It's one of the biggest scale-ups in all neural network history. Going from GPT-2 to GPT-3, that's not a super narrow specific task like Go. It really seemed like it was the crucial test. If scaling was bogus, then the GPT-3 paper should just be unimpressive and wouldn't show anything important. Whereas if scaling was true, you would just automatically be guaranteed to get so much more impressive results out of it than GPT-2.
+
+I opened up the first page, maybe the second page, and I saw the few-shot learning chart. And I'm like, “Holy shit, we are living in the scaling world. Legg and Moravec and Kurzweil were right!”
+
+And then I turned to Twitter and everyone else was like, “Oh, you know, this shows that scaling works so badly. Why, it's not even state-of-the-art!” That made me so angry I had to write all this up. Someone was wrong on the Internet.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If you were so wrong about the importance of algorithms, what else are you currently wrong about in a way that’s equally fundamental?
+
+**Reference (Dwarkesh):** I remember in 2020, people were writing bestselling books about AI. It was definitely a thing people were talking about, but people were not noticing the most salient things in retrospect: LLMs, GPT-3, scaling laws. All these people who are talking about AI but missing this crucial crux, what were they getting wrong?
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> A is short, sharp, and genuinely curious—turning Gwern's own admission of being wrong into a forward-looking self-critique question that could yield a fascinating answer; B is longer, shifts focus to explaining other people's errors (a softer, more generic target), and stacks unnecessary context abo
+> B asks a genuinely introspective and surprising question that turns Gwern's own intellectual journey back on himself, while A asks a generic 'what were others getting wrong' question that would likely yield a predictable answer about people underestimating scaling.
+
+---
+
+## [WIN] Ege Erdil
+
+**Context (recent):**
+```
+
+Ege Erdil: Or even to be discovered. There’s an aspect of it where you discover certain things by scaling up, learning by doing, that’s the [?] learning curve. And there’s this separate aspect where, suppose that you become wealthier, well, you can invest that increased wealth in, you use it to accumulate more capital, but you also can invest it in R&D and other ways.
+
+Tamay Besiroglu: You get Einstein out of the patent office. You need some amount of resources for that to make sense. And you need the economy to be of a certain scale. You also need demand for the product you’re building. So, you could have the idea, but if the economy is just too small that there isn’t enough demand for you to be specializing and producing the semiconductor or whatever, because there isn’t enough demand for it, then it doesn’t make sense.
+
+A much larger scale of an economy is useful in many ways in delivering complementary innovations and discoveries happening through serendipity, producing, having there be consumers that would actually pay enough for you to recover your fixed costs of doing all the experimentation and the invention. You need the supply chains to exist to deliver the germanium crystals that you need to grow in order to come up with the semiconductor. You need a large labor force to be able to help you do all the experiments and so on.
+```
+
+**Tool (prompt-c:Qwen3-235B-A22B-Instruct-2507):** If the thing that unlocks explosive growth is broad deployment and capital accumulation, not just algorithmic progress, why aren’t we talking about the companies that build fabs, power plants, and supply chains as the most important actors in the AI revolution?
+
+**Reference (Dwarkesh):** I think the point you’re illustrating is, “look, could you have just figured out that there was a Big Bang by first principles reasoning?” Maybe. But what actually happened is we had World War II and we discovered radio communications in order to fight and effectively communicate during the war.
+
+And then that technology helped us build radio telescopes. And then we discovered the cosmic microwave background. And then we had to come up with an explanation for the cosmic microwave background. And then we discovered the Big Bang as a result of World War II.
+
+**Judge:** tool **WIN** — order1 A, order2 B
+> Candidate B is essentially just paraphrasing the guest's point with a historical analogy—inviting a 'yes, exactly'—while Candidate A asks a concrete, genuinely curious question about the implications of their argument that could lead to substantive discussion.
+> Candidate A is essentially just agreeing with the guests and illustrating their point with an analogy—it's a statement, not a question. Candidate B takes the logic of what they just said and asks a genuinely curious, pointed follow-up about the implications for how we should think about the AI revol
+
+---

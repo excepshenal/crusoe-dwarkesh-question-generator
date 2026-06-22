@@ -14,10 +14,15 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | version | generator | train (dev) | held-out (test) | judge |
 |---------|-----------|-------------|-----------------|-------|
 | prompting_v0 | qwen3-235b · Method B, no SFT | ~18% (3-pass) | 14.7% ± 3.1% (n=60, 3-pass) | GLM-5.1 |
-| prompting_v1 | v0 + anti-"syllogism" ban (73-line prompt) | 24.2% ± 0.3% (n=73, 3-pass) | 29.7% ± 1.0% (n=60, 3-pass) | GLM-5.1 |
-| **prompting_v2** | **leaner rewrite (73→24 lines)** | **34.5% ± 2.9%** (n=73, 3-pass) | **40.0% ± 1.2%** (n=60, 3-pass) | GLM-5.1 |
+| prompting_v1 | v0 + anti-"syllogism" ban (73-line prompt) | 24.2% ± 0.3% | 29.7% ± 1.0% | GLM-5.1 |
+| prompting_v2 | leaner rewrite (73→24 lines) | 34.5% ± 2.9% | 40.0% ± 1.2% | GLM-5.1 |
+| **prompting_v3** | **v2 prompt + Method C (few-shot, k=2)** | 37% (n=61, 1 pass)* | **48.3% ± 2.0%** (n=60, 3-pass) | GLM-5.1 |
 
-**Held-out: 14.7% → 29.7% → 40.0% over two prompt iterations (no SFT).**
+\* train is no longer comparable across versions: the split was made **guest-disjoint** at v3 (train
+76→64 slugs — all episodes of held-out guests removed), so v3's train set differs from v0–v2's.
+**Held-out is the clean, unchanged comparison throughout.**
+
+**Held-out: 14.7% → 29.7% → 40.0% → 48.3% over three prompt iterations (no SFT).**
 
 - **v0 → v1:** v0 defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
   (~50/73 train losses). v1 added a concrete ban → outputs starting "If/So/Given" 63%→42%, em-dash
@@ -28,9 +33,13 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
   short questions; no syllogism *chains* anywhere; stay on the EXACT live thread, don't zoom out or
   parrot) and drops the inline examples (they were being cargo-culted). Removing rules added **+10
   points held-out** — the long rule-list was diluting attention, not constraining behavior.
-- **Still failing in v2** (judge reasons on losses): off-thread pivots (~20/46) and residual
-  convolution (~22/46). These are *disposition* issues prompting only partly moves — the cue that
-  further gains likely come from **SFT**.
+- **v2 → v3 (show, don't tell):** prompting hit the ceiling of *describing* the style (v2's losses
+  still cited off-thread pivots ~20/46 and convolution ~22/46 — disposition issues rules couldn't
+  fix). v3 switches to **Method C**: 2-3 real *(what the guest just said → what Dwarkesh actually
+  asked next)* few-shot pairs (drawn ONLY from train guests — the split is guest-disjoint, so no
+  held-out leakage). Demonstration conveyed the disposition that prose couldn't: **+8 held-out**,
+  and a jump in ties (closer calls). This is in-context SFT — and the direct motivation for **Phase 2
+  (SFT)**, which bakes the same demonstration into the weights (and drops the few-shot context cost).
 
 ## ⚠️ Noise: even temp 0 is NOT deterministic here
 

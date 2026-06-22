@@ -1,0 +1,18 @@
+{
+  "generator": "prompt-c:Qwen3-235B-A22B-Instruct-2507",
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "method": "c (few-shot, k=2, train-only)",
+  "temperature": 0.0,
+  "split": "heldout",
+  "opponent": "Dwarkesh",
+  "judge": "judge:GLM-5.1",
+  "n_per_pass": 60,
+  "passes": 3,
+  "win_rate_mean": 0.4833,
+  "win_rate_std": 0.0204,
+  "per_pass_win_rates": [
+    0.4583,
+    0.4833,
+    0.5083
+  ]
+}

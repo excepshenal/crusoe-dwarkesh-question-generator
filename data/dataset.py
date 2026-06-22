@@ -169,13 +169,15 @@ def sample_few_shots(
     max_shot_transcript_chars: int | None = 4000,
     max_shot_research_chars: int | None = 4000,
 ) -> list[FewShot]:
-    """Build k few-shot examples from transcripts other than `exclude_slug`.
+    """Build k few-shot examples from TRAIN transcripts other than `exclude_slug`.
 
-    Shots are truncated (transcript tail, research head) so Method C stays within
-    smaller context windows; pass None to disable when the generator allows it.
+    Shots are drawn only from the train split — never the held-out set — so few-shot eval on
+    held-out cards can't leak real Dwarkesh questions from the test distribution. Shots are
+    truncated (transcript tail, research head) to stay within context; pass None to disable.
     """
     rng = random.Random(seed)
-    slugs = [s for s in iter_slugs() if s != exclude_slug]
+    train, _ = split_slugs()
+    slugs = [s for s in train if s != exclude_slug]
     rng.shuffle(slugs)
     shots: list[FewShot] = []
     for slug in slugs:
@@ -226,10 +228,24 @@ HELDOUT_SLUGS = (
 )
 
 
+_GUEST_BY_SLUG: dict[str, str] | None = None
+
+
+def guest_by_slug() -> dict[str, str]:
+    """slug -> guest name, loaded once and cached (one pass over the corpus)."""
+    global _GUEST_BY_SLUG
+    if _GUEST_BY_SLUG is None:
+        _GUEST_BY_SLUG = {s: load_transcript(s).guest for s in iter_slugs()}
+    return _GUEST_BY_SLUG
+
+
 def split_slugs(heldout_n: int | None = None, seed: int = 13) -> tuple[list[str], list[str]]:
-    """Frozen train/held-out split: held-out is the explicit HELDOUT_SLUGS set (never used for
-    few-shots/SFT). heldout_n is ignored (kept for call-site compatibility)."""
+    """Frozen, GUEST-DISJOINT train/held-out split. Held-out is the explicit HELDOUT_SLUGS set;
+    train excludes those AND every other episode of the same guests — so no guest appears in both
+    splits (else few-shots/SFT would leak the test distribution). heldout_n is ignored."""
     slugs = iter_slugs()
+    g = guest_by_slug()
     heldout = sorted(s for s in slugs if s in HELDOUT_SLUGS)
-    train = sorted(s for s in slugs if s not in HELDOUT_SLUGS)
+    heldout_guests = {g[s] for s in heldout}
+    train = sorted(s for s in slugs if s not in HELDOUT_SLUGS and g[s] not in heldout_guests)
     return train, heldout
