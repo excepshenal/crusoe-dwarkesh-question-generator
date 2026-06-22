@@ -25,6 +25,16 @@ from prompting.prompts import Method, Mode, build_messages
 MAX_TRANSCRIPT_CHARS = 10_000   # keep recent turns only; the next-question reacts to recent context
 N_PREP = 6
 OUT = Path(__file__).resolve().parent / "data"
+COVERAGE = Path(__file__).resolve().parents[1] / "data" / "research" / "coverage.json"
+MIN_COVERAGE = 0.50   # drop episodes whose broad dossier is too thin — see data/research/COVERAGE.md
+
+
+def low_coverage_slugs(threshold: float = MIN_COVERAGE) -> dict[str, float]:
+    """Train slugs whose dossier coverage is below threshold (cut from the SFT set)."""
+    if not COVERAGE.exists():
+        return {}
+    cov = json.loads(COVERAGE.read_text())
+    return {s: c for s, c in cov.items() if c < threshold}
 
 
 def truncate_transcript(ts: str, max_chars: int = MAX_TRANSCRIPT_CHARS) -> str:
@@ -63,6 +73,11 @@ def main() -> None:
     a = ap.parse_args()
 
     train, _ = dataset.split_slugs()
+    dropped = low_coverage_slugs()
+    train = [s for s in train if s not in dropped]
+    if dropped:
+        print(f"dropped {len(dropped)} low-coverage episodes (<{MIN_COVERAGE:.0%}): "
+              + ", ".join(f"{s} {c:.0%}" for s, c in sorted(dropped.items(), key=lambda kv: kv[1])))
     rng = random.Random(a.seed); rng.shuffle(train)
     n_val = max(1, int(len(train) * a.val_frac))
     splits = {"val": train[:n_val], "train": train[n_val:]}   # guest-disjoint val

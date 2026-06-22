@@ -17,15 +17,17 @@ quality-filtered SFT (drop targets he loses) or DPO with the judge — the phase
   train guests is held for **val** (also guest-disjoint).
 - **Shape:** Method-B chat — `{messages: [system (prompting/system.md), user (GUEST / RESEARCH PREP /
   TRANSCRIPT SO FAR / TASK), assistant (his actual turn)]}`. **No few-shots** (SFT replaces them).
-- **Rows:** ~2,729 — **2,668 next-question + 61 prep** (1 per transcript). Prep is ~2.2% — accepted
-  as a thin sliver for v0 (not augmented); next-question is the primary and what the eval measures.
+- **Rows:** **2,265 train (50 guests) + 181 val (5 guests)** — 2,392 next-question + 54 prep (1 prep
+  per transcript). Prep is ~2.2% — accepted as a thin sliver for v0 (not augmented); next-question is
+  the primary and what the eval measures.
 - **Targets:** ALL of Dwarkesh's actual questions, **unfiltered** for v0 (accept the imitation
   ceiling; filter/DPO later). Short reactive questions are KEPT (no `is_clean_question` ≥70 filter —
   the terse ones are the disposition we want).
 - **RESEARCH PREP:** the guest's **gap-filled dossier** (broad blind research, Dwarkesh-excluded, +
-  reverse-engineered gap-fill; see `data/research.py`). Broad coverage ~77% mean across the
-  10-guest calibration; gap-filled training is safe (teaches "ground in the prep" → graceful
-  degradation at deploy, not fabrication).
+  reverse-engineered gap-fill; see `data/research.py`). Gap-filled training is safe (teaches "ground
+  in the prep" → graceful degradation at deploy, not fabrication). Episodes whose *broad* dossier was
+  too thin (coverage < 50%, 9 of 64) are **dropped** via `data/research/coverage.json` — see
+  `data/research/COVERAGE.md` for the per-slug scores, drop list, and recipe to improve them.
 - **Transcript truncation:** recent whole turns up to **10k chars** (`truncate_transcript`). Full
   prefixes were ~16k tok median (up to 65k); truncated rows are ~5.5–6k tok. The platform handles
   16k+ seq len; 10k is chosen to train faster.
