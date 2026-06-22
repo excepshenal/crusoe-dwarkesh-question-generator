@@ -130,6 +130,33 @@ def save_version(out_dir, sc: Scorecard, judge_name: str, args) -> Path:
     return d
 
 
+def _method_label(args) -> str:
+    """Human-readable method for the version meta."""
+    if args.generator == "sft":
+        return f"sft ({args.model}; Method-B prompt + 10k transcript truncation, no shots)"
+    return args.method.value
+
+
+def save_version_multipass(out_dir, scs: list, gen_name: str, judge_name: str, args) -> Path:
+    """3-pass version record matching evals/prompting_v*: report.md (pass 1) + averaged meta.json
+    + frozen system_prompt.md."""
+    import statistics
+    rates = [s.win_rate for s in scs]
+    d = Path(out_dir)
+    d.mkdir(parents=True, exist_ok=True)
+    write_report(scs[0], judge_name, d / "report.md")
+    (d / "meta.json").write_text(json.dumps({
+        "generator": gen_name, "model": args.model, "method": _method_label(args),
+        "temperature": args.temperature, "split": scs[0].split, "opponent": scs[0].opponent,
+        "judge": judge_name, "n_per_pass": scs[0].n, "passes": len(scs),
+        "win_rate_mean": round(statistics.mean(rates), 4), "win_rate_std": round(statistics.pstdev(rates), 4),
+        "per_pass_win_rates": [round(r, 4) for r in rates]}, indent=2) + "\n")
+    sysmd = _REPO / "prompting" / "system.md"
+    if sysmd.exists():
+        (d / "system_prompt.md").write_text(sysmd.read_text())
+    return d
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="train", choices=["train", "heldout", "test"])
@@ -178,6 +205,10 @@ def main():
             print(f"  pass {i}: {s.win_rate:5.0%}  ({s.wins}W/{s.ties}T/{s.losses}L)")
         print(f"MEAN {statistics.mean(rates):.1%}   std {statistics.pstdev(rates):.1%}   "
               f"range [{min(rates):.0%}, {max(rates):.0%}]   spread {max(rates)-min(rates):.1%}")
+        if a.out_dir:  # version record matching evals/prompting_v*
+            d = save_version_multipass(a.out_dir, scs, gen.name, judge.name, a)
+            print(f"\nversion record -> {d}/ (report.md, meta.json, system_prompt.md)")
+            return
         stem = f"eval_{gen.name.replace(':', '_').replace('/', '_')}_{a.split}_x{a.repeat}"
         prefix = a.out or str(Path("runs") / stem)   # verbatim prefix (no .with_suffix dotted-path mangling)
         Path(prefix).parent.mkdir(parents=True, exist_ok=True)
