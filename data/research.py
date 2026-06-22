@@ -170,31 +170,36 @@ def broad_research(guest: str, title: str, bio: str, context: str, llm: LLM, max
     )
 
 
-def coverage_check(broad_dossier: str, transcript: str, llm: LLM) -> dict:
-    raw = llm.chat(
-        [
-            {"role": "system", "content": _COVERAGE_SYSTEM},
-            {"role": "user", "content": f"DOSSIER:\n{broad_dossier}\n\nTRANSCRIPT:\n{transcript}"},
-        ],
-        temperature=0.0,
-        max_tokens=2048,
-    )
-    try:
-        start, end = raw.find("{"), raw.rfind("}")
-        obj = json.loads(raw[start : end + 1])
-        covered = [str(x) for x in obj.get("factual_covered", [])]
-        missed = [str(x) for x in obj.get("factual_missed", [])]
-        live = [str(x) for x in obj.get("live_reasoning", [])]
-    except Exception:  # noqa: BLE001
-        covered, missed, live = [], [], []
+def coverage_check(broad_dossier: str, transcript: str, llm: LLM, tries: int = 3) -> dict:
+    msgs = [
+        {"role": "system", "content": _COVERAGE_SYSTEM},
+        {"role": "user", "content": f"DOSSIER:\n{broad_dossier}\n\nTRANSCRIPT:\n{transcript}"},
+    ]
+    covered, missed, live = [], [], []
+    # The covered/missed/live JSON is long and an MoE judge is nondeterministic even at temp 0, so it
+    # intermittently truncates or returns malformed JSON -> empty. Retry until a real result lands;
+    # the generous cap keeps it from truncating.
+    for _ in range(tries):
+        raw = llm.chat(msgs, temperature=0.3, max_tokens=16384) or ""
+        try:
+            obj = json.loads(raw[raw.find("{") : raw.rfind("}") + 1])
+            c = [str(x) for x in obj.get("factual_covered", [])]
+            m = [str(x) for x in obj.get("factual_missed", [])]
+            l = [str(x) for x in obj.get("live_reasoning", [])]
+        except Exception:  # noqa: BLE001
+            c, m, l = [], [], []
+        if c or m:
+            covered, missed, live = c, m, l
+            break
     total = len(covered) + len(missed)
     return {
         "factual_covered": covered,
         "factual_missed": missed,
         "live_reasoning": live,
         "factual_total": total,
-        # Coverage is over FACTUAL-GROUNDABLE threads only — research isn't accountable for live reasoning.
-        "coverage": (len(covered) / total) if total else 1.0,
+        # Coverage is over FACTUAL-GROUNDABLE threads only. None (NOT 1.0) when the check produced
+        # nothing — a failed/empty check must not masquerade as perfect coverage.
+        "coverage": (len(covered) / total) if total else None,
     }
 
 
@@ -235,10 +240,11 @@ def build_research(
     if not broad_only:
         transcript = render_transcript(t.turns)
         cov = coverage_check(broad, transcript, llm)
-        report["coverage"] = round(cov["coverage"], 3)  # factual-groundable coverage only
+        report["coverage"] = round(cov["coverage"], 3) if cov["coverage"] is not None else None  # factual-groundable only
+        report["coverage_failed"] = cov["coverage"] is None  # check returned nothing — measure unreliable, not "perfect"
         report["n_covered"], report["n_missed"] = len(cov["factual_covered"]), len(cov["factual_missed"])
         report["n_live_reasoning"] = len(cov["live_reasoning"])  # excluded from coverage; conversation's job
-        report["below_threshold"] = cov["coverage"] < coverage_threshold
+        report["below_threshold"] = cov["coverage"] is not None and cov["coverage"] < coverage_threshold
         if cov["factual_missed"]:  # gap-fill only genuine factual misses, never live reasoning
             supplement = fill_gaps(cov["factual_missed"], transcript, t.guest, llm)
 
