@@ -2,9 +2,10 @@
 # committed, via git-LFS; see .gitattributes — they freeze the eval corpus.)
 data/raw/
 data/scrape.log
-# Generated outputs / eval runs.
+# Generated outputs / eval runs / SFT datasets (regenerable, bulky).
 runs/
 last_run.json
+sft/data/
 *.pyc
 __pycache__/
 .env
