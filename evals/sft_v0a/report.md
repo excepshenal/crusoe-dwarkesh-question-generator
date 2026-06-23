@@ -2,6 +2,13 @@
 
 **Win-rate 28%**  (n=60: 10 win / 13 tie / 37 loss). Each card: the tool's question vs the reference, and why the judge picked one. (Judged in both A/B orders; a disagreement across orders = tie.)
 
+> **sft_v0a vs sft_v0b — same checkpoint, decoding only.** This is **temp 0, greedy (no penalty)**:
+> 3-pass mean **27.5% ± 1.4%**. The sibling [`evals/sft_v0b`](../sft_v0b/report.md) is the *identical*
+> LoRA ckpt-32 with `repetition_penalty=1.1` → **49.4% ± 2.2%** (+21.9pt). The gap is a greedy
+> **repetition-loop artifact**, not model quality: here 25% of outputs emit no question and 20% run
+> away >900 chars. Splitting this run by output quality, clean terse questions (34/60) win **41%**
+> while degenerate ones (26/60) win **10%**. Lesson: never serve this model greedy.
+
 ## [LOSS] Charles C. Mann
 
 **Context (recent):**

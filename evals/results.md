@@ -17,7 +17,7 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | prompting_v1 | v0 + anti-"syllogism" ban (73-line prompt) | 24.2% ± 0.3% | 29.7% ± 1.0% | GLM-5.1 |
 | prompting_v2 | leaner rewrite (73→24 lines) | 34.5% ± 2.9% | 40.0% ± 1.2% | GLM-5.1 |
 | **prompting_v3** | **v2 prompt + Method C (few-shot, k=2)** | 37% (n=61, 1 pass)* | **48.3% ± 2.0%** (n=60, 3-pass) | GLM-5.1 |
-| sft_v0 | qwen3-235b LoRA (ckpt-32) · Method-B, no shots, temp 0 (greedy) | — | 27.5% ± 1.4% (n=60, 3-pass) | GLM-5.1 |
+| sft_v0a | qwen3-235b LoRA (ckpt-32) · Method-B, no shots, temp 0 (greedy) | — | 27.5% ± 1.4% (n=60, 3-pass) | GLM-5.1 |
 | **sft_v0b** | **same ckpt-32, temp 0 + repetition_penalty 1.1** | — | **49.4% ± 2.2%** (n=60, 3-pass) | GLM-5.1 |
 
 \* train is no longer comparable across versions: the split was made **guest-disjoint** at v3 (train
@@ -26,7 +26,7 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 
 **Held-out: 14.7% → 29.7% → 40.0% → 48.3% over three prompt iterations (no SFT).**
 
-### Phase 2 — sft_v0 → sft_v0b: the 27.5% was a decoding artifact; the disposition is already at ceiling
+### Phase 2 — sft_v0a → sft_v0b: the 27.5% was a decoding artifact; the disposition is already at ceiling
 First SFT checkpoint (LoRA, ckpt-32, served on vLLM; trained on ALL Dwarkesh turns, unfiltered — the
 imitation ceiling is ~50%). At **temp 0 / greedy it scored 27.5%**, but that was a *decoding pathology*,
 not the model: the checkpoint **collapsed into repetition loops** (20% of outputs ran away >900 chars)

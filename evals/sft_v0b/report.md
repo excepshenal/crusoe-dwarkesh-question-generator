@@ -2,6 +2,13 @@
 
 **Win-rate 48%**  (n=60: 24 win / 10 tie / 26 loss). Each card: the tool's question vs the reference, and why the judge picked one. (Judged in both A/B orders; a disagreement across orders = tie.)
 
+> **sft_v0b vs sft_v0a — same checkpoint, decoding only.** This is **temp 0 + `repetition_penalty=1.1`**:
+> 3-pass mean **49.4% ± 2.2%**, tied with prompting v3 (48.3%) at the ~50% imitation ceiling. The
+> sibling [`evals/sft_v0a`](../sft_v0a/report.md) is the *identical* LoRA ckpt-32 decoded **greedy**
+> (temp 0, no penalty) → only **27.5%**. The +21.9pt is purely decoding — suppressing greedy
+> repetition loops — not a different/better-trained model (this is still the 32-step, eval_loss-2.59
+> checkpoint). Residual degeneration here: 17% no-question, 13% runaway. Deploy with rep_penalty/temp>0.
+
 ## [LOSS] Grant Sanderson
 
 **Context (recent):**

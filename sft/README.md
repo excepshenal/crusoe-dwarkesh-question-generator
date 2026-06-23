@@ -49,14 +49,18 @@ export CRUSOE_API_KEY=<key>
 python -m sft.generate --serving vllm --model dwarkesh-run1-ckpt32 --slug eric-jang --turn 12
 # held-out vs real Dwarkesh, averaged (the number that counts):
 python -m evals.run_eval --generator sft --serving vllm --model dwarkesh-run1-ckpt32 \
-  --split heldout --n-per-guest 3 --temperature 0 --repeat 3 --out-dir evals/sft_v0
+  --split heldout --n-per-guest 3 --temperature 0 --repetition-penalty 1.1 --repeat 3 --out-dir evals/sft_v0b
 # Crusoe-served instead: --serving crusoe --model <served id>
 ```
+**Always set `--repetition-penalty 1.1` (or temp>0).** Greedy decoding (temp 0, no penalty) sends an
+undertrained checkpoint into repetition loops: `evals/sft_v0a` (greedy) = 27.5%, vs `evals/sft_v0b`
+(same checkpoint, rep_penalty 1.1) = **49.4%** — a +21.9pt decoding artifact. Deploy the same way.
+
 **Serve at ≥ the training seq len.** Rows are ~5.5–6k tokens (dossier + 10k-char transcript + system),
 so launch vLLM with `--max-model-len 8192`+ — a 4096 cap rejects deeper cards and crashes the run.
 
-Compare to the prompting leaderboard (v3 = 48.3%). Held-out is the number that counts. For a fair
-comparison the prompting baseline should be re-scored under the same 10k truncation.
+Compare to the prompting leaderboard (v3 = 48.3%); sft_v0b ties it at the ~50% imitation ceiling. For
+a fair comparison the prompting baseline should also be re-scored under the same 10k truncation.
 
 ## Next
 Quality-filtered SFT / DPO (judge as preference signal) to exceed the ~50% imitation ceiling.
