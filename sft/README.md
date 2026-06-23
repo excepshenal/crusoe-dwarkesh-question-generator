@@ -31,8 +31,9 @@ quality-filtered SFT (drop targets he loses) or DPO with the judge — the phase
 - **Transcript truncation:** recent whole turns up to **10k chars** (`truncate_transcript`). Full
   prefixes were ~16k tok median (up to 65k); truncated rows are ~5.5–6k tok. The platform handles
   16k+ seq len; 10k is chosen to train faster.
-- **Size:** the full JSONL is large and **gitignored** (regenerable). Subsample (e.g. `head`/random
-  half) for a faster run.
+- **Size:** the full JSONL is large and **committed via git-LFS** (`sft/data/*.jsonl`; see
+  `.gitattributes`). `dwarkesh-train-1000.jsonl` / `dwarkesh-val-100.jsonl` are seed-0 subsamples for
+  faster runs.
 
 ## Eval
 `sft/generate.py::SFTGenerator` implements `core.generator.Generator`, so it drops into the same
