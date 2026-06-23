@@ -1,0 +1,156 @@
+# SFT-LIFT prompt: sft_v2 (prod-ftjob ckpt-48) WINS here but the BASE model LOSES — same
+# prompt + decoding (temp 0.7), adapter the only difference. The adapter's marginal value.
+# Guest: Andrej Karpathy  |  turn 156  |  judged vs real Dwarkesh (pass 1, GLM-5.1).
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Andrej Karpathy
+
+RESEARCH PREP:
+# Research dossier — Andrej Karpathy
+# (broad research [GROUNDED IN RETRIEVED SOURCES]; transcript coverage≈0.83, gap-filled 2 facts)
+# NOTE: produced manually by Claude w/ web search as a live demo of the broad-first pipeline
+#       (research.py's own model call has no web access in this env). Broad section is grounded
+#       ONLY in Karpathy's prior public record, not in the interview itself.
+
+## Broad research
+
+**Bio (one line):** Andrej Karpathy — founding member of OpenAI (2015), former Sr. Director of AI at Tesla (led the Autopilot vision/neural-net stack, 2017–2022), prolific ML educator, founder & CEO of Eureka Labs (AI-native education, announced 2024-07-16).
+
+### Signature public claims (the ones a sharp interviewer would press)
+- **"The decade of agents, not the year of agents."** A public pushback on industry hype that 2025 is "the year of agents." His position: the problems are tractable but hard, and working through them takes ~a decade — an estimate he grounds in "extrapolation from my own experience in the field," not a hard model.
+- **The four things today's agents lack:** they're not intelligent enough, not multimodal enough, can't reliably do computer-use tasks, and have no **continual learning** (can't accumulate new knowledge over time). This is his concrete bottleneck list.
+- **"We're summoning ghosts, not building animals"** (his blog, *Animals vs Ghosts*). LLMs are not evolution-shaped animals; they're imitations distilled from human text. Different architecture, data, training algorithm, and optimization pressure → a genuinely different kind of entity, and the "animal" lens misleads.
+- **"Sucking supervision through a straw"** — his critique of outcome-based RL: one scalar reward for a whole rollout is broadcast to every token, so successful trajectories reinforce even the wrong turns along the way. Noisy credit assignment.
+- **"Software 2.0" (2017):** neural-net weights are a new kind of program, learned from data rather than written. By 2025 he adds a third rung, **"Software 3.0":** the natural-language prompt is itself the program.
+- **Weights vs. context analogy:** weights are a "hazy recollection," context is directly-accessible working memory (he's cited the KV-cache's per-token state as orders of magnitude richer than what weights encode) — his explanation for why in-context learning *feels* more intelligent than what's baked into the weights.
+
+### Recent work likely to anchor the conversation
+- **nanochat** (released ~Oct 2025): a ~8,000-line, from-scratch, full-stack ChatGPT-clone pipeline — Rust tokenizer training → pretraining on FineWeb → SFT → optional RL (GRPO) → inference web UI. "The best ChatGPT that $100 can buy" (~4 hrs on an 8×H100 node). Successor to **nanoGPT** (which covered only pretraining). He coded it end-to-end recently, so every step is fresh.
+- **Eureka Labs** + the **LLM101n** course, for which nanochat is the capstone — the throughline for how people should learn (reimplement from scratch vs. modify).
+- Educational canon: **micrograd, makemore, nanoGPT**, the **"Neural Networks: Zero to Hero"** series; Stanford **CS231n**.
+
+### The Sutton axis (named foil to steelman against)
+- **Richard Sutton** — RL pioneer, "The Bitter Lesson," recently argued (incl. on this podcast) for general methods + learning from experience and is skeptical of the LLM/imitation path. Karpathy's "ghosts vs. animals" sits in direct tension with Sutton's evolution/experience emphasis — prime pushback ground.
+- Related: he's called the 2013 Atari deep-RL framing a "misstep" the field (and early OpenAI) over-indexed on.
+
+### Biographical hooks for callbacks
+- Tesla Autopilot: shipping a safety-critical, real-world vision system at scale — a reference point for "what actually makes deployment hard" vs. demos.
+- OpenAI founding era: "in the room" for breakthrough moments — useful for "what did people feel was about to happen, and how mis-calibrated were they?"
+- Highly quotable on X; most framings above trace to his own posts/essays, so callbacks can be attributed to him specifically.
+
+## Reverse-engineered supplement (gap-fill — keep small)
+<!-- Facts the interview drew on that broad research missed (~17%). Flagged so the
+     train/deploy gap stays visible; the fix is a better broad-research recipe, not more of this. -->
+- **Sleep/daydreaming as a missing consolidation mechanism:** he speculates humans avoid a "model-collapse"-like narrowing partly via sleep/daydreaming-style replay — a candidate for the non-RL learning idea current models lack. (Broad research surfaced his RL critique but not this specific positive proposal.)
+- **Models failing to integrate known architectural tweaks:** his point that nanochat's architecture improvements exist in public papers/repos yet models can't autonomously fold them in — a concrete instance of the "not intelligent enough / no continual learning" bottleneck.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Dwarkesh Patel: That’s right.
+
+Andrej Karpathy: You’re expecting that overhang to be filled by this new technology when it crosses the threshold.
+
+Dwarkesh Patel: Maybe one way to think about it is throughout history, a lot of growth comes because people come up with ideas, and then people are out there doing stuff to execute those ideas and make valuable output. Through most of this time, the population has been exploding. That has been driving growth.
+
+For the last 50 years, people have argued that growth has stagnated. The population in frontier countries has also stagnated. I think we go back to the exponential growth in population that causes hyper-exponential growth in output.
+
+Andrej Karpathy: It’s really hard to tell. I understand that viewpoint. I don’t intuitively feel that viewpoint.
+
+Dwarkesh Patel: You recommended Nick Lane’s book to me. On that basis, I also found it super interesting and I interviewed him. I have some questions about thinking about intelligence and evolutionary history.
+
+Now that you, over the last 20 years of doing AI research, you maybe have a more tangible sense of what intelligence is, what it takes to develop it. Are you more or less surprised as a result that evolution just spontaneously stumbled upon it?
+
+Andrej Karpathy: I love Nick Lane’s books. I was just listening to his podcast on the way up here. With respect to intelligence and its evolution, it’s very, very recent. I am surprised that it evolved.
+
+I find it fascinating to think about all the worlds out there. Say there’s a thousand planets like Earth and what they look like. I think Nick Lane was here talking about some of the earliest parts. He expects very similar life forms, roughly speaking, and bacteria-like things in most of them. There are a few breaks in there. The evolution of intelligence intuitively feels to me like it should be a fairly rare event.
+
+Maybe you should base it on how long something has existed. If bacteria were around for 2 billion years and nothing happened, then going to eukaryote is probably pretty hard because bacteria came up quite early in Earth’s evolution or history. How long have we had animals? Maybe a couple hundred million years, multicellular animals that run around, crawl, et cetera. That’s maybe 10% of Earth’s lifespan. Maybe on that timescale it’s not too tricky. It’s still surprising to me, intuitively, that it developed. I would maybe expect just a lot of animal-like life forms doing animal-like things. The fact that you can get something that creates culture and knowledge and accumulates it is surprising to me.
+
+Dwarkesh Patel: There’s a couple of interesting follow-ups. If you buy the Sutton perspective that the crux of intelligence is animal intelligence… The quote he said is “If you got to the squirrel, you’d be most of the way to AGI.”
+
+We got to squirrel intelligence right after the Cambrian explosion 600 million years ago. It seems like what instigated that was the oxygenation event 600 million years ago. But immediately the intelligence algorithm was there to make the squirrel intelligence. It’s suggestive that animal intelligence was like that. As soon as you had the oxygen in the environment, you had the eukaryote, you could just get the algorithm. Maybe it was an accident that evolution stumbled upon it so fast, but I don’t know if that suggests that at the end it’s going to be quite simple.
+
+Andrej Karpathy: It’s so hard to tell with any of this stuff. You can base it a bit on how long something has existed or how long it feels like something has been bottlenecked. Nick Lane is very good about describing this very apparent bottleneck in bacteria and archaea. For two billion years, nothing happened. There’s extreme diversity of biochemistry, and yet nothing grows to become animals. Two billion years.
+
+I don’t know that we’ve seen exactly that kind of an equivalent with animals and intelligence, to your point. We could also look at it with respect to how many times we think certain intelligence has individually sprung up.
+
+Dwarkesh Patel: That’s a really good thing to investigate.
+
+Andrej Karpathy: One thought on that. There’s hominid intelligence, and then there’s bird intelligence. Ravens, etc., are extremely clever, but their brain parts are quite distinct, and we don’t have that much in common. That’s a slight indication of maybe intelligence springing up a few times. In that case, you’d expect it more frequently.
+
+Dwarkesh Patel: A former guest, Gwern, and Carl Shulman, they’ve made a really interesting point about that. Their perspective is that the scalable algorithm which humans have and primates have, arose in birds as well, and maybe other times as well. But humans found an evolutionary niche which rewarded marginal increases in intelligence and also had a scalable brain algorithm that could achieve those increases in intelligence.
+
+For example, if a bird had a bigger brain, it would just collapse out of the air. It’s very smart for the size of its brain, but it’s not in a niche which rewards the brain getting bigger. It’s maybe similar to some really smart…
+
+Andrej Karpathy: Like dolphins?
+
+Dwarkesh Patel: Exaclty, humans, we have hands that reward being able to learn how to do tool use. We can externalize digestion, more energy to the brain, and that kicks off the flywheel.
+
+Andrej Karpathy: Also stuff to work with. I’m guessing it would be harder if I were a dolphin. How do you have fire? The universe of things you can do in water, inside water, is probably lower than what you can do on land, just chemically.
+
+I do agree with this viewpoint of these niches and what’s being incentivized. I still find it miraculous. I would have expected things to get stuck on animals with bigger muscles. Going through intelligence is a really fascinating breaking point.
+
+Dwarkesh Patel: The way Gwern put it is the reason it was so hard is that it’s a very tight line between being in a situation where something is so important to learn that it’s not worth distilling the exact right circuits directly back into your DNA, versus it’s not important enough to learn at all. It has to be something that incentivizes building the algorithm to learn in a lifetime.
+
+Andrej Karpathy: You have to incentivize some kind of adaptability. You want environments that are unpredictable so evolution can’t bake your algorithms into your weights. A lot of animals are pre-baked in this sense. Humans have to figure it out at test time when they get born. You want these environments that change really rapidly, where you can’t foresee what will work well. You create intelligence to figure it out at test time.
+
+Dwarkesh Patel: Quintin Pope had this interesting blog post where he’s saying the reason he doesn’t expect a sharp takeoff is that humans had the sharp takeoff where 60,000 years ago we seem to have had the cognitive architectures that we have today. 10,000 years ago, agricultural revolution, modernity. What was happening in that 50,000 years? You had to build this cultural scaffold where you can accumulate knowledge over generations.
+
+This is an ability that exists for free in the way we do AI training. In many cases they are literally distilled. If you retrain a model, they can be trained on each other, they can be trained on the same pre-training corpus, they don’t literally have to start from scratch. There’s a sense in which it took humans a long time to get this cultural loop going, but it just comes for free with the way we do LLM training.
+
+Andrej Karpathy: Yes and no. Because LLMs don’t really have the equivalent of culture. Maybe we’re giving them way too much and incentivizing not to create it or something like that. But the invention of culture and of written record and of passing down notes between each other, I don’t think there’s an equivalent of that with LLMs right now. LLMs don’t really have culture right now and it’s one of the impediments I would say.
+
+Dwarkesh Patel: Can you give me some sense of what LLM culture might look like?
+
+Andrej Karpathy: In the simplest case it would be a giant scratchpad that the LLM can edit and as it’s reading stuff or as it’s helping out with work, it’s editing the scratchpad for itself. Why can’t an LLM write a book for the other LLMs? That would be cool. Why can’t other LLMs read this LLM’s book and be inspired by it or shocked by it or something like that? There’s no equivalence for any of this stuff.
+
+Dwarkesh Patel: Interesting. When would you expect that kind of thing to start happening? Also, multi-agent systems and a sort of independent AI civilization and culture?
+
+Andrej Karpathy: There are two powerful ideas in the realm of multi-agent that have both not been really claimed or so on. The first one I would say is culture and LLMs having a growing repertoire of knowledge for their own purposes.
+
+The second one looks a lot more like the powerful idea of self-play. In my mind it’s extremely powerful. Evolution has a lot of competition driving intelligence and evolution. In AlphaGo more algorithmically, AlphaGo is playing against itself and that’s how it learns to get really good at Go. There’s no equivalent of self-playing LLMs, but I would expect that to also exist. No one has done it yet. Why can’t an LLM for example, create a bunch of problems that another LLM is learning to solve? Then the LLM is always trying to serve more and more difficult problems, stuff like that.
+
+There’s a bunch of ways to organize it. It’s a realm of research, but I haven’t seen anything that convincingly claims both of those multi-agent improvements. We’re mostly in the realm of a single individual agent, but that will change. In the realm of culture also, I would also bucket organizations. We haven’t seen anything like that convincingly either. That’s why we’re still early.
+
+TASK: Next question.
+
+================ WHY THIS IS AN SFT-LIFT CASE ====================
+SFT (won vs Dwarkesh): What would an organization look like?
+
+BASE (lost vs Dwarkesh): If culture requires a shared, persistent medium that evolves over time, what does the first version of that look like for LLMs — and what’s the missing piece keeping us from building it today?
+
+Real Dwarkesh: Can you identify the key bottleneck that’s preventing this kind of collaboration between LLMs?
+
+SFT judge: tool **WIN** — order1 A, order2 B
+BASE judge: Candidate A manufactures a framework ('shared, persistent medium') that Karpathy didn't establish and stacks two sub-questions; B is short, direct, and asks the natural follow-up to Karpathy's claim that no one has convincingly done this yet.

@@ -1,0 +1,175 @@
+# SFT-LIFT prompt: sft_v2 (prod-ftjob ckpt-48) WINS here but the BASE model LOSES — same
+# prompt + decoding (temp 0.7), adapter the only difference. The adapter's marginal value.
+# Guest: Daniel Yergin  |  turn 64  |  judged vs real Dwarkesh (pass 1, GLM-5.1).
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Daniel Yergin
+
+RESEARCH PREP:
+# Research dossier — Daniel Yergin
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Daniel Howard Yergin (born February 6, 1947, in Los Angeles) is an American economic historian, energy analyst, and author who has become arguably the most widely cited public interpreter of the global energy system. The son of a Hollywood Reporter editor and a sculptor, he was raised in Beverly Hills, earned a B.A. from Yale (1968, where he co-founded the campus magazine The New Journal) and a Ph.D. in international history from Trinity College, Cambridge (1970s), which he attended as a Marshall Scholar. He lectured at Harvard Business School and the Harvard Kennedy School into the mid-1980s and co-ran the Harvard Business School Energy Project. In 1982 he co-founded Cambridge Energy Research Associates (CERA) with Joseph (Jamey) Rosenfield; CERA was acquired by IHS Inc. in 2004, became part of IHS Markit in 2016, and folded into S&P Global with the 2022 merger, where Yergin is vice chairman. He chairs CERAWeek, the large annual energy conference held in Houston. His 1991 history of oil, *The Prize*, won the 1992 Pulitzer Prize for General Nonfiction. He has served on the U.S. Secretary of Energy Advisory Board across multiple administrations, sits on the National Petroleum Council, and is a Brookings trustee. He is married to Georgetown Russia scholar Angela Stent.
+
+### Major works
+
+**Shattered Peace: The Origins of the Cold War and the National Security State (1977).** Yergin's first book, drawn partly from his Cambridge dissertation. It is a revisionist-leaning diplomatic history arguing that early Cold War U.S. policy hardened around what he called the "Riga axioms" (a deeply suspicious, ideological reading of Soviet intentions) at the expense of the more accommodationist "Yalta axioms," and that this shift institutionalized a permanent "national security state." This establishes his lifelong method: long-arc narrative history built on archival and interview material.
+
+**Energy Future: Report of the Energy Project at the Harvard Business School (1979),** co-edited with Robert Stobaugh. An early policy intervention arguing, against the conventional wisdom of the late-1970s shortage panic, that conservation and energy efficiency were the cheapest and most available "source" of energy, and that solar/renewables deserved serious attention. This pro-efficiency strand recurs across his later work.
+
+**The Prize: The Epic Quest for Oil, Money, and Power (1991).** His signature work, ~900 pages, a Pulitzer winner and the basis of an eight-part PBS/BBC documentary. Central argument: oil is not merely a commodity but the decisive strategic resource of the twentieth century, woven through its wars, empires, and economies. The narrative runs from Edwin Drake's 1859 Pennsylvania well and the rise and 1911 antitrust breakup of John D. Rockefeller's Standard Oil, through Winston Churchill's pre-WWI decision to convert the Royal Navy from coal to oil (the origin of Yergin's favorite energy-security maxim), the role of oil in both World Wars (Hitler's drive for Caucasus oil, the Japanese strike south after the 1941 U.S. embargo), the postwar Seven Sisters, the 1960 founding of OPEC, the 1973 embargo and 1979 shock, and the 1980s price collapse. Its thesis that oil access shapes geopolitics is the foundation everything else he writes rests on.
+
+**The Commanding Heights: The Battle for the World Economy (1998),** co-authored with Joseph Stanislaw (also a PBS series). A history of the twentieth-century contest between state control and markets — the title is Lenin's phrase for the strategic sectors a state must hold. It traces the swing from Keynesian and socialist planning toward the market liberalization, privatization, and deregulation of the 1980s–90s (Thatcher, Reagan, the post-Soviet transitions, emerging-market reform). It reveals Yergin's broadly market-oriented disposition.
+
+**The Quest: Energy, Security, and the Remaking of the Modern World (2011).** A sequel to *The Prize* extending the story past the Gulf War into the twenty-first century. It covers the post-Soviet scramble for Caspian oil, the rise of China and India as demand centers, the peak-oil debate (which he rejects — see below), the emergence of natural gas and the early shale story, and a substantial history of climate change as a political idea — tracing how it moved from a fringe scientific concern (he notes early-twentieth-century worry was as much about a coming ice age) to a central organizing issue, alongside the "rebirth of renewables" in wind, solar, and biofuels. He argues efficiency and eventual grid parity for renewables will reshape the system, but gradually.
+
+**The New Map: Energy, Climate, and the Clash of Nations (2020, rev. 2021).** His most recent book, organizing the contemporary world around energy geopolitics. Its central claims: (1) the U.S. shale/fracking revolution turned the United States into the world's largest oil and gas producer and an "energy superpower," upending decades of assumed scarcity and dependence; (2) Russia under Putin uses gas exports (and pipelines like Nord Stream) as an instrument of leverage over Europe while pivoting east toward China; (3) China is converging with Russia against U.S. primacy and projecting power through the Belt and Road and especially the South China Sea (the "nine-dash line"), the world's most critical trade artery; (4) the Middle East remains fractured by Iran, jihadism, and sectarian conflict; and (5) climate concern is driving an energy transition whose pace, cost, and geopolitics are far more contested than its advocates assume.
+
+### The substance of his ideas, with reasoning and counterarguments
+
+**Energy security and the diversification doctrine.** Yergin's most durable framework descends from Churchill's 1913 line, which he quotes repeatedly: "Safety and certainty in oil lie in variety, and variety alone." In his Foreign Affairs essays ("Energy Security in the 1990s," 1988; "Ensuring Energy Security," 2006) and in his analysis of the 1973 crisis, he argues energy security rests on a handful of principles: diversification of supply sources and types; resilience and spare capacity (buffers like the Strategic Petroleum Reserve); transparency/information to prevent panic-buying; international cooperation to avoid competitive scrambles; and flexible markets rather than price controls. His reasoning is rooted in his own history of 1973: he stresses the embargo itself removed only about 9% of total world supply (roughly 14% of internationally traded oil), yet prices roughly quadrupled (from about $1.80 to $11.65 a barrel) because spare capacity had vanished — U.S. spare capacity disappeared after Texas lifted production limits in 1971 — and because panic and hoarding, not the physical shortfall, drove the shock. The policy lesson he draws is that markets plus buffers plus information manage scarcity better than allocation and controls. Critics on the left argue this framing underweights how market mechanisms concentrate power in incumbent producers and can leave consumers exposed; energy-justice critics argue "security" defined this way privileges supply continuity over distributional and environmental harm.
+
+**The rejection of peak oil.** Yergin is one of the most prominent skeptics of geologist M. King Hubbert's "peak oil" thesis. In his 2011 Wall Street Journal essay "There Will Be Oil" (adapted from *The Quest*) he argues that Hubbert-style forecasts repeatedly fail because they treat reserves as a fixed geological stock and ignore economics and technology. His reasoning: higher prices and innovation continually convert "resources" into recoverable "reserves." He cites that in 2007–2009, for every barrel of oil produced worldwide, about 1.6 barrels of new reserves were added, and points to the world having supposedly "run out" of oil several times historically only to be rescued by new technology (deepwater Gulf of Mexico, 3D seismic, horizontal drilling, and ultimately shale). His preferred image is not a peak but an "undulating plateau" — production rising for decades, leveling off perhaps around mid-century, then declining gradually. The strongest counterargument, voiced at the time by peak-oil analysts such as those at The Oil Drum and by economists in the tradition of Herman Daly: stated reserves (especially OPEC's) are unverifiable "guesstimates" often inflated for political/quota reasons; conventional crude production was on a plateau for years despite record prices and new technology, suggesting flow rates, not ultimate volumes, are the binding constraint; technology and field-extension gains cannot continue indefinitely; and Yergin's optimism brackets out environmental cost (Daly faulted him for barely mentioning the climate and spill externalities of ever-more-marginal extraction). The shale boom largely vindicated Yergin on volumes through the 2010s, but the debate over whether he confuses recoverable resource with sustainable flow rate persists.
+
+**The energy transition as "energy addition."** Yergin's most cited recent argument, developed in *The New Map* and sharpened in the 2025 Foreign Affairs essay "The Troubled Energy Transition: How to Find a Pragmatic Path Forward" (with Peter Orszag and Atul Arya), is that the shift away from fossil fuels will not be linear, fast, or cheap. His core empirical claim is historical: previous energy transitions took roughly a century and were really "energy additions" — coal did not eliminate wood, oil did not eliminate coal; each new source layered on top of the old (he notes whale oil is about the only fuel that actually disappeared). He argues the same is happening now: renewables are growing rapidly but on top of, not in place of, fossil fuels, so fossil-fuel share of primary energy has barely moved. He stacks several "realities" against rapid transition: the sheer scale of decarbonizing a roughly $115 trillion global economy in 25 years; the return of energy security as a priority after Russia's February 2022 invasion of Ukraine; the mineral intensity of clean technology (e.g., an EV uses on the order of 2.5x the copper of a conventional car) colliding with Chinese dominance of mineral processing and rare earths; permitting timelines (he cites figures on the order of decades to open a new U.S. mine); and surging electricity demand from AI and data centers, which he argues will sustain natural gas demand. His pragmatic prescription: pursue affordability and reliability alongside emissions goals, speed permitting, integrate North American resources, and diversify critical-mineral supply chains away from China. The strongest counterargument — pressed in a Bloomberg Opinion critique and elsewhere — is that this "pragmatism" recycles incumbent talking points to argue, in effect, that the transition is not happening and cannot happen soon; critics contend that solar, batteries, and EVs are now on steep cost-decline and exponential-adoption curves that historical analogies to slow coal/oil transitions fail to capture, that "energy addition" describes the past rather than the policy-and-cost-driven present, and that framing the transition as merely "troubled" risks becoming self-fulfilling by dampening urgency.
+
+**Tensions within his own views.** Yergin holds positions that sit in some tension. He is genuinely pro-efficiency and was early to take renewables seriously (*Energy Future*, *The Quest*), yet is consistently cast — and sometimes casts himself — as a skeptic of transition speed, which lets critics file him with the incumbent oil-and-gas interests that pay for CERAWeek and CERA's consulting. He emphasizes markets and the futility of forecasting fixed limits (his anti-peak-oil case), yet his transition argument leans heavily on the inertia of physical and political systems — i.e., on limits to how fast change can occur. He celebrates the shale revolution as an energy-security triumph and a geopolitical asset for the United States, while also documenting (in *The New Map*) how cheap, abundant hydrocarbons complicate decarbonization. He frames climate change as one of the defining issues of the age, yet his practical conclusions almost always counsel slower, more hydrocarbon-tolerant paths.
+
+### Debates he engages and where he stands
+
+- **Peak oil:** firmly skeptical; "undulating plateau," resource-as-economic-not-geological, technology and price as the decisive variables.
+- **Energy security:** the diversification/resilience/information school; markets-plus-buffers over controls; he treats the 1973 and 2022 shocks as proof that security must remain a first-order concern even amid decarbonization.
+- **Pace of the energy transition:** the central debate of his recent career — he is the leading articulator of the "slower, costlier, more complicated, and additive than advertised" position, against advocates of rapid, disruptive transition.
+- **U.S.-China and great-power rivalry:** he sees a sharpening, energy-inflected great-power competition, with Russia pivoting toward China and energy/minerals as terrain of contest.
+
+### Influences
+
+Yergin's method — sweeping narrative history grounded in primary documents and elite interviews, aimed at a general audience — descends from his training as a Cambridge diplomatic historian. His framing of energy as the engine of modern political economy, and his fondness for the Churchill/Royal Navy episode as origin myth, are recurring touchstones. His market-versus-state interest (*Commanding Heights*) reflects the late-twentieth-century liberalization debates he chronicled. His co-authors and collaborators (Robert Stobaugh, Joseph Stanislaw, Thane Gustafson on Russia, and energy-policy figures such as Ernest Moniz on later studies) indicate the academic and policy networks he works within.
+
+### Notable biographical specifics
+
+- Born into a Hollywood family (father an entertainment-industry editor/executive; mother an artist); Beverly Hills High School.
+- Marshall Scholar at Cambridge; founded *The New Journal* at Yale.
+- Founded CERA in 1982; CERAWeek (Houston) is described by CNBC as "the Super Bowl of world energy."
+- Pulitzer Prize (1992) for *The Prize*; first recipient of the U.S. Department of Energy's James Schlesinger Medal for Energy Security (2014); United States Energy Award; Carnot Prize (Penn, 2015); lifetime achievement award from the Prime Minister of India (2014).
+- *The Prize* and *The Commanding Heights* both became major PBS/BBC television series.
+- Has advised the Secretary of Energy Advisory Board under multiple presidents (Clinton, Bush, Obama, Trump); briefly served on a Trump business advisory forum (2016–2017) before it disbanded.
+- Married to Angela Stent, a prominent scholar of Russia and U.S.-Russia relations.
+
+## Sources
+
+- Daniel Yergin, official site — About and book pages: https://www.danielyergin.com/about/ ; https://www.danielyergin.com/books/thenewmap
+- Wikipedia, "Daniel Yergin": https://en.wikipedia.org/wiki/Daniel_Yergin
+- Simon & Schuster, *The Prize*: https://www.simonandschuster.com/books/The-Prize/Daniel-Yergin/9781439110126
+- Daniel Yergin, "There Will Be Oil," Wall Street Journal (2011), via danielyergin.com: https://danielyergin.com/publishing/there-will-be-oil/
+- Yergin/Orszag/Arya, "The Troubled Energy Transition," Foreign Affairs (2025): https://www.foreignaffairs.com/united-states/troubled-energy-transition-yergin-orszag-arya
+- ARC Energy Institute summary of "The Troubled Energy Transition": https://www.arcenergyinstitute.com/daniel-yergin-on-the-troubled-energy-transition/
+- Columbia Center on Global Energy Policy, Yergin on the 1973 oil crisis: https://www.energypolicy.columbia.edu/publications/the-1973-oil-crisis-three-crises-in-one-and-the-lessons-for-today/
+- Foreign Affairs, "Ensuring Energy Security" / "Energy Security in the 1990s": https://www.foreignaffairs.com/world/ensuring-energy-security ; https://www.foreignaffairs.com/articles/united-states/1988-09-01/energy-security-1990s
+- The Oil Drum / Resilience.org peak-oil responses to Yergin: http://theoildrum.com/node/8391 ; https://www.resilience.org/stories/2011-09-21/peak-oil-now-or-later-response-daniel-yergin/
+- OilPrice.com, "Daniel Yergin and Peak Oil — Prophet or Mere Historian?": https://oilprice.com/Energy/Crude-Oil/Daniel-Yergin-And-Peak-Oil-Prophet-Or-Mere-Historian.html
+- Bloomberg Opinion critique, "Flawed Energy Pragmatism Invites Defeat on Climate Change" (2025): https://www.bloomberg.com/opinion/articles/2025-03-07/flawed-energy-pragmatism-invites-defeat-on-climate-change
+- McKinsey, "Daniel Yergin on energy and the new world order": https://www.mckinsey.com/capabilities/geopolitics/our-insights/daniel-yergin-on-energy-and-the-new-world-order
+
+All Dwarkesh Patel / "Dwarkesh Podcast" / "The Lunar Society" content was excluded from this research; one such result surfaced in search listings and was deliberately skipped and not read, cited, or relied upon.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Dwarkesh Patel: Let's go forward to World War II. Why wasn't Hitler able to produce more synthetic fuel? Because it seems like he could have won if he had more synthetic fuel.
+
+Daniel Yergin: You would have needed to get to a scale that they could never get to. Synthetic fuel meant making oil out of coal using a chemical process. The other thing is that the Allies bombed the plants as well. When I wrote The Prize, I intended to write one chapter on World War II. I ended up writing five because it was just so amazing. World War II was not an oil war, but there was an oil war within World War II.
+
+When Hitler invaded Russia, he was not only going for Moscow, he was also going for the oil fields of Baku. When the Japanese bombed Pearl Harbor, Admiral Nimitz, who was the naval commander, said if they'd come back a third time and hit the oil tanks, World War II in the Pacific would have taken another two years. General Rommel in North Africa runs out of oil. He writes his wife, "Shortage of oil, it's enough to make one weep." General Patton's lunge in 1944 for Germany is held back by oil. The US is going after the oil lines that are supplying the Japanese, attacking them to basically drain the oil out of the Japanese war machine.
+
+There’s one big thing that was a real eye-opener for me. People have heard of kamikaze pilots who would fly their planes into aircraft carriers. One big reason they were doing that was to save fuel so they wouldn't have to fly back.
+
+Dwarkesh Patel: I don’t know if “instigated” is the right word, but the Pacific War was instigated because the Japanese needed more oil because of the war in Manchuria. But precisely because of that war, we’d put an embargo on oil.
+
+Daniel Yergin: The US put an embargo on them. One of the Japanese admirals said, "Without the oil, our fleet will become scarecrows."
+
+Dwarkesh Patel: World War I is when people realized that oil is a strategic resource, but in World War II it's really crucial. I'm curious about when different parts of the world realized how crucial oil is as a strategic resource. Was it after World War I, after World War II?
+
+Daniel Yergin: After World War I, it clearly was on the agenda in a way that it hadn't been before. You had governments much more engaged in supporting US companies. By the way, the US was so dominant as a producer. Remember that six out of seven barrels of oil that were used by the Allies during World War II came from the United States. But after World War I, you had these fears of running out. That was one reason the US government supported American companies beginning to go into the Middle East, because governments recognized you needed oil.
+
+Dwarkesh Patel: After World War II, in the big picture you have the dominant allied powers. They're trying to figure out what to do with the rest of the world, and they realize oil is such an important resource. Fast forward 30 years after that, you're in a position where you've lost a ton of leverage against the OPEC countries and you're not in a position to control the supply of oil. How did that happen?
+
+Daniel Yergin: The US had been this huge supplier, but after World War II we had economic growth, highway systems, and suburbs. Oil demand is going way up, and we outran production. The US becomes an importer of oil in 1946, ’47, ’48. But it’s modest amounts. Then as we go into the late 60s, you have this global economic boom. Japan is suddenly a vibrant economy. Europe has recovered, a vibrant economy. Oil demand is shooting up really rapidly. The markets that were quite amply supplied become very tight. In the United States, people didn't realize that we were becoming the world's largest importer of oil. They just weren't paying attention to that. It was thought there are only limits to what we can do as a country anyway.
+
+When we finally get to the crisis, the famous oil crisis of 1973—which probably opened the modern age of energy—what's going on at the same time? There’s this political crisis in the United States called Watergate. The front page of the newspaper is not about tight oil supplies. It's all about what Richard Nixon did in terms of subverting the election and the political process. There was just inattention and that's one of the risks. I think a lot about energy security as an issue. It tends to fall off the table until it hits you in the face.
+
+Dwarkesh Patel: When did we realize that there was just a ton of oil in the Middle East?
+
+Daniel Yergin: It was after World War II. People had begun to know it, but during World War I a famous geologist named Everette DeGolyer did a trip to the Middle East on behalf of the U.S. government. He came back and said the center of gravity of world oil is shifting to the Middle East. No one knew how much or anything, but they knew it was a strategic resource. By the way, they didn't want it to fall into the hands of the Russians. That was a concern. Most people don't know that the first post-war crisis with the Soviet Union was actually over Iran, with the Soviet Union making a grab for a part of Iran.
+
+After World War II, there was this real sense that you've got to secure oil supply because it's such a strategic resource. The Middle East suddenly becomes much more important as a source than anybody thought about. The only place producing oil in the Middle East before then was Persia, Iran. Oil was discovered in 1938 in Kuwait and Saudi Arabia and then got bottled up until after World War II.
+
+Dwarkesh Patel: When I read in The Prize about what happens after World War II in the Middle East, it's about 200 pages of how initially, the Western companies make these deals with exporting countries. First, it's just incredibly favorable towards the Western companies. But then the exporting countries are like, "No, we got to do the 50/50 split." Then they do the 50/50 split.
+
+Then just over a couple of decades, what happens is that they just keep asking for more and more concessions: “We want 55%, 60%.” These are the exporting countries I'm talking about. They formed the cartel, OPEC, in 1960. But even before that, they have leverage over these Western companies, in the sense that they can say, “If you don't agree, we'll just nationalize you.”
+
+Daniel Yergin: I had a mentor, an economist named Raymond Vernon, who came up with this term, the obsolescing bargain. Let’s say Dwarkesh Oil invests in such and such a country. You put $2 billion in there and it's great and everybody's very happy. Governments change or times change. People forget the risk that you took to do it. They say, “We want a different deal.” That just happens again and again. It happens with all natural resources, with oil, with minerals. It was also the end of colonialism. Countries were becoming independent. Today, if a company makes a deal with a country to go develop oil, the country gets 80% of the profit.
+
+Dwarkesh Patel: So if you're one of these western companies, what should you have done? Let's say it's 1950. You know that over time they have obviously the monopoly on violence, so they can nationalize you if they want. What should you have done so that you can basically prevent the outcome that kind of universally happens? If you were in charge of it…
+
+Daniel Yergin: You would obviously work really hard on government relations. But the countries are generally poor. They say, “We just want our share of it. It's our resource.” Over time, as a company, you have access to the market. You have the refineries. You have the tankers. It isn't like they can just take it over. It takes time to train your population to develop your indigenous oil people who can run it. But if you look back on it, I think you just say that there was an inevitability to it, which also had to do with the consolidation of nation states.
+
+Dwarkesh Patel: Why didn't the US government—or the UK government or so on—do more to be like, "OK, you guys are companies. You guys can't negotiate that hard. But we really care about making sure that America has a lot of oil.
+
+Daniel Yergin: I think the government did back them up. Remember the British owned a big share of British Petroleum, now BP, until the late 1980s. The British government was in there, but then you had the nationalization of what was then called Anglo-Persian, Anglo-Iranian oil, which became BP. I think it was inevitable. The governments did try and support, but there were limits to what they could do. The question of access and of maintaining the supplies, then and now, remains crucial. You have the US Navy today trying to push back on the Houthis in Yemen, who are attacking oil tankers.
+
+Dwarkesh Patel: Thinking purely from the perspective of the companies, if you were in charge of one of the majors, would you have refused to train domestic workers in the expedition?
+
+Daniel Yergin: No, I think that was part of your way of trying to embed yourself there, to bring them in so that you were not this isolated island.
+
+If you look at Venezuela, they nationalized their oil operations. But by that point, they had people who were very well trained at running refineries, at drilling, and at finding oil. They still carried some of that DNA with them in their operations for quite a number of years, until the complete nationalization and Chávez came to power.
+
+Dwarkesh Patel: Was the continuation of antitrust in oil after World War II a mistake? Often when I'm reading your book, what happens is that oil producing countries can negotiate together, obviously after OPEC they're literally a cartel, but then these different Western companies can't.
+
+Daniel Yergin: In 1973, the US government finally did give an antitrust waiver to the companies to try and have a united front in the negotiations. But remember, it got all tied up with geopolitics. It got tied up with Arab-Israeli wars and so forth. It wasn't just about oil. There were other things going on and you had the use of what was called the “oil weapon”.
+
+TASK: Next question.
+
+================ WHY THIS IS AN SFT-LIFT CASE ====================
+SFT (won vs Dwarkesh): I want to talk about the 1973 crisis. The way you describe it in The Prize, the oil embargo is not the cause of the crisis. The cause of the crisis is that there was just no spare capacity. You had the Arab-Israeli war, but then the price goes up by four times. You had the embargo, but it only removes 9% of the world's supply. So why does the price go up by four times?
+
+BASE (lost vs Dwarkesh): Why didn’t the antitrust waiver in 1973 actually change the outcome? The companies still lost pricing power.
+
+Real Dwarkesh: Let's talk about the oil crisis in 1973. One thing I was surprised to learn is that the supply of oil didn't actually go down that much. Global supply declined by 15% or something. Why did it have such a huge effect?
+
+SFT judge: tool **WIN** — order1 A, order2 B
+BASE judge: B asks a genuinely curious, surprising question about the 1973 crisis that invites a rich explanatory answer, while A is a more mechanical follow-up that presupposes its own conclusion.

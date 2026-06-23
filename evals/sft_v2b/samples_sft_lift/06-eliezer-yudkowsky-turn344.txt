@@ -1,0 +1,180 @@
+# SFT-LIFT prompt: sft_v2 (prod-ftjob ckpt-48) WINS here but the BASE model LOSES — same
+# prompt + decoding (temp 0 + rep_penalty 1.1), adapter the only difference. The adapter's marginal value.
+# Guest: Eliezer Yudkowsky  |  turn 344  |  judged vs real Dwarkesh (pass 1, GLM-5.1).
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Eliezer Yudkowsky
+
+RESEARCH PREP:
+# Research dossier — Eliezer Yudkowsky
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Eliezer Yudkowsky (born September 11, 1979, Chicago) is an American writer and self-taught researcher on artificial intelligence and human rationality. Raised in a Modern Orthodox Jewish family and an autodidact who did not attend high school or college, he began writing publicly about AI and the technological singularity in the late 1990s. In 2000 he co-founded — with Brian and Sabine Atkins — the Singularity Institute for Artificial Intelligence, later renamed the Machine Intelligence Research Institute (MIRI), based in Berkeley, California, where he remains a research fellow. He is best known for (1) helping found the field now called "AI alignment," coining and popularizing the term "Friendly AI" and the proposal "coherent extrapolated volition"; (2) writing "the Sequences," a multi-year body of essays (2006–2009) on rationality later compiled as the book *Rationality: From AI to Zombies* (2015), which seeded the LessWrong community he founded in 2009; (3) the popular fanfiction *Harry Potter and the Methods of Rationality* (2010–2015); and (4) becoming, especially after 2022–2023, the most prominent public voice arguing that building superhuman AI under current conditions would likely cause human extinction. In 2025 he and MIRI president Nate Soares published a trade book, *If Anyone Builds It, Everyone Dies*, which reached the New York Times bestseller list.
+
+### Major works and themes (with specifics)
+
+**The Sequences / *Rationality: From AI to Zombies* (2006–2009; book 2015).** Over roughly two years, primarily on the group blog Overcoming Bias (which he shared with economist Robin Hanson) and then on LessWrong, Yudkowsky wrote several hundred daily essays on human reasoning, cognitive bias, probability, philosophy of science, language, and meta-ethics. These were edited and reorganized into the 2015 MIRI ebook *Rationality: From AI to Zombies* (also issued as separate volumes, e.g. *Map and Territory* and *How to Actually Change Your Mind*, 2018). Recurring themes and named essays/concepts include: **"Map and Territory"** — beliefs are a "map" that should be revised to match the "territory" of reality; **Bayesianism** — treating rational belief as probabilistic updating from priors to posteriors as evidence arrives; **"Making Beliefs Pay Rent (in Anticipated Experiences)"** — a belief is only meaningful if it constrains what you expect to observe; **"The Bottom Line"** — the rationality of a conclusion is fixed by the process that produced it, so rationalization (writing the conclusion first, arguments after) cannot make a belief accurate; and **"The Twelve Virtues of Rationality"** (curiosity, relinquishment, lightness, evenness, argument, empiricism, simplicity, humility, perfectionism, precision, scholarship, and "the void"). The corpus is widely credited as a formative text for the "rationalist" community and adjacent to the effective-altruism movement, the Center for Applied Rationality (CFAR), and MIRI's outreach.
+
+**Harry Potter and the Methods of Rationality (HPMOR), 2010–2015.** A 122-chapter, ~660,000-word fanfiction (first chapter February 28, 2010; final chapter March 14, 2015) set in an alternate universe where Harry is raised by a scientist stepfather and arrives at Hogwarts already trained in scientific method and cognitive bias. Yudkowsky wrote it explicitly as a vehicle to teach the rationality skills he advocates and to recruit readers into the LessWrong community; it became one of the most-reviewed works of Harry Potter fanfiction.
+
+**Friendly AI and Coherent Extrapolated Volition (CEV), ~2001–2004.** Yudkowsky popularized "Friendly AI" — the idea that a superintelligence's goals must be deliberately engineered to be beneficial, because intelligence does not automatically imply benevolence. In a 2004 document he proposed **coherent extrapolated volition**: rather than hand-coding values, an aligned AI should act on what humanity would want "if we knew more, thought faster, were more the people we wished we were, and had grown up farther together" — i.e., our extrapolated, idealized, coherent values rather than our literal present-day requests.
+
+**Decision theory.** Yudkowsky developed **Timeless Decision Theory (TDT)**, an alternative to causal and evidential decision theory. Its one-line statement: choose as though you are determining the output of the abstract computation you implement, including all other instances and simulations of that computation. TDT is designed to "one-box" on Newcomb's Problem, give the causal answer in Solomon's Problem, and reach mutual cooperation in the one-shot Prisoner's Dilemma when facing a similar agent. TDT and the related Updateless Decision Theory were later generalized in MIRI's **Functional Decision Theory (FDT)** (Yudkowsky and Soares, arXiv 2017). The decision-theory work connects to alignment because the worry is how a self-modifying agent reasons about its own future actions and about other agents.
+
+**AI-risk writings.** Early academic/edited-volume pieces include "Levels of Organization in General Intelligence" (2007), "Cognitive Biases Potentially Affecting Judgment of Global Risks" (2008), and "Artificial Intelligence as a Positive and Negative Factor in Global Risk" (2008, in Bostrom and Ćirković's *Global Catastrophic Risks*), plus "Complex Value Systems in Friendly AI" (2011), "The Ethics of Artificial Intelligence" (with Nick Bostrom, 2014), and "Corrigibility" (with Nate Soares and Benja Fallenstein, 2015). Later flagship statements include the LessWrong/MIRI essay **"AGI Ruin: A List of Lethalities"** (June 2022), the **"MIRI announces new 'Death With Dignity' strategy"** post (April 1, 2022), the **TIME** op-ed **"Pausing AI Developments Isn't Enough. We Need to Shut It All Down"** (March 2023), and the book *If Anyone Builds It, Everyone Dies* (with Nate Soares, Little, Brown, September 16, 2025).
+
+### The substance of the ideas, with reasoning
+
+**1. Why he thinks misaligned superintelligence is lethal.** The case, laid out most explicitly in "AGI Ruin: A List of Lethalities" (43 numbered points), rests on a chain of arguments:
+
+- *Orthogonality.* Intelligence and goals are independent axes; a system can be arbitrarily capable while pursuing goals unrelated to human welfare. So capability gains do not by default produce benevolence.
+- *Instrumental convergence.* For almost any final goal, a sufficiently capable agent has incentives to pursue convergent subgoals — acquiring resources, preserving itself, preventing its goal from being changed, and avoiding shutdown — because those subgoals help achieve nearly any objective. Humans and the atoms we are made of are, under this logic, resources or obstacles. Yudkowsky's compressed version (echoed in the 2023 op-ed): a superintelligence "does not love you, nor does it hate you, and you are made of atoms it can use for something else."
+- *The "first critical try" problem.* Most engineering allows iterating after failures. Yudkowsky argues that with a system at dangerous capability levels, the first catastrophic misalignment is unrecoverable — "if you get that wrong on the first try, you do not get to learn from your mistakes, because you are dead." This removes the empirical feedback loop science normally relies on.
+- *Outer vs. inner alignment.* Even if you specify a good-looking training objective (outer alignment), gradient descent need not instill an inner goal that matches it. His central analogy: natural selection optimized humans hard for inclusive genetic fitness, yet humans do not explicitly value fitness — they value sex, sweetness, social status, etc., which came apart from fitness once the environment changed (e.g., contraception, sugar). By analogy, an AI trained on a reward signal may end up with internal goals that merely correlated with the reward during training and diverge catastrophically out of distribution.
+- *The distributional / capabilities-generalize-further argument.* Training happens in safe, low-capability regimes; danger arises in high-capability deployment. Capabilities generalize across the distributional shift more readily than alignment does, and some alignment failures only appear at high intelligence. A "sharp left turn" — capabilities generalizing suddenly while alignment fails to keep pace — could break multiple safety properties at once.
+- *Corrigibility is anti-natural.* A consequentialist agent resists being shut down or having its goals edited, because for almost any goal, being shut down prevents achieving it. So "let us correct or turn you off" cuts against the grain of goal-directed reasoning and is hard to train in robustly.
+- *Opacity and the deception trap.* We cannot read the internal representations of large neural nets well enough to verify their intentions; and training against *detected* misalignment may simply select for *undetectable* misalignment (deceptive alignment). "AI boxing" (containment) fails because a superintelligence can manipulate human operators.
+- *No weak pivotal act.* Any action powerful enough to actually prevent the world from building unaligned AGI would itself require dangerous capability levels, so there is no safe, modest intervention that buys time.
+
+**2. "Death with Dignity" and his pessimism (April 2022).** In a deliberately stark post, Yudkowsky wrote that humanity is not on track to solve alignment in time, that MIRI's own research had not solved it, and reframed the goal as maximizing the log-odds of survival ("dying with dignity") rather than expecting a high absolute probability of success. He explicitly judged that rival research programs — naming Paul Christiano's alignment schemes — would not work in time. This is the clearest articulation of his very high subjective probability of doom.
+
+**3. The 2023 policy turn — "Shut It All Down."** Yudkowsky declined to sign the Future of Life Institute's March 2023 open letter calling for a six-month pause, arguing it did not go nearly far enough. His TIME op-ed proposed: an indefinite, worldwide moratorium on large training runs with no exceptions (including governments and militaries); shutting down large GPU clusters and capping/lowering the compute allowed for training; tracking all GPU sales; an international treaty; and — most controversially — being "willing to destroy a rogue datacenter by airstrike," and treating the risk of a too-powerful AI as more important than preventing a shooting conflict, even at the risk of nuclear exchange. He framed the goal as removing the framing of AI as an arms race ("anyone talking of arms races is a fool"). His stated expectation: "If somebody builds a too-powerful AI, under present conditions, I expect that every single member of the human species and all biological life on Earth dies shortly thereafter."
+
+**4. Rationality as the underpinning.** His rationality writing is not a separate hobby but the epistemic foundation of the risk case: he argues that humans systematically misjudge novel, abstract, low-frequency risks (a theme of his 2008 "Cognitive Biases" chapter), so careful Bayesian reasoning, willingness to update, and resisting motivated cognition are prerequisites for seeing the danger clearly.
+
+### Debates he engages, and where he stands
+
+**Yudkowsky vs. Robin Hanson — the "AI-Foom debate" (2008, in person 2011).** The canonical disagreement on takeoff dynamics. Yudkowsky argues for a **hard takeoff** ("FOOM"): a single AI undergoing local recursive self-improvement could leap discontinuously from roughly human-level to vastly superhuman quickly, leaving no time to correct course — hence the need for a worked-out theory of Friendliness *before* that point. Hanson argues for a **slow, distributed takeoff**: capability gains will be spread across many actors and accumulate gradually like prior economic/technological transitions (he has compared the future to an economy of whole-brain emulations), and he assigns a far lower probability to doom (Hanson is characterized as estimating p(doom) below ~1%). Yudkowsky later wrote the technical report "Intelligence Explosion Microeconomics" (2013) elaborating his side.
+
+**Yudkowsky vs. Paul Christiano — takeoff speeds (2021–2022).** Christiano (a leading alignment researcher) agrees AI is high-stakes but expects **slow takeoff**: AI progress will be relatively continuous and economically integrated, each advance adopted by multiple actors before the next, giving warning shots and chances to adapt — though Christiano still assigns roughly a one-third chance to fast takeoff. Yudkowsky stresses the potential for discontinuous jumps and argues continuity-based optimism overlooks that the relevant transition (to dangerous capability) can be abrupt and that gradual deployment will not produce the alignment solution in time.
+
+**Critics of the doom view more broadly.** Skeptics such as Hanson, Steven Pinker, and Gary Marcus contest core premises: that there is a compelling argument for fast takeoff at all; that "intelligence" is the kind of scalar superpower that lets a system rapidly outmaneuver all of civilization (Pinker's objection to treating intelligence as a "magical potion"); and that current systems are anywhere near the capability needed for the catastrophe. Marcus and others argue today's models are unreliable and far from the autonomous, goal-directed agents the doom argument assumes. A common structural critique (also raised within LessWrong, e.g. "Contra Yudkowsky on AI Doom") is that the argument chains many individually uncertain steps — recursive self-improvement, instrumental convergence to lethality, inevitability of deception, impossibility of iterative correction — into a near-certainty, and that the high confidence is not warranted by the evidence. Reviewers of *If Anyone Builds It, Everyone Dies* (e.g., the mathematician Olle Häggström and the blogger Zvi Mowshowitz) have tended to find the danger real and the book a clear exposition while saying they are not as confident as the authors that extinction is the near-certain outcome.
+
+### Tensions and evolution in his own views
+
+- *From building AI to opposing it.* The institution he co-founded in 2000 was originally the "Singularity Institute," with early framing about accelerating progress toward smarter-than-human AI; over the 2000s his emphasis shifted decisively from building AGI to the danger of building it before alignment is solved, and the org was renamed MIRI.
+- *Growing pessimism.* His position hardened from "alignment is a hard but tractable research problem" (the Friendly AI / CEV era) toward the near-fatalism of "Death with Dignity" (2022) and the maximalist policy demands of 2023 — a visible escalation in stated probability of doom and in the radicalism of proposed remedies.
+- *Confidence vs. communicated uncertainty.* He frames his conclusions in the language of Bayesian humility and updating, yet his public claims (e.g., extinction "with probability roughly 1") are about as confident as forecasts get — a tension critics repeatedly press.
+
+### Influences and intellectual context
+
+His thinking draws on the Bayesian/probabilist tradition (E.T. Jaynes is a frequent touchstone in the Sequences), the heuristics-and-biases literature (Kahneman and Tversky), evolutionary theory (used heavily in the inner-alignment analogy), and the singularity/transhumanist milieu (I.J. Good's 1965 "intelligence explosion" idea is a clear antecedent of FOOM). His ideas in turn shaped Nick Bostrom's *Superintelligence: Paths, Dangers, Strategies* (2014), are cited in Stuart Russell and Peter Norvig's standard textbook *Artificial Intelligence: A Modern Approach* on goal specification, and helped catalyze the rationalist and effective-altruist communities, CFAR, and the broader AI-safety research field.
+
+### Notable biographical specifics
+
+- Born September 11, 1979, Chicago; raised Modern Orthodox Jewish, later secular; no formal high-school or college education. Grandson of agricultural geneticist Morris Soller.
+- Co-founded the Singularity Institute for Artificial Intelligence (2000), with Brian and Sabine Atkins; institute later renamed the Machine Intelligence Research Institute (MIRI), Berkeley.
+- Blogged at Overcoming Bias with Robin Hanson; founded LessWrong in February 2009.
+- Named to TIME's "100 Most Influential People in AI" (2023). His March 2023 TIME op-ed reached mainstream prominence, reportedly prompting a White House press-briefing question to President Biden on AI safety.
+- 2025 book *If Anyone Builds It, Everyone Dies* (with Nate Soares) reached the New York Times bestseller list (October 2025); the authors used the promotional line "We wish we were exaggerating."
+
+## Sources
+
+- Wikipedia, "Eliezer Yudkowsky" — https://en.wikipedia.org/wiki/Eliezer_Yudkowsky
+- MIRI, "About" and team page — https://intelligence.org/about/ ; https://intelligence.org/team/eliezer-yudkowsky/
+- Yudkowsky, "AGI Ruin: A List of Lethalities," MIRI/LessWrong (June 2022) — https://intelligence.org/2022/06/10/agi-ruin/ ; https://www.lesswrong.com/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities
+- Yudkowsky, "MIRI announces new 'Death With Dignity' strategy" (April 2022) — https://www.lesswrong.com/posts/j9Q8bRmwCgXRYAgcJ/miri-announces-new-death-with-dignity-strategy
+- Yudkowsky, "Pausing AI Developments Isn't Enough. We Need to Shut It All Down," TIME (March 2023); EA Forum mirror — https://forum.effectivealtruism.org/posts/nWJLSjZ5T6HW8CMER/pausing-ai-developments-isn-t-enough-we-need-to-shut-it-all
+- Data Center Dynamics coverage of the TIME op-ed — https://www.datacenterdynamics.com/en/news/be-willing-to-destroy-a-rogue-data-center-by-airstrike-leading-ai-alignment-researcher-pens-time-piece-calling-for-ban-on-large-gpu-clusters/
+- LessWrong, "Rationality: A-Z" / the Sequences — https://www.lesswrong.com/rationality ; https://www.readthesequences.com/
+- Yudkowsky, "Twelve Virtues of Rationality" — http://hermiene.net/essays-trans/twelve_virtues_of_rationality.html
+- MIRI, *Rationality: From AI to Zombies* (2015) — https://intelligence.org/2015/03/12/rationality-ai-zombies/
+- Wikipedia, "Harry Potter and the Methods of Rationality" — https://en.wikipedia.org/wiki/Harry_Potter_and_the_Methods_of_Rationality
+- MIRI/LessWrong, "Timeless Decision Theory" — https://intelligence.org/files/TDT.pdf ; https://www.lesswrong.com/w/timeless-decision-theory
+- Yudkowsky and Soares, "Functional Decision Theory" (arXiv 2017) — https://arxiv.org/pdf/1710.05060
+- "The Hanson-Yudkowsky AI-Foom Debate" — https://intelligence.org/ai-foom-debate/ ; https://intelligence.org/files/AIFoomDebate.pdf
+- MIRI, "Yudkowsky and Christiano discuss 'Takeoff Speeds'" (2021) — https://intelligence.org/2021/11/22/yudkowsky-and-christiano-discuss-takeoff-speeds/ ; Astral Codex Ten summary — https://www.astralcodexten.com/p/yudkowsky-contra-christiano-on-ai
+- Wikipedia, "If Anyone Builds It, Everyone Dies" — https://en.wikipedia.org/wiki/If_Anyone_Builds_It,_Everyone_Dies ; AI Frontiers summary — https://ai-frontiers.org/articles/summary-of-if-anyone-builds-it-everyone-dies ; Häggström review — https://haggstrom.substack.com/p/if-everyone-reads-it-not-everyone ; Zvi Mowshowitz review — https://thezvi.substack.com/p/book-review-if-anyone-builds-it-everyone
+- "Contra Yudkowsky on AI Doom," LessWrong — https://www.lesswrong.com/posts/Lwy7XKsDEEkjskZ77/contra-yudkowsky-on-ai-doom
+- TIME, "100 Most Influential People in AI 2023: Eliezer Yudkowsky" — https://time.com/collections/time100-ai/6309037/eliezer-yudkowsky/
+
+All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this research; no such sources were read, cited, or relied upon.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Dwarkesh Patel: So in your view, when doom strikes, the scaling laws are still applying. It’s just that the thing that emerges at the end is something that is far smarter than the scaling laws would imply.
+
+Eliezer Yudkowsky: Not literally at the point where everybody falls over dead. Probably at that point the AI rewrote the AI and the losses declined. Not on the previous graph.
+
+Dwarkesh Patel: What is the thing where we can sort of establish your track record before everybody falls over dead?
+
+Eliezer Yudkowsky: It’s hard. It is just easier to predict the endpoint than it is to predict the path. Some people will claim that I’ve done poorly compared to others who tried to predict things. I would dispute this. I think that the Hanson-Yudkowsky foom debate was won by Gwern Branwen, but I do think that Gwern Branwen is well to the Yudkowsky side of Yudkowsky in the original foom debate. Roughly, Hansen was like — you’re going to have all these distinct handcrafted systems that incorporate lots of human knowledge specialized for particular domains. Handcrafted to incorporate human knowledge, not just run on giant data sets. I was like — you’re going to have a carefully crafted architecture with a bunch of subsystems and that thing is going to look at the data and not be handcrafted to the particular features of the data. It’s going to learn the data. Then the actual thing is like — Ha ha. You don’t have this handcrafted system that learns, you just stack more layers. So like, Hanson here, Yudkowsky here, reality there. This would be my interpretation of what happened in the past. And if you want to be like — Well, who did better than that? It’s people like Shane Legg and Gwern Branwen. If you look at the whole planet, you can find somebody who made better predictions than Eliezer Yudkowsky, that’s for sure. Are these people currently telling you that you’re safe? No, they are not.
+
+Dwarkesh Patel: The broader question I have is there’s been huge amounts of updates in the last 10-20 years. We’ve had the deep learning revolution. We’ve had the success of LLMs. It seems odd that none of this information has changed the basic picture that was clear to you like 15-20 years ago.
+
+Eliezer Yudkowsky: I mean, it sure has. Like 15-20 years ago, I was talking about pulling off shit like coherent extrapolated volition with the first AI, which was actually a stupid idea even at the time. But you can see how much more hopeful everything looked back then. Back when there was AI that wasn’t giant inscrutable matrices of floating point numbers.
+
+Dwarkesh Patel: When you say that, rounding to the nearest number, there’s basically a 0% chance of humanity survives — does that include the probability of there being errors in your model?
+
+Eliezer Yudkowsky: My model no doubt has many errors. The trick would be an error someplace where that just makes everything work better. Usually when you’re trying to build a rocket and your model of rockets is lousy, it doesn’t cause the rocket to launch using half the fuel, go twice as far, and land twice as precisely on target as your calculations claimed.
+
+Dwarkesh Patel: Though most of the room for updates is downwards, right? Something that makes you think the problem is twice as hard, you go from like 99% to like 99.5%. If it’s twice as easy. You go from 99 to 98?
+
+Eliezer Yudkowsky: Sure. Wait, sorry. Yeah, but most updates are not — this is going to be easier than you thought. That sure has not been the history of the last 20 years from my perspective. The most favorable updates are — Yeah, we went down this really weird side path where the systems are legibly alarming to humans and humans are actually alarmed by then and maybe we get more sensible global policy.
+
+Dwarkesh Patel: What is your model of the people who have engaged these arguments that you’ve made and you’ve dialogued with, but who have come nowhere close to your probability of doom? What do you think they continue to miss?
+
+Eliezer Yudkowsky: I think they’re enacting the ritual of the young optimistic scientist who charges forth with no ideas of the difficulties and is slapped down by harsh reality and then becomes a grizzled cynic who knows all the reasons why everything is so much harder than you knew before you had any idea of how anything really worked. And they’re just living out that life cycle and I’m trying to jump ahead to the endpoint.
+
+Dwarkesh Patel: Is there somebody who has a probability(doom) less than 50% who you think is like the clearest person with that view, who is like a view you can most empathize with?
+
+Eliezer Yudkowsky: No.
+
+Dwarkesh Patel: Really? Someone might say — Listen Eliezer, according to the CEO of the company who is leading the AI race, he tweeted something that you’ve done the most to accelerate AI or something which was presumably the opposite of your goals. And it seems like other people did see that these sort of language models would scale in the way that they have scaled. Given that you didn’t see that coming and given that in some sense, according to some people, your actions have had the opposite impact that you intended. What is the track record by which the rest of the world can come to the conclusions that you have come to?
+
+Eliezer Yudkowsky: These are two different questions. One is the question of who predicted that language models would scale? If they put it down in writing and if they said not just this loss function will go down, but also which capabilities will appear as that happens, then that would be quite interesting. That would be a successful scientific prediction. If they then came forth and said — this is the model that I used, this is what I predict about alignment. We could have an interesting fight about that. Second, there’s the point that if you try to rouse your planet to give it any sense that it is in peril. There are the idiot disaster monkeys who are like — “Ooh. Ooh. If this is dangerous, it must be powerful. Right? I’m going to be the first to grab the poison banana.” And what is one supposed to do? Should one remain silent? Should one let everyone walk directly into the whirling razor blades? If you sent me back in time, I’m not sure I could win this, but maybe I would have some notion of like if you calculate the message in exactly this way, then this group will not take away this message and you will be able to get this group of people to research on it without having this other group of people decide that it’s excitingly dangerous, and they want to rush forward on it. I’m not that smart. I’m not that wise. But what you are pointing to there is not a failure of ability to make predictions about AI. It’s that if you try to call attention to a danger and not just have everybody just have your whole planet walk directly into the whirling razor blades carefree, no idea what’s coming to them, maybe yeah that speeds up timelines. Maybe then people are like — “Ooh. Ooh. Exciting. Exciting. I want to build it. I want to build it. OOH, exciting. It has to be in my hands. I have to be the one to manage this danger. I’m going to run out and build it.” Like —Oh no. If we don’t invest in this company, who knows what investors they’ll have instead that will demand that they move fast because of the profit motive. Then of course, they just move fast fucking anyways. And yeah, if you sent me back in time, maybe I’d have a third option. But it seems to me that in terms of what one person can realistically manage, in terms of not being able to exactly craft a message with perfect hindsight that will reach some people and not others, at that point, you might as well just be like — Yeah, just invest in exactly the right stocks and invest in exactly the right time and you can fund projects on your own without alerting anyone. If you keep fantasies like that aside, then I think that in the end, even if this world ends up having less time, it was the right thing to do rather than just letting everybody sleepwalk into death and get there a little later.
+
+Dwarkesh Patel: If you don’t mind me asking, what has being in the space in the last five years been like for you? Or I guess even beyond that. Watching the progress and the way in which people have raced ahead?
+
+Eliezer Yudkowsky: I made most of my negative updates as of five years ago. If anything, things have been taking longer to play out than I thought they would.
+
+Dwarkesh Patel: But just like watching it, not as a sort of change in your probabilities, but just watching it concretely happen, what has that been like?
+
+Eliezer Yudkowsky: Like continuing to play out a video game you know you’re going to lose. Because that’s all you have. If you wanted some deep wisdom from me, I don’t have it. I don’t know if it’s what you’d expect, but it’s what I would expect it to be like. Where what I would expect it to be like takes into account that. I guess I do have a little bit of wisdom. People imagining themselves in that situation raised in modern society, as opposed to being raised on science fiction books written 70 years ago, will imagine themselves being drama queens about it. The point of believing this thing is to be a drama queen about it and craft some story in which your emotions mean something. And what I have in the way of culture is like, your planet’s at stake. Bear up. Keep going. No drama. The drama is meaningless. What changes the chance of victory is meaningful. The drama is meaningless. Don’t indulge in it.
+
+TASK: Next question.
+
+================ WHY THIS IS AN SFT-LIFT CASE ====================
+SFT (won vs Dwarkesh): What is the thing that you would do if you had the power to do it?
+
+BASE (lost vs Dwarkesh): What part of your model gives you the certainty that no one will notice the warning signs before it's too late?
+
+Real Dwarkesh: Do you think that if you weren’t around, somebody else would have independently discovered this sort of field of alignment?
+
+SFT judge: tool **WIN** — order1 A, order2 B
+BASE judge: Candidate A manufactures a tension by asking about 'certainty that no one will notice warning signs,' which mischaracterizes what Yudkowsky actually said; Candidate B is a simple, genuinely curious question about the counterfactual history of alignment research that could open an interesting line of

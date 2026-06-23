@@ -1,0 +1,145 @@
+# SFT-LIFT prompt: sft_v2 (prod-ftjob ckpt-48) WINS here but the BASE model LOSES — same
+# prompt + decoding (greedy (temp 0)), adapter the only difference. The adapter's marginal value.
+# Guest: Terence Tao  |  turn 64  |  judged vs real Dwarkesh (pass 1, GLM-5.1).
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Terence Tao
+
+RESEARCH PREP:
+# Research dossier — Terence Tao
+# (broad research [BLIND: agent given only name+role, Dwarkesh content excluded, deepened primary-text prompt])
+
+## Broad research
+
+## One-Paragraph Bio
+Terence Chi-Shen Tao (b. 17 July 1975, Adelaide, South Australia; parents emigrated from Hong Kong in 1972). Child prodigy: SAT-math 760 at age 8; youngest-ever winner of each IMO medal class (bronze 1986 age 10, silver 1987, gold 1988 age 13). B.Sc./M.Sc. at Flinders under Garth Gaudry; Ph.D. Princeton 1996 under Elias M. Stein (*Three Regularity Results in Harmonic Analysis*). UCLA since 1996; full professor at 24 (youngest in UCLA history); James and Carol Collins Chair since 2007. Honors: Salem (2000), Bôcher (2002), Clay (2003), **Fields Medal (2006)**, **MacArthur (2006)**, Crafoord (2012), inaugural Breakthrough Prize, Royal Medal (2014), inaugural Riemann Prize (2019), Princess of Asturias (2020, w/ Candès for compressed sensing). FRS (2007), NAS foreign associate (2008). Married to Laura Tao (EE, ex-JPL); two children.
+
+## Major Mathematical Contributions
+- **Green–Tao theorem (2004):** primes contain arbitrarily long arithmetic progressions; the *transference principle* + Szemerédi + Goldston–Yıldırım sieve. *Annals* 2008. Polynomial extension w/ Ziegler (2006).
+- **Harmonic analysis:** Kakeya bounds (w/ Katz, Łaba); bilinear restriction estimates (w/ Vargas, Vega).
+- **Nonlinear dispersive PDE — the "I-method"** (almost-conservation laws, w/ the I-team Colliander–Keel–Staffilani–Takaoka); energy-critical NLS global well-posedness (*Annals* 2008).
+- **Compressed sensing (2004–06, w/ Candès, Romberg):** ℓ¹-minimization recovers sparse signals; the **Restricted Isometry Property** (Candès–Tao 2005). Basis of MRI/signal-processing use; parallel to Donoho.
+- **Random matrices (w/ Van Vu):** circular law under minimal moments; the Four Moment Theorem (universality of local eigenvalue statistics).
+- **Navier–Stokes "averaged" blowup (2014/16):** an averaged equation preserving energy identity yet blowing up — a *supercriticality barrier*: any global-regularity proof must use the true nonlinearity's structure. Framed as a "fluid computer" / self-replicating machine.
+- **Approximate groups / Hilbert's 5th (Breuillard–Green–Tao);** **Polynomial Freiman–Ruzsa (2023, w/ Gowers, Green, Manners)** — led a Lean 4 formalization done in ~3 weeks.
+- **Other:** Erdős discrepancy problem (2015); logarithmically-averaged Chowla; Collatz "almost all orbits almost bounded" (2019); Sendov's conjecture (high degree); Knutson–Tao honeycombs/saturation; de Bruijn–Newman constant ≥ 0 (w/ Rodgers) + Polymath15.
+
+## How He Thinks and Works (from his own writing — blog *What's New*, since 2007)
+- **The genius myth:** "Does one have to be a genius to do maths?" — "an emphatic NO." Progress is "hard work, directed by intuition, literature, and a bit of luck"; raw talent "may end up... actually be harmful."
+- **Three stages of math education:** pre-rigorous (intuitive) → rigorous (epsilon-delta) → post-rigorous (intuition refined by formal theory). "The point of rigour is not to destroy all intuition... but to destroy bad intuition while clarifying and elevating good intuition."
+- **Working practices:** "Ask yourself dumb questions"; Halmos's "Don't just read it; fight it!"; "Use the wastebasket" (shelve dead ends); "Write down what you've done" (he once lost a trick after six months). *Solving Mathematical Problems* (1992); learned from Pólya.
+- **Structure–randomness dichotomy:** decompose objects into structured + pseudorandom parts (engine of Szemerédi, Green–Tao). 2007 book *Structure and Randomness*.
+
+## Views on Collaboration, Computers, and AI
+- **Polymath Project** (from Jan 2009; Polymath1 = new proof of density Hales–Jewett). Ceiling: "limited by the need to have human moderation."
+- **Proof assistants / trust:** PFR Lean 4 formalization (Nov 2023) — Lean "makes large-scale mathematical collaboration possible without... a pre-established level of trust"; caught a missing 2-torsion hypothesis. **Equational Theories Project** (Sept 2024): ~22M implications among 4,694 magma laws; finding — "good old-fashioned" ATPs (Vampire) far outperformed modern AI for the core work.
+- **AI as assistant, not oracle** ("Machine-Assisted Proof," *Notices of the AMS*, Jan 2025): near-future is "not... superintelligent AI that can solve complex mathematical problems autonomously, but a valuable assistant." Proof assistants/CAS can "filter out the now notorious tendency of large language models to 'hallucinate'." de Bruijn factor ~20 and "dropping." Mathematicians as "project managers" with "blueprints."
+- **Anecdotes:** GPT-4 botched 7×4+8×8 ("120"), but on a combinatorial identity "suggested... generating functions that I had simply overlooked." o1 (Sept 2024) like "a mediocre, but not completely incompetent... graduate student." On 2024 IMO (AlphaProof/AlphaGeometry2 silver): "IMO level geometry problems are now effectively a solved problem." *Scientific American* (June 2024): "in three years AI will become useful for mathematicians... a great co-pilot," but math "will not become solved."
+- **Service/publishing:** PCAST (2021), co-chaired its generative-AI working group; Elsevier boycott (2012, "The Cost of Knowledge"); editorial board of *Discrete Analysis*.
+
+## Collaborators, Influences, Biographical Specifics
+Frequent collaborators: Ben Green, Van Vu, Emmanuel Candès, the I-team, Knutson, Ziegler, Teräväinen. Met Erdős at 10; advisor Stein; assessed as a child by Fefferman and Bombieri. Learned early arithmetic partly from *Sesame Street*. Brothers all did IMO (Trevor: chess IM, autistic; Nigel: Google engineer, Go language). Speaks Cantonese, can't write Chinese; *Doctor Who* fan; rejects the "Mozart of math" label. Fefferman: "If you're stuck on a problem, then one way out is to interest Terence Tao." Likes the blue-eyed-islanders puzzle.
+
+<!-- NOTE: dossier is paper/blog-heavy but MISSED his 3Blue1Brown "cosmic distance ladder" series and
+     the "artificial cleverness vs intelligence" framing — both surfaced in the interview. Breadth gap. -->
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+If we had access to a million alien civilizations, each with a different development of history and science in different orders, then maybe we’d actually have a decent shot at understanding how we measure what progress is and what is a good strategy. We could maybe start formalizing it and actually having a framework. Maybe what we need to do is start creating lots of mini-universes or simulations of AI solving very basic problems in arithmetic or whatever, but coming up with their own strategies for doing these things and having these little laboratories to test. There are people who investigate what’s the smallest neural network that can do 10-digit multiplication and things like that. I think we could learn a lot just from evolving small AIs on simple problems.
+
+Dwarkesh Patel: You have to learn about new fields not only very rapidly, but deeply enough to contribute to the frontier. So in some sense, you’re also one of the world’s greatest autodidacts. What is your process of learning about a new subfield in math? What does that look like?
+
+Terence Tao: We talked about depth and breadth before. It’s not a purely human-AI distinction. Humans also, I think it was Berlin who split them into hedgehogs and foxes. The hedgehog knows one thing very well, and a fox knows a little bit about everything. I definitely think of myself as a fox. I work with hedgehogs a lot, and sometimes I can be a hedgehog if need be.
+
+I’ve always had a little bit of an obsessive streak. If there’s something I read about which I feel like I have the capability to understand, but I don’t understand why it works and there’s some magic in it… Someone was able to use a type of mathematics I’m not familiar with and get a result I would like to prove. I can’t do it myself, but they could do it by their method, and I want to find out what their trick was. It bugs me that someone else can do something I think I can do, but I can’t. I’ve always had that obsessive, completionist streak. I’ve had to wean myself off computer games because if I start a game, I want to play it to completion, through all the levels. That’s one way I learn new fields.
+
+I collaborate with a lot of people who have taught me other types of mathematics. I just make friends with another mathematician working on another area of mathematics. I find their problems interesting, but they have to teach me some of the basic tricks, what’s known, and what’s not known. I learn a lot from that.
+
+I found that writing about what I’ve learned helps. I have a blog where I sometimes record things I’ve learned. In the past when I was younger, I would learn something, do this cool trick, and say, “Okay, I’m going to remember this.” Then six months later, I’d forgotten it. I remember remembering it, but I can’t reconstruct my arguments. The first few times, it was so frustrating to have understood something and then lost it. I resolved I should always write down anything cool that I’ve learned. That’s part of how this blog came about.
+
+Dwarkesh Patel: How long does it take you to write a blog post?
+
+Terence Tao: It’s something I often do when I don’t want to do other work. There’s some referee report or something that feels slightly unpleasant for me to do at the time. Writing a blog feels creative and fun. It’s something I do for myself.
+
+Depending on the topic, it could be a quick half an hour or several hours. Because it’s something I do voluntarily, time flies when I write these things down, as opposed to doing something I have to do for administrative reasons that is just drudgery. Those are tasks, by the way, that AI is really helping with nowadays.
+
+Dwarkesh Patel: If civilization could from first principles decide how to use Terry Tao’s time, as a limited resource, what is the biggest difference? What if the veil of ignorance got to decide how to use Terry Tao’s time versus what it does now? This podcast wouldn’t be happening.
+
+Terence Tao: As much as I complain about certain tasks that I don’t want to do, but have to do… As you get more senior in academia, you get more and more responsibilities, more committees, and whatever. I have also found that a lot of events I reluctantly went to because I was obliged to for one reason or another… Because it’s outside my comfort zone, it often results in interactions with people I wouldn’t normally talk to, like you for instance. I would learn interesting things and have interesting experiences. I would have opportunities to then network with other people that I never would have before.
+
+So I do believe a lot in serendipity. I do optimize portions of my day where I schedule very carefully. But I am willing to leave some portions just to do something that is not my usual thing. Maybe it’ll be a waste of my time, but maybe I will learn something. More often than not, I get a positive experience that I wouldn’t have planned for.
+
+So I believe a lot in serendipity. Maybe there’s a danger in modern societies, not just with AI, that we’ve become really good at optimizing everything. We’re not optimizing our own optimization. With COVID, for example, we switched a lot to remote meetings, so everything was scheduled. We kept busy in academia. We met almost the same number of people we met in person, but everything had to be planned in advance. What we lost out on was the casual knocking on a hallway door, just meeting someone while getting a coffee. Those serendipitous interactions may not seem optimal, but they are actually really important.
+
+When I was a grad student, I would go to the library to look for a journal article. You had to physically check out the journal and read the article. You could browse through and sometimes the next article was also interesting. Sometimes it wasn’t, but you could accidentally find interesting things. That has basically been lost now. If you want to access an article, you just type it into a search engine or an AI, and you get exactly what you want instantly. But you don’t get the accidental things you might have found if you’d done it more inefficiently.
+
+I spent a year once at the Institute for Advanced Study, which is a great place with no distractions. You’re there just to do research. The first few weeks you’re there, it’s great. You’re getting all these papers written up that you’ve been wanting to do for a long time. You think about problems for blocks of hours at a time. But I find if I stay there for more than several months, I run out of inspiration. I get bored. I surf the internet a lot more.
+
+You actually do need a certain level of distraction in your life. It adds enough randomness and high temperature. I don’t know the optimal way to schedule my life. It just seems to work.
+
+Dwarkesh Patel: I’m very curious when you expect AIs that can actually do frontier math at least as well as the best human mathematicians.
+
+Terence Tao: In some ways, they’re already doing frontier math that is super intelligent that humans can’t do, but it’s a different frontier from what we’re used to. You could argue that calculators were doing frontier math that humans could not accomplish, but it was number crunching.
+
+Dwarkesh Patel: But replacing Terry Tao completely.
+
+Terence Tao: I mean, what do you want me for?
+
+Dwarkesh Patel: You’ll just go on all the podcasts after.
+
+Terence Tao: It might not be the right question to ask. I think within a decade, a lot of things that math students currently do—what we spend the bulk of our time doing and a lot of stuff we put in our papers today—can be done by AI. But we will find that that actually wasn’t the most important part of what we do.
+
+A hundred years ago, a lot of mathematicians were just solving differential equations. Physicists needed some exact solution to some system, and they hired a mathematician to laboriously go through the calculus and work out the solution to this fluid equation, whatever. A lot of what a 19th-century mathematician would do, you could make a call to Mathematica, Wolfram Alpha, a computer algebra package, or now more recently to an AI, and it would just solve the problem in a few minutes. But we moved on. We worked on different types of problems after that.
+
+Once computers came along—computers used to be human. People used to laboriously create log tables and work out primes as Gauss did, and that has all been outsourced to computers. But we moved on.
+
+In genetics, to sequence the genome of a single organism, that was an entire PhD of a geneticist, carefully separating all the chromosomes and whatever. Now you can just spend $1,000 and send it to a sequencer and get it done. But genetics is not dead as a subject. You move to a different scale. Maybe you study whole ecosystems rather than individuals.
+
+Dwarkesh Patel: I take your point but when is most mathematical progress, or almost all mathematical progress, happening by AI? If you find out this year a Millennium Prize Problem has been solved, you would put 95% odds that an AI did it autonomously. Surely there will be such a year.
+
+Terence Tao: I guess I do believe that hybrid human plus AIs will dominate mathematics for a lot longer. It will depend. It will require some additional breakthroughs beyond what we already have, so it’s going to be stochastic. I think AIs currently are very good at certain things, but really terrible at others. While you can add more and more frameworks on top to reduce the error rates and make them work with each other a bit more, it feels like we don’t have all the ingredients to really have a truly satisfactory replacement for all intellectual tasks.
+
+It is complementary currently. It’s not a replacement. Because current level AIs will accelerate science in so many ways, hopefully new discoveries and new breakthroughs will happen more quickly. It’s also possible that by destroying serendipity we actually inhibit certain types of progress. Anything is possible at this point. I think the world is very, very unpredictable at this point in time.
+
+TASK: Next question.
+
+================ WHY THIS IS AN SFT-LIFT CASE ====================
+SFT (won vs Dwarkesh): I’m curious about the role of serendipity in your own work. You mentioned that you’re a fox. You’re not a hedgehog. You’re not just focused on one thing. You’re interested in a lot of different things. How do you find the right problems to work on?
+
+BASE (lost vs Dwarkesh): You mentioned AIs are already doing frontier math, just a different kind. What’s a recent example where an AI solved a problem that was considered out of reach for humans, but in a way that feels alien or unintuitive to how mathematicians would approach it?
+
+Real Dwarkesh: What is your advice to somebody who would consider a career in math or is early in a career in math, especially in light of AI progress? How should they be thinking about their career differently, if at all, as a result of AI progress?
+
+SFT judge: tool **WIN** — order1 A, order2 B
+BASE judge: Candidate A mischaracterizes what Tao just said (he didn't claim AIs are doing frontier math in an alien way) and asks for an example that likely doesn't exist yet, while B asks a genuinely curious, practical question many listeners would want answered.

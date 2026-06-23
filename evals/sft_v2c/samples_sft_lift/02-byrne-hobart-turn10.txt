@@ -1,0 +1,152 @@
+# SFT-LIFT prompt: sft_v2 (prod-ftjob ckpt-48) WINS here but the BASE model LOSES — same
+# prompt + decoding (temp 0.7), adapter the only difference. The adapter's marginal value.
+# Guest: Byrne Hobart  |  turn 10  |  judged vs real Dwarkesh (pass 1, GLM-5.1).
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Byrne Hobart
+
+RESEARCH PREP:
+# Research dossier — Byrne Hobart
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Byrne Hobart is an American finance-and-technology writer, equity analyst, and investor best known for *The Diff*, a paid newsletter covering "inflections in finance and tech" that he has grown to more than 50,000 subscribers. Born in St. Louis (his mother a nurse, his father in group-health-insurance sales), he attended the Jesuit St. Louis University High School and won a full-ride scholarship to Arizona State University, but dropped out at 18 and moved to New York City in 2006 to pursue a career as a hedge-fund analyst. He worked first in online marketing — including building SEO strategy for Yahoo's news, sports, and finance verticals — before joining the equity hedge fund SAC Capital (now Point72) around 2012, where he covered internet and consumer-internet companies (Shutterfly, Vistaprint, Ancestry.com, WebMD, Google, Amazon). After being laid off in a 2014 team restructuring he briefly worked at 21.co (the Bitcoin company led by Balaji Srinivasan), then returned to East-Coast analyst roles and began writing publicly in 2018, first on Medium and then on Substack. He turned on *The Diff*'s paywall in February 2020 as COVID-19 spread, and within roughly five months newsletter income exceeded all his other earnings. He is a CFA charterholder, a partner at the frontier-technology investment firm Anomaly (with Patrick Blum and Tobias Huber), runs an AngelList syndicate, also writes the explainer publication *Capital Gains*, and is co-author, with Tobias Huber, of *Boom: Bubbles and the End of Stagnation* (Stripe Press, October 2024). He reports writing roughly 500,000 words per year.
+
+### Major works and themes
+
+**The Diff (2018–present).** Hobart's central project is a weekday long-form newsletter analyzing "technologies, companies, and trends that are making the future high-variance," concentrating on finance and tech because those domains move fast enough to reveal where the broader economy is going. He has framed his explicit ambition as becoming "the favorite primary source that the nerds about the 2020s are all reading" — i.e., writing the first draft of financial history for future historians. The newsletter is named after the Unix `diff` utility, reflecting his technical orientation. Format: each issue pairs an essay with several curated news items annotated for long-term significance; free subscribers get a subset, paid subscribers get the full schedule. The newsletter began with roughly 1,200 readers and was endorsed early by Patrick Collison (Stripe), Patrick McKenzie, and Leo Polovets, and it is frequently compared to Matt Levine's *Money Stuff*, with the distinction that Hobart leans on cross-disciplinary mental models and financial analogies rather than legal-financial commentary. Notable individual essays/issues include "Stripe and Solid-State Economics" (May 2021), "The Factorio Mindset" (February 2022), "Understanding Jane Street" (August 2022), "Hand-Crafted Artisanal Liquidity Provision" (August 2022), and "Money, Credit, Trust, and FTX" (November 2022).
+
+**Boom: Bubbles and the End of Stagnation (Stripe Press, 2024), with Tobias Huber.** This is Hobart's flagship statement of his worldview, nominated for the Manhattan Institute's Hayek Book Prize and praised by Tyler Cowen. The book takes an inductive approach: it examines a set of historical breakthroughs — the Manhattan Project, the Apollo program, the growth of semiconductor manufacturing (Moore's Law), the mid-century golden age of corporate R&D, the U.S. shale/fracking revolution, and Bitcoin — and argues that each ran on "bubble dynamics": FOMO-driven enthusiasm, messianic leadership operating with reduced accountability, and a degree of seemingly irrational commitment that nonetheless produced durable value. The thesis: bubbles are not purely destructive; certain "productive" bubbles supply the activation energy and coordination needed for transformative innovation, by concentrating capital and talent into a "cluster in time" and by letting participants suspend ordinary rational evaluation long enough to commit to long-horizon projects. The book situates this against the "Great Stagnation" diagnosis (productivity growth stalling since around 1971, declining scientific output per dollar, sequel-driven culture) and pairs it with claims about risk-aversion's social and demographic roots — an aging population, fewer children, and the rising influence of risk-averse decision-makers in institutions.
+
+**Capital Gains** is a companion publication explaining the finance concepts a general reader's education tends to skip. Hobart has also published shorter pieces in outlets such as a16z's *Future* ("Well-Behaved Bubbles Often Make History"). He co-hosts the podcast *The Riff* with Erik Torenberg.
+
+### The substance of the ideas, with reasoning, tensions, and opposing arguments
+
+**On bubbles and stagnation (his signature position).** Hobart's core claim is that the modern West is, if anything, *under-bubbled* — that the cultural and institutional machinery for generating definite, ambitious, coordinated bets on the future has atrophied. The reasoning runs: real breakthroughs require many actors to make complementary, irreversible commitments before the payoff is provable; under normal market discipline, each actor waits for the others, and nothing happens. A bubble breaks this stalemate by creating a self-referential belief system in which participants stop trying to persuade skeptics and instead act as if the future they want is already inevitable. Two mechanisms recur in his account: (1) *parallel/complementary progress* — technologies that need each other to be useful (cars and gas stations; faster chips and software written to exploit them) get built simultaneously because everyone assumes everyone else will follow through; in the semiconductor case, chipmakers pushed past current demand trusting that software developers would write programs to consume the extra speed, which then justified the next round of investment; and (2) *temporal clustering* — pulling future demand and talent into the present so a critical mass forms at once. He explicitly invokes Peter Thiel's "definite optimism" (from *Zero to One*) as the cultural ingredient: a clear, concrete plan for a different future, as opposed to indefinite optimism (things will improve, but we can't say how). The COVID response, in the book's telling, is a *negative* example — the U.S. lacked bubble dynamics, manufacturers hesitated to scale test/vaccine capacity and were then stranded once shortages eased.
+
+*Strongest counterarguments and named opponents.* The obvious opposing position, which Hobart engages, is the conventional economist's view that bubbles destroy capital and misallocate resources — the dot-com and 2008 housing bubbles as canonical waste. Hobart's rebuttal is that even "failed" bubbles can leave durable infrastructure and a trained cohort (fiber laid in the late 1990s; engineers and a software ecosystem). A second, more pointed critique appears in reviews: a *determinism/agency* tension — if progress depends on demographic and possibly biological drivers of risk-appetite (the book floats declining birth rates and even declining testosterone, possibly tied to endocrine disruptors, as factors), it is unclear what individuals or policymakers can actually do, which sits awkwardly with the book's prescriptive, optimistic framing. Reviewers also note a paradox the book itself raises but does not fully resolve: societal risk-aversion has *increased* even as material safety nets and baseline safety have improved, which complicates any simple story about why ambition declined. The stagnation framing he adopts is itself contested ground — it descends from Tyler Cowen's *The Great Stagnation*, and the counter-camp argues measured stagnation is partly a measurement artifact (free digital goods, quality improvements) rather than a real slowdown.
+
+**On market efficiency and where edge comes from.** Hobart treats markets as broadly but imperfectly efficient and is unusually candid that *alpha sums to zero before fees, taxes, and transaction costs* — for one investor to beat the market, another must lose. From this he draws several positions. He argues hedge-fund outperformance has eroded since roughly 2000 as more capital chased the same inefficiencies, and he has floated that the industry may be near "peak pods" — the maximum number of multi-manager portfolio managers the market can profitably support. He describes the modern "pod shop" as a machine for isolating idiosyncratic stock-picking skill: managers get risk budgets while factor and industry exposures are hedged out, which he characterizes as "a method of measuring investment skill masquerading as an asset class." He traces the lineage to Alfred Winslow Jones's original long/short model. A recurring epistemic discipline he attributes to the best analysts: constantly asking "why do I deserve to be right about this?" — i.e., what is the specific reason the rest of the market is wrong.
+
+*A productive tension in his own views:* he simultaneously believes markets are hard to beat and that good analysis (reading 10-Ks and prospectuses that even professionals skip, doing primary-source channel checks) yields real edge. He resolves this partly by claiming the single largest durable advantage belongs not to professionals but to *retail/long-horizon* investors — they avoid short-term capital-gains taxes, face no monthly-performance or leverage pressure, and can hold through drawdowns that force levered funds to exit prematurely. He is also skeptical that venture-capital skill is measurable at all: power-law returns mean a single huge winner can dominate, making luck and skill nearly indistinguishable, and VCs lack the clean marginal-value-of-research calculus that trading firms have.
+
+**On hidden macro bets inside "neutral" strategies.** Hobart argues that supposedly diversified strategies carry concealed directional wagers: risk parity and the 60/40 portfolio are implicitly long low inflation, which is why they broke down in 2022; venture capital is effectively a bet on a flat yield curve and low rates, which sustain high valuations. The 30-year fixed mortgage is, in his words, "intrinsically toxic" because it embeds a huge interest-rate option for homeowners — refinancing waves force hedgers to trade Treasuries, raising Treasury volatility, and because Treasuries are the global benchmark cost of capital, he argues "the price of literally everything in the world is downstream" of American mortgage microstructure.
+
+**On who should hold which risks.** He argues young households saving for retirement are the socially optimal holders of equity risk (long horizons make volatility cheap and let them dollar-cost average), whereas endowments and sovereign wealth funds should arguably hold *less* equity because sudden drawdowns force painful budget cuts; founders, by contrast, should hold concentrated equity for alignment. He is also a skeptic of reported private-equity outperformance: he contends that once you adjust for leverage and compare to similarly small, statistically cheap public companies, PE returns largely track public markets — except suspiciously during downturns, when illiquid marks aren't written down, which he reads as smoothing/mark-to-market discretion rather than genuine risk-adjusted alpha.
+
+**On AI and labor.** As early as 2020 he argued that labor-saving AI could *increase* labor demand rather than reduce it, an instance of his general resistance to first-order "automation destroys jobs" intuitions.
+
+### Debates he engages and where he stands
+
+- **The stagnation debate:** he is firmly in the "real stagnation, fixable through ambition and definite optimism" camp, allied intellectually with Thiel and Cowen, against those who see slowdown as a measurement illusion.
+- **Are bubbles bad?** He is the leading contemporary advocate that *some* bubbles are net-positive and even necessary, against the mainstream finance/economics view of bubbles as waste.
+- **Active management / EMH:** he is a sophisticated near-believer in efficiency who nonetheless thinks edge is real but scarce and shrinking, and that the durable edge has migrated to patient long-horizon capital.
+- **Public vs. private markets:** he is a skeptic of the reported risk-adjusted superiority of private equity and of the measurability of VC skill.
+
+### Influences
+
+The most visible influence is Peter Thiel, whose definite/indefinite-optimism framework structures *Boom*. Tyler Cowen's *The Great Stagnation* supplies the diagnostic backdrop. He frequently cites Dan Wang's essay "Definite Optimism as Human Capital" (a restatement and extension of the Thiel idea — Wang, not Hobart, is its author) as a touchstone for treating optimism and concrete visions of the future as a form of capital. His co-author Tobias Huber (a philosopher with a doctorate from ETH Zurich, also a partner at Anomaly) is the intellectual collaborator on the bubble thesis. He is part of a broader "progress studies" / tech-finance writing milieu that includes Patrick McKenzie (patio11) and Patrick Collison.
+
+### Notable biographical specifics
+
+- Got interested in markets at age 10 via Ellen Raskin's children's novel *The Westing Game*; bought his first stock (Southern Union Gas) at 11; opened a brokerage account at 13.
+- Dropped out of Arizona State at 18; moved to NYC in 2006 with the explicit goal of becoming a hedge-fund analyst without a degree.
+- Career path: online marketing / SEO (including Yahoo verticals) → SAC Capital (~2012) covering internet stocks → laid off 2014 → 21.co (Balaji Srinivasan's Bitcoin company) → back to NY analyst roles → full-time writing.
+- CFA charterholder; partner at Anomaly; runs an AngelList syndicate; describes his operation as somewhere between a service business, a startup, and a merchant bank, supported by a couple of contractors.
+- **The SVB call:** On February 23, 2023, in *The Diff*, Hobart argued that Silicon Valley Bank was, on the market value of its assets, "technically insolvent" as of the prior quarter and effectively levered roughly 185-to-1 — derived simply by netting reported equity against the gap between the book value and market value of its bond portfolio. SVB announced a securities sale at a ~$1.8B loss and a capital raise on March 8; depositors withdrew an estimated ~$42B within a day; the bank was closed by regulators on March 10, 2023, and put into FDIC receivership. Hobart's note is widely credited (e.g., by writer Evan Armstrong) with helping focus tech-investor attention on SVB's balance sheet beforehand, though the precise causal role is disputed.
+
+## Sources
+
+- Stripe Press — *Boom* product page: https://press.stripe.com/boom
+- *Boom* (Amazon listing, authorship/publication detail): https://www.amazon.com/Boom-Bubbles-Stagnation-Byrne-Hobart/dp/1953953476
+- The Psmiths, review of *Boom*: https://www.thepsmiths.com/p/review-boom-by-byrne-hobart-and-tobias
+- The New Atlantis, "Are We Under-Bubbled?" (Leah Libresco Sargeant review of *Boom*): https://www.thenewatlantis.com/publications/are-we-under-bubbled
+- The Diff homepage: https://www.thediff.co/
+- Complex Systems podcast (Patrick McKenzie), episode page on Byrne Hobart: https://www.complexsystemspodcast.com/episodes/writing-history-byrne-hobart/
+- Mercury blog, "Byrne Hobart, the unlikely oracle" (biography): https://mercury.com/blog/byrne-hobart
+- Moontower, "Excerpts From Byrne Hobart on Hedge Funds, VC, and Finding Alpha": https://moontowermeta.com/excerpts-from-byrne-hobart-on-hedge-funds-vc-and-finding-alpha/
+- a16z Future, author page (essay "Well-Behaved Bubbles Often Make History"): https://future.com/author/byrne-hobart/
+- Background on Thiel's definite/indefinite optimism (Mercatus, *Conversations with Tyler*): https://medium.com/conversations-with-tyler/peter-thiel-on-the-future-of-innovation-77628a43c0dd
+- Dan Wang, "Definite optimism as human capital" (an influence Hobart cites; authored by Wang, not Hobart): https://danwang.co/definite-optimism-as-human-capital/
+
+All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this research; no such sources were read, cited, or relied upon.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+It's one of those things where it's like, if you own a house and over the last 24 hours you learned a whole lot about electrical wiring or you learned a whole lot about how plumbing works or how septic tanks work, that's not good. That means something very, very bad happened in your house. It could be nice to be an expert on those things but if you suddenly became an expert it's because somebody else wasn't doing their job. So I think you could be a trader like that where they can be very good at finding little pricing discrepancies and have just no awareness of what the operation stuff is. Especially because the better the operations team is, the less anyone else needs to be aware of them. You only email them when something is going wrong. So if nothing is going wrong, you never email them and then you forget they exist.
+
+Dwarkesh Patel: Yeah, that's a good point. In fact, in the interview I did of him, I asked him what is the difference between Jane Street and FTX? And he mentioned that at Jane Street, there was this button he could press to buy and all the intermediaries, all the servers and all the bank accounts were just taken care of. What was really funny is he then said, “Let’s talk about that. Just getting a bank account is so hard when you're independent.” Apparently it turns out that it's so hard that you might have commingled funds because you couldn't manage to separate them out.
+
+You had this really interesting take. At one point we were talking about how every single market crash can be explained by the drug that was common in the industry at the time. And we finally achieved the hypergrade meth stage of that Emsam patch he was taking that’s stronger than Adderall.
+
+Byrne Hobart: I think I was saying every crash can be explained by the drug they're taking at the time. That takes it a little far but I do think that the impact of new drugs on financial markets is underrated. You can have examples of this going back pretty far.
+
+There is some connection between caffeine consumption and extroversion and risk taking. You temporarily get a little bit more willing to do deals when you consume caffeine. Before Lloyd's of London was this insurance consortium, it was Lloyd's coffee shop. So you do have some history of coffee shops being associated with financial centers.
+
+And then you have to zoom forward because we just haven't had that many novel stimulants. Depressants, deliriums, and other drug categories probably just don't lead to that much financial activity. I don't know how someone would trade differently or invest differently if they had a really strong acid trip or took ecstasy or something. But the stimulants where people can just consistently reuse them, they keep people alert, they make them active and wanting to do things, it seems those would have a connection to financial markets.
+
+The theory is — if you look at the 1980s where there were a lot of these hostile takeover deals where someone would find a company that's underperforming. When you look at the spreadsheets and say this company is underperforming, what you're often looking at is a story that is more like, this company believes that they have this social obligation to the community where people work and that they have an obligation to give their customers a fairly priced product and maybe they give them really good customer service that doesn't really pay for itself and it's the right thing to do.
+
+Well, if you are a coke head with a coke head morality, you decide well that's not the right thing to do at all. You should actually just take the money and we should fire these people and replace them with cheaper employees. So levering up a company in order to buy out a bigger company and then firing everyone and shutting down the pension plan and distributing the surplus to shareholders, it is just very standard cokehead behavior. Whereas if you look at the mortgage backed securities boom and structured products generally, in the mid-2000s, the way that people made money in that was just by being very, very detail oriented and being able to make these incredibly fine-grained distinctions between different products that were basically similar but one of them pays 5.7% and one of them pays 5.75% and if you lever up that difference enough times you're actually making really good money consistently. It's super boring but maybe with enough Adderall it's actually very tolerable work that you can enjoy.
+
+So I do think that within stimulants the difference between short acting stimulants and long acting stimulants does mean the difference between a hostile takeover boom and a structured products boom.
+
+The drug in FTX’s case is called Emsam, which is a Parkinson's treatment and there's some evidence from pretty small sample size studies that one of the side effects of this drug is compulsive gambling. There have been very, very fun tweets about this claim and there have been these official denials from the company doctor on the other hand.
+
+If you're a company that has a company doctor, maybe that says something about the level of medication you're consuming and maybe the company doctor's job is partly to say, “As a doctor I can assure you, I would never give someone three times the normal dose of Adderall just because their boss hired me to do that specifically.” Dealers don't exactly have patient confidentiality norms, doctors do. So maybe you hire a doctor instead of a dealer specifically to get that plausible deniability.
+
+Dwarkesh Patel: Other than drugs I also want to ask you about the phenotype of the founder. FTX had a barber who would come in every Tuesday to cut everybody's hair. SBF could have just sat in line and gotten his haircut. The way he dressed was completely unnecessary and it was very purposeful. If that archetype of a founder who's in a t-shirt and shorts has been priced in and is beta instead of alpha now, what is the new phenotype and physiognomy of the founder? Where are you looking for alpha?
+
+Byrne Hobart: I would draw the distinction between the physical type of someone versus their presentation and their dress. I'm sure someone could run some interesting numbers on that but I don't have a good sense of what exactly they'd get from that but in terms of how people publicly present themselves, my guess is that yeah, there will be this swing towards investing in people who look a little bit more formal, a little bit more boring. These things are somewhat cyclical.
+
+Part of the norm on investing in treating the suit as a negative signal is that a lot of investors have this view that when the MBAs come into an industry a lot of the alpha is gone. There's a decent market timing signal that if a lot of people from Harvard Business School go straight into some field that field is probably peaking. There's a little bit to that where the suit is some example of conformity. On the other hand wearing a suit in Silicon Valley is an example of non-conformity and outside of New York, within the US, most of the time wearing a suit as a tech company founder would be this weird sign that you don't know what you're doing, you don't know what the right signals are or you're about to testify to Congress and that's why you have a suit now. Not generally a great sign but maybe it is a sign that you are willing to do some more conformist things and that you could pay attention to details even when the details are boring and also that you are making some kind of financial investment in that particular appearance.
+
+I would guess that there will be a tilt away from the hyper informal founders. But I also think that if you treat that hyper informality as either this attempt to game the system and just say, “I'm going to try to remind people of Mark Zuckerberg circa 2005 as much as possible so I can raise money and pretend to be the next big thing” That is one thing people are signaling. And then the other thing is they're just accidentally signaling total indifference to anything except the thing they're working on. Maybe that's a good thing in unregulated domains and a really, really bad thing in regulated domains. If you're investing in a medical devices company, you probably don't want a founder who just cannot focus on anything except the product because there are rules and norms they have to follow and it gets bad if all they're focused on is this one element.
+
+If the hyper focus is just perfectly calibrated that's good. So maybe adjusting your appearances this way to say that you have correctly calibrated your hyperfocus and you're going to get one thing right and it's going to be really really right and you've identified what things matter and what things don't is good.
+
+TASK: Next question.
+
+================ WHY THIS IS AN SFT-LIFT CASE ====================
+SFT (won vs Dwarkesh): What are some examples of that? Where you have a founder who is just hyper focused on the thing they're working on and they're doing it right?
+
+BASE (lost vs Dwarkesh): If hyperfocus is so valuable, why do we keep seeing it produce catastrophes in regulated domains — is the problem not the lack of formality, but that the hyperfocus excludes the systems thinking needed to operate safely at scale?
+
+Real Dwarkesh: You'll also keep track of your bank accounts. That's the dress itself but I also want to ask about the other characteristics. You had this really interesting point in that blog post about how when you try to scout for talent when the talent is young, you're over indexing for parental involvement. I'm curious, if you had to identify somebody who had to be under the age of 18 or under the age of 20, what is the metric you're looking at that least indexes for parental involvement where they're being forced or encouraged by their parents to do it?
+
+SFT judge: tool **WIN** — order1 A, order2 B
+BASE judge: Candidate A manufactures a tension and stacks clauses to sound probing, while B asks a genuinely curious, specific question drawing on Byrne's actual prior work about talent scouting and parental involvement—a concrete, answerable question that opens a fresh and interesting line of discussion.
