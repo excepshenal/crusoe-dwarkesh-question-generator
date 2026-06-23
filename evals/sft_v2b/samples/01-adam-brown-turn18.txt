@@ -1,0 +1,200 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2b (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Adam Brown  |  turn 18  |  section: -
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Adam Brown
+
+RESEARCH PREP:
+# Research dossier — Adam Brown
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+Adam R. Brown is a theoretical physicist who built his reputation in quantum gravity, holography, quantum computational complexity, and early-universe cosmology, and who since 2018 has worked at Google DeepMind, where he founded and leads the "Blueshift" team and is a core contributor to the Gemini models, focused on advancing the scientific and reasoning capabilities of AI. He studied physics and philosophy at Oxford, completed a PhD at Columbia University, and held faculty/research positions in the physics departments at Princeton and Stanford, where he taught general relativity and continued to publish in high-energy theory. His academic work spans an unusually wide range — the Big Bang, inflation, the multiverse, black holes, quantum computation, "space elevators," "bubbles of nothing," and the long-term fate of the universe — unified by a recurring interest in the deep connections between physics and computer science. His most cited contributions came in the mid-2010s collaborations with Leonard Susskind at Stanford on the relationship between quantum complexity and the interiors of black holes.
+
+### Quantum complexity and the black hole interior
+
+Brown's central body of work concerns a puzzle posed by Susskind: the volume of the wormhole (Einstein-Rosen bridge) behind a two-sided eternal AdS black hole keeps growing for an exponentially long time, long after the black hole has thermalized and its entanglement entropy has saturated. Entanglement entropy stops being a useful bulk diagnostic almost immediately, yet the interior keeps changing. The proposal Brown helped develop is that the quantity tracking this growth is the **quantum computational complexity** of the dual boundary state — roughly, the minimum number of elementary gates needed to prepare the state from a simple reference state. Complexity continues to grow long after entropy maxes out, matching the wormhole's behavior.
+
+Two competing precise statements emerged. The earlier "**Complexity = Volume**" (CV) conjecture tied complexity to the maximal spatial volume of a slice through the wormhole. Brown's own contribution was the sharper "**Complexity = Action**" (CA) conjecture, in:
+
+- **"Complexity Equals Action"** (Brown, Daniel A. Roberts, Susskind, Brian Swingle, Ying Zhao), arXiv:1509.07876, September 2015; and the long companion **"Complexity, action, and black holes"** (same authors), arXiv:1512.04993, December 2015, published as *Phys. Rev. Lett.* **116**, 191301 (2016) under the title "Holographic Complexity Equals Bulk Action?". The conjecture: the complexity of the holographic boundary state equals the classical gravitational action evaluated on the **Wheeler-DeWitt patch** (the bulk region bounded by light sheets emanating from the boundary time slice), divided by π ℏ. They tested it against neutral, charged, and rotating AdS black holes, and against geometries perturbed by static shells and by shock waves.
+
+The reasoning for preferring CA over CV: action is a more natural, less ambiguous bulk quantity than "maximal volume" (which requires choosing a slicing), and the late-time growth rate that CA predicts has a clean physical interpretation. For a neutral black hole the conjecture yields a complexification rate dC/dt = 2M/(π ℏ) — that is, 2E/π ℏ. This connects directly to a known limit from quantum information: **Lloyd's bound** on the maximum rate at which a physical system of energy E can perform orthogonalizing operations (≈ 2E/π ℏ). The headline claim is that black holes **saturate** Lloyd's bound — they are "the fastest computers in nature." Charged and rotating black holes complicate this: subtracting the contribution of the charge (the energy above the ground state at fixed charge) modifies the rate, and the authors found regimes where the naive bound is violated, which they took as both a test and a puzzle for the conjecture.
+
+### Complexity geometry, negative curvature, and the "second law"
+
+A parallel thread reformulates complexity using Riemannian geometry, following Michael Nielsen's idea that the complexity of a unitary is the length of the shortest geodesic to it through the group of unitaries SU(2^K) under a "right-invariant" metric that penalizes hard (many-body) directions.
+
+- **"Quantum Complexity and Negative Curvature"** (Brown, Susskind, Zhao), arXiv:1608.02612, August 2016, *Phys. Rev. D* **95**, 045010 (2017). Core idea: complexity growth looks like geodesic motion on a space of **negative curvature**. On negatively curved manifolds nearby geodesics diverge exponentially (the hallmark of chaos), which gives complexity its long, steady linear growth; the eventual saturation comes from the finite volume/dimension of the space. Negative curvature is thus offered as the geometric *mechanism* behind both the growth and the eventual halt.
+
+- **"The Second Law of Quantum Complexity"** (Brown, Susskind), arXiv:1701.01107, January 2017, *Phys. Rev. D* **97**, 086015 (2018). The argument: complexity behaves like an entropy. Brown and Susskind construct an explicit correspondence mapping the circuit complexity of a system of K qubits to the *positional entropy* of an auxiliary classical system with 2^K degrees of freedom (a particle moving on the complexity manifold), with the Kolmogorov complexity of the Hamiltonian playing the role of a kinetic term. Because the auxiliary classical system's phase space is overwhelmingly dominated by high-complexity configurations, complexity almost always increases — a "Second Law of Complexity," statistical and probabilistic in exactly the way Boltzmann's second law is. They also introduce **"uncomplexity"** — the gap between a state's current complexity and the maximum — as a *resource* for directed computation, which they argue is the holographic dual of the accessible spacetime volume behind the horizon.
+
+- **"Universality in long-distance geometry and quantum complexity"** (Brown, Michael H. Freedman, Henry W. Lin, Susskind), arXiv:2111.12700, *Nature* **622**, 58–62 (2023). This pushes the geometric program toward rigor. The observation: many different homogeneous metrics on a Lie group can have wildly different short-distance structure yet nearly identical *long-distance* distance functions — a "universality class" in the renormalization-group sense applied to geometry rather than to physics. Applied to complexity, this argues that the many superficially different definitions of quantum complexity (different gate sets, different penalty schedules) are all *linearly related* at long distances, so the late-time linear-growth-then-saturation picture is robust and largely definition-independent. This addresses a standing objection: that "complexity" is too ambiguous (gate-set-dependent) to be a fundamental physical quantity dual to a sharp geometric object.
+
+### The Brown-Susskind linear-growth conjecture and its proof
+
+Out of this work came a precise mathematical claim — sometimes called the **Brown-Susskind conjecture** — that the exact circuit complexity of a *random* quantum circuit grows linearly in the number of gates and continues for a time *exponential* in the number of qubits before saturating. Notably, Brown was not an author of the rigorous proof; it was supplied by an independent group — Jonas Haferkamp, Philippe Faist, Naga B. T. Kothakonda, Jens Eisert, and Nicole Yunger Halpern — in **"Linear growth of quantum circuit complexity,"** arXiv:2106.05305 (June 2021), *Nature Physics* **18**, 528 (2022). They proved that for random circuits the exact complexity grows linearly with the gate count, with unit probability, until saturating after exponentially many gates, using tools from algebraic geometry and differential topology plus an inductive Clifford-circuit construction. This is significant because lower-bounding *exact* circuit complexity is notoriously hard; the proof is regarded as confirming the plausibility of the gravity-side picture that motivated it.
+
+### Tensions and open questions within this program
+
+The CA and CV proposals are not fully reconciled — both reproduce qualitative features (late-time linear growth, switchback effects from shock waves) but disagree in detail (coefficients, behavior near horizons, the effect of charge), and which, if either, is the "true" definition remains unsettled in the field. A second internal tension is the definitional ambiguity of complexity itself, which Brown's universality work (2023) was largely an attempt to defuse. A third is conceptual: the entire edifice treats a sharply UV-sensitive, gate-set-dependent information-theoretic quantity as dual to a smooth geometric bulk object, and skeptics in the holography community have questioned whether complexity is observable or even well-defined in continuum field theory — a worry the universality argument addresses but does not fully close.
+
+### Cosmology, vacuum decay, and "bubbles of nothing"
+
+Before and alongside the complexity work, Brown worked on the cosmological landscape and the instability of vacua.
+
+- **"Bubbles of Nothing and the Fastest Decay in the Landscape"** (Brown, Alex Dahlen), arXiv:1010.5240, October 2010, *Phys. Rev. D* **84**, 043518 (2011). A "bubble of nothing" is a violent decay in which a compact extra dimension pinches off and collapses; the resulting "hole in spacetime" expands at the speed of light, leaving literally nothing — no spacetime — behind. Working in 6D Einstein-Maxwell theory in a thin-brane approximation, Brown and Dahlen showed that in a flux landscape built from many *different* fluxes, the fastest decay is often to discharge *all* flux simultaneously, which destabilizes the radion and nucleates a bubble of nothing; they constructed a new instanton mediating simultaneous flux tunneling and decompactification, obtained as the limit of removing ever more flux. (In a landscape of many identical units, by contrast, the fastest decay removes just one unit.)
+
+- **"Vacua Morghulis"** (Brown, Dahlen), arXiv:1610.04564, October 2016. The provocative thesis (the title riffs on "all vacua must die"): every non-supersymmetric vacuum in the string landscape is at most metastable and must eventually decay, with supersymmetric vacua only marginally stable.
+
+- **"Tensile Strength and the Mining of Black Holes"** (Brown, sole author), arXiv:1207.3342, July 2012, *Phys. Rev. Lett.* **111**, 211301 (2013). A characteristically clever result: the **null energy condition** imposes a universal upper bound on the tensile-strength-to-weight ratio of any material. A consequence is that one cannot lower a rigid box near a black hole horizon that is wider than a single wavelength of the Hawking quanta, which means proposed schemes to "mine" black holes by lowering boxes to harvest Hawking radiation — and "space elevators" operated near horizons — cannot work nearly as fast as had been claimed. Brown noted that, ironically, one *can* extract energy quickly by simply threading the horizon with cosmic strings instead.
+
+These cosmology papers share a temperament with the complexity work: take an exotic but physically grounded scenario, push the relevant bound or rate to its sharpest expressible form, and extract a surprising universal limit (Lloyd's bound for computation, the null energy condition for material strength, fastest-decay channels for the landscape).
+
+### Move to AI: Blueshift, Gemini, and "AGI and the future of physics"
+
+Brown joined Google in 2018 and now leads **Blueshift**, a Google DeepMind research team aimed at the mathematical, scientific, and reasoning capabilities of large models, and is a core contributor to **Gemini**. The reported framing of Blueshift is "cracking maths and reasoning" at DeepMind. He has given public talks — e.g. at the Aspen Center for Physics and a Stanford Applied Physics/Physics colloquium — under titles such as "Training Sand to Think: Artificial General Intelligence and the Future of Science" and "Artificial General Intelligence and the Future of Physics," in which his recurring theme is that progress in machine reasoning could change how fundamental science (including physics) is done. This pivot is continuous with his long-stated interest in the connections between physics and computer science.
+
+### Collaborators and influences
+
+His dominant collaborator is **Leonard Susskind** (Stanford), with whom he co-authored most of the complexity work and from whom the original wormhole-volume puzzle came. Other frequent co-authors: **Daniel A. Roberts**, **Brian Swingle**, and **Ying Zhao** on the Complexity = Action papers; **Alex Dahlen** on the cosmology/landscape papers; and **Michael H. Freedman** (Fields Medalist, topologist) and **Henry W. Lin** on the 2023 *Nature* universality paper. The intellectual lineage of his complexity work runs through **Michael Nielsen** (geometric/Riemannian formulation of circuit complexity), the broader AdS/CFT and black-hole-information community, and the holographic-complexity program also pursued by groups around the world that built on the CA/CV conjectures.
+
+### Notable specifics
+
+- Brown's range is unusually broad for a theorist of his cohort — from formal holography to the engineering-flavored "can you build a space elevator" physics — and his paper titles ("Vacua Morghulis"; "Complexity Equals Action") reflect a taste for memorable framing.
+- He has written for *Scientific American* and engaged in public-facing science communication.
+- A clean throughline across his career is the *fastest-X / sharpest-bound* instinct: fastest computer (black holes saturating Lloyd's bound), fastest decay (bubbles of nothing), the hardest possible material (null-energy-condition limit on tensile strength), and the longest possible monotone growth (linear complexity growth for exponential time).
+
+## Sources
+
+- Adam R. Brown et al., "Complexity Equals Action," arXiv:1509.07876 (2015). https://arxiv.org/abs/1509.07876
+- Adam R. Brown et al., "Complexity, action, and black holes," arXiv:1512.04993 (2015); *Phys. Rev. Lett.* 116, 191301 (2016). https://arxiv.org/abs/1512.04993
+- Adam R. Brown, Leonard Susskind, Ying Zhao, "Quantum Complexity and Negative Curvature," arXiv:1608.02612 (2016). https://arxiv.org/abs/1608.02612
+- Adam R. Brown, Leonard Susskind, "The Second Law of Quantum Complexity," arXiv:1701.01107 (2017). https://arxiv.org/abs/1701.01107
+- Adam R. Brown, M. H. Freedman, H. W. Lin, L. Susskind, "Universality in long-distance geometry and quantum complexity," arXiv:2111.12700; *Nature* 622, 58–62 (2023). https://arxiv.org/abs/2111.12700
+- J. Haferkamp, P. Faist, N. B. T. Kothakonda, J. Eisert, N. Yunger Halpern, "Linear growth of quantum circuit complexity," arXiv:2106.05305; *Nature Physics* 18, 528 (2022). https://arxiv.org/abs/2106.05305
+- Adam R. Brown, Alex Dahlen, "Bubbles of Nothing and the Fastest Decay in the Landscape," arXiv:1010.5240; *Phys. Rev. D* 84, 043518 (2011). https://arxiv.org/abs/1010.5240
+- Adam R. Brown, Alex Dahlen, "Vacua Morghulis," arXiv:1610.04564 (2016). https://arxiv.org/abs/1610.04564
+- Adam R. Brown, "Tensile Strength and the Mining of Black Holes," arXiv:1207.3342; *Phys. Rev. Lett.* 111, 211301 (2013). https://arxiv.org/abs/1207.3342
+- Foresight Institute people page, Adam Brown. https://foresight.org/people/adam-brown/
+- Aspen Center for Physics, Adam Brown profile. https://aspenphys.org/people/adam-brown/
+- phys.org, "Research group proves quantum complexity grows linearly for an exponentially long time" (2022). https://phys.org/news/2022-03-group-quantum-complexity-linearly-exponentially.html
+
+All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this dossier; matching search results (e.g. dwarkesh.com/p/adam-brown) were skipped and not read, cited, or relied upon.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+So that's a radical change in our understanding of the fate of the universe, and if true, is super duper bad news. It's really bad news because the accelerated expansion of the universe is dragging away from us lots of distant galaxies. And we really want to use those galaxies.
+
+We have big plans to go and grab them and turn them into vacation destinations or computronium or in any other ways extract utility from them. And we can't, if the cosmological constant is really constant, if this picture is correct, because anything close enough, we can go out and grab it, obviously. But if it's further away than about a dozen billion light years, the expansion of the universe is dragging it away sufficiently rapidly that even if we send probes out at almost the speed of light, they will never make it.
+
+They will never make it there and make it back. They'll never even make it there if it's sufficiently far away. And that means that there's a finite amount of free energy in our future.
+
+And that's bad. I mean, that means we're doomed to a heat death if that's true. But is it true?
+
+I mean, that was the second half of your question. And first of all, we keep changing our minds about these things over the last century or so. So on first principles grounds, you may be somewhat suspicious that we'll change our minds again.
+
+And none of this is settled physics. And indeed, it may be that the cosmological constant is not constant and you should hope with all your heart that it's not. It may be that it naturally bleeds away.
+
+It may be, in fact, that our fate is in our hands and that our distant descendants will go and bleed the cosmological content away, will force it to go to zero. They will be strongly incentivized to do it if they can, because otherwise we're doomed to a heat death.
+
+Dwarkesh Patel: How would they bleed this away?
+
+Adam Brown: This obviously depends on physics that we're not totally sure about yet, but it seems pretty consistent with the known laws of physics that the cosmological constant, what we perceive it as being a constant, this dark energy quantity that's pushing the universe apart from each other in many very natural extensions of the known laws of physics. That is something that we have the ability to change. In fact, it can change, can take different values.
+
+It is not just totally fixed once and for all that in fact, you have what's called different vacuum, different regions of parameter space that you can transition between, in which the cosmological constant can take different values. And if that's true, then, well, you can either sort of wait around and hope to get lucky, hope that the universe just sort of spontaneously moves from one of these vacuums to another one with a lower cosmological constant tending towards zero asymptotically, or you could take matters into your own hand, or you could imagine our descendants deciding that they're not going to just suffer the heat death, that they're going to try and trigger a vacuum decay event to get us from the vacuum we're in to another vacuum with a lower cosmological constant, and our distance descendants will be forced basically to do that if they don't want to suffer a heat death.
+
+Dwarkesh Patel: Yeah, Proceed with caution, but definitely proceed.
+
+Adam Brown: With caution in these theories where there's lots and lots of vacuums out there. And most of those vacuums are incredibly inhospitable to life as we know it. In fact, seemingly they're just completely inhospitable to all forms of intelligence.
+
+So you really, really don't want to end up in them. However, again, if our best theories are correct, it seems as though there should be some of them that are much like our own in many ways, but have a lower value of the cosmological constant. And so what we'd want to do is engineer that we end up in one of those vacuums.
+
+Dwarkesh Patel: Sorry, what is a vacuum?
+
+Adam Brown: Ah, great question. A vacuum is like a possible, well, what we would perceive as a possible set of laws of physics as we see them. So what it really is, is a minima in some higher dimensional abstract laws of physics, space in which you can find yourself in a minima.
+
+But these minima may just be local minima. In fact, according to our understanding, the minima which we live today, that gives us all of the laws of physics that we see around us, is in fact just a local minimum. And there's a lower minimum.
+
+In fact, there's many lower minima out there to which we can transition spontaneously or because of our own deliberate action.
+
+Dwarkesh Patel: Okay, I'm just going to throw all my confusion at you and you figure out which one is worth dealing with first. What is the nature of the loss function that makes one value a minimum and one higher up? You know, what is exactly the ball rolling up on when it gets out or into a valley here?
+
+And then you're hinting at the possibility that there are other places in. I'm not sure if you're suggesting in the physical universe or in some hypothetical universe where the vacuum could be different, as in, in reality there are other pockets with different vacuums, or that hypothetically they could exist, or that our universe counterfactually could have been one of these? I don't know.
+
+This is the kind of thing I'd like throw into. Put everything I can into a Claude prompt and see what comes out the other end.
+
+Adam Brown: Good. Well, I'm happy to be your Claude. The loss function is the energy density, and so maybe a good analogy would be water.
+
+Water can exist in many phases. It can be steam, it can be water, it can be ice. And even if it's in a cloud, let's say it would rather be water than be water vapor, but it's having a tough time getting there because in the middle there's a barrier.
+
+And so, you know, spontaneously, it can eventually, due to a sort of thermal process, turn from steam into water. These will be like the two minima in this loss landscape. Or you can go and do cloud seeding to turn it from water vapor into water, and so those would be the equivalent of the minima here.
+
+The existence of different minima in general is a very well-established part of physics. The possibility that we could engineer going from one minimum to another in a controlled way is a more speculative branch of physics speculation, but it seems totally consistent with everything we know that our distant descendants would try to attempt it.
+
+Dwarkesh Patel: What would it take to do this?
+
+Adam Brown: Probably you'd want something that would look a bit like a particle accelerator, but it would be considerably more controlled. You'd need a very controlled way to collapse a field and make a bubble of this new vacuum that was big enough that it would continue to expand, rather than just recollapse under its own surface tension.
+
+You would have to do that in a very careful way, both to make sure that you didn't accidentally make a black hole instead by the time you've concentrated all those energies, and also worse than making a black hole, would be ending up in a vacuum that you didn't want to end up in. It would be ending up in a vacuum in which you had not only bled off the cosmological constant in some way, but that you had changed, let's say, the electromagnetic constant or the strong nuclear force or any of these other forces, which would be seriously bad news.
+
+Because if you did that, your life, as you know it, is extremely well attuned to the value of the electromagnetic constant in your evolutionary environment. It will be very, very bad indeed if we changed those constants as well. We'd really just try and target the cosmological constant and nothing else, and that would require a lot of engineering prowess.
+
+Dwarkesh Patel: So, it sounds like you're saying that changing the laws of physics is not even Dyson sphere level crazy. Somebody could do it on some planet in the middle of nowhere.
+
+Adam Brown: I'd say it's definitely substantially harder than Dyson spheres as far as the tech tree goes, but it's not magic. We're not actually changing the laws of physics. We're just changing the low energy laws of physics as they present to us in this scenario.
+
+Again, this is speculative, but it's not super duper crazy. It's a natural consequence of our best theories, or at least some of our best theories of quantum gravity, that they allow for this possibility.
+
+And there is a meta law of physics, the true laws of physics, be it string theory or whatever else, that you're not changing. That's just the rules of the game. What I'm describing is changing the way that the universe looks around you, changing the cosmological constant.
+
+So I think again, changing water into water vapor into water is a great analogy here. There's nothing actually -- the laws of physics are still the laws of physics, but the way it feels to live in that universe, the value of the electromagnetic constant is perhaps not an absolute fixed value. It can vary in different places.
+
+Similarly, the density of water around you, the viscosity would change. It'll be an environmental variable like that.
+
+Dwarkesh Patel: One question you might have is if this is the thing that could, maybe spontaneous is the right way to describe it, if this is the thing that can just kind of happen, there's something really interesting where if a thing can happen, you kind of see examples of it happening before. Even with nuclear weapons, I don't remember the exact phrase, but wasn't it the case that early in Earth's history, when there was a higher fraction of 238 isotopes, that there were spontaneous nuclear explosions?
+
+Adam Brown: There probably was spontaneous nuclear reactors. They've discovered a seam in Africa where it looks like there was a fission reaction that naturally happened. It didn't explode, but it did do the same thing that happens in our nuclear power plants.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: Yeah, okay. So if this is the thing that could happen, why haven't we seen it happen? Why hasn't somebody else in the universe triggered this?
+
+Real Dwarkesh (lost to it): One way you can look at nukes is like, this thing just would not have been possible if some intelligent beings hadn't tried to make it happen. But something like this happened before because the laws of physics allow it. Is there any story you can tell here where this vacuum decay, maybe it takes a super intelligent species to coordinate to make it happen, but also because it is the thing that the laws of physics can manufacture or can allow for, it has happened before or is happening?
+
+Judge: tool **WIN** — order1 A, order2 B

@@ -1,0 +1,138 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2a (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Andrej Karpathy  |  turn 70  |  section: How do humans learn?
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Andrej Karpathy
+
+RESEARCH PREP:
+# Research dossier — Andrej Karpathy
+# (broad research [GROUNDED IN RETRIEVED SOURCES]; transcript coverage≈0.83, gap-filled 2 facts)
+# NOTE: produced manually by Claude w/ web search as a live demo of the broad-first pipeline
+#       (research.py's own model call has no web access in this env). Broad section is grounded
+#       ONLY in Karpathy's prior public record, not in the interview itself.
+
+## Broad research
+
+**Bio (one line):** Andrej Karpathy — founding member of OpenAI (2015), former Sr. Director of AI at Tesla (led the Autopilot vision/neural-net stack, 2017–2022), prolific ML educator, founder & CEO of Eureka Labs (AI-native education, announced 2024-07-16).
+
+### Signature public claims (the ones a sharp interviewer would press)
+- **"The decade of agents, not the year of agents."** A public pushback on industry hype that 2025 is "the year of agents." His position: the problems are tractable but hard, and working through them takes ~a decade — an estimate he grounds in "extrapolation from my own experience in the field," not a hard model.
+- **The four things today's agents lack:** they're not intelligent enough, not multimodal enough, can't reliably do computer-use tasks, and have no **continual learning** (can't accumulate new knowledge over time). This is his concrete bottleneck list.
+- **"We're summoning ghosts, not building animals"** (his blog, *Animals vs Ghosts*). LLMs are not evolution-shaped animals; they're imitations distilled from human text. Different architecture, data, training algorithm, and optimization pressure → a genuinely different kind of entity, and the "animal" lens misleads.
+- **"Sucking supervision through a straw"** — his critique of outcome-based RL: one scalar reward for a whole rollout is broadcast to every token, so successful trajectories reinforce even the wrong turns along the way. Noisy credit assignment.
+- **"Software 2.0" (2017):** neural-net weights are a new kind of program, learned from data rather than written. By 2025 he adds a third rung, **"Software 3.0":** the natural-language prompt is itself the program.
+- **Weights vs. context analogy:** weights are a "hazy recollection," context is directly-accessible working memory (he's cited the KV-cache's per-token state as orders of magnitude richer than what weights encode) — his explanation for why in-context learning *feels* more intelligent than what's baked into the weights.
+
+### Recent work likely to anchor the conversation
+- **nanochat** (released ~Oct 2025): a ~8,000-line, from-scratch, full-stack ChatGPT-clone pipeline — Rust tokenizer training → pretraining on FineWeb → SFT → optional RL (GRPO) → inference web UI. "The best ChatGPT that $100 can buy" (~4 hrs on an 8×H100 node). Successor to **nanoGPT** (which covered only pretraining). He coded it end-to-end recently, so every step is fresh.
+- **Eureka Labs** + the **LLM101n** course, for which nanochat is the capstone — the throughline for how people should learn (reimplement from scratch vs. modify).
+- Educational canon: **micrograd, makemore, nanoGPT**, the **"Neural Networks: Zero to Hero"** series; Stanford **CS231n**.
+
+### The Sutton axis (named foil to steelman against)
+- **Richard Sutton** — RL pioneer, "The Bitter Lesson," recently argued (incl. on this podcast) for general methods + learning from experience and is skeptical of the LLM/imitation path. Karpathy's "ghosts vs. animals" sits in direct tension with Sutton's evolution/experience emphasis — prime pushback ground.
+- Related: he's called the 2013 Atari deep-RL framing a "misstep" the field (and early OpenAI) over-indexed on.
+
+### Biographical hooks for callbacks
+- Tesla Autopilot: shipping a safety-critical, real-world vision system at scale — a reference point for "what actually makes deployment hard" vs. demos.
+- OpenAI founding era: "in the room" for breakthrough moments — useful for "what did people feel was about to happen, and how mis-calibrated were they?"
+- Highly quotable on X; most framings above trace to his own posts/essays, so callbacks can be attributed to him specifically.
+
+## Reverse-engineered supplement (gap-fill — keep small)
+<!-- Facts the interview drew on that broad research missed (~17%). Flagged so the
+     train/deploy gap stays visible; the fix is a better broad-research recipe, not more of this. -->
+- **Sleep/daydreaming as a missing consolidation mechanism:** he speculates humans avoid a "model-collapse"-like narrowing partly via sleep/daydreaming-style replay — a candidate for the non-RL learning idea current models lack. (Broad research surfaced his RL critique but not this specific positive proposal.)
+- **Models failing to integrate known architectural tweaks:** his point that nanochat's architecture improvements exist in public papers/repos yet models can't autonomously fold them in — a concrete instance of the "not intelligent enough / no continual learning" bottleneck.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Andrej Karpathy: Not even that. Prompt injection is way too fancy. You’re finding adversarial examples, as they’re called. These are nonsensical solutions that are obviously wrong, but the model thinks they are amazing.
+
+Dwarkesh Patel: To the extent you think this is the bottleneck to making RL more functional, then that will require making LLMs better judges, if you want to do this in an automated way. Is it just going to be some sort of GAN-like approach where you have to train models to be more robust?
+
+Andrej Karpathy: The labs are probably doing all that. The obvious thing is, “dhdhdhdh” should not get 100% reward. Okay, well, take “dhdhdhdh,” put it in the training set of the LLM judge, and say this is not 100%, this is 0%. You can do this, but every time you do this, you get a new LLM, and it still has adversarial examples. There’s an infinity of adversarial examples.
+
+Probably if you iterate this a few times, it’ll probably be harder and harder to find adversarial examples, but I’m not 100% sure because this thing has a trillion parameters or whatnot. I bet you the labs are trying. I still think we need other ideas.
+
+Dwarkesh Patel: Interesting. Do you have some shape of what the other idea could be?
+
+Andrej Karpathy: This idea of a review solution encompassing synthetic examples such that when you train on them, you get better, and meta-learn it in some way. I think there are some papers that I’m starting to see pop out. I am only at a stage of reading abstracts because a lot of these papers are just ideas. Someone has to make it work on a frontier LLM lab scale in full generality because when you see these papers, they pop up, and it’s just a bit noisy. They’re cool ideas, but I haven’t seen anyone convincingly show that this is possible. That said, the LLM labs are fairly closed, so who knows what they’re doing now.
+
+Dwarkesh Patel: I can conceptualize how you would be able to train on synthetic examples or synthetic problems that you have made for yourself. But there seems to be another thing humans do—maybe sleep is this, maybe daydreaming is this—which is not necessarily to come up with fake problems, but just to reflect.
+
+I’m not sure what the ML analogy is for daydreaming or sleeping, or just reflecting. I haven’t come up with a new problem. Obviously, the very basic analogy would just be fine-tuning on reflection bits, but I feel like in practice that probably wouldn’t work that well. Do you have some take on what the analogy of this thing is?
+
+Andrej Karpathy: I do think that we’re missing some aspects there. As an example, let’s take reading a book. Currently when LLMs are reading a book, what that means is we stretch out the sequence of text, and the model is predicting the next token, and it’s getting some knowledge from that. That’s not really what humans do. When you’re reading a book, I don’t even feel like the book is exposition I’m supposed to be attending to and training on. The book is a set of prompts for me to do synthetic data generation, or for you to get to a book club and talk about it with your friends. It’s by manipulating that information that you actually gain that knowledge. We have no equivalent of that with LLMs. They don’t really do that. I’d love to see during pre-training some stage that thinks through the material and tries to reconcile it with what it already knows, and thinks through it for some amount of time and gets that to work. There’s no equivalence of any of this. This is all research.
+
+There are some subtle—very subtle that I think are very hard to understand—reasons why it’s not trivial. If I can just describe one: why can’t we just synthetically generate and train on it? Because every synthetic example, if I just give synthetic generation of the model thinking about a book, you look at it and you’re like, “This looks great. Why can’t I train on it?” You could try, but the model will get much worse if you continue trying. That’s because all of the samples you get from models are silently collapsed. Silently—it is not obvious if you look at any individual example of it—they occupy a very tiny manifold of the possible space of thoughts about content. The LLMs, when they come off, they’re what we call “collapsed.” They have a collapsed data distribution. One easy way to see it is to go to ChatGPT and ask it, “Tell me a joke.” It only has like three jokes. It’s not giving you the whole breadth of possible jokes. It knows like three jokes. They’re silently collapsed.
+
+You’re not getting the richness and the diversity and the entropy from these models as you would get from humans. Humans are a lot noisier, but at least they’re not biased, in a statistical sense. They’re not silently collapsed. They maintain a huge amount of entropy. So how do you get synthetic data generation to work despite the collapse and while maintaining the entropy? That’s a research problem.
+
+Dwarkesh Patel: Just to make sure I understood, the reason that the collapse is relevant to synthetic data generation is because you want to be able to come up with synthetic problems or reflections which are not already in your data distribution?
+
+Andrej Karpathy: I guess what I’m saying is, say we have a chapter of a book and I ask an LLM to think about it, it will give you something that looks very reasonable. But if I ask it 10 times, you’ll notice that all of them are the same.
+
+Dwarkesh Patel: You can’t just keep scaling “reflection” on the same amount of prompt information and then get returns from that.
+
+Andrej Karpathy: Any individual sample will look okay, but the distribution of it is quite terrible. It’s quite terrible in such a way that if you continue training on too much of your own stuff, you actually collapse.
+
+I think that there’s possibly no fundamental solution to this. I also think humans collapse over time. These analogies are surprisingly good. Humans collapse during the course of their lives. This is why children, they haven’t overfit yet. They will say stuff that will shock you because you can see where they’re coming from, but it’s just not the thing people say, because they’re not yet collapsed. But we’re collapsed. We end up revisiting the same thoughts. We end up saying more and more of the same stuff, and the learning rates go down, and the collapse continues to get worse, and then everything deteriorates.
+
+Dwarkesh Patel: Have you seen this super interesting paper that dreaming is a way of preventing this kind of overfitting and collapse? The reason dreaming is evolutionary adaptive is to put you in weird situations that are very unlike your day-to-day reality, so as to prevent this kind of overfitting.
+
+Andrej Karpathy: It’s an interesting idea. I do think that when you’re generating things in your head and then you’re attending to it, you’re training on your own samples, you’re training on your synthetic data. If you do it for too long, you go off-rails and you collapse way too much. You always have to seek entropy in your life. Talking to other people is a great source of entropy, and things like that. So maybe the brain has also built some internal mechanisms for increasing the amount of entropy in that process. That’s an interesting idea.
+
+Dwarkesh Patel: This is a very ill-formed thought so I’ll just put it out and let you react to it. The best learners that we are aware of, which are children, are extremely bad at recollecting information. In fact, at the very earliest stages of childhood, you will forget everything. You’re just an amnesiac about everything that happens before a certain year date. But you’re extremely good at picking up new languages and learning from the world. Maybe there’s some element of being able to see the forest for the trees.
+
+Whereas if you compare it to the opposite end of the spectrum, you have LLM pre-training, where these models will literally be able to regurgitate word-for-word what is the next thing in a Wikipedia page. But their ability to learn abstract concepts really quickly, the way a child can, is much more limited. Then adults are somewhere in between, where they don’t have the flexibility of childhood learning, but they can memorize facts and information in a way that is harder for kids. I don’t know if there’s something interesting about that spectrum.
+
+Andrej Karpathy: I think there’s something very interesting about that, 100%. I do think that humans have a lot more of an element, compared to LLMs, of seeing the forest for the trees. We’re not actually that good at memorization, which is actually a feature. Because we’re not that good at memorization, we’re forced to find patterns in a more general sense.
+
+LLMs in comparison are extremely good at memorization. They will recite passages from all these training sources. You can give them completely nonsensical data. You can hash some amount of text or something like that, you get a completely random sequence. If you train on it, even just for a single iteration or two, it can suddenly regurgitate the entire thing. It will memorize it. There’s no way a person can read a single sequence of random numbers and recite it to you.
+
+That’s a feature, not a bug, because it forces you to only learn the generalizable components. Whereas LLMs are distracted by all the memory that they have of the pre-training documents, and it’s probably very distracting to them in a certain sense. So that’s why when I talk about the cognitive core, I want to remove the memory, which is what we talked about. I’d love to have them have less memory so that they have to look things up, and they only maintain the algorithms for thought, and the idea of an experiment, and all this cognitive glue of acting.
+
+Dwarkesh Patel: And this is also relevant to preventing model collapse?
+
+Andrej Karpathy: Let me think. I’m not sure. It’s almost like a separate axis. The models are way too good at memorization, and somehow we should remove that. People are much worse, but it’s a good thing.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: I’m curious about the analogy of the cognitive core. I’m not sure what the analogy is for the memory. Is it the weights? Is it the context?
+
+Real Dwarkesh (lost to it): What is a solution to model collapse? There are very naive things you could attempt. The distribution over logits should be wider or something. There are many naive things you could try. What ends up being the problem with the naive approaches?
+
+Judge: tool **WIN** — order1 A, order2 B

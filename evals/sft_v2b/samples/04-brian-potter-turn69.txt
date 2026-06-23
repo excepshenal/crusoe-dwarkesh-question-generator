@@ -1,0 +1,164 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2b (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Brian Potter  |  turn 69  |  section: -
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Brian Potter
+
+RESEARCH PREP:
+# Research dossier — Brian Potter
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Brian Potter is a structural engineer turned writer and analyst who studies the technology and economics of how buildings, infrastructure, and physical goods get made. He holds a bachelor's degree in civil engineering from Georgia Tech and a master's in systems engineering from the University of Central Florida, and spent roughly fifteen years working as a structural engineer in a variety of industry roles — consulting engineer, subcontractor, and design-builder. Most consequentially for his later work, he managed an engineering team at Katerra, the SoftBank-backed construction startup that raised over $2 billion to industrialize homebuilding and collapsed into bankruptcy in 2021. As Katerra was failing, Potter began writing the newsletter *Construction Physics* (first post September 2020) as a way to work through why the construction industry had resisted the kind of efficiency revolution Katerra had promised. The newsletter — by his own count around 186 essays and roughly 600,000 words over about four and a half years — grew into one of the most-read independent publications on the built environment. He is now Senior Infrastructure Fellow at the Institute for Progress (IFP), which supports the newsletter, and the author of the book *The Origins of Efficiency* (published September 23, 2025). His overarching method is to research narrow technical subjects exhaustively and report what the evidence actually shows, and his recurring conclusion — captured in his own summary "things are almost always more complicated than they seem" — is that apparent inevitabilities in how we build are usually contingent on history, geography, and economics rather than logical necessity.
+
+### Major works and themes, with specifics
+
+**Construction Physics (newsletter, 2020–present).** Originally focused on diagnosing why construction productivity has stagnated, it broadened into infrastructure, manufacturing, materials, and industrial history. Notable recurring series and essays include the *Katerra* post-mortems, the *manufactured/mobile home* histories, *Operation Breakthrough* (the 1970s HUD industrialized-housing program), Toyota's prefab homes, and the learning-curve essays. The publication is supported by IFP.
+
+**"Another Day in Katerradise" (Katerra post-mortem).** Potter's insider account of Katerra, where founder Michael Marks (a former Flextronics CEO) sought to apply electronics-manufacturing principles to buildings — prefabricating panelized light-wood structures with windows, plumbing stacks, and electrical boxes pre-installed in the factory. The company raised over $2 billion, employed roughly 8,000 people at peak across nine countries, and ran factories in Phoenix and Spokane. Potter's diagnosis: Katerra "scaled up massively prior to having a product people wanted to buy" — a basic lack of product-market fit. It pursued dozens of products at once (garden apartments, CLT panels, custom software) while repeatedly pivoting its core building system (CLT → light wood → cold-formed steel and back), each pivot resetting the factory economics. Acquired contractors and design firms kept operating as before; cross-division collaboration was nearly impossible; bureaucracy was so heavy that a change saving $1 million on an active project took months of internal negotiation. The proximate trigger for bankruptcy was the collapse of fellow SoftBank-backed Greensill Capital after a recapitalization that cut Katerra's valuation ~90%. His deeper conclusion: the engineering team would design factory-produced buildings and the costs would keep "coming back too high" — Katerra's foundational thesis, that construction would be far cheaper if done in factories, was either wrong or "woefully incomplete."
+
+**"The Elusive Cost Savings of the Prefabricated Home."** A core empirical claim: despite repeated industrialization attempts since the 1920s, prefab/modular typically yields only ~5–20% cost savings versus site-built, far below the 80%+ reductions seen in auto manufacturing. A 1998 HUD/NAHB study found factory-built homes cost ~15% less than equivalent site-built homes. Modern modular executives concede the draw is schedule, not cost ("It's the reduction in schedule"). The big exception is HUD-code *manufactured* (mobile) homes: single-wides cost ~35–47% less and double-wides ~60–64% less than conventional homes — but Potter argues this comes from minimizing material use, cheap finishes, low margins, and delivering the whole house as one or two complete modules (minimizing interfaces and on-site work), not from generic "factory magic." As manufactured homes get more conventional (CrossMods), the advantage erodes toward typical prefab margins.
+
+**"Trends in US Construction Productivity" (and the September 2025 Aspen Institute paper "Labor Productivity in Construction").** Potter assembles the evidence that US construction productivity has been flat or declining for decades. Headline figures: construction labor productivity fell ~0.59%/year from 1964–2004 while non-farm industries grew ~1.77%/year; by official statistics "a construction worker in 2020 produced less than one in 1970," even as overall economic productivity roughly tripled since 1964. He stress-tests this across four granularities — sector-wide (spending ÷ hours), sub-sector (units or sq ft per worker), project-level (RS Means and Craftsman estimating guides, 1950s–2023), and task-level (installation rates) — using BLS, BEA value-add data, KLEMS, and Construction Industry Institute benchmarking. Crucially, he takes the skeptics seriously: output-mix shifts, quality improvements (bigger, better-insulated, more code-compliant homes), input-cost deflators that mask real gains, and the rise of renovation (now 40–45% of residential spending vs. 20–25% in 1970) all distort the numbers. His honest verdict: even after these adjustments, "most measures of construction productivity show at best very low levels of growth," and the consistency across methods suggests the stagnation is real, not a measurement artifact. International context: across ~45 countries, most wealthy nations improved 1970–1995 then stagnated after 1995; the US is not uniquely bad (its ~0.2%/year post-1995 slightly exceeds peers), with only Ireland and Belgium sustaining 1%+ annual improvement.
+
+**"Where Are My Damn Learning Curves?" (and "Construction Costs Rarely Fall").** Potter's signature theoretical contribution applies the learning/experience curve to construction and finds it largely absent. Learning curves describe a constant cost reduction per cumulative doubling of output (e.g., solar PV ~44% learning rate). His arithmetic: the US had ~45 million housing units in 1950 and has built 100 million+ since — about 1.66 doublings; even a mild 90% learning rate would imply ~17% cost decline, an 85% rate ~25%, "but we don't see anything like that at all." His mechanisms for why: (1) every project is a near-new process — new team, owner, layout, and site each time — so within-project learning is "constantly reset to zero"; (2) little fixed-cost leverage — doubling a building's size just yields twice the building, since cost is mostly labor and materials; (3) the basic technology of how a building goes together is mature, so few transformative breakthroughs remain. Standardization and continuous improvement need a stable, controlled environment — exactly what construction lacks.
+
+**"What Makes Housing So Expensive?" and the NBER/SSRN working paper "Building Costs and House Prices" (with Chad Syverson, June 2025).** Potter separates the *structure* cost from the *land* cost. For most US housing the physical structure dominates, but in the dense metros where new housing matters most, land can exceed ~70% of home cost — and that land price is driven not by people valuing space but by regulatory and zoning limits on how many units can go on a parcel. Rezoning to allow more units sharply raises land value. The Syverson collaboration places his construction-cost work into formal economics.
+
+**The Origins of Efficiency (book, Sept 23, 2025).** The synthesis of his thinking. Thesis: efficiency is not one breakthrough but "a small number of specific things you can do to make a process more efficient," derived from studying dozens of production processes — cigarette making, package delivery, steel, tomato harvesting. Efficiency comes from relentless iteration, tight feedback loops, scale (each doubling of volume reliably lowers cost), and the *selective* mechanization of labor-intensive tasks — and critically requires making the same thing again and again. The 10-chapter book explains efficiency strategies, their limits and interactions, and closes on why construction specifically resists improvement. He explicitly critiques the assumption that factories automatically cut costs, citing the failures of Lustron (1940s), Operation Breakthrough, Toyota Home, and Katerra.
+
+**IFP infrastructure and energy reports.** Beyond housing, Potter writes on the broader "why America struggles to build" agenda: "Why Does Nuclear Power Plant Construction Cost So Much?" (May 2023), the "Compute in America" / "How to Build an AI Data Center" series (June 2024) on AI infrastructure, transmission-line cost allocation and "How to Save America's Transmission System" (2024), shale-revolution technology history (2023), environmental review/permitting reform ("How to Stop Environmental Review from Harming the Environment," 2022; "Moving Past Environmental Proceduralism," 2024), indoor air quality (2023), fusion (July 2024), and "Eliminate Redundant Subway Cross-Passages" (2026) on cutting transit construction cost without compromising safety.
+
+### Substance of his ideas — reasoning, counterarguments, and internal tensions
+
+**Why industrialized construction keeps failing (his central position).** Potter's reasoning runs: factory manufacturing lowers cost through scale, standardization, and learning curves, but construction systematically denies all three. Geography forces every project to a different site with different soil, climate, seismic/wind loads, codes, and permitting jurisdictions; transporting volumetric modules is bulky and expensive; factory overhead is a fixed cost that needs high, steady volume to amortize, which the lumpy, custom demand for buildings rarely supplies; and modular building multiplies the *interfaces* (panel-to-panel joints, MEP connections) that have to be re-coordinated on site, eating the factory savings. The exception that proves the rule is the HUD manufactured home, which works precisely because it ships as one or two complete units to a deregulated national standard with cheap finishes and thin margins.
+
+**The strongest counterargument (which he voices).** The industrialization optimists — the thesis Katerra, Lustron, Operation Breakthrough, and Toyota Home all bet on — argue that construction is simply a manufacturing problem that hasn't yet been solved by a sufficiently capitalized, disciplined operator: if you standardize the product, automate the factory, and reach volume, the auto-style 80% cost curve should appear. A related skeptic position on the productivity data argues the "stagnation" is largely a measurement illusion: output mix shifted toward labor-intensive homebuilding (the Allen analysis of 1968–1978 attributed most of the measured decline to mix, not real efficiency loss), quality rose (today's square foot embodies more output), renovation inflates labor hours, and input-cost deflators hide genuine gains. Potter does not dismiss these — he grants each is real and partly true — but concludes that after correcting for them the picture still shows near-zero growth, and that the cross-method consistency makes the stagnation hard to wave away.
+
+**Tensions in his own views.** (1) He is at once a deflationary skeptic of construction's measured productivity *and* a careful debunker of naive productivity pessimism — he insists both that things are worse than boosters claim and better than the rawest BLS numbers imply. (2) His learning-curve framework says scale and repetition drive cost down everywhere, yet his core finding is that construction is the domain where those forces structurally fail to apply — so the optimistic mechanism and the pessimistic conclusion sit in deliberate tension. (3) He worked at Katerra and believed (or hoped) in industrialization, then became its most rigorous in-house critic; his stance is less "prefab is doomed" than "prefab's cost savings are real but small, and the conditions for big savings are rare." (4) On housing, he locates the dominant cost in *regulation-inflated land* in dense metros while elsewhere insisting *structure* cost dominates — a position that resolves only by geography, which can read as having it both ways depending on the city.
+
+**Where he stands in the field's major debates.**
+- *Construction productivity stagnation:* real, decades-long, and broadly shared across wealthy nations after 1995 — not a US-specific pathology and not purely a measurement artifact, but also not as catastrophic as the headline "a 1970 worker out-produced a 2020 worker" suggests.
+- *Industrialization of building:* skeptical of the "factories will revolutionize housing" thesis; the savings are modest (5–20%) except for the narrow manufactured-home case; schedule, not cost, is prefab's real advantage.
+- *Housing affordability:* in expensive metros the binding constraint is land-use/zoning regulation, not construction technology; cheaper construction methods cannot fix affordability where land (driven by allowed density) is 70%+ of cost.
+- *Infrastructure cost (nuclear, transit, transmission):* America's building problem is heavily institutional — permitting, environmental proceduralism, lost learning from one-off projects, and design churn — rather than a lack of engineering capability.
+
+### Influences
+
+His analytical toolkit draws on the economics of learning/experience curves (the progress-curve literature), and his housing-cost work is co-authored with University of Chicago economist Chad Syverson (the NBER/SSRN paper "Building Costs and House Prices," 2025); he also cites Goolsbee and Syverson (2025) on the ~50% post-1960s productivity decline and the Allen output-mix analysis. His historical case studies (Lustron, Operation Breakthrough, Sears Catalog Homes, Toyota Home) function as a personal canon of industrialization attempts. Institutionally he is shaped by the "abundance"/progress-studies milieu around the Institute for Progress and the broader build-more, permitting-reform policy community.
+
+### Notable biographical specifics
+
+- Education: B.S. civil engineering, Georgia Tech; M.S. systems engineering, University of Central Florida.
+- ~15 years as a practicing structural engineer across consulting, subcontracting, and design-build roles before writing full-time.
+- Managed an engineering team at Katerra; watched its rise to ~8,000 employees and over $2 billion raised, and its 2021 bankruptcy — the direct catalyst for *Construction Physics*.
+- Started *Construction Physics* in September 2020; by the ~4.5-year mark had written about 186 essays / ~600,000 words.
+- Senior Infrastructure Fellow at the Institute for Progress, which supports the newsletter.
+- Author of *The Origins of Efficiency* (Sept 23, 2025); also writes for Scope of Work.
+- He has written publicly about his own research-and-writing method ("How I Write Posts"), emphasizing deep, narrow research and revising views as evidence accumulates.
+
+## Sources
+
+- Construction Physics — About: https://www.construction-physics.com/about
+- "Trends in US Construction Productivity": https://www.construction-physics.com/p/trends-in-us-construction-productivity
+- "Another Day in Katerradise" (Katerra post-mortem): https://www.construction-physics.com/p/another-day-in-katerradise
+- "The Elusive Cost Savings of the Prefabricated Home": https://www.construction-physics.com/p/the-elusive-cost-savings-of-the-prefabricated
+- "Where Are My Damn Learning Curves?": https://www.construction-physics.com/p/where-are-my-damn-learning-curves
+- "What Makes Housing So Expensive?": https://www.construction-physics.com/p/what-makes-housing-so-expensive
+- "My Book 'The Origins of Efficiency' Is Now Available for Preorder": https://www.construction-physics.com/p/my-book-the-origins-of-efficiency
+- Institute for Progress — author page (titles/dates of reports): https://ifp.org/author/brian-potter/
+- Aspen Institute — "Labor Productivity in Construction" (Sept 2025): https://www.aspeninstitute.org/wp-content/uploads/2025/09/Potter_Construction_Productivity.pdf
+- NBER working paper "Building Costs and House Prices" (Potter & Syverson, June 2025): https://www.nber.org/system/files/working_papers/w33958/w33958.pdf; SSRN: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5330802
+- Not Boring — "Hyperlegible 007: 50 Things Brian Potter Has Learned Writing Construction Physics": https://www.notboring.co/p/hyperlegible-007-50-things-brian
+- The Origins of Efficiency — Goodreads: https://www.goodreads.com/book/show/215581594-the-origins-of-efficiency
+
+All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this research; a search result pointing to dwarkesh.com was identified and deliberately not opened, read, cited, or used.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Dwarkesh Patel: Oh, How Buildings Learn.
+
+Brian Potter: There we go. He basically makes the point that a lot of people try to use dome shaped houses or octagon shaped houses, which are good because again, going back to surface area volume, they include lots of space using the least amount of material possible. So in some theoretical sense they’re quite efficient, but it's actually quite inconvenient to live inside of building like really curved wall, right? Furniture doesn't fit up against it nicely and pictures are hard to hang on a really curved wall. So I think you would see less variation than maybe you might expect.
+
+Dwarkesh Patel: Interesting. So why are you pessimistic about 3D printers? For construction, I mean.
+
+Brian Potter: Yeah, for construction. Oh God, so many reasons. Not pessimistic, but just there's a lot of other interesting questions. I mean, so the big obvious one is like right now a 3D printer can basically print the walls of a building. That is a pretty small amount of the value in a building, right? It's maybe 7% or 8%, something like that. Probably not more than 10% of the value in a building. Because you're not printing the foundation, you're not printing like the overhead vertical, or the overhead spanning structure of the building. You're basically just printing the walls. You're not even really printing the second story walls that you have in multiple stories. I don't think they've quite figured that out yet. So it's a pretty small amount of value added to the building. It's frankly a task that is relatively easy to do by manual labor. It's really pretty easy for a crew to basically put up the structure of a house.
+
+This is kind of a recurring theme in mechanization or it goes back to what I was talking about to our previous lead. Where it takes a lot of mechanization and a lot of expensive equipment to replace what basically like two or three guys can do in a day or something like that. The economics of it are pretty brutal. So right now it produces a pretty small value. I think that the value of 3D printing is basically entirely predicated on how successful they are at figuring out how to like deliver more components of the building using their system.There are companies that are trying to do this. There's one that got funded not too long ago called Black Diamond, where they have this crazy system which is like a series of 3D printers that would act simultaneously, like each one building a separate house. Then as you progress, you switch out the print head for like a robot arm. Cause a 3D printer is basically like a robot arm with just a particular manipulator at the end, right?
+
+So they switch out their print head for like a robot arm and the robot arm goes and installs different other systems like the windows or the mechanical systems. So you can figure out how to do that reliably where your print head or your printing system is installing a large fraction of the value of the building. It's not clear to me that it's gonna be economic, but it obviously needs to reach that point. It's not obvious to me that they have gotten there yet. It's really quite hard to get a robot to do a lot of these tasks. For a lot of these players, it seems like they're actually moving away from that. I think in ICON is the biggest construction 3D printer company in the US, as far as I know. And as far as I know, they've moved away from trying to install lots of systems in their walls as they get printed. They've kind of moved on to having that installed separately, which I think has made their job a little bit easier, but again, not quite, it's hard to see how the 3D printer can fulfill its promises if it can't do anything just beyond the vertical elements, whichare really, for most construction, quite cheap and simple to build.
+
+Dwarkesh Patel: Now, if you take a step back and talk how expensive construction is overall, how much of it can just be explained by the Baumol cost effect? As in labor costs are increasing because labor is more productive than other industries and therefore construction is getting more expensive.
+
+Brian Potter: I think that's a huge, huge chunk of it. The labor fraction hasn’t changed appreciably enough. I haven't actually verified that and I need to, but I remember somebody that said that they used to be much different. You sent me some literature related to it. So let’s add a slight asterisk on that. But in general the labor cost has remained a huge fraction of the overall cost of the building. Reliably seeing their costs continue to rise, I think there's no reason to believe that that's not a big part of it.
+
+Dwarkesh Patel: Now, I know this sounds like a question with an obvious answer, but in your post comparing the prices of construction in different countries, you mentioned how the cost of labor and the cost of materials is not as big a determiner of how expensive it is to construct in different places. But what does matter? Is it the amount of government involvement and administrative overhead? I'm curious why those things (government involvement and administrative overhead) have such a high consequence on the cost of construction.
+
+Brian Potter
+
+Yeah, that's a good question. I don't actually know if I have a unified theory for that. I mean, basically with any heavily regulated thing, any particular task that you're doing takes longer and is less reliable than it would be if it was not done right. You can't just do it as fast as on your own schedule, right? You end up being bottlenecked by government processes and it reduces and narrows your options. So yeah, in general, I would expect that to kind of be the case, but I actually don't know if I have a unified theory of how that works beyond just, it's a bunch of additional steps at any given part of the process, each of which adds cost.
+
+Dwarkesh Pate: l
+
+Yeah. Now, one interesting trend we have in the United States with construction is that a lot of it is done by Latino workers and especially by undocumented Latino workers. What is the effect of this on the price and the quality of construction? If you have a bunch of hardworking undocumented workers who are working for below-market rates in the US, will this dampen the cost of construction over time? What do you think is going to happen?
+
+Brian Potter: I suspect that's probably one of the reasons why the US has comparatively low construction costs compared to other parts of the world. Well, I'll caveat that. Residential construction, which is single-family homes and multi-family apartment buildings all built in the US and have light framed wood and are put together, like you said, by a lot of like immigrant workers. Because of that, it would not surprise me if those wages are a lot lower than the equivalent wage for like a carpenter in Germany or something like that. I suspect that's a factor in why our cost of residential construction are quite low.
+
+Dwarkesh Patel: Overall, it seems from your blog post that you're kind of pessimistic, or you don't think that different improvements in industrialization have transferred over to construction yet. But what do you think is a prospect of future advances in AI having a big impact on construction? With computer vision and with advances in robotics, do you think we'll finally see some carry-over into construction productivity or is it gonna be more of the same?
+
+Brian Potter: Yeah I think there's definitely gonna be progress on that axis. If you can wire up your computer vision systems, robotic systems and your AI in such a way that your capabilities for a robot system are more expanded, then I kind of foresee robotics being able to take a larger and larger fraction of the tasks done on a typical construction site. I kind of see it being kind of done in narrow avenues that gradually expand outward. You're starting to see a lot of companies that have some robotic system that can do one particular task, but do that task quite well. There's a couple of different robot companies that have these little robots for like drawing wall layouts on like concrete slabs or whatever. So you know exactly where to build your walls, which you would think would not be like a difficult problem in construction, but it turns out that a lot of times people put the walls in the wrong spot and then you have to go back and move them later or just basically deal with it. So yeah, it's basically a little Roomba type device that just draws the wall layout to the concrete slab and all the other systems as well–– for example, where the lines need to run through the slab and things like that. I suspect that you're just gonna start to see robotics and systems like that take a larger and larger share of the tasks on the construction site over time.
+
+Dwarkesh Patel: Yeah, it's still very far away. It's still very far away. What do you think of Flow? That's Adam Neumann's newest startup and backed with $350 million from Andreeseen Horowitz.
+
+Brian Potter
+
+I do not have any strong opinions about that other than, “Wow, they've really given him another 350M”. I do not have any particularly strong opinions about this. They made a lot they make a lot of investments that don't make sense to me, but I'm out of venture capital. So there's no reason that my judgment would be any good in this situation–– so I'm just presuming they know something I do not.
+
+I'm going t o be interviewing Andreeseen later this month and I'm hoping I can ask him about that.
+
+Brian Potter: You know, it may be as simple as he “sees all” about really high variance bets. There's nobody higher variance in the engine than Adam Neumann so, maybe just on those terms, it makes sense.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: Now, I want to talk about nuclear power. In your blog post, you mention that the cost of nuclear power has increased dramatically over time. Why is that?
+
+Real Dwarkesh (lost to it): You had an interesting post about like how a bunch of a lot of the knowledge in the construction industry is like informal and contained within best practices or between between relationships and expectations that are not articulated all the time. It seems to me that this is also true of software in many cases but software seems much more legible and open source than these other physical disciplines like construction despite having a lot of the knowledge contained within people's minds and within the culture rather than excessly codified somewhere. So why do you think that construction is seems more closed or stem software? It's interesting.
+
+Judge: tool **WIN** — order1 A, order2 B

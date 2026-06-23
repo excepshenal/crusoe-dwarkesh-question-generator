@@ -1,0 +1,192 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2b (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: David Reich  |  turn 116  |  section: The Neanderthal puzzle David can’t stop thinking about
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: David Reich
+
+RESEARCH PREP:
+# Research dossier — David Reich
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph biography
+
+David Emil Reich (born July 14, 1974, Washington, D.C.) is a geneticist who is among the central figures in the field of ancient DNA, the study of genomes recovered from the remains of long-dead people. He is a professor in the Department of Genetics at Harvard Medical School (joined 2003), holds a joint appointment in Harvard's Faculty of Arts and Sciences department of human evolutionary biology, is an associate member of the Broad Institute, and became a Howard Hughes Medical Institute investigator. He grew up in Chevy Chase, Maryland; his mother is the novelist Tova Reich and his father, Walter Reich, was the founding director of the United States Holocaust Memorial Museum and teaches at George Washington University — a family history that Reich has cited as making him acutely conscious of how genetic claims about human groups can be abused. He concentrated in social studies (initially) at Harvard College (class of 1996), shifted toward the sciences, and earned his doctorate at the University of Oxford under the population geneticist David Goldstein, with a thesis on reconstructing human evolutionary history through genetics. His laboratory has industrialized ancient-DNA extraction and analysis: by the early 2020s it had generated genome-wide data from more ancient individuals than all other laboratories combined (more than 16,000 ancient humans reported by 2022, against roughly five sequenced ancient genomes worldwide in 2010). He is the author of the 2018 trade book *Who We Are and How We Got Here: Ancient DNA and the New Science of the Human Past*. *Nature* named him one of its "10 people who mattered" in science in 2015 for transforming ancient DNA "from a niche pursuit to an industrial process."
+
+### Major contributions, with specifics
+
+**Reconstructing Indian population history (2009).** With Kumarasamy Thangaraj, Nick Patterson, Alkes Price, and Lalji Singh, Reich published a *Nature* paper (vol. 461, pp. 489–494, Sept. 24, 2009) analyzing 25 Indian groups. They argued that most present-day mainland Indians descend from a mixture of two highly divergent ancestral populations: "Ancestral North Indians" (ANI), genetically close to Middle Easterners, Central Asians, and Europeans, and "Ancestral South Indians" (ASI), as distinct from ANI as ANI is from East Asians. ANI ancestry was estimated at roughly 39–71% across groups, higher in traditionally upper-caste groups and Indo-European speakers. The indigenous Andaman Islanders were identified as the closest available proxy for unmixed ASI-related ancestry. A methodological innovation was estimating admixture proportions without needing pure ancestral reference samples. A 2013 follow-up dated the major ANI–ASI mixture to roughly 1,900–4,200 years ago, implying earlier unmixed groups.
+
+**Archaic admixture: Neanderthals and Denisovans (2010).** Reich contributed to the draft Neanderthal genome (Green et al., *Science*, 2010), which concluded that roughly 1–4% (often cited as 2–5%) of the genomes of non-Africans derives from interbreeding with Neanderthals, with the proportion similar across non-African populations. Later work refined the mating to roughly 54,000–49,000 years ago. He then led "Genetic history of an archaic hominin group from Denisova Cave in Siberia" (*Nature* 468, pp. 1053–1060, Dec. 2010), in which DNA from a finger bone identified a previously unknown archaic lineage — the Denisovans — sister to Neanderthals, contributing roughly 4–6% of the ancestry of present-day Melanesians (and, in later work, Aboriginal Australians and some island Southeast Asians). The Denisovans were, unusually, defined first by genetics rather than by diagnostic fossils.
+
+**Three-ancestral-population model of Europeans (2014).** In Lazaridis, Patterson, Reich et al., "Ancient human genomes suggest three ancestral populations for present-day Europeans" (*Nature* 513, pp. 409–413, 2014), sequencing of a ~7,000-year-old German farmer and ~8,000-year-old hunter-gatherers from Luxembourg and Sweden led to a model in which most Europeans descend from West European Hunter-Gatherers (WHG), Early European Farmers (EEF, largely Near Eastern), and Ancient North Eurasians (ANE), a Siberian-related lineage. The paper proposed that the farmers carried ~44% ancestry from a "Basal Eurasian" population splitting before other non-African lineages diverged.
+
+**Steppe migration and Indo-European languages (2015).** In Haak, Lazaridis, Patterson, Reich et al., "Massive migration from the steppe was a source for Indo-European languages in Europe" (*Nature* 522, pp. 207–211, 2015), the team showed that Late Neolithic Corded Ware people from Germany traced roughly 75% of their ancestry to Yamnaya steppe pastoralists, documenting a large migration into central Europe ~4,500 years ago. This was offered as genetic support for a steppe origin of at least some European Indo-European languages, paralleling work from Eske Willerslev's group published the same year.
+
+**Native American peopling (2012).** "Reconstructing Native American population history" (*Nature*, July 11, 2012) used 364,470 SNPs across 52 Native American and 17 Siberian groups to argue for at least three streams of Asian gene flow into the Americas: a "First American" stream ancestral to most, a second contributing nearly half the ancestry of Eskimo-Aleut speakers, and a third contributing roughly one-tenth of Na-Dene (Chipewyan) ancestry.
+
+**Indo-Anatolian / Southern Arc and the homeland question (2022–2025).** A long collaboration with the archaeologist David Anthony (begun via a 2010 meeting between Anthony and Patterson) culminated in the 2022 "Southern Arc" trilogy and the 2025 paper Lazaridis, Patterson, Anthony, Reich et al., "The genetic origin of the Indo-Europeans" (*Nature* 639, pp. 132–142, published Feb. 5, 2025), analyzing ancient DNA from 435 individuals. It identifies a "Caucasus–Lower Volga" (CLV) population that contributed about four-fifths of Yamnaya ancestry and at least one-tenth of the ancestry of Bronze Age central Anatolians (where Hittite, an Anatolian language, was spoken). The authors argue for a shared "Indo-Anatolian" homeland in the North Caucasus–lower Volga region and a proto-Indo-Anatolian split around 4300–3500 BCE, with the Yamnaya expansion beginning from a small community north of the Black Sea.
+
+**Methodology and tools.** Reich's program rests heavily on allele-frequency statistics co-developed with Nick Patterson: the f-statistics framework, including the "three-population test" (f3) and "four-population test" (f4 / D-statistic / ABBA-BABA), used to detect and quantify admixture, plus qpAdm and related admixture-graph machinery, distributed as ADMIXTOOLS and later ADMIXTOOLS 2 (an R reimplementation). A signature feature is inferring unsampled "ghost" populations from statistical signatures before any matching ancient genome is found — the Ancient North Eurasians were posited this way and later matched to the ~24,000-year-old Mal'ta boy from near Lake Baikal (Raghavan et al., 2013).
+
+### The substance of his ideas, the reasoning, and the tensions
+
+**"Everyone is mixed; the tree is a net."** Reich's central empirical claim is that essentially all human populations are products of repeated mixture of earlier populations that were themselves mixtures. The reasoning is methodological: ancient DNA repeatedly shows discontinuities at single locations across time — the people living somewhere 4,000 years ago are often not the direct ancestors of those living there 2,000 years later — and admixture statistics detect ancestry from sources that cannot be reduced to a single branching tree. He illustrates this with Britain, which he describes as having seen multiple major migrations in the last ~10,000 years, several involving near-total population turnover. The implication he draws is that "purity" of any ethnic group is a myth and that present-day populations are recent and contingent constructs.
+
+**Migration over in-place evolution.** Where earlier archaeology often explained cultural change as ideas diffusing among stable populations ("pots, not people"), Reich argues that ancient DNA shows large-scale movement of people, sometimes with dramatic replacement — e.g., the steppe-derived turnover associated with Corded Ware and Bell Beaker cultures. He pairs this with a finding of male-biased expansion: the Yamnaya-associated spread carried a narrow set of Y-chromosome lineages, and he has cited estimates that a large fraction of men in some regions descend from a small number of Bronze Age male lineages, which he reads as evidence of socially stratified, polygynous male power rather than uniform population blending.
+
+**Genetic drift over adaptation as the driver of differences.** Reich tends to emphasize that most differences between human populations reflect neutral drift and the accidents of which groups expanded, not natural selection optimizing groups for their environments. He has said he sees little evidence that genetic adaptation, rather than culture and contingency (e.g., Roman military organization, agricultural technology), explains why some groups demographically overwhelmed others. This is a deliberate counter to adaptationist or hierarchical readings of population success.
+
+**Race, "populations," and average genetic differences.** Reich's most contested position, set out in a March 2018 *New York Times* op-ed ("How Genetics Is Changing Our Understanding of 'Race'") and in *Who We Are*, holds that "race" as commonly used is a social construct that does not map cleanly onto biology, *and yet* there are real average genetic differences in ancestry that partly correlate with today's racial categories. His reasoning: because so many traits are influenced by genetic variants that differ in frequency between long-separated populations, it is statistically expected that there are *some* average genetic differences between populations in traits including behavior and cognition — and he argues that flatly denying this possibility in advance is scientifically untenable and, in his framing, leaves a vacuum that genuine racists exploit. He simultaneously insists that any such differences are unlikely to match common stereotypes, that within-group variation vastly exceeds between-group variation, and that genetic difference can never justify unequal treatment. The internal tension critics highlight is between these two halves: he wants both to dismantle "race" as biologically incoherent and to insist that average biological differences between race-correlated populations are real and must be studied.
+
+**Self-acknowledged instability.** Reich has been unusually public about uncertainties in his own models. He has flagged "weird signals" — for instance, that mitochondrial and Y-chromosome data can suggest Neanderthals and modern humans are closer to each other than to Denisovans while whole-genome data suggest otherwise — and has remarked, half in jest, that under some framings non-Africans could be described as "Neanderthals" with a large fraction of modern-human admixture. He has described his own steppe/migration models as "teetering" as new data arrive, calling the situation exciting and destabilizing. This candor is itself a stance: he treats the field as fast-moving and provisional.
+
+### Debates he engages, and where he stands
+
+**Steppe vs. Anatolian hypothesis for Indo-European origins.** The long-running dispute pits the "steppe hypothesis" (Proto-Indo-European homeland in the Pontic–Caspian steppe ~4000 BCE, associated with Marija Gimbutas and David Anthony) against the "Anatolian hypothesis" (homeland in Anatolia ~8000 BCE, spread with farming, associated with Colin Renfrew). Reich's genetic work has been read as a major boost to the steppe model, and his 2025 synthesis proposes a North Caucasus–lower Volga "Indo-Anatolian" homeland that he argues reconciles the Anatolian-branch puzzle (Anatolian languages such as Hittite show weak steppe genetic signal) with steppe origins for the rest of the family. He is careful to say the data do not simply "kill" rival views; other geneticists, such as Carles Lalueza-Fox (Pompeu Fabra University), have publicly cautioned that the Anatolian hypothesis is not eliminated.
+
+**Replacement vs. continuity in archaeology.** Reich stands on the migration/replacement side of the long anthropological debate, arguing that ancient DNA has settled some cases (e.g., steppe ancestry sweeping into Bronze Age Europe) that archaeology alone left ambiguous. Critics in archaeology have warned against equating "pots with people" too readily and against simplistic narratives of conquest and replacement.
+
+**Race/genetics controversy.** His 2018 op-ed and book drew a sharp response: an open letter, "How Not To Talk About Race And Genetics," signed by 67 (often cited as 68) scientists, social scientists, legal scholars, and public-health researchers, published by BuzzFeed after the *New York Times* declined it. The signatories' core arguments, voiced in their own terms: Reich conflates loosely defined "race" with the technical notion of "population"; the long entanglement of genetics with racism conceals real scientific weaknesses in the project of locating group differences in cognition or behavior; and skill at analyzing DNA does not confer authority over the cultural and political meanings of human groups, so such claims should not be advanced without deep collaboration with social scientists. The writer Angela Saini (*Superior: The Return of Race Science*) argued that Reich's framing lends credibility to race-realist arguments. From a different direction, conservative commentary (e.g., in *National Review*) read Reich as conceding that population differences are real while objecting to any policy use of such claims. Reich responded in a follow-up that laid out principles holding that genetic differences, whatever they prove to be, cannot license discrimination, and that pre-emptively denying the possibility of average differences is itself harmful and "patronizing." Where he stands: he maintains that the questions are legitimate scientific ones while disclaiming any hierarchical or policy conclusions.
+
+**Ethics of ancient DNA.** Reich has engaged the debate over how ancient-DNA research treats human remains and descendant/Indigenous communities. He co-organized a 2020 virtual meeting that produced a 2021 *Nature* set of ethical guidelines emphasizing treating samples as once-living people, minimizing destruction of bone and teeth, securing permissions, and engaging local and descendant communities. Critics in this debate have argued that the field, including high-throughput labs, has at times moved too fast relative to community consent.
+
+### Collaborators and influences
+
+His most important long-term collaborator is **Nick (Nicholas) Patterson**, a mathematician and former cryptographer (British GCHQ) who joined the work around 2002 and co-developed the statistical engine (f-statistics, ADMIXTOOLS) underlying much of Reich's output. Core lab figures include **Nadin Rohland** (long-time lab/wet-lab director) and **Swapan/"Shop" Mallick** (bioinformatics). Archaeologist **David Anthony** (Hartwick College, emeritus), author of *The Horse, the Wheel, and Language*, is his key archaeological partner on Indo-European questions, and **Iosif Lazaridis** is a leading first author on the European and Indo-European papers. He has collaborated with Indian geneticists **Lalji Singh** and **Kumarasamy Thangaraj** (CCMB, Hyderabad) and, in archaic-genome work, with the broader circle around **Svante Pääbo** (whose Leipzig group produced the Neanderthal and Denisova sequences). His doctoral advisor **David Goldstein** shaped his early population-genetics training. He also worked closely with statistical geneticists such as **Alkes Price** and population-genetic mapping work with **Simon Myers**.
+
+### Notable biographical specifics
+
+Reich initially leaned toward sociology/social studies before turning to physics and then genetics; he came to ancient DNA partly from a background in medical genetics (gene-mapping for disease) after arriving at Harvard in 2003. Three of his four grandparents were Jewish refugees from Europe, and the family was close to the journalist I.F. Stone; his father's leadership of the Holocaust Museum and the historical abuse of Indo-European "Aryan" narratives by Nazi ideology are themes Reich repeatedly invokes when explaining his caution about how findings are framed. His honors include being named one of *Nature*'s 10 (2015), the Dan David Prize (2017), the NAS Award in Molecular Biology (2019), the Wiley Prize in Biomedical Sciences (2019), the Darwin–Wallace Medal of the Linnean Society (2019), the Massry Prize (2021), and recognition tied to the Antiquity Prize (2022). His lab's industrial scale — capturing roughly 1.2 million genome-wide SNP positions per ancient sample at high throughput — is itself a defining feature of his career, having shifted ancient DNA from a study of rare individual genomes to population-scale datasets.
+
+## Sources
+
+- Wikipedia, "David Reich (geneticist)": https://en.wikipedia.org/wiki/David_Reich_(geneticist)
+- Wikipedia, "Who We Are and How We Got Here": https://en.wikipedia.org/wiki/Who_We_Are_and_How_We_Got_Here
+- Harvard Magazine, "Telling Humanity's Story through DNA" (2022): https://www.harvardmagazine.com/2022/06/feature-ancient-dna
+- Reich et al., "Reconstructing Indian population history," *Nature* (2009): https://www.nature.com/articles/nature08365 ; PubMed: https://pubmed.ncbi.nlm.nih.gov/19779445/
+- "Genetic history of an archaic hominin group from Denisova Cave in Siberia," *Nature* (2010): https://www.nature.com/articles/nature09710 ; PubMed: https://pubmed.ncbi.nlm.nih.gov/21179161/
+- Lazaridis et al., "Ancient human genomes suggest three ancestral populations for present-day Europeans," *Nature* (2014): https://www.nature.com/articles/nature13673
+- Haak et al., "Massive migration from the steppe was a source for Indo-European languages in Europe," *Nature* (2015): https://www.nature.com/articles/nature14317
+- "Reconstructing Native American population history," *Nature* (2012): https://www.nature.com/articles/nature11258
+- Lazaridis, Patterson, Anthony, Reich et al., "The genetic origin of the Indo-Europeans," *Nature* 639:132–142 (2025): https://www.nature.com/articles/s41586-024-08531-5 ; PMC: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11922553/
+- Springer Nature Research Communities, "Indo-European Origins: A new Solution to an old Puzzle": https://communities.springernature.com/posts/indo-european-origins-a-new-solution-to-an-old-puzzle
+- Science/AAAS, "Mysterious Indo-European homeland may have been in the steppes of Ukraine and Russia": https://www.science.org/content/article/mysterious-indo-european-homeland-may-have-been-steppes-ukraine-and-russia
+- Genetic Literacy Project, "Harvard geneticist David Reich NY Times' op-ed ignites debate over whether 'races' exist": https://geneticliteracyproject.org/2018/03/29/harvard-geneticist-david-reich-ny-times-op-ed-ignites-debate-over-whether-races-exist/
+- Why Evolution Is True, "Geneticist David Reich responds to critics of his views on race": https://whyevolutionistrue.com/2018/04/01/geneticist-david-reich-responds-to-critics-of-his-views-on-race/
+- BuzzFeed News, "How Not To Talk About Race And Genetics" (open letter, 2018): https://www.buzzfeednews.com/article/bfopinion/race-genetics-david-reich
+- SciJust (UC Santa Cruz), "Developing: Debate on 'Race' and Genomics": https://scijust.ucsc.edu/2019/05/30/developing-debate-on-race-and-genomics/
+- David Reich Lab press page: https://reich.hms.harvard.edu/press
+
+_All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this dossier; such results encountered during research were skipped and not read, cited, or relied upon._
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Dwarkesh Patel: So with the Neanderthals, the first time around 300,000 years ago, our ancestors share culture with them. They share the Middle Stone Age technology, but they don’t replace the population. The technology spreads through culture, basically.
+
+David Reich: It spreads through genes too. If you look at Yamnaya in India, there’s almost no Yamnaya ancestry in India. It’s just diluted down. As Yamnaya expanded into Central Asia and into Europe, it makes the Corded Ware. There’s a 25% dilution. It expands back across Central Asia. It goes through the Hindu Kush and gets into northern South Asia. It admixes more with local people. Today, the most Yamnaya ancestry you see in India is 20% or 10%. Most people have less than 10% or 5%.
+
+There’s been a lot of mixture on the way, but it is the tracer dye. It tracks Indo-European languages, and important aspects of Indo-European culture are coming through Yamnaya. So if you know where to look, that tracer dye is only 10%, 5%, or 2% in some groups. But it’s the languages people speak, and important shared cultural elements, that connect them to people on the other side of the Indo-European-speaking world. So this 5%, you shouldn’t sneeze at it. That’s tracing something important in this model.
+
+Dwarkesh Patel: I understand that if things are transmitted more through women… Sorry, let me back up. I don’t understand why the maternal mitochondrial DNA and the Y chromosome would be especially privileged as the spreading is happening. Can you explain that?
+
+David Reich: The reason I’m talking about these matrilineal or patrilineal expansions is that I’m really troubled, and have been troubled for many years—especially in the last three or four years—by the fact that the mitochondrial DNA and Y chromosome cluster Neanderthals and modern humans, but the rest of the genome clusters Neanderthals and Denisovans.
+
+This is a crazy result that is not seen in any other species. I’m very interested in patterns that would explain it. If you assume that there was a matrilineal or a patrilineal expansion—it could be either—then modern humans, when they were expanding across the landscape of Europe, retained their identity along one of the lines.
+
+If it’s matrilineal, when they incorporate a male from the local community, he’s brought into the community, and the kids are raised based on the culture of the mothers. If it’s a patrilineal expansion and they incorporate a female from the community, she’s raised with the culture of the fathers. If that happens, it guarantees that one of these two parts of the genome looks like it does, because it’s a modern human expansion. If it’s patrilineal, it will retain the Y chromosome. If it’s matrilineal, it will retain the mitochondrial DNA. So it will solve one of your two problems.
+
+Dwarkesh Patel: But not both.
+
+David Reich: It won’t solve the other one, so you need to solve the other one. You can solve it either by natural selection or by social selection. By the way, patrilineality and matrilineality are the rule, not the exception, in human communities. Usually communities have continuity along the male or the female line. Usually it’s patrilineality, sometimes it’s matrilineality.
+
+You can also have phenomena like social selection. It could be that once you have kids of someone whose father, for example, is from the outside community… Usually in most communities, females all reproduce. That’s typical today. Usually women have kids if they can. But men in traditional societies are actually very variable in their reproductive success. A large fraction of men never have kids. Then there’s a subset of men who have many kids with many women.
+
+There’s competition among men for kids. In this context, where males are competing for access to females, female mate choice begins to be an important process. You have a phenomenon where if your dad is an archaic male, it could be the case that you’re not going to be as successful in the competition for local females as if your dad is a non-archaic male.
+
+Some simple social phenomenon like that could explain the data, and we actually see this in human society. For example, if I remember right, in Central African rainforest hunter-gatherers, there’s different treatment of boys and girls depending on whether their dad or mom is one group or the other.
+
+Dwarkesh Patel: I guess I don’t understand how the maternal… The group spreads, and it gets to the next front. They have kids. From the humans that have just entered, the kids will have the mitochondrial DNA from the humans. But from the existing people, they will have the mitochondrial DNA of the archaic humans. Why are the people with the archaic mitochondrial DNA not surviving?
+
+David Reich: It’s a question. There are multiple possible explanations, but it’s much easier to explain that than both the mitochondrial DNA and the Y chromosome. One possibility is that the mitochondrial DNA was less biologically fit. Another possibility is that there’s social discrimination against people based on whether their parents are archaic or not, which is not at all surprising in a human context. It’s the weakest link in this argument. This argument’s probably wrong, but I’m just telling you what I’m thinking about.
+
+Dwarkesh Patel: Okay, the Neanderthals. So 300,000 years ago our lineage interacts with them, but mostly their lineage survives, and there’s cultural and genetic diffusion. And then is it 70,000 years ago that we interact again?
+
+David Reich: Yes.
+
+Dwarkesh Patel: And they don’t survive.
+
+David Reich: The genetic ancestry doesn’t survive.
+
+Dwarkesh Patel: The genetic ancestry doesn’t survive. Presumably there was also other contact between 300,000 years ago and 70,000 years ago.
+
+David Reich: Probably. But these are the ones we are detecting currently.
+
+Dwarkesh Patel: Is it just contingent that one time there’s this kind of diffusion where most of the archaic genome survives, and the other time it’s total replacement?
+
+David Reich: This is not at all surprising given the context. If you think about this model, this is 700,000 or 800,000 years ago. This is 300,000 years ago. So this is 400,000 years separated. You talked about the Bhatia paper with me earlier. That’s two populations 70,000 years separated. There are no biological incompatibilities between West Africans and Europeans. There’s no natural selection against biological incompatibilities.
+
+We know when Neanderthals and modern humans met and mixed, there were biological incompatibilities. That was 700,000 years ago. As populations become further apart, biological incompatibilities rapidly develop, probably as the square of the separation distance, because you need pairs of interacting genes. Here, it would have been maybe only 400,000 years separated between this lineage and that lineage. But here, it’s 1.2 million years. That’s a lot. These are at the edge of not being able to produce children. These are quite different humans. These are actually three times closer than these.
+
+If you look at mixtures of humans today, there are mixtures in Southern Africa of people who are half this distance. If you look at Khoisan and Bantu people mixing in Southern Africa, like the Xhosa, which is the population of Nelson Mandela, these are groups that are separated by almost 200,000 years, which is half of this. Totally compatible.
+
+What you’re seeing is a group that’s actually completely permeable genetically, or nearly completely permeable. This other one almost certainly has substantial biological incompatibilities. Because 200,000 or 300,000 years later, we see interbreeding between Neanderthals and modern humans, or between Denisovans and modern humans, and there’s clear evidence of incompatibility at that point. But this would be even bigger.
+
+What you would expect to see is that as this group spread, they would be moving into a territory full of archaic humans. There would be some interbreeding, but the kids would not be very fit. They would die off. There would be a lot of infertility. The barriers to gene flow and to interbreeding would be greater.
+
+To me, it’s not at all surprising that as this group moves into Eurasia, you have Eurasian archaics—the ancestors of Denisovans—who are only 400,000 years diverged from these people over here. And then you have African archaics, and these are 1.2 million years diverged. They just don’t interbreed as much, and you don’t get as much gene flow.
+
+But the key thing is the timing. It’s the same time. It really feels like the signature of an explosion of people from one place, interacting with people here and interacting with people there. It’s the same cultural or technological revolution impacting this place and that place, and creating populations that are impacted by this cultural revolution, which we know is the case because they share the same toolkit.
+
+Some people argue that Levallois technology is independently invented. But it’s very similar, and this model would be a way that it could have the same origin. So there’s a culturally shared thread, this shared toolkit. There’s a mitochondrial DNA and Y chromosome thread. And then there is a shared timing thread, which is they both form by mixture.
+
+Dwarkesh Patel: Because otherwise you’d have to believe that Neanderthals independently developed Stone Age tools.
+
+David Reich: Yes, which is not inconceivable. But it’s a little bit like believing that farming independently developed in multiple parts of the world.
+
+Dwarkesh Patel: Right. But it did.
+
+David Reich: It did. So as I said, this is probably wrong. I’m trying to tell you that we don’t really know the world we live in. This is not obviously wrong. In fact, to me, this is much more plausible than the model we currently write down. It’s probably wrong, but it’s much more plausible. It explains many more things, and it’s no more complicated.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: So what happened 70,000 years ago? What changed?
+
+Real Dwarkesh (lost to it): Do you want to recapitulate the thing you were saying about the analogy to Ptolemy and the epicycles? I thought that was quite interesting.
+
+Judge: tool **WIN** — order1 A, order2 B

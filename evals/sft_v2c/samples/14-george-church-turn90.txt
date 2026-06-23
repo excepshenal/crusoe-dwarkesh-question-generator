@@ -1,0 +1,222 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2c (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: George Church  |  turn 90  |  section: Curing rare diseases with genetic counseling
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: George Church
+
+RESEARCH PREP:
+# Research dossier — George Church
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph biography
+
+George McDonald Church (born August 28, 1954, at MacDill Air Force Base, Tampa, Florida) is an American geneticist, molecular engineer, and chemist who is the Robert Winthrop Professor of Genetics at Harvard Medical School, Professor of Health Sciences and Technology at Harvard and MIT, and a founding core faculty member of the Wyss Institute for Biologically Inspired Engineering. He has publicly described having dyslexia and narcolepsy (the latter he says he leaves untreated because it aids creative association), and he has been vegan since 2004. He attended Phillips Academy Andover, completed a B.S. in zoology and chemistry at Duke University in roughly two years, was dismissed from Duke's graduate program in January 1976 after spending the bulk of his time in the lab to the neglect of required coursework, and then earned a Ph.D. in biochemistry and molecular biology at Harvard in 1984 under Walter Gilbert. His career spans the founding of modern DNA sequencing, the engineering of genomes at scale, the Personal Genome Project, and a string of roughly fifty company foundings. He is married to Harvard genetics faculty member Ting Wu, with whom he has collaborated. His public persona — a large gray beard, a habitual conflict-of-interest disclosure slide, and a willingness to voice radical proposals — has made him among the most recognizable and most contested figures in genetics.
+
+### Major contributions, with specifics
+
+**Direct genomic sequencing (1984).** As a graduate student, Church co-authored "Genomic sequencing" with Walter Gilbert (PNAS 81(7):1991–1995, 1984), a method for reading defined DNA sequences directly from genomic DNA immobilized on a solid support and probed with labeled nucleic acids — conceptually a precursor to the membrane-transfer, hybridization-based methods underlying later high-throughput approaches. In the same period (1984) he was involved in early discussions that helped launch the Human Genome Project.
+
+**Multiplex sequencing (1988).** Church and Stephen Kieffer-Higgins published "Multiplex DNA sequencing" (Science 240(4849):185–188, 1988). The method pooled sequencing reactions from many different templates, ran them together (co-eluted in a single gel lane), transferred the separated fragments to a membrane, and then read out each template iteratively by hybridizing with template-specific probes. Church has said the term "multiplex" was borrowed from electronics, where multiple signals share one wire. He credits multiplexing and the use of molecular "tags" as broadly applicable concepts he introduced, later central to next-generation sequencing economics.
+
+**Personal Genome Project (PGP, 2005).** Church initiated the PGP at Harvard, framed as the world's first open-access human genome-and-trait dataset. It began as a pilot of about 10 participants (the "PGP-10"), with Church himself among the first. The stated ambition was to enroll on the order of 100,000 volunteers and correlate genome with phenotype and environment in the open. Distinctively, participants consent to publicly share genomic and trait data for unrestricted research and even commercial use. By late 2017 more than 10,000 volunteers had enrolled; the model spread internationally (Canada 2012, UK 2013, Austria 2014, Korea 2015, China 2017). Church's own genome was among the earliest whole human genomes sequenced and publicly shared along with medical records. A 2013 re-identification experiment (arXiv 1304.7605) showed many PGP participants could be named from their public profiles, illustrating the privacy tradeoff Church's "open consent" model deliberately accepts rather than the kind of confidentiality it might claim.
+
+**CRISPR genome editing in human cells (2013).** Church's lab published "RNA-guided human genome engineering via Cas9" (Mali, Yang, Esvelt, Aach, Guell, DiCarlo, Norville, Church; Science 339:823–826, 2013), appearing in the same January 2013 issue as Feng Zhang's Broad Institute paper, both demonstrating that the Cas9 system could be programmed to cut targets in human cells. Church has publicly credited the 2012 Doudna–Charpentier single-guide-RNA work as "extremely fundamental," saying it "bumped SpCas9 way up on our list." This places him as a documented voice in the CRISPR priority dispute: Berkeley's side argued his and Zhang's human-cell results were triggered by Doudna's prior work, and Church was expected (though ultimately not compelled — a subpoena to make him testify was denied in 2016) to corroborate that he was inspired by the 2012 paper.
+
+**Multiplex Automated Genome Engineering (MAGE) and genomically recoded organisms.** Church's lab developed MAGE, an approach for rapidly introducing many simultaneous, targeted changes across a genome. This culminated in Lajoie et al., "Genomically recoded organisms expand biological functions" (Science 342(6156):357–360, 2013), in which all 321 occurrences of the UAG stop codon in *E. coli* were replaced with synonymous UAA codons, allowing deletion of release factor 1 and reassignment of UAG. The recoded organism incorporated nonstandard amino acids more efficiently and showed increased resistance to T7 bacteriophage — a concrete demonstration that rewriting the genetic code can confer viral resistance and "genetic isolation" from natural organisms.
+
+**De-extinction and the woolly mammoth.** Beginning around 2015, Church's lab used CRISPR to introduce mammoth gene variants (for traits like cold adaptation and fur) into Asian elephant cells; by March 2015 his group reported splicing mammoth gene sequences into the elephant genome. In September 2021 he co-founded Colossal Biosciences with entrepreneur Ben Lamm to pursue mammoth-like ("mammophant") elephants and other de-extinction targets. In April 2025 Colossal reported the birth of gene-edited canids it described as "dire wolves" carrying roughly 20 engineered edits.
+
+**Aging reversal and gene therapy.** Church's group published combination gene-therapy work in mice (PNAS, 2017) showing a single AAV-delivered combination targeting genes such as FGF21, alpha-Klotho, and soluble TGF-beta1 receptor (sTGFβR2) could simultaneously improve four age-related conditions — obesity, type II diabetes, heart/kidney failure. He co-founded Rejuvenate Bio (around 2018) to advance such therapies, with dogs as a translational large-mammal model. (Note for accuracy: a 2022 PNAS paper from his group on life extension required corrections for incomplete conflict-of-interest disclosure and an image-duplication issue.)
+
+**Companies and large projects.** Church has co-founded roughly 50 companies, including Knome (2007, personal genomics), LS9 (2005) and Joule Unlimited (2007, biofuels/solar fuels), Gen9 Bio (2009, gene synthesis), Editas Medicine (CRISPR therapeutics), Veritas Genetics (2014, whole-genome sequencing), Nebula Genomics (2018, consumer genomics with a privacy/blockchain framing), Rejuvenate Bio, and Colossal Biosciences. He helped launch Genome Project–write (GP-write), publicly announced June 2, 2016, as a "write" sequel to the "read" Human Genome Project (which cost roughly $3 billion); GP-write set a goal of reducing genome-synthesis costs roughly 1,000-fold within ten years, with an initial fundraising target of about $100 million that was slow to materialize.
+
+### The substance of his ideas — reasoning, and the counterarguments
+
+**On open genomics and consent.** Church's core reasoning for the PGP is that genuine genotype-phenotype science requires data that can be freely shared, combined, and re-analyzed, and that promises of perfect confidentiality in genomics are illusory once enough data is released. He therefore favors "open consent": tell participants honestly that re-identification is possible and let informed volunteers opt in. The counterargument, illustrated by the 2013 re-identification study and voiced by genetic-privacy advocates, is that open data can expose participants and their relatives to discrimination, that "informed" consent cannot anticipate future inferential power, and that normalizing public DNA shifts norms in ways that harm people who never consented (relatives share much of one's genome). Church's own response is that secrecy is the more dangerous illusion and that openness accelerates cures.
+
+**On de-extinction / the mammoth.** Church's stated rationale is not nostalgia but Arctic climate. The argument: large grazers compacting snow and felling trees would help restore mammoth-steppe grassland, expose the ground to colder winter air, and slow permafrost thaw — protecting carbon stores. He has floated needing on the order of tens of thousands of such animals (a figure around 80,000 has been attributed to him) to materially affect the landscape. He frames the project as also building a toolkit (multiplex editing, artificial wombs, elephant conservation genetics) with broader value. The strongest named criticisms: paleontologist **Tori Herridge** (who turned down a Colossal advisory seat) argues "a mammoth is not an elephant in a fur coat" — that editing a handful of known cold-adaptation genes into an elephant produces a "crude approximation," not the extinct animal, because we do not know "what makes a mammoth a mammoth." Climate scientists (e.g., the critique in Yale Climate Connections, 2025) argue the permafrost-via-megafauna mechanism is speculative, unproven at scale, and a distraction from emissions cuts that work on a relevant timescale. Animal-welfare and intellectual-property critics (e.g., in the *Journal of Intellectual Property Law & Practice*) question the welfare of surrogate elephants and the ethics of patenting resurrected organisms. Notably, evolutionary biologist **Beth Shapiro** — once a skeptic about whether de-extinction yields a "true" mammoth — became Colossal's chief science officer, an example of the field's internal split rather than uniform opposition; Herridge has remarked that Shapiro "might not care" that a GM elephant is not literally a mammoth, while others do.
+
+**On aging as a treatable condition.** Church argues that aging is driven by a manageable number of well-characterized pathways (he often references roughly nine hallmarks/pathways, e.g., telomere maintenance, caloric-restriction mimicry, senescence, etc.) and that gene therapy delivering "cell non-autonomous" factors — secreted proteins that rejuvenate tissues body-wide, analogous to young-blood parabiosis factors — can address multiple age-related diseases at once rather than one disease per drug. His evidence is the multi-disease mouse improvement from a single combination therapy. Skeptics in gerontology counter that mouse disease-model improvements have a poor record of translating to human lifespan, that "reversing biomarkers" is not the same as extending healthy human life, and that his optimism about timelines outruns the clinical data; the 2022 correction over disclosure and image issues is cited by critics as a caution about over-promising.
+
+**On rewriting genomes / synthetic genomes (GP-write).** Church's reasoning is that the ability to write (synthesize and recode) genomes, not just read them, unlocks ultra-safe cell lines (virus-resistant via recoding), biosafety "genetic firewalls," and bio-manufacturing. Critics, including some bioethicists who reacted to the 2016 announcement, worried that the original framing — synthesizing a complete human genome — implied the possibility of human beings without conventional parents and was launched with a closed-door meeting that fueled distrust; the project was later reframed and scaled down toward more limited "ultra-safe cell" goals.
+
+**On gene drives.** With his postdoc **Kevin Esvelt**, Church co-authored the foundational and deliberately cautionary "Concerning RNA-guided gene drives for the alteration of wild populations" (Esvelt, Smidler, Catteruccia, Church; eLife, July 2014), which laid out CRISPR-based gene drives — genetic elements that copy themselves to spread through wild populations (e.g., to suppress malaria mosquitoes) — alongside the ecological risks and the need for confinement, reversal ("reverse drive"), and public consent before any release. Esvelt subsequently championed "daisy-chain" drives that self-limit to local populations. The reasoning Church and Esvelt advance is that powerful ecological tools should be developed in the open, with built-in off-switches and community consent, precisely because they are self-propagating; critics worry that even cautious development normalizes an irreversible-in-practice technology.
+
+**On germline editing and the He Jiankui affair.** When He Jiankui announced gene-edited babies in 2018, Church drew attention for declining to fully condemn him, telling ScienceInsider "I feel an obligation to be balanced about it." He distinguished the goal (he was sympathetic to using editing against disease) from the conduct (which he criticized as premature and poorly executed), and has supported a temporary moratorium on clinical germline editing. Critics argued his "balanced" stance lent cover to reckless human experimentation; Church's position is that blanket condemnation forecloses careful future medical use.
+
+### Tensions within his own positions
+
+Several tensions recur in his record. He champions radical openness (PGP, open consent, open-source COVID vaccine work via RaDVaC) while also being among the most prolific company founders in biology, with a "notorious" conflict-of-interest disclosure slide — openness and commercialization sit in tension. He is at once a self-described maximal technophile and the co-author of the field's most prominent gene-drive safety paper, arguing for built-in reversibility and public consent — pushing the frontier while building the brakes. And his "balanced" stance on He Jiankui sits uneasily beside his support for a germline moratorium.
+
+### Debates he engages, and where he stands
+
+- **Genome-editing ethics / germline:** favors development of editing for disease, supports a temporary clinical-germline moratorium, resists outright condemnation; stresses reversibility and consent for ecological applications.
+- **De-extinction:** strong proponent, framed as climate restoration and conservation toolkit; acknowledges the resulting animal is an engineered hybrid rather than a literal resurrection.
+- **Aging:** treats aging as a medical condition addressable by multiplex gene therapy; bullish on timelines relative to mainstream gerontology.
+- **Genetic privacy:** prefers honest open consent over confidentiality promises he regards as unkeepable.
+- **Genetic screening:** has promoted preconception/genetic-compatibility screening to avoid recessive disease — the proposal most often attacked as eugenic (see critics below).
+
+### Named opponents and ethical critics (their arguments, in their own terms)
+
+- **Center for Genetics and Society** (writer **Pete Shanks**): charges Church with "dangerous technophilia" and a recurring drift toward eugenics, citing his genetic-matchmaking/dating-app concept (screening prospective couples to avoid children with inherited disease, with a claim of preventing thousands of conditions) and his past association with the Chinese genomics company BGI. The argument is that population-level selection against "bad" genes, however framed medically, reinstates eugenic logic and inevitably encodes social bias. Journalist **Janus Rose** (Vice), quoted approvingly, argued that "for anyone not white, cis, able-bodied, or male, it's obvious where all this is going" — i.e., screening frameworks privilege the already-advantaged and stigmatize disability. Church's reply has been to grant that "there's no perfect person" and to defend disease-avoidance as distinct from enhancement; critics find that insufficient given the cumulative pattern.
+- **Tori Herridge** and climate scientists on de-extinction (arguments summarized above).
+- **Eric Lander / Broad Institute** figures: Church has had documented friction over CRISPR credit and the history of the technology, situating him in the broader CRISPR priority and narrative disputes.
+
+### Collaborators and influences
+
+His doctoral advisor was Nobel laureate **Walter Gilbert**. His lab has trained or launched a remarkable lineage, including **Feng Zhang** (CRISPR), **Jay Shendure** (sequencing), **Kevin Esvelt** (gene drives), **Prashant Mali** and **Luhan Yang** (CRISPR in human cells; Yang co-founded eGenesis with Church on xenotransplantation), **John Aach**, **Marc Guell**, **Marc Lajoie**, **Preston Estep**, **Fina Kurreeman**, and **Samira Musah**. He collaborates closely with his wife **Ting Wu**. Business collaborators include **Ben Lamm** (Colossal). He has co-authored with science writer **Edward (Ed) Regis** on *Regenesis: How Synthetic Biology Will Reinvent Nature and Ourselves* (Basic Books, 2012), which lays out his vision: synthetic cyanobacteria making fuel from sunlight, carbon-sequestering organisms, virus-immune cells, life extension, and de-extinction, alongside acknowledgment of the ethical issues raised.
+
+### Notable biographical specifics
+
+- Born at a military base; raised in Florida; described a difficult, peripatetic childhood and early fascination with science.
+- Worked roughly 100-hour lab weeks as a Duke graduate student, leading to dismissal in January 1976 before being admitted to Harvard for his Ph.D.
+- Co-inventor on nanopore-sequencing concepts dating to the mid-1990s.
+- Holds many patents and has authored a very large body of papers; directed a U.S. Department of Energy technology center and an NIH Center of Excellence in Genomic Science.
+- Honors include election to the National Academy of Sciences (2011) and National Academy of Engineering (2012), and the Franklin Institute's Bower Award and Prize for Achievement in Science (2011); named to Time 100 (2017).
+- Funding controversy: his lab/research received roughly $686,000 connected to the Jeffrey Epstein VI Foundation (around 2005–2007); after Epstein's 2008 conviction Harvard barred new gifts. In 2019 Church publicly expressed regret over the association and over not knowing more about the donor.
+- A 2013 Der Spiegel interview, in which he speculated about the theoretical possibility of reconstructing a Neanderthal, was widely misreported as an active project seeking a human surrogate; Church repeatedly clarified he was conducting no such work.
+- Other activities: founder/host of the annual Genomes, Environments and Traits (GET) Conference (since 2008); advisor to the Personal Genetics Education Project; member of the open-source RaDVaC COVID-19 vaccine collaborative; and an advisory role with the Enhanced Games (as of 2023).
+
+## Sources
+
+- George Church, Wikipedia (geneticist): https://en.wikipedia.org/wiki/George_Church_(geneticist)
+- George Church, Wyss Institute (Harvard) faculty page: https://wyss.harvard.edu/team/core-faculty/george-church/
+- Church & Gilbert, "Genomic sequencing," PNAS 1984 (Harvard AREP PDF): https://arep.med.harvard.edu/pdf/Church84_seq_o.pdf
+- Personal Genome Project, Wikipedia: https://en.wikipedia.org/wiki/Personal_Genome_Project
+- Harvard Personal Genome Project, About: https://pgp.med.harvard.edu/about
+- Sweeney et al., re-identifying PGP participants (arXiv 1304.7605): https://arxiv.org/pdf/1304.7605
+- "RNA-Guided Human Genome Engineering via Cas9" (Mali et al., 2013), Embryo Project Encyclopedia: https://embryo.asu.edu/pages/rna-guided-human-genome-engineering-cas-9-2013-prashant-mali-luhan-yang-kevin-m-esvelt-john
+- "How the battle lines over CRISPR were drawn," Science/AAAS: https://www.science.org/content/article/how-battle-lines-over-crispr-were-drawn
+- "Subpoena denied: Harvard's George Church won't have to testify in CRISPR patent dispute," STAT: https://www.statnews.com/2016/09/16/crispr-patent-george-church-subpoena/
+- Lajoie et al., "Genomically Recoded Organisms Expand Biological Functions," Science 2013 (Harvard AREP PDF): https://arep.med.harvard.edu/pdf/Lajoie_Science_2013.pdf
+- "Rewritten genetic code allows bacteria to fend off viral attacks," Science/AAAS: https://www.science.org/content/article/rewritten-genetic-code-allows-bacteria-fend-viral-attacks
+- Esvelt, Smidler, Catteruccia, Church, "Concerning RNA-guided gene drives for the alteration of wild populations," eLife 2014: https://elifesciences.org/articles/03401
+- "Bringing back the mammoth won't fix the future," Yale Climate Connections (2025): https://yaleclimateconnections.org/2025/04/bringing-back-the-mammoth-wont-fix-the-future/
+- "Scientists Say They Could Bring Back Woolly Mammoths. But Maybe They Shouldn't," NPR (2021): https://www.npr.org/2021/09/14/1036884561/dna-resurrection-jurassic-park-woolly-mammoth
+- "'Woolly mice' were just a start. De-extinction still faces many hurdles," Science News: https://www.sciencenews.org/article/wooly-mice-transgenic-mammoth
+- "Scientist on the Loose: George Church Strays Into Eugenics—Again," Center for Genetics and Society: https://www.geneticsandsociety.org/biopolitical-times/scientist-loose-george-church-strays-eugenics-again
+- "'I feel an obligation to be balanced.' Noted biologist comes to defense of gene editing babies," Science/AAAS: https://www.science.org/content/article/i-feel-obligation-be-balanced-noted-biologist-comes-defense-gene-editing-babies
+- "Scientists launch plan to create synthetic human genome," STAT (2016): https://www.statnews.com/2016/06/02/project-human-genome-synthesis/
+- "Scientists Downsize Bold Plan to Make Human Genome from Scratch," Scientific American: https://www.scientificamerican.com/article/scientists-downsize-bold-plan-to-make-human-genome-from-scratch/
+- Genome Project–write, Wikipedia: https://en.wikipedia.org/wiki/Genome_Project%E2%80%93Write
+- George Church gene-therapy/aging interview, Fight Aging! (2021): https://www.fightaging.org/archives/2021/08/an-interview-with-george-church-on-gene-therapy-and-the-treatment-of-aging-as-medical-condition/
+- "George Church has a wild idea to upend evolution," STAT (2016): https://www.statnews.com/2016/05/16/george-church-profile/
+- *Regenesis* (Church & Regis, Basic Books 2012), publisher page: https://www.hachettebookgroup.com/titles/george-m-church/regenesis/9780465038657/
+
+Exclusion confirmation: All content from Dwarkesh Patel, the "Dwarkesh Podcast," and "The Lunar Society" was deliberately excluded from this research; no such source was read, cited, or relied upon, and those domains were affirmatively blocked in searches.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+How plausible to you is the idea that we could have biobots which can duplicate at the speed of insects—there could be trillions of them running around—but they also can have access to jet engines and radio communication and so forth? Are those two things compatible?
+
+George Church: Certain things seem incompatible. Like the temperature of a fission reactor isn’t obviously compatible. But it is a possibility that a biological system can make other things. For example, it can make a nest. A bird can make a nest. You consider the whole nest as part of the replication cycle of the bird.
+
+So you can say the biological thing that replicates at a 30 minute doubling time could make a nuclear reactor. That would be its nest but you need to expand its range of materials. In a certain sense, we do this already. Humans are a biological thing that replicates not in 30 minutes, but in 20 years or less. Is that fundamentally limiting us? Yeah, probably it is.
+
+But it's amazing to think about. What if you could take a cornfield or a nuclear reactor, and suddenly 30 minutes later you've got two of them, then four of them, and eight of them. That's quite an interesting concept.
+
+I teach a course called How to Grow (Almost) Anything. I work with Neil Gershenfeld at MIT who has a course called How to Make Almost Anything. We're trying to meet in the middle where his mechanical electrical engineering will meet with our biological.
+
+In fact, neither of us can make or grow almost anything because there's all kinds of little gaps and things that are very hard to make in a small lab. There are things all over the world that depend on multi-billion dollar fabs to make things. But we're eating away at it.
+
+Maybe a smaller baby step than making a nuclear reactor is making a phone. You said radio communication. It should be a small challenge goal for the synthetic biology community, maybe iGEM or something: make bacteria make a radio.
+
+Actually Joe Davis is an artist—he’s been affiliated with my lab and before that, Alex Rich's lab—and he did make a bacterial radio but it was kind of more on the art end than on the science end. But I think that would be a good goal.
+
+Dwarkesh Patel: What would it take to do whole genome engineering to such a level that for even a phenotype which doesn't exist in the existing pool of human variation, you could manifest it because your understanding is so high. For example, if I wanted wings.
+
+Is the bottleneck our understanding? Is the bottleneck our ability to make that many changes to my genome?
+
+George Church: Part of this has to do with just learning the rules of developmental biology, like I said. We can determine morphology at the molecular level now: proteins, nucleic acids. Determining at the cellular multicellular level, there's a lot more things you can do and a lot faster. But we don't know the language yet.
+
+I think we're on the cusp of getting the tools to do that, like the transcription factor I was talking about earlier, harnessing migration, gradients of diffusion factors, chemotaxis and so forth. That's one thing we need, but there's a bunch of things we need, really.
+
+Dwarkesh Patel: What discovery in biology—so not in astronomy or some other field—would make you convinced that life on Earth is the only life in the galaxy? Conversely, what might convince you that no, it must have arisen independently thousands of times in this galaxy?
+
+George Church: Oh, I see what you're getting at. Astronomy might be that we would detect radio signals or light signals. With biology, the kind of evidence would be that you show in a laboratory using prebiotic conditions a really simple way to get life.
+
+It's harder to prove the negative because we don't know all the possible prebiotic conditions. Probably the number was vast. You have 10^20 liters of water at various different salinities and drying up on the ocean and the sun and the lightning and all this stuff.
+
+I think if you showed, reconstructed in the lab, a very simple pathway from inorganics, cyanide derivatives and reduced compounds, all the way up to some cellular replicating structure, that might lead us to believe that at least life exists.
+
+Now that there are other parts of the Drake equation that might kick in. Maybe it's hard to get intelligent life because intelligence isn't necessarily in your best interest. And if you get intelligence life, it's hard to maintain that without societal collapse or without robotics taking over and then killing themselves. That's hard to do experiments on.
+
+But to your question, an experiment that showed maybe multiple different ways of getting to a living system from non-living systems spontaneously would be interesting. Again, I'm not sure. It'd be very hard to prove the negative.
+
+Dwarkesh Patel: Between intelligent life and some sort of primordial RNA thing, what is the step at which, if there is any, you say there's a less than 50% chance something like at this level exists elsewhere in the Milky Way?
+
+George Church: These are very challenging problems. I'm not even sure we would be able to say within five orders of magnitude, much less 50%. I think it's more likely to come from exploration than it is going to be from simulation.
+
+The sad truth is that almost none of the missions that we've sent outside of Earth have actually looked for life. They've had components that could have looked for life. A sad number of those had not enough components that could look for life. The ones that could look for life were not really looking for it. When we get positive results, we dismiss them as happened with Pioneer.
+
+I think if we just start looking at the geysers that are coming out of various moons of Jupiter and Saturn, there's so much water. There's 50 times more water, liquid water, not frozen but liquid water, in our solar system than on Earth. Doesn't that seem likely that some of that would have been a good breeding ground? It could be that we need sunny shores where you have a lot of dry land right next to water. Maybe these are just giant oceans that are surrounded by ice and maybe that's not an ideal.
+
+In any case, we need to look at those fountains to see what's popping up. That's a high priority. The same thing goes for water on Mars. That's maybe even more accessible. But until we've exhausted those, those are probably the easiest. They're hard. We’re still talking about multibillion dollar experiments, but I think they're a little more convincing. Again, it'll be hard to prove the negative. If we find this negative on everything in the solar system, there's so much more diversity out there that could have done it.
+
+Dwarkesh Patel: If in a thousand years we're still using DNA and RNA and proteins for top-end manufacturing, the frontiers of engineering, how surprised would you be? Would you think, “Oh, that makes sense. Evolution designed these systems for billions of years.” Or would you think, “Oh, it's surprising that these ended up being the systems. Whatever evolution found just happened to be the best way to manufacture or to store information”?
+
+George Church: I don't think I'd be surprised either way. I can imagine it going either way. I can imagine making truly amazing materials using proteins as the catalysts, or maybe in some cases as a scaffold as well as catalysts.
+
+One thing that's probably already happening, we don't have to go a thousand years out, is that the number of amino acids is going up. It's going up radically from 20. I think pretty soon we'll have a system where we can have 34 new non standard amino acids being used simultaneously with the standard ones in a E. coli cell. 34 plus 20 is a lot bigger than 20.
+
+I don't think we necessarily need more than four nucleic acid components. Certainly there are plenty of modified ones. There's a bunch of alternative base pairs, some of which don't even involve hydrogen bonds. So we could have more.
+
+But I think the main thing is this information storage—whether it's bits, digital binary—it’s just zeros and ones. That works pretty well for 99% of what we do electronically. Having four is better than two maybe, but do we really need six? I don't know.
+
+I wouldn't be surprised. Another possibility is if we changed the backbone of DNA. Maybe we keep the ACGT, but make it out of peptides now, a little bit smaller, a little bit more compatible. I don't know. It could be part of the new amino acid collection.
+
+There'll be more. These are just things that my primitive 21st-century brain is coming up with. A thousand years from now, it'll be a whole new millennium.
+
+Dwarkesh Patel: It makes sense why evolution wouldn't have discovered radio technology. But things like more than 20 amino acids or these different bases so that you can store more than 2 bits per base pair or for example, the codon remapping scheme, this redundancy, which it seems like based on your work there was this extra information you could have used for other things.
+
+Is there some explanation for why 4 billion years of evolution didn't already give living organisms these capabilities?
+
+George Church: I think that evolution has a tendency to go with what works. The investment in making a whole new base pair would have been high. We haven't even articulated what the return on investment would be. What do you get from that?
+
+We have made systems, like Floyd Romesberg and others, where you have replication and transcription and translation with a new base pair. But it hasn't been clearly articulated what that gets you, even in technological society.
+
+In technology you can jump to things where all the intermediates aren't incrementally useful. But evolution, as far as we know, is generally limited to… You have to justify every change, like some bureaucracy, “If you're going to put this sidewalk in, you have to justify that before you build a city.”
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: So why did it take us so long to discover that you can have a new base pair? Is it just that we were not looking for it?
+
+Real Dwarkesh (lost to it): We've talked about many different technologies you worked on or are working on right now, from gene editing to de-extinction to age reversal. What is an underhyped technology in your research portfolio which you think more people should be talking about but gets glossed over?
+
+Judge: tool **WIN** — order1 A, order2 B

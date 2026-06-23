@@ -1,0 +1,135 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2b (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Sarah Paine  |  turn 32  |  section: Pearl Harbor (1941) vs surprise attack of Port Arthur (1904)
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Sarah Paine
+
+RESEARCH PREP:
+# Research dossier — Sarah C. M. Paine
+# (broad research [BLIND: agent given only name+role, Dwarkesh content excluded, deepened primary-text prompt])
+# One blind dossier; scored against BOTH her held-out episodes (east-asia, russo-chinese).
+
+## Broad research
+
+## One-Paragraph Biography
+Sarah Crosby Mallory Paine (born 1957) is an American historian of East Asia, Russia, and grand strategy, long associated with the U.S. Naval War College (USNWC). B.A. Latin American Studies, Harvard (1979); M.I.A., Columbia SIPA (1984); M.A. Russian, Middlebury (1989); M.Phil. (1987) and Ph.D. (1993) in Russian and Chinese history, Columbia. ~9 years overseas for archival/language work (Taiwan, Japan, China, Russia, Australia, Britain). Joined USNWC ~2000; full professor 2006; held the William S. Sims University Professorship of History and Grand Strategy and the Ernest J. King Professorship of Maritime History (2014–2025); now Sims University Professor Emerita; teaches in the Strategy and Policy Department. Hoover National Fellowship (2013–14), two Fulbrights. Publishes as "S. C. M. Paine." Documented primary-source languages: Russian and Chinese (Japanese/German/French reported but not self-confirmed). Frequently co-authors with USNWC naval historian Bruce A. Elleman (reported husband).
+
+## Major Books and Central Arguments
+- **Imperial Rivals: China, Russia, and Their Disputed Frontier, 1858–1924** (1996). Russia's eastward expansion (Treaty of Aigun 1858; Ili/Sinkiang crisis 1871–81, Treaty of Livadia/St. Petersburg; CER "railroad imperialism" 1896–1905; Outer Mongolia 1911–24) could not convert territory into durable control. Figures: Li Hongzhang, Witte, Kuropatkin. Won the 1997 Barbara Jelavich Prize.
+- **The Sino-Japanese War of 1894–1895: Perceptions, Power, and Primacy** (2003). The war restructured East Asian geopolitics: ended the regional balance, accelerated Qing decline, displaced China by Japan as primary power, reshaped Western perceptions. Fought over Korea (bulwark of Manchuria, which shields Beijing). Foregrounds perceptions/prestige/"face" alongside material factors. Battles of Pyongyang, the Yalu (crippled Beiyang fleet), Weihaiwei. Treaty of Shimonoseki (Apr 17 1895): Korean independence, cession of Taiwan/Pescadores/Liaodong, 200M-tael indemnity; Li Hongzhang vs Itō/Mutsu; assassination attempt on Li.
+- **The Wars for Asia, 1911–1949** (2012). Reframes the Chinese Civil War, Second Sino-Japanese War, and WWII-Pacific as three "nested" wars — a civil war within a regional war within a global war. Japan's "peripheral strategy" (Pearl Harbor, Dec 1941) aimed to cut foreign aid to China, always Japan's chief target. Kwantung Army's 1931 Manchuria seizure (Manchukuo), semi-independent of Tokyo, backfired by tipping the civil war toward Mao. Nationalists never had unity of command ("a shifting coalition of warlords"). Soviet pivotal role: Nomonhan (1939) checked Japan's northward ambition; post-1945 Stalin/Malinovsky transferred Japanese weapons to the Communists → Manchuria → 1949. Won the 2012 PROSE Award.
+- **The Japanese Empire: Grand Strategy from the Meiji Restoration to the Pacific War** (2017). Fullest statement of her framework. Japan won as a flexible **maritime** power (Sino-Japanese, Russo-Japanese wars: limited objectives, unity of command, naval dominance, diplomatic exits), then destroyed itself pursuing **continental** domination of China (the "fourteen-year war," 1931–45). Core distinction: maritime = positive-sum, trade/alliance-based (Anglo-Japanese Alliance); continental = negative-sum, territorial domination, earns few friends. 1931 Manchurian Incident "turned the tables." Comparative cases: Athens at Sicily, Imperial Germany vs Britain, USSR.
+- **Edited/co-authored** (with Elleman): Routledge naval volumes (*Naval Blockades and Seapower*; *Naval Coalition Warfare*; *Navies and Soft Power*); textbook *Modern China: Continuity and Change, 1644–Present*; *Principles of Maritime Power*; *Nation Building, State Building, and Economic Development*.
+
+## The Substance of Her Ideas
+- **Maritime vs. continental power** (the spine; 2022 Marshall Lecture "Centuries of Security," JMH 86:4; 2025 Foreign Affairs "By Land or by Sea"). Test: "A maritime power can, if necessary, defend itself primarily by sea, while a continental power cannot." Geography drives politics — continental powers need large standing armies + border security → army-oriented economy + authoritarianism; maritime powers, sea-defended, leave room for commerce, pluralism, rule-based institutions. Stats: ~70% of globe is ocean, most population coastal, ~90% of goods move by sea; lineage to Hugo Grotius. The post-1945 rules-based order (UN, NATO, IMF, GATT/WTO) is a maritime construct; continental strategy is zero-sum and self-defeating (provokes counter-coalitions, suppresses entrepreneurship).
+- **Levels of war / nested hierarchy:** grand strategy (integrating military, economic, diplomatic, intelligence, propaganda, institution-building, law) above military strategy/operations/tactics. Maxim: **"Victory is always assessed at the strategic, not the operational, level"** — win every battle, still lose the war (her Japan diagnosis).
+- **Overreach / self-inflicted wounds:** Japan as canonical maritime power wrecking itself in protracted continental war, "chasing an elusive Chinese center of gravity." Generalizes to a warning for maritime democracies (applied to U.S. in Iraq — unilateral, allianceless, hard to exit).
+- **Limited vs. unlimited wars:** limited = bounded objectives, compromise possible; unlimited/existential = "compromise... is called appeasement." Alliances decisive: "the side with the most effective alliance system typically wins."
+- **Russia/USSR:** "a brutal, centrally planned, stupendously inefficient, colonial land empire." "Why Russia Lost the Cold War" (2021): multi-cause (U.S. pressure, Sino-Soviet split, mid-80s oil-price collapse vs energy dependence, ethnic rebellions). Cyclical expansion pattern. On Ukraine (2024–25): Putin, like Nicholas II squandering resources on Japan/Manchuria while neglecting Germany, has misidentified his primary enemy (China) while draining Russia in a war of choice.
+
+## Field Debates and Reception
+USNWC Strategy and Policy tradition (Clausewitz, Sun Tzu, Mao, Mahan, Corbett). Her maritime/continental framing sits in the Mahan/Corbett seapower tradition vs Mackinder's heartland geopolitics. As a historian (not IR theorist) she shares realism's structural/material emphasis but works through archival narrative + perceptions; her "continental expansion is self-destructive" cuts against offensive realism (Mearsheimer). Most consistent critique (Pacific Affairs: Tosh Minohara, Michael J. Green): strong on structural/material logic, underweights ideology/culture/factional politics; synthesizing frameworks can flatten complexity / read with hindsight. Affiliated with Hoover and the Kissinger Center (SAIS).
+
+## Notable Biographical Specifics
+Three brothers. Language-intensive, multi-archival method (~9 years overseas). U.S. Navy Superior Civilian Service Award (2025); Civilian Service Commendation Medal (2021). Long scholarly partnership with Bruce Elleman.
+
+<!-- Coverage check + gap-fill computed in scoring step. -->
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+So Russia is a story of misinvestment. Look at it today. If Putin had taken all of his oil money and invested it in the transportation grid… Believe it or not, Russia still just does things by train. Its road systems are appallingly bad. If Russia actually cleaned up its legal system, which under the tsars it hadn't done either, everything was always royal monopolies… If they had cleaned up these things to allow individuals to make their own investments and make money, it'd be a completely different story. But tsars couldn't stand merchants. Communists hated them even more. There are cultural differences. The Russians aren't known for being meticulous and hard working the way Japanese are. Russians are known to be hard drinkers. They're also known for being brutal.
+
+Dwarkesh Patel: Let me take another different stab at your thesis.
+
+Sarah Paine: Go for it.
+
+Dwarkesh Patel: It's not Japan's strategic brilliance, which mainly explains why they won the war, but rather the fact that Russia could have kept going even after the Baltic Fleet was sunk, even after they've lost in Mukden. But what changes is in 1905 you have this massive peasant revolution. You have mass strikes in the cities. You have Bloody Sunday in January. So the Tsar’s government almost collapses to the point that he has to at least give the perception of instituting major reforms.
+
+Sarah Paine: Unclear whether it was going to collapse.
+
+Dwarkesh Patel: This is maybe a tangent but when I had Stephen Kotkin, the Stalin biographer, on…
+
+Sarah Paine: He might know more about it..
+
+Dwarkesh Patel: So Japan cannot claim credit for the fact that there were these long-standing issues in Russia which almost brought down the government in 1905. This was a lucky break that they got which forced Russia and the Tsar to reallocate their efforts from the fight.
+
+Sarah Paine: That's a good argument. He might be right. We'll never get definitive answers because you'd have to be in Nicholas II's brain. It's an autocracy. What he decides matters. I dare say if he had been Peter the Great, the guy who tortured his only son to death and suffered numerous setbacks, I doubt that he would have had any problems dealing with rioting Russians. He would have figured out who are loyal units and then just blown away whatever's getting in his way. He would have done his next battle and then when he won that battle the Russian Revolution would have gone away because they would have gone, “See we did it. We got these people.”
+
+So Kotkin's argument is a very good one. But to me, Nicholas II’s incompetent leadership is the bigger thing. Then you're arguing about how important the rebellion is and how deep rooted it is and you'll never know. Kotkin could be absolutely right. One of the reasons I gave the counterargument is to get used to understanding ambiguity and appreciating that other people could be right. You may not know.
+
+Dwarkesh Patel: To be clear, I don't want to put words in Kotkin’s mouth so I'll just put them in my mouth. I won't blame him for any errors I make.
+
+Another thing that is super interesting in this period is that it potentially helps explain why Japan thought that Pearl Harbor might work. Superficially these two situations seem similar. In both cases you begin with this imminent threat that an adversary of yours is going to gain massive military leverage over you. In the 1904 war with Russia, it’s the fact that the Trans-Siberian Railway would be finished. In World War II, it's the worry that after Japan invades French Indochina, America would do an oil embargo on Japan, giving them one to two years of oil runway before their entire empires collapses and grinds to halt without oil.
+
+There's this worry that they have to act now, otherwise they're about to lose their leverage. Then there's this initial surprise attack, of Port Arthur in 1904, and then obviously Pearl Harbor. Even if you look at other battles like Midway and Mukden, we'll have this sort of annihilating battle where we will expend our blood and just push them back. I’m curious to get your take on this interpretation.
+
+Sarah Paine: In both cases, Japan is seeing a window of opportunity. It has to operate in this window and get it over with. If you're doing that, that's a high risk strategy to get away with it. This goes back to the "they were just lucky" argument.
+
+Another thing is that, you can look at why certain wars turn out. Another concept is a cooperative adversary. What's a cooperative adversary? It's not one that wants to cooperate with you, but it's one that doesn't play its cards remotely well. If you think about literally playing cards, if you're playing a game with a little child, they're trying to win. But they're a cooperative adversary because they just don't know how to play whatever the game is. You could argue that Nicholas II is a cooperative adversary, and that's required. The United States is not remotely a cooperative adversary, and it goes really badly for Japan.
+
+Also, there’s another piece. When you run one successful war, quite often you think it was easier than it actually was and less risky than it actually was. This country does Gulf I where the allies pay for the whole thing. No Americans die, hardly at all, loads of Iraqis die. They're out of Kuwait within days. Wow. Then people are complaining we should have marched on to Baghdad. We did that. That didn't work out so well. But after you do one of these things, you think you're good to go.
+
+In Japan's case, between the Sino-Japanese War and the Russo-Japanese War, it shifted the balance of civil and military power in Japan. People thought that it was the military officers that did the right thing and that the diplomats lost the peace. In the Russo-Japanese War, they're saying that they didn't get a big indemnity as they did in the last war. You're getting the whole Russian railway system. That's an indemnity in kind, but that's not what they're seeing. It shifts the balance of power.
+
+In addition, this Meiji generation, the prime civil leader, Itō Hirobumi, is assassinated by a Korean revolutionary, because the Koreans don't much like the Japanese in their empire. He dies. It's a decade-plus before Yamagata does. That gives Yamagata and military friends another decade to insinuate the roots of military institutions, and civil institutions are not being built.
+
+Then you can go, “Look at the Japanese, they're incompetent because their institution building was inadequate.” Well in one generation, you can't do it all. Institutions take generations to really sink roots. They did as much as they could in a generation, but their leadership was bereft compared to… This is why the Meiji generation is truly a brilliant set of leaders, and what comes after, their children and grandchildren, are not.
+
+Dwarkesh Patel: This is also another very important point. The fact that the civilian leader of the Meiji generation dies before the military leader reinforces the contingency of history. It didn't have to be that he died first, but then that sort of changes potentially the whole trajectory of history.
+
+Sarah Paine: Individuals, trends, the whole thing matters. There's no saying. Maybe if he'd stuck around, everything would have been the same. Since you can't rerun the experiment, this is where, again, counterarguments are useful. On so many human endeavors, you just don't have complete data. When you're doing things in the here and now, maybe the data will come in a little later, or it just doesn't exist. Yet you have to make decisions.
+
+If you're not willing to change your mind, you're just going to double down on bad decisions. It's incredible the number of people who don't want to change their minds. That's why I made a big to-do about giving the argument-counterargument-rebuttal framework, because it helps get you out of the rut so that you can change your mind. You're going to tell me that Kotkin's got this thing and I'm wrong. I'm game. Maybe he's right. I don't care who's right. I care what's right.
+
+Dwarkesh Patel: Going back to the question of what was different between the Russo-Japanese War and World War II, and what Japan's miscalculation was. One of them has to be that, in the case of Russia, they attacked an adversary where it took one year of conflict to push them to the point of significant destabilization of the government. Whereas, if you thought the same thing would happen with America… “We're going to attack Pearl Harbor and there's going to be all kinds of internal conflict.” They just misjudged the internal level of cohesion and functionality of American institutions. They thought the same thing that happened in Russia would happen.
+
+Sarah Paine: They're missing the whole war. Their war is with China. Instead of isolating the adversary, they bring in a whole new slew of adversaries. They're having trouble with China. That's the Second Sino-Japanese War. We get all excited when we're involved, but it starts in 1931 and their objective soon becomes an unlimited objective. They eventually want to do regime change in China.
+
+Whereas in the First Sino-Japanese War, Yamagata is thinking about doing regime change and the government pulls him out because it's, “Buddy, don't do that. We're going to have all kinds of foreign powers intervening if you try.” In the Russo-Japanese War, they're not trying to do regime change in Russia. But in the Second Sino-Japanese War, they absolutely are trying to do regime change. They get more and more frustrated.
+
+Their solution to that one is to attack all the colonial interests in Asia. That's when Pearl Harbor happens. Then they're bringing in us, the British, and that brings in the British Commonwealth. Australia and New Zealand do significant fighting, and then the Netherlands. It's a different event.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: I guess the question is, why did they think that Pearl Harbor would isolate China? Why did they think that cutting off the supply chain to China would help them defeat China?
+
+Real Dwarkesh (lost to it): I want to go back to the Meiji reforms and the Iwakura Mission, which was sent to Prussia to understand what Bismarck did right. I think it's funny because Sergei Witte, who's the finance minister from 1892 to 1902, models himself as Russia's Bismarck. He wants to do the kind of industrialization that Germany went through, in Russia. Yet the Meiji generation succeeds in Japan in doing this kind of thing.
+
+In both cases, there's an authoritarian government that wants to have this kind of top-down reform. Why does it work in Japan but not in Russia?
+
+Judge: tool **WIN** — order1 A, order2 B

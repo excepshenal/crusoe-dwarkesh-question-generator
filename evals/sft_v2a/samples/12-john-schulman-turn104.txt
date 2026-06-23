@@ -1,0 +1,155 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2a (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: John Schulman  |  turn 104  |  section: -
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: John Schulman
+
+RESEARCH PREP:
+# Research dossier — John Schulman
+# (broad research [BLIND: agent given only name+role, Dwarkesh content excluded, web-search backend])
+# CAVEAT: interview is dated 2024-05-15. A few agent sources postdate it (Cursor podcast Dec-2025,
+# Thinking Machines Lab Feb-2025) and were NOT counted in coverage scoring (not "prep-available").
+
+## Broad research
+
+## One-Paragraph Bio
+John Schulman (born ~1987–1988) is an American AI researcher best known for inventing the core RL algorithms — Trust Region Policy Optimization (TRPO) and Proximal Policy Optimization (PPO) — that became the optimization backbone of RLHF and, by extension, ChatGPT. US Physics Olympiad team (2005); B.S. physics, Caltech (2010); PhD, UC Berkeley (2016) under Pieter Abbeel ("Optimizing Expectations: From Deep Reinforcement Learning to Stochastic Computation Graphs"). Co-founded OpenAI in December 2015 (before finishing the PhD); led the RL team behind ChatGPT and co-led post-training (2022–2024). Left OpenAI for Anthropic in Aug 2024 to focus on alignment; departed after ~5 months and co-founded Thinking Machines Lab (Feb 2025) as chief scientist with Mira Murati. MIT TR "35 Under 35" (2018).
+
+## Major Technical Contributions
+- **TRPO (2015, arXiv:1502.05477):** monotonic-improvement policy optimization; each update maximizes a surrogate subject to a KL trust-region constraint. Made policy-gradient training of large nonlinear policies robust.
+- **GAE (2015/16, arXiv:1506.02438):** exponentially-weighted multi-step advantage estimator (λ knob for bias–variance); standard inside PPO and modern actor-critic / RLHF.
+- **PPO (2017, arXiv:1707.06347):** clipped surrogate objective achieving a trust-region effect with first-order optimization; de facto standard RL algorithm and the optimizer at the center of RLHF. ~40k+ citations.
+- **Stochastic Computation Graphs (2015) + PhD thesis (2016):** unifies score-function and pathwise gradient estimators.
+- **OpenAI Gym (2016, arXiv:1606.01540):** co-author; standardized RL benchmarking API.
+- **RLHF/post-training (2021–24):** contributing author on WebGPT (arXiv:2112.09332) and InstructGPT (arXiv:2203.02155); ChatGPT (Nov 30 2022) trained with the same RLHF methodology. Co-author (not lead) on the team papers; his distinct contribution is PPO + leading post-training.
+
+## The Substance of His Technical Views (pre-2024 public record)
+- **How models learn:** scale + "predict everything" is extraordinarily powerful; zero-shot capability emerges from next-token prediction (Manifold/Hsu interview, 2021).
+- **Hallucination (signature argument; Berkeley talk, Apr 2023):** behavior cloning/SFT actively teaches hallucination — imitating answers that rely on knowledge the model lacks trains confident, unfounded answers; can't be fixed with better SFT data alone. Premise (flagged as strong): the model "knows what it knows," so RL with a reward that penalizes fabrication and rewards "I don't know" can align behavior to actual knowledge. Distinction: BC copies outputs regardless of knowledge state; RL can align policy with what the model knows.
+- **RLHF mechanics / failure modes (ICML 2023 talk):** RLHF optimizes a *proxy*; "reward-model over-optimization" is a Goodhart phenomenon (optimizing the proxy first helps then hurts). Track KL from base model as the control variable; PPO spends KL budget less efficiently than best-of-N but is more powerful. Prefers pairwise preference comparisons; points to AI-assisted labeling / RLAIF to scale data quality.
+- **Research practice ("An Opinionated Guide to ML Research," 2020):** taste in problem choice > raw skill; prefer goal-driven over idea-driven research; restrict to general solutions; switching problems too often is the common failure. "Nuts and Bolts of Deep RL" (2016); "Approximating KL Divergence" (2020, the k3 estimator).
+- **Capabilities / continual learning:** fast one-shot/continual learning is the missing capability (framed as early as 2021); models have superior short-term sample efficiency but "get stuck" on larger tasks where humans self-correct over long horizons.
+
+## Field Debates and Where He Stands
+- **RL vs pure imitation:** firmly that RL is *central* (not complementary) — it corrects failure modes (hallucination) that imitation can't.
+- **Alignment / x-risk:** distinguishes misuse from a "treacherous turn"; judges the latter unlikely for current systems because they "don't have any long-term goals" (trained to produce one high-approval response → no incentive to change the world).
+
+## Collaborators & Recognition
+Advisor Pieter Abbeel; TRPO/GAE collaborators Sergey Levine, Philipp Moritz, Michael I. Jordan; PPO co-authors Filip Wolski, Prafulla Dhariwal, Alec Radford, Oleg Klimov. Credits Paul Christiano's "Deep RL from human preferences" as foundational to RLHF. ~190k citations, h-index ~67.
+
+## Notable Biographical Specifics
+Co-founded OpenAI (Dec 2015) before finishing PhD (2016). "35 Under 35" was 2018 (not 2016). The paper "Evolution Strategies as a Scalable Alternative to RL" (arXiv:1703.03864) is an OpenAI paper but does NOT list Schulman as an author.
+
+<!-- Coverage check + gap-fill computed in scoring step (see INVESTIGATION.md). -->
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+On a slightly different note, I'd be really excited to see more research on using base models to do simulated social science. These models have a probabilistic model of the whole world and you can set up a simulated questionnaire or conversation and look at how anything is correlated. Any traits that you might imagine, you can see how they might be correlated with other traits.
+
+It'd be pretty cool to see if people could replicate some of the more notable results in social science, like moral foundations and that sort of thing, by just prompting base models in different ways and seeing what's correlated.
+
+Dwarkesh Patel: What is that Stanford experiment? The Asch conformity test? It'd be fun if that replicated with the language models as well. It's very interesting.
+
+I want to ask about the rest of the research that happens at big labs. How much of it is increasing or decreasing the amount of compute you need to get a certain result as an actual compute multiplier versus how much of it is just making the learning more stable and building out the infrastructure?
+
+The broader question I'm trying to ask is, since GPT-4, does it feel like with the same amount of compute, you can train a much better model? Or does it feel like you’ve made sure that learning can happen better and in a more scalable way with GPT-5, but it's not like we can train GPT-4 with GPT-3.5's budget now?
+
+John Schulman: There's definitely always progress in improving efficiency. Whenever you have a 1D performance metric, you're going to find that different improvements can substitute for each other. You might find that post-training and pre-training both improve the metrics. They'll have a slightly different profile of which metrics they improve.
+
+But at the end of the day, if you have a single number, they're both going to substitute for each other somewhat. For something like a human evaluation, what do humans prefer, we've definitely made a lot of progress on both sides, pre-training and post-training, in improving that.
+
+Dwarkesh Patel: A couple of rapid-fire questions about RLHF. Obviously, RLHF is important to make these models useful. So maybe the "lobotomized" description is inaccurate.
+
+However, there is a sense in which all of these models, once they're put in a chatbot form, have a very similar way of speaking. They really want to “delve” into things. They want to turn things into bullet points. They often seem to have this formal and dull way of speaking.
+
+There are complaints that they're not as creative. Like we were talking about before, they could only do rhyming poetry and not non-rhyming poetry until recently. Is that a result of the particular way in which RLHF happens now? If so, is it because of who the raters are? Is it because of what the loss function is? Why is this the way all chatbots look?
+
+John Schulman: I would say there's a decent amount of room for variation in exactly how you do the training process. We're actively trying to improve this and make the writing more lively and fun. We've made some progress like improving the personality of ChatGPT. It is more fun and it's better when you're trying to chit chat with it and so forth. It's less robotic.
+
+It's an interesting question how some of the ticks came about, like the word "delve." I've actually caught myself using that word recently. I don't know if it rubbed off on me from the model.
+
+Actually, there might also be some funny effects going on where there's unintentional distillation happening between the language model and providers. If you hire someone to go do a labeling task, they might just be feeding it into a model. They might be pulling up their favorite chatbot, feeding it in, having the model do the task, and then copying and pasting it back. So that might account for some of the convergence.
+
+Some of the things we're seeing are just what people like. People do like bullet points. They like structured responses. People do often like the big info dumps that they get from the models.
+
+So it's not completely clear how much is just a quirk of the particular choices and design of the post-training processes, and how much is actually intrinsic to what people actually want.
+
+Dwarkesh Patel: It does seem persistently more verbose than some people want. Maybe it’s just because during the labeling stage, the raters will prefer the more verbose answer. I wonder if it's inherent because of how it's pre-trained and the stop sequence doesn't come up that often and it really wants to just keep going.
+
+John Schulman: There might be some biases in the labeling that lead to verbosity. There’s the fact that we tend to train for one message at a time rather than the full interaction. If you only see one message, then something that just has a clarifying question, or maybe a short response with an invitation to follow up, is going to look less complete than something that covers all possibilities.
+
+There's also a question of whether people's preferences would change depending on how fast the model is streaming its output. Clearly, if you're sitting there waiting for the tokens to come out, you're going to prefer that it gets to the point. But if it just gives you a dump of text instantly, maybe you don't actually care if there's a bunch of boilerplate or if there's a bunch of stuff you're going to skim. You'd rather just have it all there.
+
+Dwarkesh Patel: The reward model is such an interesting artifact because it's the closest thing we have to an aggregation of what people want and what preferences they have. I’m thinking about models that are much smarter. One hope is that you could just give it a list of things we want that are not trivial and obvious, something like the UN Declaration of Human Rights.
+
+On the other hand, I think I heard you make the point that a lot of our preferences and values are very subtle, so they might be best represented through pairwise preferences. When you think of a GPT-6 or GPT-7 level model, are we giving it more written instructions or are we still doing these sorts of subliminal preferences?
+
+John Schulman: That's a good question. These preference models do learn a lot of subtleties about what people prefer that would be hard to articulate in an instruction manual. Obviously, you can write an instruction manual that has lots of examples of comparisons. That's what the Model Spec has. It has a lot of examples with some explanations. It's not clear what the optimal format is for describing preferences.
+
+I would guess that whatever you can get out of a big dataset that captures fuzzy preferences, you can distill it down to a shorter document that mostly captures the ideas. The bigger models do learn a lot of these concepts automatically of what people might find useful and helpful. They'll have some complex moral theories that they can latch onto. Of course, there's still a lot of room to latch onto a different style or a different morality.
+
+So if we were to write a doc, if we're going to align these models, what we're doing is latching onto a specific style, a specific morality. You still need a decently long document to capture exactly what you want.
+
+Dwarkesh Patel: How much of a moat is better post-training? Companies distinguish themselves currently by how big their model is and so forth. Will it be a big moat for who has figured out all the finickiness that you were talking about earlier with regards to all this data?
+
+John Schulman: There's something of a moat because it's just a very complex operation and it takes a lot of skilled people to do it. There's a lot of tacit knowledge and organizational knowledge that's required.
+
+With post-training, to create a model that actually has all the functionality people care about, it’s pretty complicated. It requires a pretty complicated effort and accumulation of a lot of R&D. That makes it somewhat of a moat. It's not trivial to spin this up immediately. It does seem like the same companies that are putting together the most serious pre-training efforts are also putting together the most serious post-training efforts.
+
+It is somewhat possible to copy or to spin up more of these efforts. There's also one force that sort of makes it less of a moat. You can distill the models, or you can take someone else's model and clone the outputs. You can use someone else's model as a judge to do comparisons.
+
+The more big league people probably aren't doing that because it goes against terms of service policies. It would also be a hit to their pride. But I would expect some of the smaller players are doing that to get off the ground. That catches you up to a large extent.
+
+Dwarkesh Patel: I guess it helps clear the moat. What is the median rater like? Where are they based? What are their politics? What is their knowledge level?
+
+John Schulman: It varies a lot. We've definitely hired raters with different skills for different kinds of tasks or projects. A decent mental model is to just look at people who are on Upwork and other platforms like that. Look at who's doing odd jobs with remote work.
+
+It's a pretty international group. There's a decent number of people in the U.S. We hire different groups of people for different types of labeling, like whether we're more focused on writing or STEM tasks. People doing STEM tasks are more likely to be in India or other middle or lower-middle income countries. People doing more English writing and composition tend more to be U.S.-based.
+
+There've been times when we needed to hire different experts for some of our campaigns. Some of the people are very talented, and we even find that they're at least as good as us, the researchers, at doing these tasks and they're much more careful than us. I would say the people we have now are quite skilled and conscientious.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: I'm curious about the politics. I'm not asking about the politics of the raters. I'm asking about the politics of the model. I'm curious about how much of the model's politics is a result of the raters and how much of it is a result of the pre-training data.
+
+I'm curious about the politics of the model. I'm curious about how much of the model's politics is a result of the raters and how much of it is a result of the pre-training data.
+
+Real Dwarkesh (lost to it): With regards to the plateau narrative, one of the things I've heard is that a lot of the abilities these models have to help you with specific things are related to having very closely matched labels within the supervised fine-tuning dataset. Is that true?
+
+Can it teach me how to use FFmpeg correctly? Is it like there's somebody who’s seeing the inputs, seeing what flags you need to add, and some human is figuring that out and matching to that. Do you need to hire all these label raters who have domain expertise in all these different domains? If that's the case, it seems like it’d be a much bigger slog to get these models to be smarter and smarter over time.
+
+Judge: tool **WIN** — order1 A, order2 B

@@ -1,0 +1,194 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2a (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Jensen Huang  |  turn 170  |  section: Why doesn’t Nvidia make multiple different chip architectures?
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Jensen Huang
+
+RESEARCH PREP:
+# Research dossier — Jensen Huang
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Jensen Huang (Huang Jen-Hsun, born February 17, 1963, in Tainan/Taipei, Taiwan) is the co-founder, president, and CEO of NVIDIA, the semiconductor company he started on April 5, 1993, and has led ever since — one of the longest tenures of any sitting tech-company founder-CEO. The son of a chemical engineer father and schoolteacher mother, he immigrated to the United States as a child, was briefly sent (around ages 10–12) to the Oneida Baptist Institute, a religious reform school in rural Kentucky his uncle mistook for a prestigious boarding academy, and later graduated from a public high school in Oregon. He earned a BS in electrical engineering from Oregon State University (1984) and an MS in electrical engineering from Stanford (1992), working as a microprocessor designer at AMD and then as a director at chip-design firm LSI Logic before founding NVIDIA at age 30 with Chris Malachowsky and Curtis Priem, who chose him as CEO. NVIDIA began as a maker of graphics chips for PC gaming and, through Huang's multi-decade bet on programmable parallel computing (CUDA, launched 2006), became the dominant supplier of AI training and inference hardware; in October 2025 it became the first company to reach a $5 trillion market capitalization. Huang is consistently among the world's wealthiest individuals, owning roughly 3.5–3.6% of NVIDIA, and is recognizable for an all-black wardrobe and leather jacket, a hands-on roaming management style, and a rhetoric of relentless effort ("our company is thirty days from going out of business").
+
+### The company's major strategic bets and product/architecture milestones
+
+**Founding and near-death (1993–1997).** NVIDIA was capitalized with about $600 ($200 per founder) and named from the Latin *invidia* ("envy"); the founders reportedly sketched the business plan at a Denny's in East San Jose. The company's first chip, the NV1 (1995), bet on quadratic-texture-mapping geometry that lost to Microsoft's Direct3D triangle standard and nearly killed the firm. NVIDIA was, by Huang's account, "down to one month of payroll" when the RIVA 128 (1997) succeeded and stabilized the company. NVIDIA coined the term "GPU" with the GeForce 256 in 1999, the year of its IPO, branding the chip as the first single-chip "graphics processing unit" with integrated transform-and-lighting.
+
+**CUDA and the GPGPU bet (2006).** In November 2006 NVIDIA shipped the GeForce 8800 GTX on its "Tesla" unified-shader architecture and launched CUDA (Compute Unified Device Architecture), a C-based programming model that exposed the GPU's hundreds of parallel cores for general-purpose computation, not just graphics. The strategic decision — and the contested one — was to put CUDA support on *every* GeForce card, including the cheapest consumer parts, raising chip cost and depressing margins to build an installed base of programmable hardware. Huang's stated logic: an installed base is what creates an architecture and a developer ecosystem; everything else is secondary. The financial cost was severe and prolonged: the bet weighed on the stock for years, and SEC filings show NVIDIA poured on the order of $10–12 billion into R&D from roughly 2006 to 2017 while data-center revenue stayed in the low billions. CUDA's payoff did not become obvious to markets until the 2010s.
+
+**The AlexNet inflection (2012).** When the AlexNet convolutional neural network, trained on NVIDIA GPUs, won the 2012 ImageNet competition by a large margin, Huang has repeatedly cited it as the moment he became convinced deep learning would be a general-purpose computing revolution rather than a niche. NVIDIA reoriented around AI: it added deep-learning libraries (cuDNN), then bet on autonomous driving and data-center training.
+
+**Architecture cadence (roughly biennial).** Tesla/CUDA (2006) → Fermi (2010, first full cache hierarchy for compute) → Kepler (2012) → Maxwell (2014) → Pascal (2016, P100 with HBM2, NVLink) → Volta (2017, V100, first-generation Tensor Cores purpose-built for matrix math in deep learning) → Turing (2018, hardware ray tracing plus consumer Tensor Cores) → Ampere (2020, A100, BF16/TF32, structured sparsity, Multi-Instance GPU) → Hopper (announced March 2022, H100, Transformer Engine and FP8 for large-language-model training) → Blackwell (unveiled at GTC March 18, 2024, B200 and the GB200 NVL72 rack-scale system) → and the publicly roadmapped Rubin generation. The introduction of Tensor Cores in Volta (2017) was the pivotal product decision that converted the GPU from a graphics part with compute side-uses into a dedicated AI accelerator.
+
+**From chips to systems and the "data center is the computer."** Huang's later strategic thesis is that the unit of computing is no longer a chip but an entire data center ("AI factory"). The defining acquisition was Mellanox (announced 2019, closed April 27, 2020, ~$6.9–7 billion), which gave NVIDIA InfiniBand and high-speed networking — the basis for selling integrated GPU+CPU+networking server racks (DGX/HGX, then GB200 NVL72 systems priced in the millions) rather than discrete cards. NVIDIA's attempted $40 billion acquisition of Arm (2020) failed in early 2022 amid regulatory opposition; Huang said publicly NVIDIA would not change strategy as a result. The company also built its own Arm-based "Grace" CPU and the Grace-Hopper / Grace-Blackwell "superchips," extending vertically into the CPU and interconnect layers.
+
+**Milestone numbers.** NVIDIA's market value crossed $1 trillion in mid-2023, $2 trillion in early 2024, $3 trillion in mid-2024, and was the first company to touch $5 trillion in October 2025. Data-center revenue, historically a minor segment, became the overwhelming majority of company revenue during the 2023–2025 generative-AI buildout.
+
+### The substance of his views, with reasoning and the strongest counterarguments
+
+**1. "Moore's Law is dead; accelerated computing replaces it."** Huang has argued publicly since at least 2017–2018 (and emphatically at events through 2022 and 2025) that the classic Moore's Law promise — roughly double the transistor performance at constant cost every ~18–24 months — is "over," because wafer and transistor costs have stopped falling and physical scaling has slowed. His reasoning: future performance gains must come not from the transistor alone but from co-designing the *full stack* — algorithm, software (CUDA libraries), processor, interconnect, and memory together — to attack application bottlenecks. This is the basis of the informal "Huang's Law," the observation (named by others, not coined by him) that GPU performance for AI has been more than doubling roughly every two years through architectural, not purely lithographic, advances.
+*Counterargument and named skeptics:* Intel publicly disputed the claim (its leadership said in 2022 that Moore's Law "is alive and well"), framing continued process and packaging advances as keeping classic scaling viable. Critics also note "Huang's Law" conveniently bundles architecture, software, and ecosystem gains into a single curve that flatters NVIDIA's own roadmap, and that benchmark choices (e.g., shifting precision from FP16 to FP8 to FP4) inflate the apparent generational leap rather than measuring like-for-like work.
+
+**2. Accelerated/parallel computing is the only path to affordable scale.** Huang's "the more you buy, the more you save" line (popularized at GTC 2018, and reframed for the AI era as "the more you buy, the more you make") argues that although accelerated systems have higher upfront capital cost, they do far more work per watt and per dollar than general-purpose CPUs, so total cost of ownership falls as workloads scale. His reasoning ties to the "AI factory" framing: a data center is a plant that converts electricity into "tokens" (intelligence), so the figure of merit is performance-per-watt and tokens-per-dollar, and efficiency directly equals revenue in a power-constrained world.
+*Tension / counterargument:* the slogan is self-serving — it encourages ever-larger purchases of NVIDIA hardware — and assumes utilization stays high. Skeptics (including the Sequoia "$600 billion question," 2024) argue the AI build-out has run ahead of monetizable applications, that much purchased capacity may sit idle, and that "the more you buy, the more you save" only holds if there is profitable demand for all the tokens produced.
+
+**3. AI is a new computing platform, not a feature.** Huang frames the present as a once-in-a-lifetime platform shift comparable to the move from mainframes to PCs or to the internet, with AI progressing along a sequence he repeats in keynotes: perception ("seeing," AlexNet) → generative AI ("creating") → agentic AI ("reasoning and doing") → physical AI / robotics ("acting in the world"). His reasoning: each transition expands the addressable workload from a software market into the far larger market of automating physical and cognitive labor, which he frames as a multi-trillion-dollar opportunity.
+*Tension:* the framing is maximally expansive and has been criticized as conflating genuine capability gains with marketing of NVIDIA's total addressable market; "physical AI" and humanoid robotics in particular remain largely promissory.
+
+**4. On AI and jobs.** Huang's consistent position is that AI will change essentially every job but should not be seen primarily as a job destroyer. His most-quoted formulation (Milken Institute, 2025): "You're not going to lose your job to an AI, but you're going to lose your job to someone who uses AI." He has also said he is "100% certain everybody's jobs will be changed," with some lost and many created. In 2025–2026 he went further, calling the narrative that directly blames AI for layoffs "lazy" and at points "complete nonsense," arguing CEOs use AI as a convenient cover for cuts. On skills, he has made a deliberately provocative argument (around 2023–2024) that the goal of computing is to make programming unnecessary — "the programming language is human," "everyone is a programmer now" — and has at times suggested children need not learn to code in the traditional sense because AI will handle it.
+*Tension / counterargument:* this sits awkwardly against his more recent advice that engineering and hands-on technical disciplines are among the safest career bets, and critics note an obvious incentive conflict — a vendor whose revenue depends on AI adoption is unlikely to forecast that AI will be broadly harmful or economically disappointing. The "don't learn to code" line also drew pushback from educators and engineers who argue understanding of programming fundamentals becomes more, not less, valuable when supervising AI-generated code.
+
+**5. On NVIDIA's moat and competition.** Huang argues NVIDIA's durable advantage is not any single chip but the integrated stack — CUDA's roughly two-decade software ecosystem, the annual full-stack roadmap, networking (Mellanox/InfiniBand/NVLink), and systems integration — which competitors must replicate in full rather than beating on one axis.
+*Named competitors and the actual skeptic case:* AMD's Instinct line (MI300X offering ~192GB HBM3, more memory than the H100) is the strongest merchant-silicon challenger, though its ROCm software stack is widely judged to lag CUDA. The larger structural threat is custom silicon from NVIDIA's own biggest customers — Google's TPU, Amazon's Trainium/Inferentia, Microsoft's Maia — built explicitly to avoid the so-called "NVIDIA tax" of 70%+ gross margins. The skeptic argument: for inference (the higher-volume, cost-sensitive half of AI compute), good-enough cheaper alternatives erode NVIDIA's pricing power even if it keeps the high-end training market. NVIDIA's counter is that demand growth and its faster roadmap outrun substitution, and that "sovereign AI" (governments building national compute) provides a demand floor.
+
+### Notable biographical specifics and management philosophy
+
+- **The reform-school childhood** is a story Huang tells deliberately as a parable of resilience: bullied as an undersized immigrant, he reportedly taught an illiterate older roommate to read in exchange for weightlifting lessons. He has said "I hope suffering happens to you" to graduating students, arguing that hardship and resilience ("greatness comes from character, and character is formed out of suffering") are prerequisites for achievement.
+- **"Thirty days from going out of business."** Huang frequently tells staff the company is perpetually close to failure, a deliberate device to suppress complacency in a market leader.
+- **Flat organization, ~60 direct reports.** As of late 2024 Huang had roughly 60 direct reports and famously holds *no* one-on-one meetings: "Almost everything that I say, I say to everybody all at the same time." His reasoning is that information should travel as widely and quickly as possible — he says he is "allergic to hierarchy" — and that privileged, siloed information is the enemy of speed. NVIDIA meetings are not gated by rank; junior staff can attend senior discussions.
+- **"The mission is the boss."** Rather than fixed org charts and long-range plans, Huang organizes teams around the task at hand, arguing teams should form around the work ("mission") rather than people reporting up a chain. He has said he does not do traditional long-term planning and dislikes formal status reports, instead asking employees to email him the "top five things" on their minds (the "Top 5 emails"), and roaming the building to engage directly.
+- **"No task is beneath me."** He frames his own role as removing obstacles and is willing to do unglamorous work, and gives feedback publicly rather than privately, on the theory that everyone learns from the correction.
+- **Symbolic habits.** All-black attire and a signature leather jacket; he has said he does not wear a watch because "now is the most important time"; he reportedly got an NVIDIA-logo tattoo after the stock hit a milestone.
+- **Recognition and family.** He has received honors including the IEEE Medal of Honor (2026) and the Queen Elizabeth Prize for Engineering (2025), and multiple Time 100 listings. He is married to Lori (Mills) Huang, whom he met as an engineering lab partner at Oregon State; they run the Jen-Hsun and Lori Huang Foundation. He is a cousin of AMD CEO Lisa Su.
+
+### Debates he engages and where he stands
+
+- **Moore's Law's death:** he is the most prominent proponent of "it's over"; Intel and some academics push back. (See view 1.)
+- **AI bubble vs. durable demand:** he consistently argues demand is real, structural, and underestimated, pointing to a multi-trillion-dollar global data-center refresh and "sovereign AI"; critics (Sequoia's "$600B question," "vibe revenue" commentary) argue infrastructure has outrun applications.
+- **General-purpose merchant GPUs vs. customer custom silicon:** he argues full-stack programmability and ecosystem beat fixed-function ASICs over time; hyperscaler ASIC programs are the live counter-bet.
+- **AI and labor:** he resists doom framing, blaming "lazy" narratives and arguing augmentation over replacement, while conceding all jobs change. (See view 4.)
+- **Centralized vs. distributed corporate power:** internally he champions radical flatness and information transparency against conventional hierarchical management.
+
+## Sources
+
+- [Jensen Huang — Wikipedia](https://en.wikipedia.org/wiki/Jensen_Huang)
+- [Huang's Law — Wikipedia](https://en.wikipedia.org/wiki/Huang%27s_law)
+- [Jensen Huang | Biography, NVIDIA, Huang's Law, & Facts — Britannica Money](https://www.britannica.com/money/Jensen-Huang)
+- [Jensen Huang | NVIDIA Newsroom bio](https://nvidianews.nvidia.com/bios/jensen-huang)
+- [Jensen Huang — Computer History Museum](https://computerhistory.org/profile/jensen-huang/)
+- [The Story of Jensen Huang and Nvidia — Quartr Insights](https://quartr.com/insights/edge/the-story-of-jensen-huang-and-nvidia)
+- [Jensen Huang: Moore's law is dead — long live AI — Electronics Weekly](https://www.electronicsweekly.com/news/products/micros/jensen-huang-moores-law-dead-long-live-ai-2018-10/)
+- [Intel says Moore's Law is still alive and well. Nvidia says it's ended — CNBC](https://www.cnbc.com/2022/09/27/intel-says-moores-law-is-still-alive-nvidia-says-its-ended.html)
+- [How NVIDIA GPUs have evolved from Tesla to Ampere to Hopper — Techovedas](https://techovedas.com/how-nvidia-gpus-have-evolved-from-tesla-to-ampere-to-hopper/)
+- [NVIDIA: evolution of GPU architectures from Tesla to Blackwell — noze](https://www.noze.it/en/insights/nvidia-gpu-architectures/)
+- [Nvidia Plus Mellanox: Talking Datacenter Architecture With Jensen Huang — The Next Platform](https://www.nextplatform.com/2020/04/27/nvidia-plus-mellanox-talking-datacenter-architecture-with-jensen-huang/)
+- [Mellanox 8-K (NVIDIA acquisition) — SEC EDGAR](https://www.sec.gov/Archives/edgar/data/0001356104/000119312520109397/d919882d8k.htm)
+- [Jensen Huang's Vision For Data Center Dominance — SemiAnalysis](https://semianalysis.com/2020/08/21/jensen-huangs-vision-for-data-center/)
+- [Nvidia CEO Jensen Huang: You'll 'lose your job to somebody who uses AI' — CNBC](https://www.cnbc.com/2025/05/28/nvidia-ceo-jensen-huang-youll-lose-your-job-to-somebody-who-uses-ai.html)
+- [Nvidia CEO Huang: 'Everyone is a programmer' with A.I. — Fortune](https://fortune.com/2023/05/30/nvidia-ceo-jensen-huang-everyone-programmer-with-ai-chipmaker-taipei-computex/)
+- [Jensen Huang says kids shouldn't learn to code — Tom's Hardware](https://www.tomshardware.com/tech-industry/artificial-intelligence/jensen-huang-advises-against-learning-to-code-leave-it-up-to-ai)
+- [Jensen Huang Calls AI Job-Loss Fears 'Complete Nonsense' — IBTimes UK](https://www.ibtimes.co.uk/nvidia-ceo-jensen-huang-debunks-ai-job-loss-myths-1800266)
+- [60 direct reports, but no 1-on-1 meetings — Fortune](https://fortune.com/2024/11/12/jensen-huang-nvidia-ceo-leadership-mpp/)
+- [Nvidia CEO's leadership philosophy: 'No task is beneath me' — CNBC](https://www.cnbc.com/2024/07/06/nvidia-ceos-leadership-philosophy-no-task-is-beneath-me.html)
+- [AMD MI300X vs NVIDIA H100 — Introl Blog](https://introl.com/blog/amd-mi300x-vs-nvidia-h100-breaking-cuda-monopoly)
+- [Reframing Jensen's Law: 'Buy more, make more' and AI factory economics — SiliconANGLE](https://siliconangle.com/2025/08/30/reframing-jensens-law-buy-make-ai-factory-economics/)
+
+All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this research and none was used, read, or cited.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+Dwarkesh Patel: I guess I’m confused. It feels like you’re making two different statements. One is that we’re going to win this competition with Huawei because our chips are going to be way better if we’re allowed to compete. Another is that they would be doing the same exact thing without us anyway. How can both of those things be true at the same time?
+
+Jensen Huang: It’s obviously true. In the absence of a better choice, you’ll take the only choice you have. How is that illogical? It’s so logical.
+
+Dwarkesh Patel: The reason they want Nvidia chips is that they’re better.
+
+Jensen Huang: Yeah.
+
+Dwarkesh Patel: Better is more compute. More compute means you can train a better model.
+
+Jensen Huang: No, it’s just better. It’s better because it’s easier to program. We have a better ecosystem. But whatever the better is, whatever the better is… And of course we’re going to send them compute. So what? The fact of the matter is that we get to benefit. Don’t forget, we get the benefit of American technology leadership. We get the benefit of developers working on the American tech stack. We get the benefit, as those AI models diffuse out into the rest of the world, that the American tech stack is therefore the best for it. We can continue to advance and diffuse American technology. That, I believe, is a positive. It’s a very important part of American technology leadership.
+
+Now, the policies that you’re advocating resulted in the American telecommunications industry being policied out of basically the world, to the point where we don’t control our own telecommunications anymore. I don’t see that as smart. It’s a little narrow-minded, and it led to unintended consequences that I’m describing to you right now that you seem to have a very hard time understanding.
+
+Dwarkesh Patel: Okay, let’s just step back. It seems like the crux here is there’s a potential benefit and there’s a potential cost. What we’re trying to figure out is, is the benefit worth the cost? I guess I’m trying to get you to acknowledge the potential cost. Compute is an input to training powerful models. Powerful models do have powerful offensive capabilities, like cyber attacks. It is a good thing that American companies got to Mythos-level capabilities first, and then now they’re going to hold off on those capabilities so that the American companies and American government can make their software more protected before that level of capability was announced.
+
+If China had had more compute or more crowd compute, if they could have made a Mythos-level model earlier and deployed it widely, that would have been very bad. One of the reasons that hasn’t happened is that we have more compute thanks to companies like Nvidia in America. That is a cost of sending it to China. So let’s leave the benefit aside for a second. Do you acknowledge that this is a potential cost?
+
+Jensen Huang: I’ll also tell you the potential cost is we allow one of the most important layers of the AI stack, the chip layer, to concede an entire market—the second largest market in the world—so that they could develop scale, so that they could develop their own ecosystem, so that future AI models are optimized in a very different way than the American tech stack. As AI diffuses out into the rest of the world, their standards, their tech stack, will become superior to ours, because their models are open.
+
+Dwarkesh Patel: I guess I just believe enough in Nvidia’s kernel engineers and CUDA engineers to think that they could optimize—
+
+Jensen Huang: AI is more than kernel optimization, as you know.
+
+Dwarkesh Patel: Of course, but there are so many things you can do, from distilling to a model that’s well-fit for your chips.
+
+Jensen Huang: We’re going to do our best.
+
+Dwarkesh Patel: You have all the software. It’s just hard to imagine that there’s a long-term lock-in to the Chinese ecosystem, even if they have a slightly better open source model for a while.
+
+Jensen Huang: China is the largest contributor to open source software in the world. Fact. China’s the largest contributor to open models in the world. Fact. Today it’s built on the American tech stack, Nvidia’s. Fact.
+
+All five layers of the tech stack for AI are important. The United States ought to go win all five of them. They’re all important. The one that is the most important, of course, is the AI application layer. The layer that diffuses into society, the one that uses it most will benefit from this industrial revolution most. But my point is that every layer has to succeed.
+
+If we scare this country into thinking that AI is somehow a nuclear bomb, so that everybody hates AI and everybody’s afraid of AI, I don’t know how you’re helping the United States. You’re doing it a disservice. If we scare everybody out of doing software engineering jobs because it’s going to kill every software engineering job—and we don’t have any software engineers as a result of that—we’re doing a disservice to the United States.
+
+If we scare everybody out of radiology so nobody wants to be a radiologist because computer vision is completely free and no AI is going to do a worse job than a radiologist, we misunderstand the difference between a job and a task. The job of a radiologist is patient care. The task is to read a scan. If we misunderstand that so profoundly and we scare everybody out of going to radiology school, we’re not going to have enough radiologists and good enough healthcare.
+
+So I’m making the case that when you make a premise that is so extreme, everything goes from zero or infinity, we end up scaring people in a way that’s just not true. Life is not like that. Do we want the United States to be first? Of course we do. Do we need to be a leader in every layer of that stack? Of course we do. Of course we do. Today you’re talking about Mythos because Mythos is important. Sure. That’s fantastic.
+
+But in a few years time, I’m making you the prediction that when we want the American tech stack, when we want American technology to be diffused around the world—out to India, out to the Middle East, out to Africa, out to Southeast Asia—when our country would like to export, because we would like to export our technology, we would like to export our standards, on that day, I want you and I to have that same conversation again. I will tell you exactly about today’s conversation, about how your policy and what you imagined literally caused the United States to concede the second largest market in the world for no good reason at all.
+
+We shouldn’t concede it. If we lose it, we lose it. But why do we concede it? Now nobody is advocating an all or nothing. Nobody’s advocating all or nothing, meaning we ship everything to China at all times. Nobody’s advocating that. We should always have the best technology here. We should always have the most technology here, and the first. But we should also try to compete and win around the world. Both of those things can simultaneously happen. It requires some amount of nuance, some amount of maturity instead of absolutes. The world is just not absolutes.
+
+Dwarkesh Patel: Okay. The argument hinges on this. They’ve built models that are specified for the best chips that they make in a few years. Those chips get exported around the world. That sets the standard. Because of EUV export controls, as we said, you’re going to move on to 1.6nm. They’re still going to be on 7nm, even after a few years from now.
+
+It may make sense that domestically they would prefer, “Hey, we’ve got so much energy, we can manufacture at scale. We’ll still keep using 7nm.” But on the exporting thing, their 7nm chips have to be competitive against your 1.6nm chips. Their models have to be so far optimized for the 7nm that it’s better to run their models on 7nm than to run their models on your 1.6nm.
+
+Jensen Huang: Can we just look at the facts then? Is Blackwell 50 times more advanced lithography than Hopper? Is it 50 times? Not even close. I just kept saying it over and over again. Moore’s Law is dead. Between Hopper and Blackwell, from the transistors themselves, call it 75%. It was three years apart, 75%. Blackwell is 50 times Hopper.
+
+My point is, architecture matters. Computer science matters. Semiconductor physics matters as well, but computer science matters. The impact of AI largely comes from the computing stack, which is the reason why CUDA is so effective, which is the reason why CUDA is so beloved. It’s an ecosystem, a computing architecture that allows for so much flexibility that if you wanted to change an architecture completely—create something like MoE, create something like diffusion, create something that’s disaggregated—you could do so. It’s easy to do.
+
+So the fact of the matter is, AI is about the stack above as much as it is about the architecture below. To the extent that we have architectures and software stacks that are optimized for our stack, for our ecosystem, it is obviously good, because we started the conversation today about how Nvidia’s ecosystem is so rich. Why do people always love programming CUDA first? They do. They do. So do the researchers in China.
+
+But if we are forced to leave China, if we’re forced to leave China, first of all, it’s a policy mistake. Obviously it has backlash. It has turned out badly for the United States. It enabled, it accelerated their chip industry. It forced all of their AI ecosystem to focus on their internal architectures. It’s not too late, but nonetheless it has already happened.
+
+You’re going to see in the future, they’re not stuck at 7nm, obviously. They’re good at manufacturing. They will continue to advance from 7nm and beyond. Now, is there a 10x difference between 5nm and 7nm? The answer is no. Architecture matters. Networking matters. That’s why Nvidia bought Mellanox. Networking matters. Energy matters. So all of that stuff matters. It’s not simplistic, like the way you’re trying to distill it.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: Okay, let’s just talk about the actual policy. I guess the question is, what is the right policy? You’re saying that the current policy is wrong. What is the right policy?
+
+Real Dwarkesh (lost to it): We can move on from China, but that actually raises an interesting question. We were discussing earlier these bottlenecks at TSMC and memory and so forth.
+
+So if we’re in this world where you’re already the majority of N3—and at some point you’ll be N2 and you’ll be a majority of that—do you see that you could go back to N7, the spare capacity at an older process node, and say, “Hey, the demand for AI is so great and our capacity to expand the leading edge is not meeting it, so we’re going to make a Hopper or Ampere, but with everything we know about numerics today and all the other improvements you described”? Do you see that world happening before 2030?
+
+Judge: tool **WIN** — order1 A, order2 B

@@ -1,0 +1,212 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2b (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Adam Brown  |  turn 146  |  section: -
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Adam Brown
+
+RESEARCH PREP:
+# Research dossier — Adam Brown
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+Adam R. Brown is a theoretical physicist who built his reputation in quantum gravity, holography, quantum computational complexity, and early-universe cosmology, and who since 2018 has worked at Google DeepMind, where he founded and leads the "Blueshift" team and is a core contributor to the Gemini models, focused on advancing the scientific and reasoning capabilities of AI. He studied physics and philosophy at Oxford, completed a PhD at Columbia University, and held faculty/research positions in the physics departments at Princeton and Stanford, where he taught general relativity and continued to publish in high-energy theory. His academic work spans an unusually wide range — the Big Bang, inflation, the multiverse, black holes, quantum computation, "space elevators," "bubbles of nothing," and the long-term fate of the universe — unified by a recurring interest in the deep connections between physics and computer science. His most cited contributions came in the mid-2010s collaborations with Leonard Susskind at Stanford on the relationship between quantum complexity and the interiors of black holes.
+
+### Quantum complexity and the black hole interior
+
+Brown's central body of work concerns a puzzle posed by Susskind: the volume of the wormhole (Einstein-Rosen bridge) behind a two-sided eternal AdS black hole keeps growing for an exponentially long time, long after the black hole has thermalized and its entanglement entropy has saturated. Entanglement entropy stops being a useful bulk diagnostic almost immediately, yet the interior keeps changing. The proposal Brown helped develop is that the quantity tracking this growth is the **quantum computational complexity** of the dual boundary state — roughly, the minimum number of elementary gates needed to prepare the state from a simple reference state. Complexity continues to grow long after entropy maxes out, matching the wormhole's behavior.
+
+Two competing precise statements emerged. The earlier "**Complexity = Volume**" (CV) conjecture tied complexity to the maximal spatial volume of a slice through the wormhole. Brown's own contribution was the sharper "**Complexity = Action**" (CA) conjecture, in:
+
+- **"Complexity Equals Action"** (Brown, Daniel A. Roberts, Susskind, Brian Swingle, Ying Zhao), arXiv:1509.07876, September 2015; and the long companion **"Complexity, action, and black holes"** (same authors), arXiv:1512.04993, December 2015, published as *Phys. Rev. Lett.* **116**, 191301 (2016) under the title "Holographic Complexity Equals Bulk Action?". The conjecture: the complexity of the holographic boundary state equals the classical gravitational action evaluated on the **Wheeler-DeWitt patch** (the bulk region bounded by light sheets emanating from the boundary time slice), divided by π ℏ. They tested it against neutral, charged, and rotating AdS black holes, and against geometries perturbed by static shells and by shock waves.
+
+The reasoning for preferring CA over CV: action is a more natural, less ambiguous bulk quantity than "maximal volume" (which requires choosing a slicing), and the late-time growth rate that CA predicts has a clean physical interpretation. For a neutral black hole the conjecture yields a complexification rate dC/dt = 2M/(π ℏ) — that is, 2E/π ℏ. This connects directly to a known limit from quantum information: **Lloyd's bound** on the maximum rate at which a physical system of energy E can perform orthogonalizing operations (≈ 2E/π ℏ). The headline claim is that black holes **saturate** Lloyd's bound — they are "the fastest computers in nature." Charged and rotating black holes complicate this: subtracting the contribution of the charge (the energy above the ground state at fixed charge) modifies the rate, and the authors found regimes where the naive bound is violated, which they took as both a test and a puzzle for the conjecture.
+
+### Complexity geometry, negative curvature, and the "second law"
+
+A parallel thread reformulates complexity using Riemannian geometry, following Michael Nielsen's idea that the complexity of a unitary is the length of the shortest geodesic to it through the group of unitaries SU(2^K) under a "right-invariant" metric that penalizes hard (many-body) directions.
+
+- **"Quantum Complexity and Negative Curvature"** (Brown, Susskind, Zhao), arXiv:1608.02612, August 2016, *Phys. Rev. D* **95**, 045010 (2017). Core idea: complexity growth looks like geodesic motion on a space of **negative curvature**. On negatively curved manifolds nearby geodesics diverge exponentially (the hallmark of chaos), which gives complexity its long, steady linear growth; the eventual saturation comes from the finite volume/dimension of the space. Negative curvature is thus offered as the geometric *mechanism* behind both the growth and the eventual halt.
+
+- **"The Second Law of Quantum Complexity"** (Brown, Susskind), arXiv:1701.01107, January 2017, *Phys. Rev. D* **97**, 086015 (2018). The argument: complexity behaves like an entropy. Brown and Susskind construct an explicit correspondence mapping the circuit complexity of a system of K qubits to the *positional entropy* of an auxiliary classical system with 2^K degrees of freedom (a particle moving on the complexity manifold), with the Kolmogorov complexity of the Hamiltonian playing the role of a kinetic term. Because the auxiliary classical system's phase space is overwhelmingly dominated by high-complexity configurations, complexity almost always increases — a "Second Law of Complexity," statistical and probabilistic in exactly the way Boltzmann's second law is. They also introduce **"uncomplexity"** — the gap between a state's current complexity and the maximum — as a *resource* for directed computation, which they argue is the holographic dual of the accessible spacetime volume behind the horizon.
+
+- **"Universality in long-distance geometry and quantum complexity"** (Brown, Michael H. Freedman, Henry W. Lin, Susskind), arXiv:2111.12700, *Nature* **622**, 58–62 (2023). This pushes the geometric program toward rigor. The observation: many different homogeneous metrics on a Lie group can have wildly different short-distance structure yet nearly identical *long-distance* distance functions — a "universality class" in the renormalization-group sense applied to geometry rather than to physics. Applied to complexity, this argues that the many superficially different definitions of quantum complexity (different gate sets, different penalty schedules) are all *linearly related* at long distances, so the late-time linear-growth-then-saturation picture is robust and largely definition-independent. This addresses a standing objection: that "complexity" is too ambiguous (gate-set-dependent) to be a fundamental physical quantity dual to a sharp geometric object.
+
+### The Brown-Susskind linear-growth conjecture and its proof
+
+Out of this work came a precise mathematical claim — sometimes called the **Brown-Susskind conjecture** — that the exact circuit complexity of a *random* quantum circuit grows linearly in the number of gates and continues for a time *exponential* in the number of qubits before saturating. Notably, Brown was not an author of the rigorous proof; it was supplied by an independent group — Jonas Haferkamp, Philippe Faist, Naga B. T. Kothakonda, Jens Eisert, and Nicole Yunger Halpern — in **"Linear growth of quantum circuit complexity,"** arXiv:2106.05305 (June 2021), *Nature Physics* **18**, 528 (2022). They proved that for random circuits the exact complexity grows linearly with the gate count, with unit probability, until saturating after exponentially many gates, using tools from algebraic geometry and differential topology plus an inductive Clifford-circuit construction. This is significant because lower-bounding *exact* circuit complexity is notoriously hard; the proof is regarded as confirming the plausibility of the gravity-side picture that motivated it.
+
+### Tensions and open questions within this program
+
+The CA and CV proposals are not fully reconciled — both reproduce qualitative features (late-time linear growth, switchback effects from shock waves) but disagree in detail (coefficients, behavior near horizons, the effect of charge), and which, if either, is the "true" definition remains unsettled in the field. A second internal tension is the definitional ambiguity of complexity itself, which Brown's universality work (2023) was largely an attempt to defuse. A third is conceptual: the entire edifice treats a sharply UV-sensitive, gate-set-dependent information-theoretic quantity as dual to a smooth geometric bulk object, and skeptics in the holography community have questioned whether complexity is observable or even well-defined in continuum field theory — a worry the universality argument addresses but does not fully close.
+
+### Cosmology, vacuum decay, and "bubbles of nothing"
+
+Before and alongside the complexity work, Brown worked on the cosmological landscape and the instability of vacua.
+
+- **"Bubbles of Nothing and the Fastest Decay in the Landscape"** (Brown, Alex Dahlen), arXiv:1010.5240, October 2010, *Phys. Rev. D* **84**, 043518 (2011). A "bubble of nothing" is a violent decay in which a compact extra dimension pinches off and collapses; the resulting "hole in spacetime" expands at the speed of light, leaving literally nothing — no spacetime — behind. Working in 6D Einstein-Maxwell theory in a thin-brane approximation, Brown and Dahlen showed that in a flux landscape built from many *different* fluxes, the fastest decay is often to discharge *all* flux simultaneously, which destabilizes the radion and nucleates a bubble of nothing; they constructed a new instanton mediating simultaneous flux tunneling and decompactification, obtained as the limit of removing ever more flux. (In a landscape of many identical units, by contrast, the fastest decay removes just one unit.)
+
+- **"Vacua Morghulis"** (Brown, Dahlen), arXiv:1610.04564, October 2016. The provocative thesis (the title riffs on "all vacua must die"): every non-supersymmetric vacuum in the string landscape is at most metastable and must eventually decay, with supersymmetric vacua only marginally stable.
+
+- **"Tensile Strength and the Mining of Black Holes"** (Brown, sole author), arXiv:1207.3342, July 2012, *Phys. Rev. Lett.* **111**, 211301 (2013). A characteristically clever result: the **null energy condition** imposes a universal upper bound on the tensile-strength-to-weight ratio of any material. A consequence is that one cannot lower a rigid box near a black hole horizon that is wider than a single wavelength of the Hawking quanta, which means proposed schemes to "mine" black holes by lowering boxes to harvest Hawking radiation — and "space elevators" operated near horizons — cannot work nearly as fast as had been claimed. Brown noted that, ironically, one *can* extract energy quickly by simply threading the horizon with cosmic strings instead.
+
+These cosmology papers share a temperament with the complexity work: take an exotic but physically grounded scenario, push the relevant bound or rate to its sharpest expressible form, and extract a surprising universal limit (Lloyd's bound for computation, the null energy condition for material strength, fastest-decay channels for the landscape).
+
+### Move to AI: Blueshift, Gemini, and "AGI and the future of physics"
+
+Brown joined Google in 2018 and now leads **Blueshift**, a Google DeepMind research team aimed at the mathematical, scientific, and reasoning capabilities of large models, and is a core contributor to **Gemini**. The reported framing of Blueshift is "cracking maths and reasoning" at DeepMind. He has given public talks — e.g. at the Aspen Center for Physics and a Stanford Applied Physics/Physics colloquium — under titles such as "Training Sand to Think: Artificial General Intelligence and the Future of Science" and "Artificial General Intelligence and the Future of Physics," in which his recurring theme is that progress in machine reasoning could change how fundamental science (including physics) is done. This pivot is continuous with his long-stated interest in the connections between physics and computer science.
+
+### Collaborators and influences
+
+His dominant collaborator is **Leonard Susskind** (Stanford), with whom he co-authored most of the complexity work and from whom the original wormhole-volume puzzle came. Other frequent co-authors: **Daniel A. Roberts**, **Brian Swingle**, and **Ying Zhao** on the Complexity = Action papers; **Alex Dahlen** on the cosmology/landscape papers; and **Michael H. Freedman** (Fields Medalist, topologist) and **Henry W. Lin** on the 2023 *Nature* universality paper. The intellectual lineage of his complexity work runs through **Michael Nielsen** (geometric/Riemannian formulation of circuit complexity), the broader AdS/CFT and black-hole-information community, and the holographic-complexity program also pursued by groups around the world that built on the CA/CV conjectures.
+
+### Notable specifics
+
+- Brown's range is unusually broad for a theorist of his cohort — from formal holography to the engineering-flavored "can you build a space elevator" physics — and his paper titles ("Vacua Morghulis"; "Complexity Equals Action") reflect a taste for memorable framing.
+- He has written for *Scientific American* and engaged in public-facing science communication.
+- A clean throughline across his career is the *fastest-X / sharpest-bound* instinct: fastest computer (black holes saturating Lloyd's bound), fastest decay (bubbles of nothing), the hardest possible material (null-energy-condition limit on tensile strength), and the longest possible monotone growth (linear complexity growth for exponential time).
+
+## Sources
+
+- Adam R. Brown et al., "Complexity Equals Action," arXiv:1509.07876 (2015). https://arxiv.org/abs/1509.07876
+- Adam R. Brown et al., "Complexity, action, and black holes," arXiv:1512.04993 (2015); *Phys. Rev. Lett.* 116, 191301 (2016). https://arxiv.org/abs/1512.04993
+- Adam R. Brown, Leonard Susskind, Ying Zhao, "Quantum Complexity and Negative Curvature," arXiv:1608.02612 (2016). https://arxiv.org/abs/1608.02612
+- Adam R. Brown, Leonard Susskind, "The Second Law of Quantum Complexity," arXiv:1701.01107 (2017). https://arxiv.org/abs/1701.01107
+- Adam R. Brown, M. H. Freedman, H. W. Lin, L. Susskind, "Universality in long-distance geometry and quantum complexity," arXiv:2111.12700; *Nature* 622, 58–62 (2023). https://arxiv.org/abs/2111.12700
+- J. Haferkamp, P. Faist, N. B. T. Kothakonda, J. Eisert, N. Yunger Halpern, "Linear growth of quantum circuit complexity," arXiv:2106.05305; *Nature Physics* 18, 528 (2022). https://arxiv.org/abs/2106.05305
+- Adam R. Brown, Alex Dahlen, "Bubbles of Nothing and the Fastest Decay in the Landscape," arXiv:1010.5240; *Phys. Rev. D* 84, 043518 (2011). https://arxiv.org/abs/1010.5240
+- Adam R. Brown, Alex Dahlen, "Vacua Morghulis," arXiv:1610.04564 (2016). https://arxiv.org/abs/1610.04564
+- Adam R. Brown, "Tensile Strength and the Mining of Black Holes," arXiv:1207.3342; *Phys. Rev. Lett.* 111, 211301 (2013). https://arxiv.org/abs/1207.3342
+- Foresight Institute people page, Adam Brown. https://foresight.org/people/adam-brown/
+- Aspen Center for Physics, Adam Brown profile. https://aspenphys.org/people/adam-brown/
+- phys.org, "Research group proves quantum complexity grows linearly for an exponentially long time" (2022). https://phys.org/news/2022-03-group-quantum-complexity-linearly-exponentially.html
+
+All Dwarkesh Patel / Dwarkesh Podcast / Lunar Society content was excluded from this dossier; matching search results (e.g. dwarkesh.com/p/adam-brown) were skipped and not read, cited, or relied upon.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+As I said, there was this one in Utah who just talked from the moment I got into the cab until we got to Nevada. I kind of got the feeling that he had sort of excess mental capacity and that this was his, you know, he was now just gonna dump it on me. And he was telling me all about his life, and I remember this very well, how his brother-in-law thought he was a loser, his sister's husband. But like, now he had the hot fiance, so who was the loser?
+
+And then just sort of gradually over the course of the six hours, it just suddenly occurred to me that his fiance was doing advanced fee fraud on him. The whole thing was some ginormous, and he was being scammed by his fiance. And very unfortunately for them, they tried to execute the scam while he had me in the cab, and he never had anyone in his cab.
+
+So now he had me in his cab, and they were trying to do some fraud on him. And I was able to, they had some wheat factory in Wales, United Kingdom, that they had some British High Court document saying that he was entitled to if he paid off the lien on it. There was some long, complicated story that was totally flagrantly false.
+
+I kind of felt like I had a moral obligation to him to break the news to him. On the other hand, we were in the middle of nowhere in Nevada, and it was clearly a very important part of his personality that this was so. So I kind of waited until we got close and said, is it possible that your fiance is being scammed by these people? You know, sort of raised the notion of scamming.
+
+And he was willing to intellectually entertain the possibility. And then we got a bit closer. Is it possible that you were yourself being scammed by your fiance? And then he was like, "No, no, no, it can't be." And he had all these documents to show that it was all legit, and they were just sort of, to somebody from a British legal background, transparent forgeries.
+
+He did eventually accept it and was just crying on my shoulder in some truck stop. It was quite a high pathos moment. And then said, uh, this happened before.
+
+And it turned out he'd previously been scammed in the same way or a similar way through somebody he'd met through the same match.com profile. That was his lucky profile because, you know, people kept messaging him through it. So we, you know, we talked through that and worked through that and, like, I felt in some ways I'd been his guardian angel and, uh, but he, you know, he'd also been my guardian angel and picked me up in the middle of the desert, so there was some, there was some great exchange there.
+
+Dwarkesh Patel: That's crazy. I hope he closed down that profile.
+
+Adam Brown: I hope so. I mean, we, you know, I did chat to him about that possibility and he wasn't fully bought in on it, but, uh, yeah.
+
+Dwarkesh Patel: What's the longest you've been stranded somewhere?
+
+Adam Brown: That would probably be one time in Richmond, Virginia, in some not particularly good neighborhood, trying to hitch out of there. I think that was about a day, which is really bad. That's really bad.
+
+Sometimes, if you get a good spot, that's worth a thousand miles. Just don't, don't give it up just for a short hop anywhere. If you get a bad spot, get out of there on any means necessary because there's, because there's probably a thousand X variance in how high quality hitchhiking spots are, I would say.
+
+Dwarkesh Patel: How did you find the time to like get stranded for a day at an end?
+
+Adam Brown: In terms of intensity, it doesn't really take that much wall clock time, as we say. Coast to coast is, um, you know, like a week or so. It's pretty fast because you don't, you're not yourself driving, in that sense, it's easier.
+
+You do have to wait, and, you know, there is definitely high variance how long you can be. But in terms of sort of incidents per minute, it's, it's a pretty good way to see the world. And you see such a cross section of people who I might never, never otherwise meet, and such a sort of high variance cross section.
+
+Everything from sort of idle millionaires cruising around the country looking for adventure to people who just got out of prison to, in one memorable incident, well, it eventually transpired as we were going along that they were, uh, they had, they were actually just teenagers and I didn't, somehow didn't clock that when getting in the car. And they, they had stolen the family car and were, were driving west, um, without a plan. And that, yeah, there I gave him a talk, I was talking to, and, uh, bought them dinner and some, some life advice. So that was some fun stuff I got.
+
+Dwarkesh Patel: Did you make them call their parents?
+
+Adam Brown: I did make them call their parents, yes. Or, you know, heavily encouraged them to call their parents.
+
+Dwarkesh Patel: Is there a luck to get the professor?
+
+Adam Brown: Yeah, none of these people typically realize that, uh, you know, your academic background never really comes up in conversation, typically. I mean, sometimes it does, but typically that's, that's not the nature of the conversations.
+
+Dwarkesh Patel: Was there any time you felt particularly unsafe?
+
+Adam Brown: I have definitely felt more unsafe picking up hitchhikers than I have hitchhiking. Maybe I just got lucky, but picking up hitchhikers, there it tends to be, um, you know, no one really picks up hitchhikers, uh, anymore, and there's definitely a selection effect on who's hitchhiking.
+
+Dwarkesh Patel: Right.
+
+Adam Brown: I've definitely felt more in risk of my life with hitchhikers I picked up than I ever did hitchhiking. But, you know, it's possible I just got lucky. You don't see the other branches of the wave function.
+
+Dwarkesh Patel: What are the other interesting insights from just getting this random cross section?
+
+Adam Brown: Yeah, all sorts of facts. A lot of people just like to talk. There's a lot of, a lot of people out there, and I like to talk too, so it's mutually beneficial.
+
+Dwarkesh Patel: Well, the truckers, I imagine are especially so.
+
+Adam Brown: Those guys are interesting. They're all cheating their logs. They have certain logs about how long they can travel for, and at least every single one who's ever picked me up has all been, in some way or another, gaming the system of their logs about how long they're allowed to drive for and playing games with time zones.
+
+They're smart people, and they just have a lot to say and don't really have anybody to say it to. So they're very grateful.
+
+Dwarkesh Patel: What are they especially insightful about?
+
+Adam Brown: They tend to have listened to a huge number of audiobooks. They have a ginormous amount of information stored in their brain, but nobody to tell it to. Also, many of them tend to have had unlucky romances at some stage in their past that they've never really gotten over or spoken to.
+
+I really feel as though many of them would do well to speak to a therapist. But you are the therapist in that case. In many ways, people will tell you things.
+
+Frequently people will say things like, "I've never told anybody else this in my life before." That's common, not just the truckers, other people as well. Sometimes it's families picking you up, and so they're not going to say that.
+
+Often it's just single people picking you up, and they'll say, "I've never said this before to anyone else in my life." And they'll tell you some story of their life. I do think it's an exchange, and they're also getting quite a lot out of the conversation.
+
+I remember one case going to New Orleans. Somebody just meant to only take us, I think it was just some state trooper had come along in South Carolina and was going to arrest us because it's illegal in some states to hitchhike in North Carolina. And so I was like, "Okay, just take the next ride."
+
+And it was just 10 miles down the road. He ended up getting so into it that we ended up driving maybe 1,000 miles out of his way by the time we'd gone. He'd had this, we were having great conversations, just absolutely wonderful time, and he just wanted to keep going and going and drive us through the night.
+
+Then we ended up going through the Deep South in the middle of the night and arriving near New Orleans around dawn. He'd had a father who had been in the military, but he'd kind of had a difficult relationship with. He ended up going and visiting his father's grave in Baton Rouge, never having done that in the 20 years since his father died.
+
+But just as this sort of turned, I mean, he just was driving along expecting to go home, and then it just turned into this sort of spiritual quest for him. Stuff like that can be pretty gratifying. It's also sort of cheating.
+
+You're not, in my way of thinking about it, meant to be taking people out of their way. They're meant to be going where they're going, and you go with them, and they take you no further. But in this case, I think he needed to go there, so that was good for him.
+
+Dwarkesh Patel: Did you stay in contact with any of the people you hitchhiked with?
+
+Adam Brown: Typically, no. I would almost consider it poor form to do so. But actually, there was one lady who came to stay in New York later.
+
+She was going down to Haiti to sort of be a doctor there. She was a doctor, and so I stayed in contact with her a bit. But typically it's just the nature of the interaction is that you have this sort of beautiful moment in time together, and then that's it.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: What is the best place to pick up a hitchhiker?
+
+Real Dwarkesh (lost to it): Any other tips that somebody should know? I mean, should they do this anymore, given that it's largely uncommon and so uncommon types of people might pick you up?
+
+Judge: tool **WIN** — order1 A, order2 B

@@ -1,0 +1,147 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2b (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Sarah Paine  |  turn 14  |  section: Was Russia on track to dominate Asia?
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Sarah Paine
+
+RESEARCH PREP:
+# Research dossier — Sarah C. M. Paine
+# (broad research [BLIND: agent given only name+role, Dwarkesh content excluded, deepened primary-text prompt])
+# One blind dossier; scored against BOTH her held-out episodes (east-asia, russo-chinese).
+
+## Broad research
+
+## One-Paragraph Biography
+Sarah Crosby Mallory Paine (born 1957) is an American historian of East Asia, Russia, and grand strategy, long associated with the U.S. Naval War College (USNWC). B.A. Latin American Studies, Harvard (1979); M.I.A., Columbia SIPA (1984); M.A. Russian, Middlebury (1989); M.Phil. (1987) and Ph.D. (1993) in Russian and Chinese history, Columbia. ~9 years overseas for archival/language work (Taiwan, Japan, China, Russia, Australia, Britain). Joined USNWC ~2000; full professor 2006; held the William S. Sims University Professorship of History and Grand Strategy and the Ernest J. King Professorship of Maritime History (2014–2025); now Sims University Professor Emerita; teaches in the Strategy and Policy Department. Hoover National Fellowship (2013–14), two Fulbrights. Publishes as "S. C. M. Paine." Documented primary-source languages: Russian and Chinese (Japanese/German/French reported but not self-confirmed). Frequently co-authors with USNWC naval historian Bruce A. Elleman (reported husband).
+
+## Major Books and Central Arguments
+- **Imperial Rivals: China, Russia, and Their Disputed Frontier, 1858–1924** (1996). Russia's eastward expansion (Treaty of Aigun 1858; Ili/Sinkiang crisis 1871–81, Treaty of Livadia/St. Petersburg; CER "railroad imperialism" 1896–1905; Outer Mongolia 1911–24) could not convert territory into durable control. Figures: Li Hongzhang, Witte, Kuropatkin. Won the 1997 Barbara Jelavich Prize.
+- **The Sino-Japanese War of 1894–1895: Perceptions, Power, and Primacy** (2003). The war restructured East Asian geopolitics: ended the regional balance, accelerated Qing decline, displaced China by Japan as primary power, reshaped Western perceptions. Fought over Korea (bulwark of Manchuria, which shields Beijing). Foregrounds perceptions/prestige/"face" alongside material factors. Battles of Pyongyang, the Yalu (crippled Beiyang fleet), Weihaiwei. Treaty of Shimonoseki (Apr 17 1895): Korean independence, cession of Taiwan/Pescadores/Liaodong, 200M-tael indemnity; Li Hongzhang vs Itō/Mutsu; assassination attempt on Li.
+- **The Wars for Asia, 1911–1949** (2012). Reframes the Chinese Civil War, Second Sino-Japanese War, and WWII-Pacific as three "nested" wars — a civil war within a regional war within a global war. Japan's "peripheral strategy" (Pearl Harbor, Dec 1941) aimed to cut foreign aid to China, always Japan's chief target. Kwantung Army's 1931 Manchuria seizure (Manchukuo), semi-independent of Tokyo, backfired by tipping the civil war toward Mao. Nationalists never had unity of command ("a shifting coalition of warlords"). Soviet pivotal role: Nomonhan (1939) checked Japan's northward ambition; post-1945 Stalin/Malinovsky transferred Japanese weapons to the Communists → Manchuria → 1949. Won the 2012 PROSE Award.
+- **The Japanese Empire: Grand Strategy from the Meiji Restoration to the Pacific War** (2017). Fullest statement of her framework. Japan won as a flexible **maritime** power (Sino-Japanese, Russo-Japanese wars: limited objectives, unity of command, naval dominance, diplomatic exits), then destroyed itself pursuing **continental** domination of China (the "fourteen-year war," 1931–45). Core distinction: maritime = positive-sum, trade/alliance-based (Anglo-Japanese Alliance); continental = negative-sum, territorial domination, earns few friends. 1931 Manchurian Incident "turned the tables." Comparative cases: Athens at Sicily, Imperial Germany vs Britain, USSR.
+- **Edited/co-authored** (with Elleman): Routledge naval volumes (*Naval Blockades and Seapower*; *Naval Coalition Warfare*; *Navies and Soft Power*); textbook *Modern China: Continuity and Change, 1644–Present*; *Principles of Maritime Power*; *Nation Building, State Building, and Economic Development*.
+
+## The Substance of Her Ideas
+- **Maritime vs. continental power** (the spine; 2022 Marshall Lecture "Centuries of Security," JMH 86:4; 2025 Foreign Affairs "By Land or by Sea"). Test: "A maritime power can, if necessary, defend itself primarily by sea, while a continental power cannot." Geography drives politics — continental powers need large standing armies + border security → army-oriented economy + authoritarianism; maritime powers, sea-defended, leave room for commerce, pluralism, rule-based institutions. Stats: ~70% of globe is ocean, most population coastal, ~90% of goods move by sea; lineage to Hugo Grotius. The post-1945 rules-based order (UN, NATO, IMF, GATT/WTO) is a maritime construct; continental strategy is zero-sum and self-defeating (provokes counter-coalitions, suppresses entrepreneurship).
+- **Levels of war / nested hierarchy:** grand strategy (integrating military, economic, diplomatic, intelligence, propaganda, institution-building, law) above military strategy/operations/tactics. Maxim: **"Victory is always assessed at the strategic, not the operational, level"** — win every battle, still lose the war (her Japan diagnosis).
+- **Overreach / self-inflicted wounds:** Japan as canonical maritime power wrecking itself in protracted continental war, "chasing an elusive Chinese center of gravity." Generalizes to a warning for maritime democracies (applied to U.S. in Iraq — unilateral, allianceless, hard to exit).
+- **Limited vs. unlimited wars:** limited = bounded objectives, compromise possible; unlimited/existential = "compromise... is called appeasement." Alliances decisive: "the side with the most effective alliance system typically wins."
+- **Russia/USSR:** "a brutal, centrally planned, stupendously inefficient, colonial land empire." "Why Russia Lost the Cold War" (2021): multi-cause (U.S. pressure, Sino-Soviet split, mid-80s oil-price collapse vs energy dependence, ethnic rebellions). Cyclical expansion pattern. On Ukraine (2024–25): Putin, like Nicholas II squandering resources on Japan/Manchuria while neglecting Germany, has misidentified his primary enemy (China) while draining Russia in a war of choice.
+
+## Field Debates and Reception
+USNWC Strategy and Policy tradition (Clausewitz, Sun Tzu, Mao, Mahan, Corbett). Her maritime/continental framing sits in the Mahan/Corbett seapower tradition vs Mackinder's heartland geopolitics. As a historian (not IR theorist) she shares realism's structural/material emphasis but works through archival narrative + perceptions; her "continental expansion is self-destructive" cuts against offensive realism (Mearsheimer). Most consistent critique (Pacific Affairs: Tosh Minohara, Michael J. Green): strong on structural/material logic, underweights ideology/culture/factional politics; synthesizing frameworks can flatten complexity / read with hindsight. Affiliated with Hoover and the Kissinger Center (SAIS).
+
+## Notable Biographical Specifics
+Three brothers. Language-intensive, multi-archival method (~9 years overseas). U.S. Navy Superior Civilian Service Award (2025); Civilian Service Commendation Medal (2021). Long scholarly partnership with Bruce Elleman.
+
+<!-- Coverage check + gap-fill computed in scoring step. -->
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+So what's going on with Russia? Russia has always tried to expand its territory. It is today the largest country on the planet. Why they need more territory, nobody knows. But that's what they're after. And these days what they're taking are those two large areas. By the time the Bolsheviks finish working their magic, Russians have taken from the Chinese sphere of influence —the Bolsheviks are beyond today, but it gives you a sense— more territory than the United States east of the Mississippi. That's a lot of territory. But in this day, while the Opium Wars are going on and while the Taiping and Nian Rebellions, the two big ones, are happening simultaneously, the Russians go to the Qing and say, “Hey, we'll deal with those foreigners for you. We'll be an intermediary, but just sign on the dotted line for these treaties giving us all this land.”
+
+The Chinese were vague on geography and they didn't believe in treaties. They thought they'd get it back later. So Russia gets all this stuff, does exactly nothing because we know about the treaty port system. The British and French got all of it. Russia got this stuff too. Once Russia gets this stuff, that's why they want the railway, because they want to integrate it there. So the Trans-Siberian Railway is the blue thing, but understand that the blue part that's above the green part, that wasn't built until World War I. Russia built the green part, which is the Chinese Eastern Railway, the name of it, in order to stake out its plans for empire.
+
+Also notice it wants the warm water port, that's the orange part going down to Port Arthur, because Vladivostok, prior to the age of icebreakers, is frozen solid several months of the year. So Russia's building this railway. To save on construction costs, it's more direct going straight across Manchuria. Contain Japan, stake out its claim to Manchuria. The Japanese get it. Well, that was earlier in this lecture. They see this coming and they don't like it.
+
+Then in addition to what's going on, the Chinese don't particularly like all the imperialists messing with their country. And so the Boxers are another rebellion. These folks want all Westerners out of China and they want to kill any stragglers. They're all over China, they go into Manchuria. The Russians send 100,000 troops, far more than any of the European powers or even Japan which sends a lot, to the rest of China to defeat the Boxers, which they do. Then the other Westerners in Japan remove their troops, Russia doesn't. This is the thing that gets Japan's attention, because Russia's got 100,000 troops in Manchuria that won't leave. That's when Japan is sick of Russia procrastinating and we're going to wind up getting into the Russo-Japanese War.
+
+So guess what? We're back to my original explanation, right? The Japanese finessed all of this and they wound up on top. It's by being very thoughtful in their grand strategy that they reverse the balance of power. I'm going to end this thing with General Nogi and a poem. General Nogi is the one who oversaw the four assaults on Port Arthur. He lost both of his sons in this war. One in the Battle of Nanshan, which is down the Liaodong Peninsula, and then his other, his favorite, under his command in Port Arthur.
+
+When the war was over, he asked the Meiji Emperor if he could commit ritual suicide, and the Emperor said no. So when the Meiji Emperor died, he and his wife did. This poem helps explain why:
+
+“Imperial troops, a million strong,
+
+conquered an arrogant enemy;
+
+But siege and field warfare left
+
+a mountain of corpses.
+
+Ashamed,what face can
+
+I show to old parents?
+
+How many men have returned
+
+this day of triumphal song?”
+
+Wars bring much sorrow. I leave you with that. Thank you very much for your attention.
+
+Dwarkesh Patel: I loved this lecture and this topic especially, because it's about a conflict that many of us weren't educated on. But it adds context to the other ones which are obviously super famous, like World War II. It adds context to the development of these powers, which are the most powerful in Asia.
+
+I'm not going to keep wasting time. I just want to jump into asking you a bunch of questions about this. One way you can explain Russia's loss here is that Japan had better tactics. Given the fact that they had deployed similar amounts of men to the front, Japan with their better tactics, was able to win in these different battles.
+
+But maybe the more important thing to explain is why Russia didn't deploy more men or didn't deploy its greater resources. Russia's population is over 130 million people at this point. Japan's is 47 million or so. You might say that the Trans-Siberian Railway isn't completed by this point. But in 1905, it actually is complete. So Russia could have continued the war. It has all these fresh troops it could send. Why didn't they have the same will, or the same ability, to muster their massive resources, that Japan brought to bear?
+
+Sarah Paine: One is that the railway is a bottleneck. Japan's starting the war deliberately while that bottleneck is bottled. That's one factor. Russia has massive troops. Also, the Russians are arrogant. They think Japanese… Initially, the Russians think they're going to do regime change in Tokyo. That's their plan. How they plan to get to Tokyo is a mystery, but never mind. So they don't realize what they need. It's a fairly common problem in wars, a gross underestimation of the other side. That's what's going on in Ukraine right now. Putin missed that one. He's not the only one. Hitler underestimated the Russians in World War II.
+
+Then you go, “What's going on with Japan?” With those Meiji reforms, they have an educated population. Russian soldiers are a bunch of illiterates. And the Russian soldiers are going, “What? Why are we fighting in Manchuria? Tell me precisely why I'm here getting killed.” The Russian soldiers had no buy-in. You can ask what exactly did the Russians want there. Apparently, there were some royal favorites who thought that they were going to get some lucrative timber concessions on the Korean border. Okay, let's go into the logistics. I've never heard there was a shortage of wood in European Russia, ever. And they're going to ship it all the way back? This is a non-performing economic model.
+
+In addition, Nicholas II is an incompetent tsar. He's hiring the guy who's running the navy who is also incompetent. Their navy gets no training whatsoever. Great, you have expensive ships, but no one's trained in how to use them, whereas the Japanese have.
+
+For the Japanese, it's the value of the object, one of these concepts. How valuable is it to win for Japan versus Russia? For Russia, it's already the biggest country on the planet and there's nothing really that exciting out in Asia from their point of view. Maybe for Nicholas II, because he wants to be a great tsar and add to the empire, that would be a nice thing. But when the Germans come after him in World War I, I think he's going to care about the other things more.
+
+For the Japanese, rightly or wrongly, their government and educated people consider it existential. They're looking at China going, that's our future if we don't fix things. They're thinking the solution for Japan is empire, because in those days that seemed to be the way powerful countries ran things.
+
+It's a combination of legitimate logistical bottlenecks. Japan, since they're going to be starting this thing, has massive preparations. The Russians aren't planning to fight this thing. They're thinking, “I determine whether wars begin or end.” Excuse me, they don't.
+
+Dwarkesh Patel: So I guess you're saying Russia doesn't care about this conflict as much as…
+
+Sarah Paine: Russians. Tsar Nicholas II might, but his population is fighting it.
+
+Dwarkesh Patel: So then he doesn't have the state capacity to mobilize his…
+
+Sarah Paine: That's the whole problem with Russia. This is the power of institutions. Japan clearly can mobilize. Boy, is it doing well with the loans and all sorts of things. It's using these institutions. Whereas with Russia, remember, it doesn't have a legislature. The Tsar doesn't have a cabinet in the same sense. He has ministers, but they don't ever show up at his house at the same time to sit around a table. He's just doing them one at a time.
+
+Then the Romanov family has lots of first cousins. Everybody's having lots of kids, and so you've got a million first cousins. They are all deployed throughout the ministries, basically being the spy system for the Romanov family for what's going on. Are any of these nice rich boys particularly competent? No.
+
+Dwarkesh Patel: I want to understand, in World War I, they were able to mobilize many more men. Obviously there was incompetence in World War I as well, but the sheer amount of resources the Tsar was able to bring to the Far East during this conflict…
+
+Sarah Paine: Look at a map and you'll see the railway grid is much more extensive in European Russia. This is where Count Sergei Witte, their finest minister of late tsarist period, he's the one who's trying to do his version of a Meiji Restoration in his purview, which is the Finance Ministry, financing all these railways. So there are many more railways. This is where Russia's population is. This is where their historical security threats come from. Russians can get on board with protecting European borders.
+
+Dwarkesh Patel: Once the Trans-Siberian Railway is finished in 1905…
+
+Sarah Paine: Just the part in Manchuria. The one that goes on their side of the boundaries not completed until World War I.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: Okay, so once the Trans-Siberian Railway is finished, why couldn't they continue the war?
+
+Real Dwarkesh (lost to it): I want to double click on what part of the Meiji reformations exactly helped Japan mobilize for this war. Okay, the population is literate. You have institutions for having political say. How exactly does that help you have more people go to the front?
+
+Judge: tool **WIN** — order1 A, order2 B

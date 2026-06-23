@@ -1,0 +1,195 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2a (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: Dominic Cummings  |  turn 18  |  section: -
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Dominic Cummings
+
+RESEARCH PREP:
+# Research dossier — Dominic Cummings
+# (broad research [BLIND: name+role only, Dwarkesh content excluded])
+
+## Broad research
+
+### One-paragraph bio
+
+Dominic McKenzie Cummings (born 25 November 1971, Durham, England) is a British political strategist, campaign director, and former senior government adviser best known for two things: running the official Vote Leave campaign that won the 2016 EU referendum, and serving as Chief Adviser to Prime Minister Boris Johnson from July 2019 to November 2020. Educated at Durham School and Exeter College, Oxford (First in Ancient and Modern History, 1994), he spent the late 1990s in post-Soviet Russia, then built a career in single-issue and party campaigning: campaign director of the anti-euro Business for Sterling (1999–2002), briefly director of strategy for Conservative leader Iain Duncan Smith (2002), co-founder of the New Frontiers Foundation think tank (2003–05), and organiser of the 2004 "North East Says No" campaign that defeated a regional assembly referendum. From 2007 to 2014 he advised Michael Gove, serving as special adviser and de facto chief of staff at the Department for Education (2011–2014), where he was central to the free-schools and exam-reform agenda. Outside formal roles he is a prolific essayist on his blog (dominiccummings.com, later a Substack), arguing across long pieces that Western, and especially British, government suffers from systematic failures of management, personnel selection, and decision-making under uncertainty — and that these are fixable by importing methods from high-performing scientific and engineering programmes, prediction research, and elite firms.
+
+### Major works, themes, and episodes — with specifics
+
+**"Some thoughts on education and political priorities" (2013).** A roughly 237-page essay written while at the Department for Education and published (in draft) in October 2013. It interleaves a critique of British political institutions with a sweeping argument about education, mathematics, and complexity. Core claims: the world is genuinely complex and hard to predict; political institutions and the people who run them are poorly trained for this; and elite education should be reorganised around an "Odyssean" synthesis of maths, the physical sciences, and the humanities aimed at the most able. The essay is openly focused on the high end of the ability distribution and ends with a reading list aimed at 15–25-year-olds. It established his recurring fusion of classical learning with quantitative and scientific method, and his preoccupation with training decision-makers rather than just choosing policies.
+
+**Vote Leave (2015–2016).** Cummings became campaign director in October 2015. He is credited with the slogan "Take back control" and with the campaign's most contested message — the claim that the UK sends "£350 million a week" to the EU which could instead fund the NHS, displayed on the campaign bus. He left the Vote Leave board in February 2016 amid internal disputes but continued to direct the operation. The referendum (23 June 2016) returned 51.9% for Leave. Cummings has consistently argued that the campaign's edge came from data and targeted digital advertising rather than traditional methods, and from concentrating spending in the final weeks. Legal aftermath: in July 2018 the Electoral Commission fined Vote Leave £61,000 and found it had breached spending limits by channelling money (around £675,000) to the youth campaign BeLeave/Darren Grimes under a "common plan" while separately spending some £2.7m with the Canadian firm AggregateIQ. In March 2019 the House of Commons formally admonished Cummings for contempt of Parliament after he refused to give oral evidence to the DCMS "fake news" inquiry.
+
+**Chief Adviser to the PM (24 July 2019 – 13 November 2020).** As Johnson's most senior adviser he was central to the December 2019 election strategy, the renegotiated Brexit deal, and an ambitious programme of Whitehall reform. Notable episodes: the August 2019 dismissal of Treasury adviser Sonia Khan; the February 2020 reshuffle in which Chancellor Sajid Javid resigned rather than accept Johnson's demand (driven by Cummings) that he fire his own advisers and accept a joint No.10/Treasury team; and the COVID-19 response. He left in November 2020 alongside communications chief Lee Cain after a power struggle inside No.10.
+
+**The Barnard Castle episode (spring 2020).** During the first national lockdown Cummings, after developing COVID symptoms (~28–30 March 2020), travelled with his family from London to County Durham, then on 12 April made a day trip to Barnard Castle. After Guardian/Mirror reporting on 22 May 2020, he gave an unusual public statement in the Downing Street garden on 25 May explaining his actions (including the claim he drove to Barnard Castle to test his eyesight before the return drive). Durham Police concluded no offence occurred on the London–Durham trip and that a "minor breach" might have occurred at Barnard Castle, with no enforcement action. Polling (YouGov) found large majorities thought he had broken the rules and many wanted him to resign; dozens of Conservative MPs called for his removal. A subsequent Lancet analysis discussed a "Cummings effect" on public confidence in lockdown messaging.
+
+**Select committee testimony (26 May 2021).** In roughly seven hours before the joint Health & Social Care and Science & Technology committees, Cummings delivered a sustained critique of the early pandemic response. Key claims: that in February 2020 No.10 was not on a "war footing" and Johnson initially treated COVID as a "scare story" comparable to swine flu; that achieving "herd immunity" by September 2020 (after a single sharp peak) was "literally the official plan in all documents, graphs and meetings until it was ditched" in mid-March; that the logic of the Department of Health plan assumed no vaccine in 2020 and therefore a choice between an earlier or a delayed peak; and that Health Secretary Matt Hancock should have been fired for lying. He said the government "fell disastrously short" of public expectations.
+
+**Blog and Substack.** His personal blog hosts the long "On the referendum" series and other essays; he later moved much long-form writing to a paid Substack. Recurring 2023–2024 themes include "regime change" in how the state recruits and organises, and (from 2024) a proposed new "Startup Party" intended to replace the Conservatives — explicitly designed, he wrote, to activate the moment the 2024 general-election exit poll appeared, to be "ruthlessly focused on the voters not on Westminster and the old media," and to draw on builders and talent in both the private and public sectors.
+
+### The substance of the ideas — positions, reasoning, and counterarguments
+
+**State capacity and high-performance government.** The fullest statement is "On the referendum #33: High performance government, 'cognitive technologies', Michael Nielsen, Bret Victor, & 'Seeing Rooms'" (26 June 2019). Cummings's central position is that the bottleneck on government performance is not money or policy ideas but *management* and *decision quality*, and that the methods to fix this already exist but are excluded from Whitehall. His reasoning runs: a handful of mid-20th-century programmes — the Manhattan Project (Leslie Groves), the Apollo programme (NASA's George Mueller and "systems management"), and the US ICBM programme (Bernard Schriever) — achieved extreme results by combining ruthless error-correction, clear metrics, geometric organisation of talent, and the deliberate concentration of very high-ability people. He calls these "unrecognised simplicities of high performance" (a phrase he traces to Charlie Munger's idea of exploiting simple, neglected truths). He argues Western institutions, and Britain especially, have abandoned systems management while it has been studied seriously elsewhere, and that the senior civil service is "programmed to fight to stay dysfunctional," treating "management" as a dirty word and elevating "courtier-fixers" (he names the late Cabinet Secretary Jeremy Heywood as the symbol of this type) over thinkers and managers. He notes that the Cabinet room and crisis machinery (COBRA) operate much as they did in 1914, with unclear aims, unstated assumptions, and discussions "dominated by lawyers."
+
+*Reasoning under it:* because high-leverage management methods are demonstrably effective yet institutionally suppressed, there are, in his Munger-borrowed phrase, "trillion dollar bills lying on the ground" — outsized gains available to anyone willing to import the methods.
+
+*Strongest counterarguments and named opponents.* The Institute for Government's Catherine Haddon argued (in direct response to the #33 post) that Cummings's diagnosis is partly correct but his theory of change is naïve: reform requires sustained coordination across the Cabinet Office, Civil Service Commission, Treasury and individual departments; it needs a powerful Cabinet-level sponsor (she suggested Gove) rather than advisers who can be sidelined; and his antagonistic tone toward officials repeats the mistake of the 1968 Fulton Committee, whose dismissal of civil servants as "amateurs" hardened resistance and undermined its own recommendations. She also warned that once political crises hit, prime ministers abandon reform for firefighting. A related institutional defence (voiced by Whitehall figures and on the LSE politics blog) is that the British "generalist" civil servant and political impartiality are features, not bugs: they provide continuity, ministerial accountability, and a check on politicised, personality-driven decision-making — precisely the things a "chief rationalist" empowered by one adviser might erode.
+
+**Personnel selection.** Position: the state recruits the wrong people by the wrong criteria. In "'Two hands are a lot' — we're hiring data scientists, project managers, policy experts, assorted weirdos…" (2 January 2020), he opened recruitment for No.10 across categories: mathematicians/physicists/data scientists (with specific tooling — Python, SQL, R, scikit-learn, Neo4j), software developers, unconventional economists, "super-talented weirdos," "1 in 10,000 or higher" project managers, communications experts, and policy experts. His reasoning: real performance comes from "genuine cognitive diversity," which he contrasts sharply with "drivel about 'identity' and 'diversity' from Oxbridge humanities graduates"; he wants "true wild cards, artists, people who never went to university," explicitly invoking a William Gibson character rather than "Oxbridge English graduates who chat about Lacan at dinner parties." He cited Andy Grove's *High Output Management* on high-leverage activities, the Manhattan/Apollo project managers, Munger, and Judea Pearl on causation, and he set the meta-goal of making himself "much less important — and within a year largely redundant." His later Substack "regime change" essays generalise this: he contrasts how elite firms and funds aggressively select and concentrate talent against the post-Northcote-Trevelyan generalist-by-exam model of the British state.
+
+*Tension in his own view:* he simultaneously celebrates outsiders, mavericks and dropouts and demands extreme, near-unattainable credentials (PhD-level maths, "1 in 10,000" skill). Critics note the model concentrates enormous discretionary power in a small unaccountable in-group — a centralisation that sits awkwardly with his stated dislike of unaccountable elites.
+
+**Forecasting and decision-making under uncertainty.** Position: government should measure and improve its predictive accuracy. He repeatedly cites Philip Tetlock's work and the IARPA forecasting tournaments, writing that they "showed dramatic performance improvements in political forecasting are possible, contra what people such as Kahneman had thought possible." He advocates Tetlock/Munger-style checklists for "thinking rationally" amid uncertainty, internal "Red Teams" with legally entrenched independence to fight groupthink (an idea he links to Warren Buffett and to military practice), and even prediction markets that would let participants effectively "short" official delivery timetables to create incentives for honest forecasts. He has recommended training officials in this "general art." He is, however, explicitly cautious about behavioural science: while drawing on Kahneman's *Thinking, Fast and Slow*, he warns that "the replication disaster means you have to be careful about what you believe," signalling a tension between his enthusiasm for cognitive science and his skepticism about its empirical robustness.
+
+**Cognitive technologies and tools for thought.** In #33 he argues that decision quality is constrained by the tools decision-makers use. He draws on Bret Victor (dynamic, interactive documents and "Seeing Rooms" where computation is embedded in physical surfaces, e.g. Victor's "Dynamic Land") and Michael Nielsen ("cognitive technologies" — external artifacts internalised as thinking substrates, and spaced-repetition systems such as Anki that make memory "a choice"). He also references the lineage of human–computer interface pioneers: J.C.R. Licklider (human–computer symbiosis), Alan Kay, Robert Taylor (PARC/ARPA), and Edward Tufte (data visualisation). His reasoning: if interfaces can "reify deep principles about the world," then better tools would let ministers manipulate the actual models and assumptions behind a decision rather than read rhetorical static documents. His proposals included funding interface/"Seeing Room" research for Whitehall and recruiting a "chief rationalist." He concedes the institutional obstacle directly: even where money exists, "any minister who proposed such a thing would be told by officials 'this is illegal.'"
+
+**Institutional reform — the wider programme.** Beyond personnel and tools, his reform agenda includes: shrinking and restructuring the centre of government around a small high-ability team; breaking Treasury control over spending and project appraisal (a theme picked up by commentators who argued Whitehall reform is impossible without Treasury reform); reforming procurement and project management to allow ARPA/PARC-style funding of high-risk research; and, post-government, building political vehicles ("Startup Party") engineered like a startup rather than a traditional party. He frames crises (Brexit, election shocks) as the rare windows in which paradigm shifts become possible, arguing that genuinely transformative ideas always look "odd" to incumbents.
+
+### Debates he engages and where he stands
+
+- **Generalists vs. specialists in the state:** he is firmly against the generalist-by-exam tradition and for technically skilled, domain-expert teams.
+- **Identity diversity vs. cognitive diversity:** he dismisses the former in favour of the latter, a stance that drew accusations of being dismissive of equality concerns.
+- **Expertise and "experts":** nuanced — he is scathing about credentialed Whitehall "experts" and macroeconomic forecasting, yet venerates a different expert class (mathematicians, physicists, superforecasters, systems engineers).
+- **Behavioural economics:** sympathetic but wary post-replication-crisis.
+- **Centralisation vs. accountability:** he favours concentrating decision power in small elite teams; opponents (IfG, parts of the civil service and constitutional commentators) argue this undermines accountability and impartiality.
+- **The Conservative Party:** by 2024 he argued it should be replaced rather than revived.
+
+### Influences (thinkers and works he cites)
+
+Recurring named influences include: Charlie Munger (mental models, "unrecognised simplicities"); Andy Grove, *High Output Management* (leverage); Philip Tetlock and the IARPA tournaments (forecasting); Daniel Kahneman, *Thinking, Fast and Slow* (cited with caveats); the Apollo/Manhattan systems managers George Mueller, Leslie Groves and Bernard Schriever; Bret Victor and Michael Nielsen (tools for thought / cognitive technologies); Judea Pearl (causal inference); the ARPA/PARC interface tradition (Licklider, Kay, Taylor); Edward Tufte (visualisation); Duncan Watts (prediction in social science); John von Neumann and Richard Feynman as exemplars of scientific ability; and Warren Buffett (Red Teams, risk). Commentators (e.g. Henry Oliver, Tyler Cowen's "State Capacity Libertarian" framing) have read him as a "state-capacity" thinker concerned less with shrinking the state than with making it competent, citing his frequent invocation of Peter Thiel.
+
+### Notable biographical specifics
+
+- First-class Oxford degree in Ancient and Modern History (1994); roughly three years in Russia in the mid-1990s.
+- Wrote the ~237-page 2013 education essay; coined "Take back control."
+- Married journalist Mary Wakefield (Spectator) in 2011; son Alexander Cedd (born 2016).
+- Portrayed by Benedict Cumberbatch in the 2019 Channel 4 drama *Brexit: The Uncivil War*.
+- Found in contempt of Parliament (March 2019); central figure in the February 2020 reshuffle that prompted Sajid Javid's resignation; left No.10 in November 2020; gave landmark COVID testimony in May 2021; launched a paid Substack and floated the "Startup Party" around 2024.
+
+## Sources
+
+- [Wikipedia — Dominic Cummings](https://en.wikipedia.org/wiki/Dominic_Cummings)
+- [Wikipedia — Vote Leave](https://en.wikipedia.org/wiki/Vote_Leave)
+- [Cummings's blog — "On the referendum #33: High performance government, 'cognitive technologies'…" (26 Jun 2019)](https://dominiccummings.com/2019/06/26/on-the-referendum-33-high-performance-government-cognitive-technologies-michael-nielsen-bret-victor-seeing-rooms/)
+- [Cummings's blog — "'Two hands are a lot' — we're hiring data scientists, project managers…" (2 Jan 2020)](https://dominiccummings.com/2020/01/02/two-hands-are-a-lot-were-hiring-data-scientists-project-managers-policy-experts-assorted-weirdos/)
+- [Cummings's blog — "An essay: 'Some thoughts on education and political priorities'" (2013)](https://dominiccummings.com/2013/11/19/an-essay-some-thoughts-on-education-and-political-priorities/)
+- [Cummings's Substack — "Regime change #1: how elite firms recruit" (epigraphs/overview; full text paywalled)](https://dominiccummings.substack.com/p/regime-change-1-how-elite-firms-recruit)
+- [Cummings's Substack — "The Startup Party" reflections](https://dominiccummings.substack.com/p/the-startup-party-reflections-on)
+- [Institute for Government — Catherine Haddon, "Reforming the civil service needs more than a smart Dominic Cummings blogpost"](https://www.instituteforgovernment.org.uk/article/comment/reforming-civil-service-needs-more-smart-dominic-cummings-blogpost)
+- [LSE Politics & Policy blog — "Cummings's thinking is a potent challenge to the Whitehall system"](https://blogs.lse.ac.uk/politicsandpolicy/dominic-cummings-civil-service/)
+- [TheJournal.ie — Cummings testimony on herd immunity / "chicken pox parties" (26 May 2021)](https://www.thejournal.ie/dominic-cummings-committee-evidence-5448442-May2021/)
+- [Axios — Cummings COVID testimony summary](https://www.axios.com/dominic-cummings-boris-johnson-uk-covid-30d7b5aa-09d6-48e8-9af1-9d0d8577b890.html)
+- [Full Fact — Electoral Commission fines (Vote Leave £61,000)](https://fullfact.org/news/eu-referendum-electoral-commission-fines/)
+- [The Week — "The Startup Party: what is Dominic Cummings planning now?"](https://theweek.com/politics/the-startup-party-what-is-dominic-cummings-planning-now)
+- [Henry Oliver — "Is Dominic Cummings a State Capacity Libertarian?"](https://www.henry-oliver.co.uk/essays/is-dominic-cummings-a-state-capacity-libertarian)
+
+All Dwarkesh Patel / "Dwarkesh Podcast" / "The Lunar Society" content was excluded from this research; no such sources were read, cited, or relied upon.
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+We tried to deal with that in various ways, but in January 2020, it was clear that this essential question was already a fundamental disagreement between me and Boris. So in the first week of January, Trump had just whacked that Iranian guy. I forgot his name, the head of the revolutionary whatever it was, with the drone strike in Iraq. So we’re talking in that week about the future. So what, three weeks after the election?
+
+And he says, these various journalists are complaining that you don’t return their calls. Now’s the time for us to make friends with all of these people after the chaos of 2019.
+
+And I said, “No, I don’t think that’s right at all. We’ve gone through hell. We’ve won an 80 seat majority. Now we have to change how this building works and we have to focus on the actual big problems facing the country. We’ve got to get Number 10 and your time, the PM’s time, away from how it’s been managed for the last 20 years, which is media entertainment service.”
+
+And his response was, “No, no, no, no. That’s crazy. Everyone will go crazy with us if we do that. We’ve got to make friends with the media. We drove them all mad last year. Now it’s time for a great reconciliation.”
+
+And I said, we could do that, but if we do that, we’ll just be the same as every other government for the last 20 years, which is chasing the bullshit in the media all day. And 4 years will pass and we won’t actually have done anything. And by then it’ll be 14 years of Conservative government. We’ve just won an election, partly by running against the previous decade of the Conservative Party. Can’t pull that off again. We’re actually going to have to do a whole bunch of things. And also, that’s why the people are here. We actually want to solve these problems.
+
+Those issues get to the heart of a lot of it. You have a management question about how you actually manage priorities in such an insane environment. You have a personnel problem about a lack of talent. But you also have this fundamental question of, do the key politicians want to spend their time on the important problems, or do they want to spend their time running around all day dealing with the media? And the answer is, almost all of them want to do the second.
+
+Dwarkesh Patel: There’s a lot I want to ask about there. It’s interesting because the way you’re describing it, it sounds like it’s a company with the Prime Minister as a CEO who’s dealing with all these operational things that come up, but there is no CEO who has a long term plan.
+
+I’m curious about the media stuff. I want to understand why it’s the case that they’re so obsessed with the media. Does the media actually matter that much to how people perceive the politicians? How is the media interacting with the things that are happening in the building so that people are constantly thinking of the media? Why is the media so ever present in people’s minds?
+
+Dominic Cummings: Just go back to your first point about the kind of CEO analogy. Imagine if Steve Jobs or Tim Cook or Patrick Collison or someone actually spent a large part of their day just doing photo ops as well. That’s actually the reality about how a lot of these jobs have evolved. So you have a person whose time is the single most precious asset, who, because of the dysfunctional bureaucracy, his decisions or her decisions, is the only thing that can actually break down the bureaucratic resistance and make sure something happens. Yet they’re actually standing with the ambassador from Tongazonga, whatever country, just doing photo ops for a large part of the day or going to stupid ceremonies or whatever it might be.
+
+So again, I think that analogy also shows some of the central problems. These people have all grown up in a system where they just don’t know any better than dealing with the media all day. Now, if you actually understand communication, you know that communication is not the same as answering questions to the media, but that’s not what they think, and it’s not the environment in which they operate, and also it’s not the incentives in which they work.
+
+Again, one of the funny conversations I had with Boris was, you know, we should say to the ministers that here’s your actual priorities as defined by us. Whether or not you get promoted and whether or not your career goes well is going to be defined by how well your department actually fulfills these goals. We don’t care about all of your interviews. We don’t care if you are on TV or never on TV. That’s not how we’re going to judge. Because they’ve all grown up in a culture where they think whether or not they’re going to be promoted really depends on: Are they seen as a good media performer? Or do they botch things on the media? Well, that’s just a fundamentally bad criteria, not least because their definitions of what’s good on the media are themselves terrible. By approaching government like that, you’re incentivizing them to think that their goal is making friends with the media. So then they get good interviews. That also incentivizes them to leak everything. So again, the culture and the incentives are self reinforcing in a very negative way.
+
+Dwarkesh Patel: Let’s say the Prime Minister was somebody who agreed with you and said no more interviews. Ministers, you’re going to do your thing. Media is out. How would the media react? Would that matter?
+
+Dominic Cummings: We sort of did that in quarter one of 2020. We actually stopped participating in the number one insider elite media show on BBC Radio. We just said, we think the show is rubbish and it’s a waste of everyone’s time and no ministers are going to be going on it anymore. The media went completely crazy. One of the most senior people in the BBC said to me that I was a fascist. And a lot of the MPs went crazy as well because for them, being on that show is their raison d’etre. So it was extremely unpleasant and disruptive for both the old media and the MPs who’ve grown up in that culture.
+
+Dwarkesh Patel: How much does it have to do with the fact that in the British political system, the people who are running these departments have to be an MP, so they have to be an elected official? Is that why they’re so obsessed with the media? Because it’s like if a congressman had to become the Secretary of State always.
+
+Dominic Cummings: That’s part of it, though I would pick up on your language, which I think is important. Because you say the people who are actually running the departments, of course they’re not running the department. They describe themselves as “I’m running the department”. The media describes them as they’re running the department. But how many people can the Secretary of State for Defense fire? Three people.
+
+Dwarkesh Patel: He cannot fire the others?
+
+Dominic Cummings: He legally cannot fire anybody else in the building.
+
+Dwarkesh Patel: So who can he fire?
+
+Dominic Cummings: The personal three people that he brings in that. He can get rid of those three people. The other hundreds of thousands of people in the system, he can’t get rid of a single one of them. So the person who actually is in charge of personnel at the Ministry of Defence is the Permanent secretary. Stressing the word permanent.
+
+The only person in the British state who has the legal and constitutional ability to say “This senior person in the Ministry of Defence or the Department of Education is clearly failing and they must be removed, and I order that they be removed” is the Prime Minister. That itself is problematic because the large part system will say, “Well, we can’t just dismiss them, or if we do dismiss them, then there’ll be legal repercussions.” But you can actually remove them from the post. There are complications, and those complications have grown in the last few years because of the way that the legal system and various parts of the law have evolved. But the PM can actually remove someone. But only the PM can. So that gives you an idea as well of the tremendous bottlenecks that occur inside Number 10.
+
+I’ll tell you a story about it that kind of summarizes it. At the peak of COVID craziness in March 2020, on the day itself that the PM tested positive for CoVID, a bunch of people come into Number 10 sit around the table and we have a meeting and it’s about supplies of PPE to the NHS.
+
+They say, “None of this ppe that we’ve ordered is going to be here until the summer.”
+
+“But the peak demand is over the next three to four weeks.”
+
+“Sorry, Dominic, but it’s not going to be here.”
+
+“Why not?”
+
+“Well, because that’s how long it takes to ship from China.”
+
+“Why are you shipping from China?”
+
+“Well, because that’s what we always do. We ship it from China.”
+
+But A, we need it now and B, all of the airlines are grounded. No one’s flying anything.
+
+“So call up the airlines, tell them that we’re taking their planes, we’re flying all the planes to China, we’re picking up all our shit, we’re bringing it back here. Do that now. Do that today. Send the planes today.”
+
+We did that. But only the Prime Minister could actually cut through all the bureaucracy and say, Ignore these EU rules on Blah. Ignore treasury guidance on Blah. Ignore this. Ignore that. “I am personally saying do this and I will accept full legal responsibility for everything.”
+
+You multiply that kind of problem by hundreds and thousands of problems, you get a sense of partly why COVID was so crazy. This is normal government. But in a crisis, when no part of the system can actually move fast, all of these bottlenecks end up very dramatically escalating to the PM’s office. And if you read Jared Kushner’s book, Memoir about the White House, there are very, very similar tales there. That a lot of things that obviously should have been solved elsewhere couldn’t be solved at any other part of the system. They all end up cascading upwards in these centralized bureaucracies, because ultimately only the president or only the Prime Minister can give certain kinds of orders.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: I want to ask about the personnel problem. You mentioned that the people who are running these departments are not actually running the departments. They’re just the figurehead. The people who are actually running the departments are the permanent secretaries. And you mentioned that the Prime Minister is the only person who can fire them. So if you’re the Prime Minister, and you want to get rid of the permanent secretary, how do you do that?
+
+Real Dwarkesh (lost to it): What if the Prime Minister said, I am giving a blank check. If I appoint you as minister, whatever you say, I’m going to sign it. So you can rule as if I agree on everything you said. Could they write such a blank check and basically give the minister whatever authority they might want?
+
+Judge: tool **WIN** — order1 A, order2 B

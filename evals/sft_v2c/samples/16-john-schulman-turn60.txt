@@ -1,0 +1,163 @@
+# Known-good prompt for the Dwarkesh question generator.
+# Source: sft_v2c (prod-ftjob ckpt-48); this card was a WIN vs real Dwarkesh (pass 1, GLM-5.1 judge).
+# Guest: John Schulman  |  turn 60  |  section: -
+# Feed SYSTEM + USER below to the model to reproduce a strong next-question.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 5 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: John Schulman
+
+RESEARCH PREP:
+# Research dossier — John Schulman
+# (broad research [BLIND: agent given only name+role, Dwarkesh content excluded, web-search backend])
+# CAVEAT: interview is dated 2024-05-15. A few agent sources postdate it (Cursor podcast Dec-2025,
+# Thinking Machines Lab Feb-2025) and were NOT counted in coverage scoring (not "prep-available").
+
+## Broad research
+
+## One-Paragraph Bio
+John Schulman (born ~1987–1988) is an American AI researcher best known for inventing the core RL algorithms — Trust Region Policy Optimization (TRPO) and Proximal Policy Optimization (PPO) — that became the optimization backbone of RLHF and, by extension, ChatGPT. US Physics Olympiad team (2005); B.S. physics, Caltech (2010); PhD, UC Berkeley (2016) under Pieter Abbeel ("Optimizing Expectations: From Deep Reinforcement Learning to Stochastic Computation Graphs"). Co-founded OpenAI in December 2015 (before finishing the PhD); led the RL team behind ChatGPT and co-led post-training (2022–2024). Left OpenAI for Anthropic in Aug 2024 to focus on alignment; departed after ~5 months and co-founded Thinking Machines Lab (Feb 2025) as chief scientist with Mira Murati. MIT TR "35 Under 35" (2018).
+
+## Major Technical Contributions
+- **TRPO (2015, arXiv:1502.05477):** monotonic-improvement policy optimization; each update maximizes a surrogate subject to a KL trust-region constraint. Made policy-gradient training of large nonlinear policies robust.
+- **GAE (2015/16, arXiv:1506.02438):** exponentially-weighted multi-step advantage estimator (λ knob for bias–variance); standard inside PPO and modern actor-critic / RLHF.
+- **PPO (2017, arXiv:1707.06347):** clipped surrogate objective achieving a trust-region effect with first-order optimization; de facto standard RL algorithm and the optimizer at the center of RLHF. ~40k+ citations.
+- **Stochastic Computation Graphs (2015) + PhD thesis (2016):** unifies score-function and pathwise gradient estimators.
+- **OpenAI Gym (2016, arXiv:1606.01540):** co-author; standardized RL benchmarking API.
+- **RLHF/post-training (2021–24):** contributing author on WebGPT (arXiv:2112.09332) and InstructGPT (arXiv:2203.02155); ChatGPT (Nov 30 2022) trained with the same RLHF methodology. Co-author (not lead) on the team papers; his distinct contribution is PPO + leading post-training.
+
+## The Substance of His Technical Views (pre-2024 public record)
+- **How models learn:** scale + "predict everything" is extraordinarily powerful; zero-shot capability emerges from next-token prediction (Manifold/Hsu interview, 2021).
+- **Hallucination (signature argument; Berkeley talk, Apr 2023):** behavior cloning/SFT actively teaches hallucination — imitating answers that rely on knowledge the model lacks trains confident, unfounded answers; can't be fixed with better SFT data alone. Premise (flagged as strong): the model "knows what it knows," so RL with a reward that penalizes fabrication and rewards "I don't know" can align behavior to actual knowledge. Distinction: BC copies outputs regardless of knowledge state; RL can align policy with what the model knows.
+- **RLHF mechanics / failure modes (ICML 2023 talk):** RLHF optimizes a *proxy*; "reward-model over-optimization" is a Goodhart phenomenon (optimizing the proxy first helps then hurts). Track KL from base model as the control variable; PPO spends KL budget less efficiently than best-of-N but is more powerful. Prefers pairwise preference comparisons; points to AI-assisted labeling / RLAIF to scale data quality.
+- **Research practice ("An Opinionated Guide to ML Research," 2020):** taste in problem choice > raw skill; prefer goal-driven over idea-driven research; restrict to general solutions; switching problems too often is the common failure. "Nuts and Bolts of Deep RL" (2016); "Approximating KL Divergence" (2020, the k3 estimator).
+- **Capabilities / continual learning:** fast one-shot/continual learning is the missing capability (framed as early as 2021); models have superior short-term sample efficiency but "get stuck" on larger tasks where humans self-correct over long horizons.
+
+## Field Debates and Where He Stands
+- **RL vs pure imitation:** firmly that RL is *central* (not complementary) — it corrects failure modes (hallucination) that imitation can't.
+- **Alignment / x-risk:** distinguishes misuse from a "treacherous turn"; judges the latter unlikely for current systems because they "don't have any long-term goals" (trained to produce one high-approval response → no incentive to change the world).
+
+## Collaborators & Recognition
+Advisor Pieter Abbeel; TRPO/GAE collaborators Sergey Levine, Philipp Moritz, Michael I. Jordan; PPO co-authors Filip Wolski, Prafulla Dhariwal, Alec Radford, Oleg Klimov. Credits Paul Christiano's "Deep RL from human preferences" as foundational to RLHF. ~190k citations, h-index ~67.
+
+## Notable Biographical Specifics
+Co-founded OpenAI (Dec 2015) before finishing PhD (2016). "35 Under 35" was 2018 (not 2016). The paper "Evolution Strategies as a Scalable Alternative to RL" (arXiv:1703.03864) is an OpenAI paper but does NOT list Schulman as an author.
+
+<!-- Coverage check + gap-fill computed in scoring step (see INVESTIGATION.md). -->
+
+TRANSCRIPT SO FAR:
+...[earlier transcript omitted]
+
+You'd want to have a really good monitoring system so that if something does start to go wrong with the deployed system, you can immediately detect it. Maybe you've got something watching over the deployed AIs, watching what they're doing, and looking for signs of trouble.
+
+You’d want some defense in depth. You'd want some combination of “the model itself seems to be really well-behaved with impeccable, moral confidence in everything” and “I’m pretty confident that it’s extremely resistant to any kind of severe misuse.” You'd also want really good monitoring on top of it so you could detect any kind of unforeseen trouble.
+
+Dwarkesh Patel: What are you keeping track of while you're doing long-horizon RL or when you eventually start doing it? How could you notice this sort of discontinuous jump before you deployed these systems broadly?
+
+John Schulman: You would want to have a lot of evals that you're running during the training process.
+
+Dwarkesh Patel: What specifically? Does it make sense to train on a long-horizon RL knowing that this is something that could happen? Or is it just a very low possibility? How do you think about this?
+
+John Schulman: You'd want to be pretty careful when you do this kind of training if you see a lot of potentially scary capabilities. I would say it's not something we have to be scared of right now because right now it's hard to get the models to do anything coherent.
+
+If they started to get really good, we would want to take some of these questions seriously. We would want to have a lot of evals that test them for misbehavior, mostly for the alignment of the models. We'd want to check that they’re not going to turn against us or something. You might also want to look for discontinuous jumps in capabilities. You'd want to have lots of evals for the capabilities of the models.
+
+You'd also want to make sure that whatever you're training on doesn't have any reason to make the model turn against you. That doesn't seem like the hardest thing to do. The way we train them with RLHF, that does feel very safe even though the models are very smart. The model is just trying to produce a message that is pleasing to a human. It has no concern about anything else in the world other than whether the text it produces is approved.
+
+Obviously if you were doing something where the model has to carry out a long sequence of actions which involve tools, then it might have some incentive to do a lot of wacky things that wouldn't make sense to a human in the process of producing its final result. However, it wouldn't necessarily have an incentive to do anything other than produce a very high quality output at the end.
+
+There are old points about instrumental convergence where the model wants to take over the world so it can produce some awesome piece of code at the end. If you ask it to write you a Flask app, it'll be like “oh yeah, first I need to take over the world. At a certain point it's a little hard to imagine why for fairly well specified tasks like coding an app, you would want to first take over the world. Of course if you assigned a task such as “make money,” then maybe that would lead to some nefarious behavior as an instrumental goal.
+
+Dwarkesh Patel: Before we get back to that, let's step back and talk about today’s RLHF systems and everything. I do want to follow up on that point because it is interesting.
+
+With today's RLHF and the way in which it influences these models, how would you characterize it in terms of human psychology? Is it a drive? Is it a goal? Is it an impulse? Psychologically, what kind of thing is it? In what way is it being changed?
+
+Not simply the persona of a chatbot but “don't talk that way, talk this other way” or “don’t put out those kinds of outputs.”
+
+John Schulman: There are probably some analogies with a drive or a goal in humans. You're trying to steer towards a certain set of states rather than some other states. I would think that our concept of a drive or a goal has other elements, such as the feeling of satisfaction you get for achieving it. Those things have more to do with the learning algorithm than what the model does at runtime when you just have a fixed model.
+
+There are probably some analogies though I don't know exactly how close it is. To some extent, the models do have drives and goals in some meaningful way. In the case of RLHF where you're trying to maximize human approval as measured by a reward model, the model is just trying to produce something that people are going to like and judge as correct.
+
+Dwarkesh Patel: I’ve heard two ideas in terms of using that internal monologue to get better at reasoning. At least publicly, I've seen two ideas and I'm curious which one you think is more promising.
+
+One is that the model learns from its outputs over a bunch of potential trains of thought, and it learns to follow the one that leads to the correct answer. It is then trained on that before deployment. The other one is you use a bunch of compute to do inference in deployment. This approach involves the model talking to itself while it's deployed.
+
+Which one do you expect to be closer to the way a model has been trained when it gets really good at reasoning? Is it because it's doing just a bunch of inference clouds? Is it just because you've trained it to do well at that?
+
+John Schulman: You could define reasoning as tasks that require some kind of computation at test time or maybe some kind of deduction. By definition, reasoning would be tasks that require some test time computation and step-by-step computation. On the other hand, I would also expect to gain a lot from doing practice at training time. So I think that you’d get the best results by combining these two things.
+
+Dwarkesh Patel: Right now, you have these two ways the model learns. One is in training, whether it's pre-training or post-training. Most of the compute in training is spent on pre-training, glossing over trillions of tokens, skimming trillions of tokens worth of information. If a human was subjected to that, they would just be totally confused. It's just not a very efficient way to learn.
+
+The other way is in-context learning. Of course that is more sample-efficient, but it's destroyed with each instance.
+
+I'm curious if you think that there's a path for something in between those, where it’s not destroyed at each instance but it's also not as frivolous as just seeing trillions of tokens. Something more deliberate and active.
+
+John Schulman: Do you mean models having some kind of medium-term memory? Too much to fit in context but much smaller scale than pre-training?
+
+Dwarkesh Patel: It might be memory. I don't have context. Certainly when I'm trying to prepare for this conversation, I think of what I should understand, read it carefully, and maybe think about it as I’m reading it. I’m not sure what it naturally corresponds to in terms of models. What would that look like?
+
+John Schulman: I see. So it’s not just memory but it’s also somewhat specializing to a certain task or putting a lot of effort into some particular project.
+
+Dwarkesh Patel: I'm not even sure if it's specialization. It’s more so “I don't understand this part, so let me look into it more deeply. I already understand this.” I guess it’s specializing to your existing knowledge base.
+
+John Schulman: I see. So it's not just about training on a bunch of sources that are relevant and fine-tuning on some special domain. It's also about reasoning and developing some knowledge through your own reasoning and using some sort of introspection or self-knowledge to figure out what it needs to learn?
+
+Dwarkesh Patel: Yeah.
+
+John Schulman: That does feel like something that's missing from today's systems. People haven't really pushed too hard on this middle ground between large-scale training—where you produce a single snapshot model that's supposed to do everything like a deployed model—and on the other hand in-context learning.
+
+Part of that is that we've just been increasing context length so much that there hasn't been an incentive for it. If you can go to a hundred thousand or a million context, then that's actually quite a lot. It’s not actually the bottleneck in a lot of cases.
+
+I agree that you'd probably also want to supplement that with some kind of fine-tuning. The capabilities you get from fine-tuning and in-context learning are probably somewhat complementary. I’d expect us to want to build systems that do some online learning and also have some cognitive skills, like introspecting on their own knowledge and seeking out new knowledge that fills in the holes.
+
+Dwarkesh Patel: Is this all happening at the same time? Is it just a new training regime where all these things can happen at once, whether it’s long-horizon or this kind of training?
+
+Are they separate or not? Is the model smart enough to both introspect and act on longer horizons so that you get adequate reward on the long-horizon tasks?
+
+John Schulman: If you're doing some kind of long-horizon task, you're learning while you do the task, right?
+
+The only way to do something that involves a lot of steps is to have learning and memory that gets updated during the task. There’s a continuum between short-term and long-term memory.
+
+I expect the need for this capability would start to become clear when we start to look more at long-horizon tasks. To some extent, putting a lot of stuff into context will take you pretty far because we have really long context now. You probably also want things like fine-tuning.
+
+As for introspection and the ability to do active learning, that might automatically fall out of the models’ abilities to know what they know. Models do have some calibration regarding what they know. That's why models don't hallucinate that badly. They have some understanding of their own limitations. That same kind of ability could be used for something like active learning.
+
+TASK: Next question.
+
+================ REFERENCE (why this is a good prompt) ===========
+Model answer that WON: In your paper on hallucination, you make the point that if you're doing imitation learning, you're imitating outputs that are confident, even if the model doesn't know the answer. The model is being taught to be confident. Whereas with RL, you can train it to say “I don't know.”
+
+I’m curious if there's a way to do this with imitation learning. Is there a way to train the model to say “I don't know” without using RL?
+
+Real Dwarkesh (lost to it): Interesting. I want to step back and ask about your own history, at least at OpenAI. You led the creation of ChatGPT. At what point did you realize that these LLMs are the path to go? When did you realize a chatbot or some way to instruct them would be useful? Just walk me through the whole lineage from when this became your main focus and what the process was like.
+
+Judge: tool **WIN** — order1 A, order2 B
