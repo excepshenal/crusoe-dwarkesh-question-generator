@@ -19,6 +19,7 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | **prompting_v3** | **v2 prompt + Method C (few-shot, k=2)** | 37% (n=61, 1 pass)* | **48.3% ± 2.0%** (n=60, 3-pass) | GLM-5.1 |
 | sft_v0a | qwen3-235b LoRA (ckpt-32) · Method-B, no shots, temp 0 (greedy) | — | 27.5% ± 1.4% (n=60, 3-pass) | GLM-5.1 |
 | **sft_v0b** | **same ckpt-32, temp 0 + repetition_penalty 1.1** | — | **49.4% ± 2.2%** (n=60, 3-pass) | GLM-5.1 |
+| sft_v0c | same ckpt-32, temp 0.7 (no penalty) | — | 38.6% ± 1.6% (n=60, 3-pass) | GLM-5.1 |
 
 \* train is no longer comparable across versions: the split was made **guest-disjoint** at v3 (train
 76→64 slugs — all episodes of held-out guests removed), so v3's train set differs from v0–v2's.
@@ -39,6 +40,21 @@ imitation ceiling. Degenerate outputs fell to 17% no-question / 13% runaway. So 
 eval_loss-2.59 checkpoint already matches the best prompt** once greedy loops are suppressed — the
 reactive on-thread disposition is in the weights (e.g. it beat Rhodes with *"Yeah, a reactor. But why
 did they think that?"*).
+
+**Decoding sweep (same ckpt-32) — the two failure modes are separable:**
+
+| decoding | win-rate | runaway loops | no-question |
+|----------|----------|---------------|-------------|
+| v0a temp 0, greedy | 27.5% | 20% | 25% |
+| v0c temp 0.7, no penalty | 38.6% | **0%** | 30% |
+| v0b temp 0 + rep_penalty 1.1 | **49.4%** | 13% | 17% |
+
+Sampling (temp 0.7) **fully escapes the greedy repetition attractor** (0% runaway) but doesn't touch
+the *no-question* rate (30% — sampling wanders into statements) and pays sampling-noise quality cost →
+38.6%. `repetition_penalty` at temp 0 wins because it keeps the **argmax (quality) path** while just
+forbidding loops. So **loops are a pure decoding artifact** (either lever kills them) while
+**"emits a statement, not a question" is a training/undertraining issue** no decoding fixes — a
+checkpoint-quality lever, not a sampler one. **Deploy/eval recommendation: temp 0 + rep_penalty 1.1.**
 
 **Diagnosis (ruled out vLLM/template/thinking):** templates are byte-identical train↔serve, EOS is
 emitted and honored (`finish_reason=stop`), no thinking involved. Root cause is **undertraining**
