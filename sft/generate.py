@@ -47,8 +47,10 @@ class SFTGenerator:
     """
 
     def __init__(self, *, model: str | None = None, serving: str | None = None, base_url: str | None = None,
-                 temperature: float = 0.0, max_tokens: int = 1024, llm: LLM | None = None):
+                 temperature: float = 0.0, max_tokens: int = 1024, frequency_penalty: float = 0.0,
+                 repetition_penalty: float | None = None, llm: LLM | None = None):
         self.temperature, self.max_tokens, self._llm, self.serving = temperature, max_tokens, llm, serving
+        self.frequency_penalty, self.repetition_penalty = frequency_penalty, repetition_penalty
         env = LLMConfig.from_env("SFT")
         self.model = model or env.model
         base_url = base_url or env.base_url or (SERVING.get(serving) if serving else None)
@@ -74,7 +76,12 @@ class SFTGenerator:
 
     def generate(self, card: EvalCard, *, n: int = 5) -> str:
         msgs = self.messages_for(card, n=n)
-        return (self.llm.chat(msgs, temperature=self.temperature, max_tokens=self.max_tokens) or "").strip()
+        kw: dict = {}
+        if self.frequency_penalty:
+            kw["frequency_penalty"] = self.frequency_penalty
+        if self.repetition_penalty:  # vLLM-specific sampler param -> extra_body
+            kw["extra_body"] = {"repetition_penalty": self.repetition_penalty}
+        return (self.llm.chat(msgs, temperature=self.temperature, max_tokens=self.max_tokens, **kw) or "").strip()
 
 
 def _card_for(slug: str, mode: Mode, turn: int | None) -> EvalCard:
@@ -102,10 +109,13 @@ def main() -> None:
                     help="endpoint preset: vllm=localhost:8000, crusoe=inference API (or set SFT_BASE_URL)")
     ap.add_argument("--model", default=None, help="served model / vLLM adapter name (or set SFT_MODEL)")
     ap.add_argument("--temperature", type=float, default=0.0)
+    ap.add_argument("--frequency-penalty", type=float, default=0.0, help="OpenAI freq penalty (curbs repetition)")
+    ap.add_argument("--repetition-penalty", type=float, default=None, help="vLLM repetition_penalty, e.g. 1.1")
     a = ap.parse_args()
 
     card = _card_for(a.slug, a.mode, a.turn)
-    gen = SFTGenerator(model=a.model, serving=a.serving, temperature=a.temperature)
+    gen = SFTGenerator(model=a.model, serving=a.serving, temperature=a.temperature,
+                       frequency_penalty=a.frequency_penalty, repetition_penalty=a.repetition_penalty)
     if card.reference:
         print("=== REAL DWARKESH ===\n" + card.reference + "\n")
     print("=== GENERATED (" + gen.name + ") ===\n" + gen.generate(card, n=a.n))

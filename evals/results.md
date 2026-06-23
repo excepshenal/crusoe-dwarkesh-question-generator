@@ -17,7 +17,8 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | prompting_v1 | v0 + anti-"syllogism" ban (73-line prompt) | 24.2% ± 0.3% | 29.7% ± 1.0% | GLM-5.1 |
 | prompting_v2 | leaner rewrite (73→24 lines) | 34.5% ± 2.9% | 40.0% ± 1.2% | GLM-5.1 |
 | **prompting_v3** | **v2 prompt + Method C (few-shot, k=2)** | 37% (n=61, 1 pass)* | **48.3% ± 2.0%** (n=60, 3-pass) | GLM-5.1 |
-| sft_v0 | qwen3-235b LoRA (ckpt-32) · Method-B, no shots, temp 0 | — | 27.5% ± 1.4% (n=60, 3-pass) | GLM-5.1 |
+| sft_v0 | qwen3-235b LoRA (ckpt-32) · Method-B, no shots, temp 0 (greedy) | — | 27.5% ± 1.4% (n=60, 3-pass) | GLM-5.1 |
+| **sft_v0b** | **same ckpt-32, temp 0 + repetition_penalty 1.1** | — | **49.4% ± 2.2%** (n=60, 3-pass) | GLM-5.1 |
 
 \* train is no longer comparable across versions: the split was made **guest-disjoint** at v3 (train
 76→64 slugs — all episodes of held-out guests removed), so v3's train set differs from v0–v2's.
@@ -25,21 +26,29 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 
 **Held-out: 14.7% → 29.7% → 40.0% → 48.3% over three prompt iterations (no SFT).**
 
-### Phase 2 — sft_v0 (27.5%): the disposition is in the weights, decoding gates the score
-First SFT checkpoint (LoRA, ckpt-32, served on vLLM; trained on ALL Dwarkesh turns, unfiltered —
-the imitation ceiling is ~50%, so this was never the win-rate lever). It beats raw v0 prompting
-(14.7%) but sits below v1 (29.7%) and far below v3 (48.3%). **The headline is gated by a decoding
-pathology, not by disposition:**
-- **Split by output quality:** clean terse questions (34/60) win **41%** — near v2 — while degenerate
-  outputs (26/60) win **10%** (near-auto-losses). At temp 0 the checkpoint **collapses into repetition
-  loops** (20% of outputs run away >900 chars) or emits an **ack/statement with no question** (25% have
-  no "?"). When it stays tight it nails the reactive on-thread style (e.g. beat Rhodes with *"Yeah, a
-  reactor. But why did they think that?"*).
-- **Levers to recover toward the ceiling (not yet run):** a later checkpoint (ckpt-32 is early), the
-  deploy temp (0.7) instead of 0, and a `frequency_penalty`/`repetition_penalty` to kill the loops.
-  Then the win-rate lever beyond ~50% is **quality-filtered SFT / DPO** (the next phase), not more
-  imitation. Reproduce: `python -m evals.run_eval --generator sft --serving vllm --model <adapter>
-  --split heldout --n-per-guest 3 --temperature 0 --repeat 3 --out-dir evals/sft_v0`.
+### Phase 2 — sft_v0 → sft_v0b: the 27.5% was a decoding artifact; the disposition is already at ceiling
+First SFT checkpoint (LoRA, ckpt-32, served on vLLM; trained on ALL Dwarkesh turns, unfiltered — the
+imitation ceiling is ~50%). At **temp 0 / greedy it scored 27.5%**, but that was a *decoding pathology*,
+not the model: the checkpoint **collapsed into repetition loops** (20% of outputs ran away >900 chars)
+or emitted an **ack/statement with no question** (25% had no "?"). Splitting the greedy run by output
+quality showed it: clean terse questions (34/60) won **41%**, degenerate ones (26/60) won **10%**.
+
+**Fix was purely eval-side.** Adding `repetition_penalty=1.1` (temp 0, same checkpoint) →
+**sft_v0b = 49.4% ± 2.2%**, statistically tied with prompting v3 (48.3%) and right at the ~50%
+imitation ceiling. Degenerate outputs fell to 17% no-question / 13% runaway. So a **32-step,
+eval_loss-2.59 checkpoint already matches the best prompt** once greedy loops are suppressed — the
+reactive on-thread disposition is in the weights (e.g. it beat Rhodes with *"Yeah, a reactor. But why
+did they think that?"*).
+
+**Diagnosis (ruled out vLLM/template/thinking):** templates are byte-identical train↔serve, EOS is
+emitted and honored (`finish_reason=stop`), no thinking involved. Root cause is **undertraining**
+(32 steps, 1 epoch) eroding the base's clean stop-after-question (im_end logprob -0.0 base vs -0.4
+adapter) — combined with greedy decoding. Train-side fixes (more steps; verify EOS is unmasked in the
+loss) are owned separately; deploy should use `repetition_penalty`/temp>0.
+
+The win-rate lever **beyond ~50%** is **quality-filtered SFT / DPO** (next phase), not more imitation.
+Reproduce: `python -m evals.run_eval --generator sft --serving vllm --model <adapter> --split heldout
+--n-per-guest 3 --temperature 0 --repetition-penalty 1.1 --repeat 3 --out-dir evals/sft_v0b`.
 
 - **v0 → v1:** v0 defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
   (~50/73 train losses). v1 added a concrete ban → outputs starting "If/So/Given" 63%→42%, em-dash

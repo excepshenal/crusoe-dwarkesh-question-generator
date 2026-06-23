@@ -133,7 +133,12 @@ def save_version(out_dir, sc: Scorecard, judge_name: str, args) -> Path:
 def _method_label(args) -> str:
     """Human-readable method for the version meta."""
     if args.generator == "sft":
-        return f"sft ({args.model}; Method-B prompt + 10k transcript truncation, no shots)"
+        dec = [f"temp={args.temperature}"]
+        if args.frequency_penalty:
+            dec.append(f"freq_pen={args.frequency_penalty}")
+        if args.repetition_penalty:
+            dec.append(f"rep_pen={args.repetition_penalty}")
+        return f"sft ({args.model}; Method-B + 10k trunc, no shots; {', '.join(dec)})"
     return args.method.value
 
 
@@ -166,6 +171,8 @@ def main():
                     help="sft backend: vllm=localhost:8000 (LoRA adapter), crusoe=inference API (or set SFT_BASE_URL)")
     ap.add_argument("--model", default=None,
                     help="prompt: generator model (default qwen3-235b); sft: served model / vLLM adapter name")
+    ap.add_argument("--frequency-penalty", type=float, default=0.0, help="sft only: OpenAI freq penalty (curbs repetition loops)")
+    ap.add_argument("--repetition-penalty", type=float, default=None, help="sft only: vLLM repetition_penalty, e.g. 1.1")
     ap.add_argument("--method", type=Method, choices=list(Method), default=Method.B)
     ap.add_argument("--mode", type=Mode, choices=list(Mode), default=Mode.NEXT_QUESTION)
     ap.add_argument("--opponent-model", default=None, help="set for tool_vs_tool (else vs real Dwarkesh)")
@@ -182,7 +189,8 @@ def main():
 
     if a.generator == "sft":
         from sft.generate import SFTGenerator
-        gen = SFTGenerator(model=a.model, serving=a.serving, temperature=a.temperature)
+        gen = SFTGenerator(model=a.model, serving=a.serving, temperature=a.temperature,
+                           frequency_penalty=a.frequency_penalty, repetition_penalty=a.repetition_penalty)
     else:
         gen = PromptingGenerator(model=a.model or "Qwen/Qwen3-235B-A22B-Instruct-2507",
                                  method=a.method, temperature=a.temperature)
