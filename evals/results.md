@@ -20,6 +20,9 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | sft_v0a | qwen3-235b LoRA (ckpt-32) · Method-B, no shots, temp 0 (greedy) | — | 27.5% ± 1.4% (n=60, 3-pass) | GLM-5.1 |
 | **sft_v0b** | **same ckpt-32, temp 0 + repetition_penalty 1.1** | — | **49.4% ± 2.2%** (n=60, 3-pass) | GLM-5.1 |
 | sft_v0c | same ckpt-32, temp 0.7 (no penalty) | — | 38.6% ± 1.6% (n=60, 3-pass) | GLM-5.1 |
+| sft_v1a | qwen3-235b LoRA run2/ckpt-64 (2 epochs) · temp 0 (greedy) | — | 33.9% ± 0.4% (n=60, 3-pass) | GLM-5.1 |
+| sft_v1b | run2/ckpt-64, temp 0 + repetition_penalty 1.1 (best decoding) | — | 39.2% ± 0.7% (n=60, 3-pass) | GLM-5.1 |
+| sft_v1c | run2/ckpt-64, temp 0.7 (no penalty) | — | 38.1% ± 1.0% (n=60, 3-pass) | GLM-5.1 |
 
 \* train is no longer comparable across versions: the split was made **guest-disjoint** at v3 (train
 76→64 slugs — all episodes of held-out guests removed), so v3's train set differs from v0–v2's.
@@ -65,6 +68,28 @@ loss) are owned separately; deploy should use `repetition_penalty`/temp>0.
 The win-rate lever **beyond ~50%** is **quality-filtered SFT / DPO** (next phase), not more imitation.
 Reproduce: `python -m evals.run_eval --generator sft --serving vllm --model <adapter> --split heldout
 --n-per-guest 3 --temperature 0 --repetition-penalty 1.1 --repeat 3 --out-dir evals/sft_v0b`.
+
+### Phase 2 — sft_v1 (run2/ckpt-64, 2 epochs): more training, LOWER win-rate (the ceiling, confirmed)
+sft_v1 is the **same recipe trained twice as long** — run2/ckpt-64 (2 epochs, 64 steps) vs sft_v0's
+run1/ckpt-32 (1 epoch). Identical LoRA hyperparams (r=32, α=64, dropout=0); the only change is the
+extra epoch. Same 3-way decoding sweep:
+
+| checkpoint | greedy (a) | rep_pen 1.1 (b, best) | temp 0.7 (c) | eval_loss | runaway @ greedy |
+|------------|-----------|------------------------|--------------|-----------|------------------|
+| sft_v0 — run1/ckpt-32 (1 ep) | 27.5% | **49.4%** | 38.6% | 2.586 | 20% |
+| sft_v1 — run2/ckpt-64 (2 ep) | 33.9% | **39.2%** | 38.1% | 2.398 | 5% |
+
+**The extra epoch did exactly what theory predicts on two axes, and it's a net loss on win-rate.**
+It produced **cleaner generation** — eval_loss down (2.40 vs 2.59), greedy repetition loops nearly gone
+(runaway 20%→5%, so greedy improved 27.5%→33.9%) — **but lower win-rate at best decoding (49.4%→39.2%,
+~10pt).** Lower eval_loss ≠ higher win-rate. We train on **ALL of Dwarkesh's turns, unfiltered**, so
+tighter imitation converges toward "be exactly Dwarkesh" — which tops out at the **~50% imitation
+ceiling and *includes the turns he loses with*.** The under-trained run1 still carried some of the base
+model's promptable sharpness (whose ceiling, per v3, is higher), so once its loops were suppressed it
+scored *higher*. This is the cleanest evidence yet that **more SFT epochs is not the win-rate lever** —
+quality-filtered SFT / DPO is. (Caveat: one checkpoint per run; run1's 49.4% had wider variance
+±2.2%, but even its worst pass (47.5%) clears run2's 39.2%.) Reproduce: same command as sft_v0b with
+`--model dwarkesh-run2-ckpt64 --out-dir evals/sft_v1b`.
 
 - **v0 → v1:** v0 defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
   (~50/73 train losses). v1 added a concrete ban → outputs starting "If/So/Given" 63%→42%, em-dash

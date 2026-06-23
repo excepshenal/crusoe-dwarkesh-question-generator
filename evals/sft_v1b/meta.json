@@ -1,0 +1,18 @@
+{
+  "generator": "sft:dwarkesh-run2-ckpt64",
+  "model": "dwarkesh-run2-ckpt64",
+  "method": "sft (dwarkesh-run2-ckpt64; Method-B + 10k trunc, no shots; temp=0.0, rep_pen=1.1)",
+  "temperature": 0.0,
+  "split": "heldout",
+  "opponent": "Dwarkesh",
+  "judge": "judge:GLM-5.1",
+  "n_per_pass": 60,
+  "passes": 3,
+  "win_rate_mean": 0.3917,
+  "win_rate_std": 0.0068,
+  "per_pass_win_rates": [
+    0.4,
+    0.3833,
+    0.3917
+  ]
+}
