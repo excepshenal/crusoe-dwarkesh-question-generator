@@ -1,0 +1,1 @@
+Trained via `qwen3-235b-a22b-instruct-2507-deepspeed-ep-dwarkesh-run-1.yaml` on Crusoe rnd.
