@@ -6,9 +6,9 @@ Each row is {messages: [system, user, assistant]} where the target is Dwarkesh's
   - prep:          research only -> N of his substantive questions.
 RESEARCH PREP is the guest's gap-filled dossier. The held-out 20 guests are never touched; a
 guest-disjoint slice of TRAIN is held for val. Dataset is regenerable (gitignored) — subsample
-sft/data/train.jsonl for a faster run.
+sft/data/dwarkesh-train.jsonl for a faster run.
 
-  python -m sft.build_dataset                  # -> sft/data/{train,val}.jsonl
+  python -m sft.build_dataset                  # -> sft/data/dwarkesh-{train,val}.jsonl
 """
 from __future__ import annotations
 
@@ -85,10 +85,10 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     for name, slugs in splits.items():
         rows = [r for s in slugs for r in rows_for(s)]
-        (OUT / f"{name}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+        (OUT / f"dwarkesh-{name}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
         nq = sum(r["mode"] == "next-question" for r in rows)
         print(f"{name}: {len(rows)} rows ({nq} next-question, {len(rows) - nq} prep) "
-              f"from {len(slugs)} guests -> sft/data/{name}.jsonl")
+              f"from {len(slugs)} guests -> sft/data/dwarkesh-{name}.jsonl")
 
 
 if __name__ == "__main__":
