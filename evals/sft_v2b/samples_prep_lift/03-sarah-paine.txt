@@ -1,0 +1,103 @@
+# PREP-MODE SFT-LIFT prompt: sft_v2 (prod-ftjob ckpt-48) beats the BASE model head-to-head
+# here (prep mode, research only, no transcript; rep_penalty 1.1; judged pairwise, GLM-5.1).
+# Guest: Sarah Paine.  NOTE: prep is low-differentiation — SFT only wins 5/20 prep cards
+# vs base (35%); these 5 are the exceptions. Feed SYSTEM + USER to get N starter questions.
+
+========================= SYSTEM PROMPT =========================
+You write interview questions in the voice and judgment of Dwarkesh Patel.
+
+HOW HE SOUNDS (match this):
+- Plain and short: one question, one or two sentences. No preamble, no meta-commentary, no
+  markdown, no speaker label.
+- Ask the question a sharp, curious person would just blurt out — at most one short clause of
+  setup, then the question. Not a built-up argument.
+- NO "syllogism" questions: no "if [premise] … (then) why/wouldn't/how …" reasoning chains
+  anywhere in the sentence, no em-dash pivots, no stacked or multi-part questions.
+
+STAY ON THE EXACT THREAD (next-question mode — the most common failure):
+- React to the SPECIFIC thing the guest said in their MOST RECENT turn, and drill that.
+- Do NOT zoom out to a bigger theme ("what does this mean for X?"), do NOT pivot to an adjacent
+  topic, and do NOT re-ask or paraphrase what they just said. Advance THIS exact point.
+- If you wouldn't say it as a direct reply to their last sentence, it's wrong.
+
+WHAT MAKES IT GOOD:
+- Seize a hedge, a surprising claim, or an unexamined assumption and go one level deeper; or push
+  back with a real counterargument; or ask the naive question that exposes the soft spot.
+- Be specific, and ground every reference (paper, quote, stat, prior claim) ONLY in the materials
+  given — never invent one, and never write "you said …" unless it's actually there.
+- Avoid softballs, generic questions, anything already answered, anything with an obvious answer.
+
+OUTPUT:
+- Transcript present: ONE next question.
+- No transcript (prep): 6 starter questions spanning DIFFERENT angles of the research, each plain
+  and short per the above; separate by blank lines, no numbering.
+
+
+========================= USER PROMPT ===========================
+GUEST: Sarah Paine
+
+RESEARCH PREP:
+# Research dossier — Sarah C. M. Paine
+# (broad research [BLIND: agent given only name+role, Dwarkesh content excluded, deepened primary-text prompt])
+# One blind dossier; scored against BOTH her held-out episodes (east-asia, russo-chinese).
+
+## Broad research
+
+## One-Paragraph Biography
+Sarah Crosby Mallory Paine (born 1957) is an American historian of East Asia, Russia, and grand strategy, long associated with the U.S. Naval War College (USNWC). B.A. Latin American Studies, Harvard (1979); M.I.A., Columbia SIPA (1984); M.A. Russian, Middlebury (1989); M.Phil. (1987) and Ph.D. (1993) in Russian and Chinese history, Columbia. ~9 years overseas for archival/language work (Taiwan, Japan, China, Russia, Australia, Britain). Joined USNWC ~2000; full professor 2006; held the William S. Sims University Professorship of History and Grand Strategy and the Ernest J. King Professorship of Maritime History (2014–2025); now Sims University Professor Emerita; teaches in the Strategy and Policy Department. Hoover National Fellowship (2013–14), two Fulbrights. Publishes as "S. C. M. Paine." Documented primary-source languages: Russian and Chinese (Japanese/German/French reported but not self-confirmed). Frequently co-authors with USNWC naval historian Bruce A. Elleman (reported husband).
+
+## Major Books and Central Arguments
+- **Imperial Rivals: China, Russia, and Their Disputed Frontier, 1858–1924** (1996). Russia's eastward expansion (Treaty of Aigun 1858; Ili/Sinkiang crisis 1871–81, Treaty of Livadia/St. Petersburg; CER "railroad imperialism" 1896–1905; Outer Mongolia 1911–24) could not convert territory into durable control. Figures: Li Hongzhang, Witte, Kuropatkin. Won the 1997 Barbara Jelavich Prize.
+- **The Sino-Japanese War of 1894–1895: Perceptions, Power, and Primacy** (2003). The war restructured East Asian geopolitics: ended the regional balance, accelerated Qing decline, displaced China by Japan as primary power, reshaped Western perceptions. Fought over Korea (bulwark of Manchuria, which shields Beijing). Foregrounds perceptions/prestige/"face" alongside material factors. Battles of Pyongyang, the Yalu (crippled Beiyang fleet), Weihaiwei. Treaty of Shimonoseki (Apr 17 1895): Korean independence, cession of Taiwan/Pescadores/Liaodong, 200M-tael indemnity; Li Hongzhang vs Itō/Mutsu; assassination attempt on Li.
+- **The Wars for Asia, 1911–1949** (2012). Reframes the Chinese Civil War, Second Sino-Japanese War, and WWII-Pacific as three "nested" wars — a civil war within a regional war within a global war. Japan's "peripheral strategy" (Pearl Harbor, Dec 1941) aimed to cut foreign aid to China, always Japan's chief target. Kwantung Army's 1931 Manchuria seizure (Manchukuo), semi-independent of Tokyo, backfired by tipping the civil war toward Mao. Nationalists never had unity of command ("a shifting coalition of warlords"). Soviet pivotal role: Nomonhan (1939) checked Japan's northward ambition; post-1945 Stalin/Malinovsky transferred Japanese weapons to the Communists → Manchuria → 1949. Won the 2012 PROSE Award.
+- **The Japanese Empire: Grand Strategy from the Meiji Restoration to the Pacific War** (2017). Fullest statement of her framework. Japan won as a flexible **maritime** power (Sino-Japanese, Russo-Japanese wars: limited objectives, unity of command, naval dominance, diplomatic exits), then destroyed itself pursuing **continental** domination of China (the "fourteen-year war," 1931–45). Core distinction: maritime = positive-sum, trade/alliance-based (Anglo-Japanese Alliance); continental = negative-sum, territorial domination, earns few friends. 1931 Manchurian Incident "turned the tables." Comparative cases: Athens at Sicily, Imperial Germany vs Britain, USSR.
+- **Edited/co-authored** (with Elleman): Routledge naval volumes (*Naval Blockades and Seapower*; *Naval Coalition Warfare*; *Navies and Soft Power*); textbook *Modern China: Continuity and Change, 1644–Present*; *Principles of Maritime Power*; *Nation Building, State Building, and Economic Development*.
+
+## The Substance of Her Ideas
+- **Maritime vs. continental power** (the spine; 2022 Marshall Lecture "Centuries of Security," JMH 86:4; 2025 Foreign Affairs "By Land or by Sea"). Test: "A maritime power can, if necessary, defend itself primarily by sea, while a continental power cannot." Geography drives politics — continental powers need large standing armies + border security → army-oriented economy + authoritarianism; maritime powers, sea-defended, leave room for commerce, pluralism, rule-based institutions. Stats: ~70% of globe is ocean, most population coastal, ~90% of goods move by sea; lineage to Hugo Grotius. The post-1945 rules-based order (UN, NATO, IMF, GATT/WTO) is a maritime construct; continental strategy is zero-sum and self-defeating (provokes counter-coalitions, suppresses entrepreneurship).
+- **Levels of war / nested hierarchy:** grand strategy (integrating military, economic, diplomatic, intelligence, propaganda, institution-building, law) above military strategy/operations/tactics. Maxim: **"Victory is always assessed at the strategic, not the operational, level"** — win every battle, still lose the war (her Japan diagnosis).
+- **Overreach / self-inflicted wounds:** Japan as canonical maritime power wrecking itself in protracted continental war, "chasing an elusive Chinese center of gravity." Generalizes to a warning for maritime democracies (applied to U.S. in Iraq — unilateral, allianceless, hard to exit).
+- **Limited vs. unlimited wars:** limited = bounded objectives, compromise possible; unlimited/existential = "compromise... is called appeasement." Alliances decisive: "the side with the most effective alliance system typically wins."
+- **Russia/USSR:** "a brutal, centrally planned, stupendously inefficient, colonial land empire." "Why Russia Lost the Cold War" (2021): multi-cause (U.S. pressure, Sino-Soviet split, mid-80s oil-price collapse vs energy dependence, ethnic rebellions). Cyclical expansion pattern. On Ukraine (2024–25): Putin, like Nicholas II squandering resources on Japan/Manchuria while neglecting Germany, has misidentified his primary enemy (China) while draining Russia in a war of choice.
+
+## Field Debates and Reception
+USNWC Strategy and Policy tradition (Clausewitz, Sun Tzu, Mao, Mahan, Corbett). Her maritime/continental framing sits in the Mahan/Corbett seapower tradition vs Mackinder's heartland geopolitics. As a historian (not IR theorist) she shares realism's structural/material emphasis but works through archival narrative + perceptions; her "continental expansion is self-destructive" cuts against offensive realism (Mearsheimer). Most consistent critique (Pacific Affairs: Tosh Minohara, Michael J. Green): strong on structural/material logic, underweights ideology/culture/factional politics; synthesizing frameworks can flatten complexity / read with hindsight. Affiliated with Hoover and the Kissinger Center (SAIS).
+
+## Notable Biographical Specifics
+Three brothers. Language-intensive, multi-archival method (~9 years overseas). U.S. Navy Superior Civilian Service Award (2025); Civilian Service Commendation Medal (2021). Long scholarly partnership with Bruce Elleman.
+
+<!-- Coverage check + gap-fill computed in scoring step. -->
+
+TRANSCRIPT SO FAR:
+(none — pre-interview)
+
+TASK: Generate 6 candidate questions for prep.
+
+================ WHY THIS IS A PREP SFT-LIFT CASE ================
+SFT starter questions (won vs base):
+I want to start off with your book about the Japanese Empire. What was the reason that Japan went from being a successful maritime power to becoming a failed continental power?
+
+What are the reasons that a country might be tempted to become a continental power even though it’s a maritime power?
+
+How did the Japanese Empire get so much support from the British Empire when they were fighting the Russians?
+
+If we look at the United States today, how should we think about whether we’re a maritime power or a continental power?
+
+Is the United States more similar to the British Empire or the Japanese Empire?
+
+In your book, you talk about how the Japanese Empire got so much support from the British Empire. How did the British Empire benefit from supporting the Japanese Empire?
+
+BASE starter questions (lost):
+What makes a maritime power abandon its advantages and pursue continental strategies despite the historical record?
+
+Why do you see alliances as decisive when so many fail to prevent war or ensure victory?
+
+How does your maritime-continent dichotomy account for hybrid powers like modern China?
+
+If victory is always strategic, how should we measure it beyond regime survival or territory?
+
+When have perceptions mattered more than material power in determining great power outcomes?
+
+Can a continental power ever adopt sustainable maritime strategies without internal political change?
+
+Judge (SFT=A preferred): Candidate A asks concrete, specific questions grounded in Paine's actual work on Japan and maritime vs. continental strategy, while Candidate B offers abstract, generic questions that could be asked of any grand-strategy scholar and exhibit the LLM bias toward manufactured tensions and showy phrasin
