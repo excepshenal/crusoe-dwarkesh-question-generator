@@ -23,6 +23,9 @@ losses first), `meta.json` (config + score), and `system_prompt.md` (the exact p
 | sft_v1a | qwen3-235b LoRA run2/ckpt-64 (2 epochs) · temp 0 (greedy) | — | 33.9% ± 0.4% (n=60, 3-pass) | GLM-5.1 |
 | sft_v1b | run2/ckpt-64, temp 0 + repetition_penalty 1.1 (best decoding) | — | 39.2% ± 0.7% (n=60, 3-pass) | GLM-5.1 |
 | sft_v1c | run2/ckpt-64, temp 0.7 (no penalty) | — | 38.1% ± 1.0% (n=60, 3-pass) | GLM-5.1 |
+| sft_v2a | prod-ftjob/ckpt-48 (r16/α32, 8k-len data) · temp 0 (greedy) | — | 37.8% ± 0.8% (n=60, 3-pass) | GLM-5.1 |
+| sft_v2b | prod-ftjob/ckpt-48, temp 0 + repetition_penalty 1.1 (best decoding) | — | 45.0% ± 2.4% (n=60, 3-pass) | GLM-5.1 |
+| sft_v2c | prod-ftjob/ckpt-48, temp 0.7 (no penalty) | — | 37.2% ± 4.0% (n=60, 3-pass) | GLM-5.1 |
 
 \* train is no longer comparable across versions: the split was made **guest-disjoint** at v3 (train
 76→64 slugs — all episodes of held-out guests removed), so v3's train set differs from v0–v2's.
@@ -90,6 +93,29 @@ scored *higher*. This is the cleanest evidence yet that **more SFT epochs is not
 quality-filtered SFT / DPO is. (Caveat: one checkpoint per run; run1's 49.4% had wider variance
 ±2.2%, but even its worst pass (47.5%) clears run2's 39.2%.) Reproduce: same command as sft_v0b with
 `--model dwarkesh-run2-ckpt64 --out-dir evals/sft_v1b`.
+
+### Phase 2 — sft_v2 (prod-ftjob ckpt-48): the production stack + length-filtered data, same ceiling
+sft_v2 is the **first checkpoint from the prod finetuning-job pipeline** (not the run1/run2 DeepSpeed
+experiments) — a *different recipe*: LoRA **r=16/α=32** (vs r32/α64), step 48, trained on the
+**8k-len filtered data** (`dwarkesh-{train,val}-8k-len.jsonl`, which drops the 1304 train / 126 val rows
+over the engine's 7447-token cap). Same 3-way decoding sweep. Best decoding (rep_pen 1.1) across all
+SFT checkpoints:
+
+| checkpoint | recipe | greedy (a) | rep_pen 1.1 (b, best) | temp 0.7 (c) | no-Q @ greedy | runaway @ greedy |
+|------------|--------|-----------|------------------------|--------------|---------------|------------------|
+| sft_v0 — run1/ckpt-32 | 1 ep, r32, full data | 27.5% | **49.4%** | 38.6% | 25% | 20% |
+| sft_v1 — run2/ckpt-64 | 2 ep, r32, full data | 33.9% | 39.2% | 38.1% | 28% | 5% |
+| sft_v2 — prod-ftjob/ckpt-48 | r16/α32, **8k-len data** | 37.8% | **45.0%** | 37.2% | 40% | 10% |
+
+**Two takeaways.** (1) v2 lands at **45.0%** best-decoding — squarely in the **~40-50% imitation
+ceiling** band with v0/v1. A different stack, smaller LoRA, and length-filtered data don't move the
+ceiling; only a better-than-Dwarkesh signal (filtering/DPO) will. (2) **Length-filtering ≠ no-question
+fix.** Dropping the longest rows cut runaways but the no-question rate is the *highest* of all runs
+(40% at greedy) — confirming "reacts with a statement, not a question" is a disposition/training issue
+orthogonal to sequence length. v2 does post the **best greedy** (37.8%), so its terse-question outputs
+are strong when it produces them. (Caveat: different recipe AND data from v0/v1, so this isn't a clean
+ablation — it's a separate point in the same band.) Reproduce: same as sft_v0b with
+`--model dwarkesh-prod-ftjob-ckpt48 --out-dir evals/sft_v2b`.
 
 - **v0 → v1:** v0 defaulted to a syllogistic **"If [premise] — why doesn't [contrived tension]?"** form
   (~50/73 train losses). v1 added a concrete ban → outputs starting "If/So/Given" 63%→42%, em-dash

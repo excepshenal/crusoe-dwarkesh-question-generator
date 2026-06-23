@@ -1,0 +1,18 @@
+{
+  "generator": "sft:dwarkesh-prod-ftjob-ckpt48",
+  "model": "dwarkesh-prod-ftjob-ckpt48",
+  "method": "sft (dwarkesh-prod-ftjob-ckpt48; Method-B + 10k trunc, no shots; temp=0.0)",
+  "temperature": 0.0,
+  "split": "heldout",
+  "opponent": "Dwarkesh",
+  "judge": "judge:GLM-5.1",
+  "n_per_pass": 60,
+  "passes": 3,
+  "win_rate_mean": 0.3778,
+  "win_rate_std": 0.0079,
+  "per_pass_win_rates": [
+    0.3833,
+    0.3833,
+    0.3667
+  ]
+}
